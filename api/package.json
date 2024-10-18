@@ -14,12 +14,14 @@
     "@types/ejs": "^3.1.5",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/morgan": "^1.9.9",
+    "tailwindcss": "^3.4.14",
     "ts-node": "^10.9.2"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "debug": "^4.3.7",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "http-errors": "^2.0.0",

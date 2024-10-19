@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "roboto": ["roboto", "sans-serif"]
+      },
       screens: {
         "xs": "400px",
       }

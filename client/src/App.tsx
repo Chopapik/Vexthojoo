@@ -1,14 +1,22 @@
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Home from "./components/Home";
+import UserPage from "./components/UserPage";
 
 function App() {
   return (
     <>
-      <div className="bg-black h-screen">
-        <Header />
-        <Footer />
-      </div>
+      <Router>
+        <div className="bg-black h-screen">
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/userpage" element={<UserPage />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
     </>
   );
 }

@@ -1,0 +1,8 @@
+.button01 {
+    min-width: 9rem;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 5px 15px 5px;
+    border-radius: 30px;
+    font-family: poppins;
+}

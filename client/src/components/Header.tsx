@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
+import Panel from "./Panel";
+import PanelVisibility from "../hooks/PanelVisibility";
 
 const Header = () => {
   const [logoSrc, setLogoSrc] = useState("/logosm.png");
+
+  const { showPanel, closePanel, isVisible } = PanelVisibility();
 
   const [loggedUser, setLoggedUser] = useState({
     avatar: "./defaultAvatar.png",
@@ -25,6 +29,14 @@ const Header = () => {
 
   return (
     <>
+      {/* login panel:' */}
+
+      <Panel
+        content={<p className="text-white">PANEL LOGOWANIA!</p>}
+        isVisible={isVisible}
+        closePanel={closePanel}
+      />
+
       <div className="flex flex-col items-center space-y-8 p-4 lg:flex-row lg:justify-between lg:space-y-0">
         <div className="space-y-1">
           <img src={logoSrc} alt="VEXTHOJOO" />
@@ -52,12 +64,10 @@ const Header = () => {
             </div>
           </div>
         ) : (
-          // blur
-          <div 
-
-
           <div className="flex flex-col space-y-3 text-white xs:flex-row xs:space-y-0 xs:space-x-4">
-            <button className="button01 bg-fuchsia-500">LOGOWANIE</button>
+            <button className="button01 bg-fuchsia-500" onClick={showPanel}>
+              LOGOWANIE
+            </button>
             <button className="button01 bg-black border-2 border-fuchsia-600">
               REJESTRACJA
             </button>

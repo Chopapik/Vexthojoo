@@ -16,6 +16,10 @@ dotenv.config();
 app.use(cors());
 app.use(morgan("dev"));
 
+import postsRouter from "./routers/posts";
+
+app.use("/", [postsRouter]);
+
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`);

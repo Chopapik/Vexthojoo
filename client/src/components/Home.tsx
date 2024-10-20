@@ -12,15 +12,57 @@ const Home = () => {
     },
   ]);
 
+  const DateTimeFormat = (date) => {
+    date = new Date(date);
+
+    if (date) {
+      const formattedDate = date.toLocaleDateString("pl-PL", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+
+      const formattedTime = date.toLocaleTimeString("pl-PL", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      return `${formattedDate} ${formattedTime}`;
+    } else {
+      return "n/a";
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      // const apiUrl = "http://localhost:3000";
+      try {
+        const response = await fetch(`${apiUrl}/test`);
+        const data = await response.json();
+
+        data.forEach((post) => {
+          post.whenUpload = DateTimeFormat(post.whenUpload);
+        });
+
+        setPosts(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
+      {/* home div */}
       <div className="flex flex-col space-y-5 p-3">
+        {/* posts: */}
         <main className="w-full lg:w-1/2 2xl:w-2/3 text-white space-y-4">
           {posts.map((post, index) => (
-            <div key={index} className="w-full bg-neutral-900 p-5">
+            <div key={index} className="w-full bg-neutral-900 p-5 space-y-4">
               <div className="flex flex-row space-x-2">
                 <div className=" w-14 h-14 border border-neutral-600 ">
-                  {/* If user doesn't have an avatar, default.jpg will be loaded: */}
                   <img src={post.avatar} alt="Avatar" />
                 </div>
                 <div>
@@ -31,7 +73,7 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-              <span className="text-sm">{post.TEXT}</span>
+              <p className="text-md">{post.TEXT}</p>
               {post.image ? <img src={post.image}></img> : null}
             </div>
           ))}

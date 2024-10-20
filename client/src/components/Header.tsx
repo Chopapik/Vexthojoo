@@ -5,7 +5,7 @@ const Header = () => {
 
   const [loggedUser, setLoggedUser] = useState({
     avatar: "./defaultAvatar.png",
-    username: "USER",
+    username: null,
   });
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Header = () => {
           <hr className="w-3/4 border-fuchsia-500 border sm:w-[125%]" />
         </div>
 
-        {/* If the user is logged in (the token from the cookie is valid), the page will render the user's username and avatar; otherwise, it will render only the login and register buttons. */}
+        {/* If user is logged in (the token from the cookie is valid), the page will render the user's username and avatar; otherwise, it will render only the login and register buttons. */}
         {loggedUser.username ? (
           <div className="p-4 flex space-x-3">
             <div className="flex flex-col justify-center">
@@ -52,6 +52,10 @@ const Header = () => {
             </div>
           </div>
         ) : (
+          // blur
+          <div 
+
+
           <div className="flex flex-col space-y-3 text-white xs:flex-row xs:space-y-0 xs:space-x-4">
             <button className="button01 bg-fuchsia-500">LOGOWANIE</button>
             <button className="button01 bg-black border-2 border-fuchsia-600">

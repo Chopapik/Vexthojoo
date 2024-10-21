@@ -30,9 +30,47 @@ const Header = () => {
   return (
     <>
       {/* login panel:' */}
-
       <Panel
-        content={<p className="text-white">PANEL LOGOWANIA!</p>}
+        content={
+          <>
+            <div className="flex flex-col items-center space-y-[60px]">
+              <div className="w-full">
+                <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1">
+                  LOGOWANIE
+                </span>
+                <hr className="border-neutral-500" />
+              </div>
+
+              <div className="flex flex-col space-y-11 w-3/4">
+                <div className="relative">
+                  <input
+                    type="text"
+                    className="input01"
+                    typeof="text"
+                    name="username"
+                    placeholder=""
+                  />
+                  <label for="username" className="label01">
+                    NAZWA
+                  </label>
+                </div>
+                <div className="relative">
+                  <input
+                    type="text"
+                    className="input01"
+                    typeof="text"
+                    name="username"
+                    placeholder=""
+                  />
+                  <label for="username" className="label01">
+                    HASŁO
+                  </label>
+                </div>
+              </div>
+              <button className="button01 bg-fuchsia-500">WŁAŹ</button>
+            </div>
+          </>
+        }
         isVisible={isVisible}
         closePanel={closePanel}
       />

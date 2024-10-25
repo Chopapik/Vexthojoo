@@ -9,18 +9,21 @@ import db from "./mysqlConnection";
 import cors from "cors";
 import dotenv from "dotenv";
 
-const app = express();
-
 dotenv.config();
 
+const app = express();
 app.use(cors());
 app.use(morgan("dev"));
+app.use(cookieParser());
+
+// Routery:
+import auth from "./routers/auth";
+app.use("/auth", auth);
 
 import postsRouter from "./routers/posts";
+app.use("/", postsRouter);
 
-app.use("/", [postsRouter]);
-
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`);
 });

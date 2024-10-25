@@ -12,6 +12,7 @@ const Home = () => {
     },
   ]);
 
+  //posts date formatter:
   const DateTimeFormat = (date) => {
     date = new Date(date);
 
@@ -35,9 +36,8 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiUrl = import.meta.env.VITE_API_URL;
       try {
-        const response = await fetch(`${apiUrl}/test`);
+        const response = await fetch("/test");
         const data = await response.json();
 
         data.forEach((post) => {

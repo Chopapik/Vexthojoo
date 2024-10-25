@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import UserPage from "./pages/UserPage";
+import axios from "axios";
 
 function App() {
   return (

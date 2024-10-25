@@ -1,15 +1,18 @@
 import { useState } from "react";
 
 const PanelVisibility = () => {
-  const [visiblePanelId, setVisiblePanelId] = useState("registerPanel");
+  const [visiblePanelId, setVisiblePanelId] = useState<string | null>(
+    "loginPanel"
+  );
 
-  const showPanel = (panelId) => {
+  const showPanel = (panelId: string) => {
     setVisiblePanelId(panelId);
   };
 
   const closePanel = () => {
     setVisiblePanelId(null);
   };
+
   return {
     closePanel,
     showPanel,

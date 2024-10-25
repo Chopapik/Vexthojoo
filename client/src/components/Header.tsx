@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import Panel from "./Panel";
+import RegisterPanel from "./RegisterPanel";
+import LoginPanel from "./LoginPanel";
 import PanelVisibility from "../hooks/PanelVisibility";
 
 const Header = () => {
   const [logoSrc, setLogoSrc] = useState("/logosm.png");
 
-  const { showPanel, closePanel, visiblePanelId } = PanelVisibility();
+  const { visiblePanelId, showPanel, closePanel } = PanelVisibility();
 
   const [loggedUser, setLoggedUser] = useState({
     avatar: "./defaultAvatar.png",
@@ -29,113 +30,14 @@ const Header = () => {
 
   return (
     <>
-      {/* login panel:' */}
-      <Panel
-        content={
-          <>
-            <div className="flex flex-col items-center space-y-[60px]">
-              <div className="w-full">
-                <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1">
-                  LOGOWANIE
-                </span>
-                <hr className="border-neutral-500 w-3/4" />
-              </div>
-
-              <div className="flex flex-col space-y-11 w-3/4">
-                <div className="relative">
-                  <input
-                    type="text"
-                    className="input01"
-                    name="username"
-                    placeholder=""
-                  />
-                  <label for="username" className="label01">
-                    NAZWA
-                  </label>
-                </div>
-                <div className="relative">
-                  <input
-                    type="password"
-                    className="input01"
-                    name="username"
-                    placeholder=""
-                  />
-                  <label for="username" className="label01">
-                    HASŁO
-                  </label>
-                </div>
-              </div>
-              <div className="text-xs flex flex-col items-center space-y-10 md:flex-row md:space-y-0 px-2  w-3/4 justify-between">
-                <div className="space-x-1">
-                  <input type="checkbox" name="noLogout" />
-                  <label for="noLogout" className=" mb-[2px]">
-                    Nie wylogowuj mnie
-                  </label>
-                </div>
-                <a href="cos" className="underline cursor-pointer">
-                  Przypomnij hasło
-                </a>
-              </div>
-              <button className="button01 bg-fuchsia-500">WŁAŹ</button>
-            </div>
-          </>
-        }
-        isVisible={visiblePanelId === "loginPanel"}
-        closePanel={closePanel}
+      <RegisterPanel
+        visiblePanelId={visiblePanelId}
+        closePanelFunction={closePanel}
       />
-
-      {/* register panel:' */}
-      <Panel
-        content={
-          <>
-            <div className="flex flex-col items-center space-y-[60px]">
-              <div className="w-full">
-                <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1">
-                  REJESTRACJA
-                </span>
-                <hr className="border-neutral-500 w-3/4" />
-              </div>
-
-              <div className="flex flex-col space-y-11 w-3/4">
-                <div className="relative">
-                  <input
-                    type="text"
-                    className="input01"
-                    typeof="text"
-                    name="username"
-                    placeholder=""
-                  />
-                  <label for="username" className="label01">
-                    NAZWA
-                  </label>
-                </div>
-                <div className="relative">
-                  <input
-                    type="text"
-                    className="input01"
-                    typeof="text"
-                    name="username"
-                    placeholder=""
-                  />
-                  <label for="username" className="label01">
-                    HASŁO
-                  </label>
-                </div>
-              </div>
-              <div className="text-xs flex flex-row items-center justify-between">
-                <div className="space-x-1">
-                  <input type="checkbox" name="noLogout" />
-                  <label for="noLogout">Akceptuje regulamin</label>
-                </div>
-              </div>
-              <button className="button01 bg-fuchsia-500">WŁAŹ</button>
-            </div>
-          </>
-        }
-        isVisible={visiblePanelId === "registerPanel"}
-        closePanel={closePanel}
+      <LoginPanel
+        visiblePanelId={visiblePanelId}
+        closePanelFunction={closePanel}
       />
-
       <div className="flex flex-col items-center space-y-8 p-4 lg:flex-row lg:justify-between lg:space-y-0">
         <div className="space-y-1">
           <img src={logoSrc} alt="VEXTHOJOO" />

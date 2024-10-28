@@ -16,4 +16,4 @@ yarn-error.log*
 # Others
 .DS_Store
 /coverage
-/client/build
+/client/dist

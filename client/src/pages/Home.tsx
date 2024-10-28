@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
 
 const Home = () => {
-  const [posts, setPosts] = useState([
+  interface Post {
+    username: string;
+    avatar: string;
+    whenUpload: string;
+    whatDevice: string;
+    TEXT: string;
+    image: string | null;
+  }
+
+  const [posts, setPosts] = useState<Post[]>([
     {
       username: "USER ",
       avatar: "./defaultAvatar.png",
@@ -13,7 +22,7 @@ const Home = () => {
   ]);
 
   //posts date formatter:
-  const DateTimeFormat = (date) => {
+  const DateTimeFormat = (date: string | Date) => {
     date = new Date(date);
 
     if (date) {
@@ -40,7 +49,7 @@ const Home = () => {
         const response = await fetch("/test");
         const data = await response.json();
 
-        data.forEach((post) => {
+        data.forEach((post: Post) => {
           post.whenUpload = DateTimeFormat(post.whenUpload);
         });
 

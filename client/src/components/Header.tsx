@@ -8,7 +8,7 @@ const Header = () => {
 
   const { visiblePanelId, showPanel, closePanel } = PanelVisibility();
 
-  const [loggedUser, setLoggedUser] = useState({
+  const [loggedUser] = useState({
     avatar: "./defaultAvatar.png",
     username: null,
   });

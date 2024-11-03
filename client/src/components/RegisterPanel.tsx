@@ -14,14 +14,13 @@ const RegisterPanel = ({
     errStyle: "",
     errMess: "",
   });
-
   const [passwordError, setPasswordError] = useState({
     errStyle: "",
     errMess: "",
   });
+  const [acceptTermError, setAcceptTermError] = useState("");
 
   //register data to send:
-
   const [registerData, setRegisterData] = useState({
     username: "",
     password: "",
@@ -33,14 +32,16 @@ const RegisterPanel = ({
     try {
       e.preventDefault();
 
+      await axios.post("/auth/register", registerData);
+
       setUsernameError({ errStyle: "", errMess: "" });
       setPasswordError({ errStyle: "", errMess: "" });
-
-      await axios.post("/auth/register", registerData);
+      closePanelFunction();
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       const { field, message } = err.response.data;
+      console.log(message);
 
       if (field === "passwordErr") {
         setPasswordError({ errStyle: "border-red-600", errMess: message });
@@ -48,6 +49,9 @@ const RegisterPanel = ({
 
       if (field === "usernameErr") {
         setUsernameError({ errStyle: "border-red-600", errMess: message });
+      }
+      if (field === "acceptTermErr") {
+        setAcceptTermError(message);
       }
     }
   };
@@ -121,8 +125,8 @@ const RegisterPanel = ({
                   </span>
                 </div>
               </div>
-              <div className="text-xs flex flex-row items-center justify-between">
-                <div className="space-x-1">
+              <div className="text-xs flex flex-col items-center justify-between">
+                <div className="space-x-1  h-11">
                   <input
                     type="checkbox"
                     name="acceptTerm"
@@ -133,10 +137,16 @@ const RegisterPanel = ({
                       });
                     }}
                   />
+
                   <label htmlFor="rulesAccept">Akceptuje regulamin</label>
                 </div>
+                <div className="w-full">
+                  <span className="relative flex justify-center text-red-600">
+                    {acceptTermError}
+                  </span>
+                </div>
               </div>
-              <button type="submit" className="button01 bg-fuchsia-500">
+              <button type="submit" className="button01 bg-fuchsia-500 mb-5">
                 WŁAŹ
               </button>
             </div>

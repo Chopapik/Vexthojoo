@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 
 //*REGISTER LOGIC*
 export const register = async (req: Request, res: Response) => {
-  const { username, password, rePassword } = req.body;
+  const { username, password, rePassword, acceptTerm } = req.body;
 
   // "rePassword is variable that checks if user types password correctly"
 
@@ -31,6 +31,11 @@ export const register = async (req: Request, res: Response) => {
       .status(409)
       .json({ field: "passwordErr", message: "Hasła się nie zgadzają" });
     console.log(`"${username}" user's password doesn't match`);
+  } else if (acceptTerm === false) {
+    res.status(409).json({
+      field: "acceptTermErr",
+      message: "Musisz zakaceptować regulamin",
+    });
   } else {
     const hashedPassword = await bcrypt.hash(password, 8);
 
@@ -38,11 +43,12 @@ export const register = async (req: Request, res: Response) => {
       username,
       hashedPassword,
     ]);
+    res.send(`User created: ${username}`);
     console.log(`User created: ${username}`);
   }
 };
 
-//*LOGIN LOGIC*
+//*LOG IN LOGIC*
 export const login = async (req: Request, res: Response) => {
   const { username, password, noLogout } = req.body;
 
@@ -88,12 +94,19 @@ export const login = async (req: Request, res: Response) => {
         console.log("env secret err");
       }
 
-      res.send(`${username} logged`);
-      console.log(`${username} logged`);
+      res.send(`${username} logged in`);
+      console.log(`${username} logged in`);
     } else {
       res.status(409).json({ message: "Zła nazwa lub hasło" });
     }
   } else {
     res.status(409).json({ message: "Zła nazwa lub hasło" });
   }
+};
+
+//*LOG OUT LOGIC*
+export const logout = (req: Request, res: Response) => {
+  res.clearCookie("token");
+  res.status(200);
+  res.redirect("/");
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Panel from "./Panel";
 import axios from "axios";
 
@@ -9,61 +9,45 @@ const RegisterPanel = ({
   visiblePanelId: string | null;
   closePanelFunction: () => void;
 }) => {
-  //User data required for registratio
+  //error states:
+  const [usernameError, setUsernameError] = useState({
+    errStyle: "",
+    errMess: "",
+  });
+
+  const [passwordError, setPasswordError] = useState({
+    errStyle: "",
+    errMess: "",
+  });
+
+  //register data to send:
+
   const [registerData, setRegisterData] = useState({
     username: "",
     password: "",
     rePassword: "",
+    acceptTerm: false,
   });
 
-  //password&username error changes input style to red if detect an error
-  const [passwordError, setPasswordError] = useState({
-    errMess: "",
-    errStyle: "",
-  });
-  const [usernameError, setUsernameError] = useState({
-    errMess: "",
-    errStyle: "border-red-600",
-  });
-
-  useEffect(() => {
-    //
-    if (
-      registerData.password !== registerData.rePassword &&
-      registerData.password !== "" &&
-      registerData.rePassword !== ""
-    ) {
-      setPasswordError({
-        errMess: "Hasła się nie zgadzają",
-        errStyle: "border-red-600",
-      });
-    } else {
-      setPasswordError({
-        errMess: "",
-        errStyle: "",
-      });
-    }
-  }, [registerData.password, registerData.rePassword, registerData.username]);
-
-  //register function checks if inputs isn't empty otherwise sends user data to backend
   const register = async (e: React.FormEvent) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    if (
-      registerData.username !== "" &&
-      registerData.password !== "" &&
-      registerData.rePassword !== "" &&
-      registerData.password === registerData.rePassword
-    ) {
-      try {
-        const response = await axios.post(
-          "http://localhost:3000/auth/register",
-          registerData
-        );
-        setUsernameError({ ...usernameError, errMess: response.data.message });
-        console.log(response.data.message);
-      } catch (err) {
-        console.log(`response err:${err}`);
+      setUsernameError({ errStyle: "", errMess: "" });
+      setPasswordError({ errStyle: "", errMess: "" });
+
+      await axios.post("/auth/register", registerData);
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      const { field, message } = err.response.data;
+
+      if (field === "passwordErr") {
+        setPasswordError({ errStyle: "border-red-600", errMess: message });
+      }
+
+      if (field === "usernameErr") {
+        setUsernameError({ errStyle: "border-red-600", errMess: message });
       }
     }
   };
@@ -88,11 +72,10 @@ const RegisterPanel = ({
                     className={`input01 border-b-2 border-white ${usernameError.errStyle}`}
                     placeholder=""
                     onChange={(e) => {
-                      setRegisterData((prevData) => ({
-                        ...prevData,
+                      setRegisterData({
+                        ...registerData,
                         username: e.target.value,
-                      }));
-                      // checkUsernameAvailability(e.target.value);
+                      });
                     }}
                   />
                   <label htmlFor="username" className="label01">
@@ -140,7 +123,16 @@ const RegisterPanel = ({
               </div>
               <div className="text-xs flex flex-row items-center justify-between">
                 <div className="space-x-1">
-                  <input type="checkbox" name="rulesAccept" />
+                  <input
+                    type="checkbox"
+                    name="acceptTerm"
+                    onChange={(e) => {
+                      setRegisterData({
+                        ...registerData,
+                        acceptTerm: e.target.checked,
+                      });
+                    }}
+                  />
                   <label htmlFor="rulesAccept">Akceptuje regulamin</label>
                 </div>
               </div>

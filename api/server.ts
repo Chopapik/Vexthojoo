@@ -11,8 +11,10 @@ import dotenv from "dotenv";
 import path from "path";
 
 dotenv.config();
-
 const app = express();
+
+app.use(cookieParser());
+
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));

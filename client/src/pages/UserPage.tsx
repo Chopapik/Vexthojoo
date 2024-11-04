@@ -10,9 +10,9 @@ const UserPage = () => {
     image: string | null;
   }
 
-  const [posts, setPosts] = useState<Post[]>([
+  const [posts] = useState<Post[]>([
     {
-      username: "USER ",
+      username: "USER",
       avatar: "./defaultAvatar.png",
       whenUpload: "DD-MM-YYYY HH:MM",
       whatDevice: "Windows",
@@ -21,9 +21,7 @@ const UserPage = () => {
     },
   ]);
 
-  const [userpageAvatar, setUserpageAvatar] = useState(
-    "../../public/defaultAvatar.png"
-  );
+  const [userpageAvatar] = useState("../../public/defaultAvatar.png");
 
   return (
     <>

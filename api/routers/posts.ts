@@ -1,8 +1,8 @@
 import express from "express";
 const router = express.Router();
 
-import { printPosts } from "../controllers/postsController";
+import { printAllPosts } from "../controllers/postsController";
 
-router.get("/test", printPosts);
+router.get("/printPosts", printAllPosts);
 
 export default router;

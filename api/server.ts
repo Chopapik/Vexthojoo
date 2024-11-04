@@ -34,7 +34,7 @@ import cookieAuthController from "./routers/cookieAuth";
 //routers:
 app.use("/auth", auth);
 app.use("/cookieAuth", cookieAuthController);
-app.use("/", postsRouter);
+app.use("/posts", postsRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

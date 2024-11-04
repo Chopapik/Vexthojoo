@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import RegisterPanel from "./RegisterPanel";
 import LoginPanel from "./LoginPanel";
 import PanelVisibility from "../hooks/PanelVisibility";
+import axios from "axios";
 
 const Header = () => {
   const [logoSrc, setLogoSrc] = useState("/logosm.png");
 
   const { visiblePanelId, showPanel, closePanel } = PanelVisibility();
 
-  const [loggedUser] = useState({
+  const [cookieLogUser, setCookieLogUser] = useState({
     avatar: "./defaultAvatar.png",
     username: null,
   });
@@ -28,6 +29,20 @@ const Header = () => {
     };
   }, []);
 
+  //Function logs user automatically if cookie token is correct
+  const cookieUserLogin = async () => {
+    try {
+      const response = await axios.post("/cookieAuth/cookieLogin");
+      setCookieLogUser({ ...cookieLogUser, username: response.data.username });
+      console.log(`${response.data.message}`);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      console.log(`Cookie login err: ${err.response.data.message}`);
+    }
+  };
+  useState(() => {
+    cookieUserLogin();
+  });
   return (
     <>
       <RegisterPanel
@@ -45,7 +60,7 @@ const Header = () => {
         </div>
 
         {/* If user is logged in (the token from the cookie is valid), the page will render the user's username and avatar; otherwise, it will render only the login and register buttons. */}
-        {loggedUser.username ? (
+        {cookieLogUser.username ? (
           <div className="p-4 flex space-x-3">
             <div className="flex flex-col justify-center">
               <span
@@ -55,12 +70,12 @@ const Header = () => {
                 o siema
               </span>
               <span className="text-white font-bold">
-                {loggedUser.username}
+                {cookieLogUser.username}
               </span>
             </div>
             <div>
               <div className="w-11 h-11 border border-neutral-600">
-                <img src={loggedUser.avatar} alt="Avatar" />
+                <img src={cookieLogUser.avatar} alt="Avatar" />
               </div>
             </div>
           </div>

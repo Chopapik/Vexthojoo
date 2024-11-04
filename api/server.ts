@@ -26,11 +26,14 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
-// Rotuers:
+//routers import:
 import auth from "./routers/auth";
-app.use("/auth", auth);
-
 import postsRouter from "./routers/posts";
+import cookieAuthController from "./routers/cookieAuth";
+
+//routers:
+app.use("/auth", auth);
+app.use("/cookieAuth", cookieAuthController);
 app.use("/", postsRouter);
 
 const port = process.env.PORT || 3000;

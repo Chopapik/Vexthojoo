@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import AddPostPanel from "../components/addPostPanel";
+import PanelVisibility from "../hooks/PanelVisibility";
 
 const Home = () => {
+  const { visiblePanelId, closePanel, showPanel } = PanelVisibility();
   interface Post {
     username: string;
     avatar: string;
@@ -63,10 +66,22 @@ const Home = () => {
 
   return (
     <>
+      <AddPostPanel
+        visiblePanelId={visiblePanelId}
+        closePanelFunction={closePanel}
+      />
       {/* home div */}
       <div className="flex flex-col space-y-5 p-3">
         {/* posts: */}
-        <main className="w-full lg:w-1/2 2xl:w-2/3 text-white space-y-4">
+        <main className="w-full lg:w-1/2 2xl:w-2/3 text-white space-y-4 flex flex-col items-center">
+          <div
+            className="w-1/2 border px-6 py-2 rounded-full my-5 font-poppins cursor-pointer"
+            onClick={() => {
+              showPanel("addPostPanel");
+            }}
+          >
+            Dodaj post głupcze
+          </div>
           {posts.map((post, index) => (
             <div key={index} className="w-full bg-neutral-900 p-5 space-y-4">
               <div className="flex flex-row space-x-2">

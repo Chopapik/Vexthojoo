@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AddPostPanel from "../components/addPostPanel";
+import AddPostPanel from "../components/AddPostPanel";
 import PanelVisibility from "../hooks/PanelVisibility";
 
 const Home = () => {

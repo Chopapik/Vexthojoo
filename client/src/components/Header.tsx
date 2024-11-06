@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
-import RegisterPanel from "./RegisterPanel";
-import LoginPanel from "./LoginPanel";
-import PanelVisibility from "../hooks/PanelVisibility";
 import axios from "axios";
 
 const Header = () => {
   const [logoSrc, setLogoSrc] = useState("/logosm.png");
-
-  const { visiblePanelId, showPanel, closePanel } = PanelVisibility();
-
-  const [cookieLogUser, setCookieLogUser] = useState({
+  interface cookieLogUserTypes {
+    avatar: string;
+    username: string | null;
+  }
+  const [cookieLogUser, setCookieLogUser] = useState<cookieLogUserTypes>({
     avatar: "./defaultAvatar.png",
     username: null,
   });
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const changeLogo = () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -40,19 +39,12 @@ const Header = () => {
       console.log(`Cookie login err: ${err.response.data.message}`);
     }
   };
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useState(() => {
     cookieUserLogin();
   });
   return (
     <>
-      <RegisterPanel
-        visiblePanelId={visiblePanelId}
-        closePanelFunction={closePanel}
-      />
-      <LoginPanel
-        visiblePanelId={visiblePanelId}
-        closePanelFunction={closePanel}
-      />
       <div className="flex flex-col items-center space-y-8 p-4 lg:flex-row lg:justify-between lg:space-y-0">
         <div className="space-y-1">
           <img src={logoSrc} alt="VEXTHOJOO" />
@@ -83,13 +75,13 @@ const Header = () => {
           <div className="flex flex-col space-y-3 text-white xs:flex-row xs:space-y-0 xs:space-x-4">
             <button
               className="button01 bg-fuchsia-500"
-              onClick={() => showPanel("loginPanel")}
+              // onClick={() => showPanel("loginPanel")}
             >
               LOGOWANIE
             </button>
             <button
               className="button01 bg-black border-2 border-fuchsia-600"
-              onClick={() => showPanel("registerPanel")}
+              // onClick={() => showPanel("registerPanel")}
             >
               REJESTRACJA
             </button>

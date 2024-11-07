@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { PanelContext } from "../context/PanelContext";
 
 const Header = () => {
   const [logoSrc, setLogoSrc] = useState("/logosm.png");
@@ -12,7 +13,6 @@ const Header = () => {
     username: null,
   });
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const changeLogo = () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -39,10 +39,19 @@ const Header = () => {
       console.log(`Cookie login err: ${err.response.data.message}`);
     }
   };
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+
   useState(() => {
     cookieUserLogin();
   });
+
+  const context = useContext(PanelContext);
+
+  if (!context) {
+    return <div className="text-red-600">CONTEXT ERR</div>;
+  }
+
+  const { showPanel } = context;
+
   return (
     <>
       <div className="flex flex-col items-center space-y-8 p-4 lg:flex-row lg:justify-between lg:space-y-0">
@@ -75,13 +84,13 @@ const Header = () => {
           <div className="flex flex-col space-y-3 text-white xs:flex-row xs:space-y-0 xs:space-x-4">
             <button
               className="button01 bg-fuchsia-500"
-              // onClick={() => showPanel("loginPanel")}
+              onClick={() => showPanel("loginPanel")}
             >
               LOGOWANIE
             </button>
             <button
               className="button01 bg-black border-2 border-fuchsia-600"
-              // onClick={() => showPanel("registerPanel")}
+              onClick={() => showPanel("registerPanel")}
             >
               REJESTRACJA
             </button>

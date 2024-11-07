@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { PanelContext } from "../context/PanelContext";
 
 const Home = () => {
   interface Post {
@@ -61,6 +62,14 @@ const Home = () => {
     fetchData();
   }, []);
 
+  const context = useContext(PanelContext);
+
+  if (!context) {
+    return <div className="text-red-600">CONTEXT ERR</div>;
+  }
+
+  const { showPanel } = context;
+
   return (
     <>
       {/* home div */}
@@ -70,7 +79,7 @@ const Home = () => {
           <div
             className="w-1/2 border px-6 py-2 rounded-full my-5 font-poppins cursor-pointer"
             onClick={() => {
-              // showPanel("addPostPanel");
+              showPanel("addPostPanel");
             }}
           >
             Dodaj post głupcze

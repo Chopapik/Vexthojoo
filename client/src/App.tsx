@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import UserPage from "./pages/UserPage";
 import axios from "axios";
 
+import { PanelProvider } from "./context/PanelContext";
+import AllPanels from "./components/AllPanels";
 //api url:
 axios.defaults.baseURL = "http://localhost:3000";
 
@@ -12,14 +14,17 @@ function App() {
   return (
     <>
       <Router>
-        <div className="bg-black h-screen">
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/userpage" element={<UserPage />} />
-          </Routes>
-          <Footer />
-        </div>
+        <PanelProvider>
+          <AllPanels />
+          <div className="bg-black h-screen">
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/userpage" element={<UserPage />} />
+            </Routes>
+            <Footer />
+          </div>
+        </PanelProvider>
       </Router>
     </>
   );

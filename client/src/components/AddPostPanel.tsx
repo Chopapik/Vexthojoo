@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import Panel from "./Panel";
 
 const AddPostPanel = ({
@@ -7,13 +8,31 @@ const AddPostPanel = ({
   visiblePanelId: string | null;
   closePanelFunction: () => void;
 }) => {
+  const [numberOfLetters, setNumberOfLetters] = useState(0);
+  const [numberOfLettersStyle, setnumberOfLettersStyle] =
+    useState("text-gray-400");
+
+  useEffect(() => {
+    if (numberOfLetters > 510) {
+      setnumberOfLettersStyle("text-red-600 ");
+    } else {
+      setnumberOfLettersStyle("text-gray-400");
+    }
+  }, [numberOfLetters]);
+
+  const [postData, setPostData] = useState({ text: "", picturePath: "" });
+
+  const addPost = async (e: React.FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
     <Panel
       closePanelFunction={closePanelFunction}
       isVisible={visiblePanelId === "addPostPanel"}
       content={
         <>
-          <form>
+          <form onSubmit={addPost}>
             <div className="space-y-10">
               <div>
                 <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1">
@@ -22,13 +41,49 @@ const AddPostPanel = ({
                 <hr className="border-neutral-500 w-3/4" />
               </div>
 
-              <div className="flex flex-col items-center w-full">
+              <div className="bg-neutral-700 w-full p-2">
+                <textarea
+                  className="bg-transparent w-full h-[200px] outline-none"
+                  placeholder="napisz coś głupcze"
+                  name="text"
+                  onChange={(e) => {
+                    setNumberOfLetters(e.target.value.length);
+                    setPostData({ ...postData, text: e.target.value });
+                  }}
+                ></textarea>
+                <label
+                  htmlFor="image"
+                  className="text-sm cursor-pointer inline-block"
+                >
+                  <img
+                    src="../../public/icons/image.svg"
+                    className="w-7"
+                    alt="dodaj zdjęcie"
+                  />
+                </label>
+
                 <input
-                  className="w-5/6 h-[200px] bg-neutral-700 p-3 outline-none text-top"
-                  placeholder="huj"
-                  type="message"
+                  id="image"
+                  type="file"
+                  className="hidden"
+                  name="image"
+                  onChange={(e) => {
+                    setPostData({
+                      ...postData,
+                      picturePath: e.target.value,
+                    });
+                  }}
                 />
+                <div
+                  className={`${numberOfLettersStyle} text-sm font-bold float-right inline-block`}
+                >
+                  <span>{numberOfLetters}</span>
+                  <span> / 510</span>
+                </div>
               </div>
+            </div>
+            <div className="w-full flex justify-center mt-10">
+              <button className="button01 bg-fuchsia-500">dodaj chłopie</button>
             </div>
           </form>
         </>

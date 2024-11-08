@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Panel from "./Panel";
+import axios from "axios";
 
 const AddPostPanel = ({
   visiblePanelId,
@@ -23,7 +24,14 @@ const AddPostPanel = ({
   const [postData, setPostData] = useState({ text: "", picturePath: "" });
 
   const addPost = async (e: React.FormEvent) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
+
+      await axios.post("/posts/addPost", postData);
+      closePanelFunction();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

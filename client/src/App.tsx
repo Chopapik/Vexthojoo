@@ -16,7 +16,7 @@ function App() {
       <Router>
         <PanelProvider>
           <AllPanels />
-          <div className="bg-black h-screen">
+          <div className="bg-black h-full">
             <Header />
             <Routes>
               <Route path="/" element={<Home />} />

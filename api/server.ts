@@ -20,12 +20,6 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(cookieParser());
 
-//static from client:
-app.use(express.static(path.join(__dirname, "../client/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
-
 //routers import:
 import auth from "./routers/auth";
 import postsRouter from "./routers/posts";
@@ -35,6 +29,12 @@ import cookieAuthController from "./routers/cookieAuth";
 app.use("/auth", auth);
 app.use("/cookieAuth", cookieAuthController);
 app.use("/posts", postsRouter);
+
+//static from client:
+app.use(express.static(path.join(__dirname, "../client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

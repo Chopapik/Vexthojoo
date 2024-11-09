@@ -5,7 +5,7 @@ import useragent from "express-useragent";
 import UAParser from "ua-parser-js";
 import jwt from "jsonwebtoken";
 
-export const printAllPosts = async (req: any, res: any) => {
+export const printAllPosts = async (req: Request, res: Response) => {
   const [posts] = await db.query(
     "SELECT u.username,u.avatar,p.TEXT,p.whenUpload,p.whatDevice FROM users u JOIN posts p ON p.user_id=u.id ORDER BY p.whenUpload DESC"
   );

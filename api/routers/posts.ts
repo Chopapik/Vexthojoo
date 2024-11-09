@@ -3,7 +3,7 @@ const router = express.Router();
 
 import { printAllPosts, addPost } from "../controllers/postsController";
 
-router.get("/printPosts", printAllPosts);
+router.get("/printAllPosts", printAllPosts);
 router.post("/addPost", addPost);
 
 export default router;

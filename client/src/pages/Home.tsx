@@ -1,8 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import { PanelContext } from "../context/PanelContext";
+import axios from "axios";
 
 const Home = () => {
-  interface Post {
+  interface postTypes {
     username: string;
     avatar: string;
     whenUpload: string;
@@ -11,7 +12,7 @@ const Home = () => {
     image: string | null;
   }
 
-  const [posts, setPosts] = useState<Post[]>([
+  const [posts, setPosts] = useState<postTypes[]>([
     {
       username: "USER ",
       avatar: "./defaultAvatar.png",
@@ -45,22 +46,18 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/test");
-        const data = await response.json();
+    const getPosts = async () => {
+      const response = await axios.get("/posts/printAllPosts");
 
-        data.forEach((post: Post) => {
-          post.whenUpload = DateTimeFormat(post.whenUpload);
-        });
+      response.data.forEach((post: { whenUpload: string }) => {
+        post.whenUpload = DateTimeFormat(post.whenUpload);
+      });
 
-        setPosts(data);
-      } catch (err) {
-        console.log(err);
-      }
+      setPosts(response.data);
     };
-    fetchData();
-  }, []);
+
+    getPosts();
+  }, [posts]);
 
   const context = useContext(PanelContext);
 
@@ -88,7 +85,10 @@ const Home = () => {
             <div key={index} className="w-full bg-neutral-900 p-5 space-y-4">
               <div className="flex flex-row space-x-2">
                 <div className=" w-14 h-14 border border-neutral-600 ">
-                  <img src={post.avatar} alt="Avatar" />
+                  <img
+                    src={post.avatar ? post.avatar : "./defaultAvatar.png"}
+                    alt="Avatar"
+                  />
                 </div>
                 <div>
                   <p className="text-sm font-bold">{post.username}</p>

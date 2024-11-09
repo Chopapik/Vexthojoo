@@ -12,6 +12,7 @@ const AddPostPanel = ({
   const [numberOfLetters, setNumberOfLetters] = useState(0);
   const [numberOfLettersStyle, setnumberOfLettersStyle] =
     useState("text-gray-400");
+  const [addPostErr, setPostErr] = useState("");
 
   useEffect(() => {
     if (numberOfLetters > 510) {
@@ -29,8 +30,12 @@ const AddPostPanel = ({
 
       await axios.post("/posts/addPost", postData);
       closePanelFunction();
-    } catch (err) {
-      console.log(err);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      if (err.response) {
+        const { message } = err.response.data;
+        setPostErr(message);
+      }
     }
   };
 
@@ -88,6 +93,7 @@ const AddPostPanel = ({
                   <span>{numberOfLetters}</span>
                   <span> / 510</span>
                 </div>
+                <div className="absolute text-red-600">{addPostErr}</div>
               </div>
             </div>
             <div className="w-full flex justify-center mt-10">

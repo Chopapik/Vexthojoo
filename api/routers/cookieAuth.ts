@@ -4,6 +4,6 @@ const router = Router();
 
 import { cookieLogin } from "../controllers/cookieAuthController";
 
-router.post("/cookieLogin", cookieLogin);
+router.get("/cookieLogin", cookieLogin);
 
 export default router;

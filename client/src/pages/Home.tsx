@@ -57,7 +57,7 @@ const Home = () => {
     };
 
     getPosts();
-  }, [posts]);
+  }, []);
 
   const context = useContext(PanelContext);
 

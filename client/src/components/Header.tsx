@@ -1,17 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { PanelContext } from "../context/PanelContext";
+import { CookieAuthContext } from "../context/CookieAuthContext";
 
 const Header = () => {
   const [logoSrc, setLogoSrc] = useState("/logosm.png");
-  interface cookieLogUserTypes {
-    avatar: string;
-    username: string | null;
-  }
-  const [cookieLogUser, setCookieLogUser] = useState<cookieLogUserTypes>({
-    avatar: "./defaultAvatar.png",
-    username: null,
-  });
 
   useEffect(() => {
     const changeLogo = () => {
@@ -28,29 +20,15 @@ const Header = () => {
     };
   }, []);
 
-  //Function logs user automatically if cookie token is correct
-  const cookieUserLogin = async () => {
-    try {
-      const response = await axios.post("/cookieAuth/cookieLogin");
-      setCookieLogUser({ ...cookieLogUser, username: response.data.username });
-      console.log(`${response.data.message}`);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (err: any) {
-      console.log(`Cookie login err: ${err.response.data.message}`);
-    }
-  };
+  const panelContext = useContext(PanelContext);
+  const cookieAuthContext = useContext(CookieAuthContext);
 
-  useState(() => {
-    cookieUserLogin();
+  const { showPanel } = panelContext;
+  const { authData } = cookieAuthContext;
+
+  useEffect(() => {
+    console.log(authData.isLoggedIn);
   });
-
-  const context = useContext(PanelContext);
-
-  if (!context) {
-    return <div className="text-red-600">CONTEXT ERR</div>;
-  }
-
-  const { showPanel } = context;
 
   return (
     <>
@@ -61,7 +39,7 @@ const Header = () => {
         </div>
 
         {/* If user is logged in (the token from the cookie is valid), the page will render the user's username and avatar; otherwise, it will render only the login and register buttons. */}
-        {cookieLogUser.username ? (
+        {authData.isLoggedIn ? (
           <div className="p-4 flex space-x-3">
             <div className="flex flex-col justify-center">
               <span
@@ -70,13 +48,16 @@ const Header = () => {
               >
                 o siema
               </span>
-              <span className="text-white font-bold">
-                {cookieLogUser.username}
-              </span>
+              <span className="text-white font-bold">{authData.username}</span>
             </div>
             <div>
               <div className="w-11 h-11 border border-neutral-600">
-                <img src={cookieLogUser.avatar} alt="Avatar" />
+                <img
+                  src={
+                    authData.avatar ? authData.avatar : "./defaultAvatar.png"
+                  }
+                  alt="Avatar"
+                />
               </div>
             </div>
           </div>

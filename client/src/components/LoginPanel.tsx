@@ -1,6 +1,7 @@
 import Panel from "./Panel";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { CookieAuthContext } from "../context/CookieAuthContext";
 
 const LoginPanel = ({
   visiblePanelId,
@@ -16,6 +17,10 @@ const LoginPanel = ({
   });
   const [loginError, setLoginError] = useState("");
 
+  const cookieAuthContext = useContext(CookieAuthContext);
+
+  const { getUser } = cookieAuthContext;
+
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -23,6 +28,7 @@ const LoginPanel = ({
 
       setLoginError("");
       closePanelFunction();
+      getUser();
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {

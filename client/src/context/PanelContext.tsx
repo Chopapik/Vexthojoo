@@ -10,7 +10,11 @@ interface PanelProvidertypes {
   children: ReactNode;
 }
 
-const PanelContext = createContext<PanelContextTypes | null>(null);
+const PanelContext = createContext<PanelContextTypes>({
+  visiblePanelId: null,
+  showPanel: () => {},
+  closePanel: () => {},
+});
 
 const PanelProvider = ({ children }: PanelProvidertypes) => {
   const [visiblePanelId, setVisiblePanelId] = useState<string | null>(null);

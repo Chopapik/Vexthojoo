@@ -85,10 +85,12 @@ const Home = () => {
             <div key={index} className="w-full bg-neutral-900 p-5 space-y-4">
               <div className="flex flex-row space-x-2">
                 <div className=" w-14 h-14 border border-neutral-600 ">
-                  <img
-                    src={post.avatar ? post.avatar : "./defaultAvatar.png"}
-                    alt="Avatar"
-                  />
+                  <a href={`/${post.username}`}>
+                    <img
+                      src={post.avatar ? post.avatar : "./defaultAvatar.png"}
+                      alt="Avatar"
+                    />
+                  </a>
                 </div>
                 <div>
                   <p className="text-sm font-bold">{post.username}</p>

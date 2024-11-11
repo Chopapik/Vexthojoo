@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const UserPage = () => {
-  interface Post {
+  interface PostTypes {
     username: string;
     avatar: string;
     whenUpload: string;
@@ -12,7 +12,14 @@ const UserPage = () => {
     image: string | null;
   }
 
-  const [posts, setPosts] = useState<Post[]>([
+  interface UserDataTypes {
+    username: string;
+    avatar: string;
+    whenLastLogged: string;
+    whenRegist: string;
+  }
+
+  const [postsData, setPostsData] = useState<PostTypes[]>([
     {
       username: "USER",
       avatar: "./defaultAvatar.png",
@@ -23,7 +30,12 @@ const UserPage = () => {
     },
   ]);
 
-  const [userpageAvatar] = useState("../../public/defaultAvatar.png");
+  const [userData, setUserData] = useState<UserDataTypes>({
+    username: "USER",
+    avatar: "./defaultAvatar.png",
+    whenLastLogged: "DD-MM-YYYY HH:MM",
+    whenRegist: "DD-MM-YYYY HH:MM",
+  });
 
   const { username } = useParams();
 
@@ -53,12 +65,24 @@ const UserPage = () => {
     const getUserData = async () => {
       const response = await axios(`/user/${username}`);
 
+      const { posts, userData } = response.data;
+
+      console.log(userData[0]);
+
+      setUserData(userData[0]);
+
+      //Formating date:
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      response.data.forEach((post: any) => {
+      posts.forEach((post: any) => {
         post.whenUpload = DateTimeFormat(post.whenUpload);
       });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      userData.forEach((user: any) => {
+        user.whenLastLogged = DateTimeFormat(user.whenLastLogged);
+        user.whenRegist = DateTimeFormat(user.whenRegist);
+      });
 
-      setPosts(response.data);
+      setPostsData(posts);
     };
     getUserData();
   }, [username]);
@@ -74,9 +98,13 @@ const UserPage = () => {
                 id="username"
                 className="text-white font-arial inline-block font-bold text-2xl italic mb-2"
               >
-                {username}
+                {userData.username}
               </p>
-              <img src={userpageAvatar} alt="avatar" className="w-32 h-32" />
+              <img
+                src={userData.avatar ? userData.avatar : "./defaultAvatar.png"}
+                alt="avatar"
+                className="w-32 h-32"
+              />
 
               <button
                 id="openEditUserPanel"
@@ -106,16 +134,16 @@ const UserPage = () => {
 
               <div className="mt-10 text-neutral-700 text-sm flex flex-col items-center w-full h-[100px]">
                 <p>Ostatnio online:</p>
-                <p className="font-bold"> whenLastLogged </p>
+                <p className="font-bold"> {userData.whenLastLogged} </p>
                 <p className="mt-2">Data rejestracji:</p>
-                <p className="font-bold"> whenRegist </p>
+                <p className="font-bold"> {userData.whenRegist} </p>
               </div>
             </div>
           </div>
         </main>
         <aside className="w-full lg:w-4/5 2xl:1/3 p-11 space-y-5">
           {/* posts: */}
-          {posts.map((post, index) => (
+          {postsData.map((post, index) => (
             <div
               key={index}
               className=" bg-neutral-900 p-5 space-y-4 w-2/3 text-white"

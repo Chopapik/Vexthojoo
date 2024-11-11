@@ -24,12 +24,12 @@ const Header = () => {
   const cookieAuthContext = useContext(CookieAuthContext);
 
   const { showPanel } = panelContext;
-  const { authData } = cookieAuthContext;
+  const { authData, getUser } = cookieAuthContext;
 
   useEffect(() => {
-    console.log(authData.isLoggedIn);
-  });
-
+    console.log(`Is logged: ${authData.isLoggedIn}`);
+    getUser();
+  }, []);
   return (
     <>
       <div className="flex flex-col items-center space-y-8 p-4 lg:flex-row lg:justify-between lg:space-y-0">

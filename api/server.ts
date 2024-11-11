@@ -23,12 +23,14 @@ app.use(cookieParser());
 //routers import:
 import auth from "./routers/auth";
 import postsRouter from "./routers/posts";
-import cookieAuthController from "./routers/cookieAuth";
+import cookieAuth from "./routers/cookieAuth";
+import user from "./routers/user";
 
 //routers:
 app.use("/auth", auth);
-app.use("/cookieAuth", cookieAuthController);
+app.use("/cookieAuth", cookieAuth);
 app.use("/posts", postsRouter);
+app.use("/user", user);
 
 //static from client:
 app.use(express.static(path.join(__dirname, "../client/dist")));

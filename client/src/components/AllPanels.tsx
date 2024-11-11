@@ -15,8 +15,6 @@ const AllPanels = () => {
   }
   const { closePanel, visiblePanelId } = context;
 
-  console.log(`wiadomosc z all panels: visibleid:${visiblePanelId}`);
-
   return (
     <>
       <LoginPanel

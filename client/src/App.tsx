@@ -22,7 +22,7 @@ function App() {
               <Header />
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/userpage" element={<UserPage />} />
+                <Route path="/:username" element={<UserPage />} />
               </Routes>
               <Footer />
             </div>

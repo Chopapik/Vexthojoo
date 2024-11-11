@@ -39,10 +39,13 @@ export const register = async (req: Request, res: Response) => {
   } else {
     const hashedPassword = await bcrypt.hash(password, 8);
 
-    await db.query("INSERT INTO users (username, password) VALUES (?, ?)", [
-      username,
-      hashedPassword,
-    ]);
+    const whenRegist = new Date();
+
+    await db.query(
+      "INSERT INTO users (username, password,whenRegist) VALUES (?, ?, ?)",
+      [username, hashedPassword, whenRegist]
+    );
+
     res.send(`User created: ${username}`);
     console.log(`User created: ${username}`);
   }
@@ -52,7 +55,7 @@ export const register = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   const { username, password, noLogout } = req.body;
 
-  const [findUser] = await db.query("SELECT * FROM users WHERE username=(?)", [
+  const [findUser] = await db.query("SELECT * FROM users WHERE username=?", [
     username,
   ]);
   // "FindUser" returns an array of objects. In this case there is one object, with user's data.
@@ -79,6 +82,13 @@ export const login = async (req: Request, res: Response) => {
           },
           secret
         );
+
+        const whenLogged = new Date();
+
+        await db.query("UPDATE users SET whenLastLogged = ? WHERE username=?", [
+          whenLogged,
+          username,
+        ]);
 
         if (noLogout) {
           res.cookie("token", token, {

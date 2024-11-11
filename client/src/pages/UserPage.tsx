@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const UserPage = () => {
   interface Post {
@@ -10,7 +12,7 @@ const UserPage = () => {
     image: string | null;
   }
 
-  const [posts] = useState<Post[]>([
+  const [posts, setPosts] = useState<Post[]>([
     {
       username: "USER",
       avatar: "./defaultAvatar.png",
@@ -23,6 +25,44 @@ const UserPage = () => {
 
   const [userpageAvatar] = useState("../../public/defaultAvatar.png");
 
+  const { username } = useParams();
+
+  //posts date formatter:
+  const DateTimeFormat = (date: string | Date) => {
+    date = new Date(date);
+
+    if (date) {
+      const formattedDate = date.toLocaleDateString("pl-PL", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+
+      const formattedTime = date.toLocaleTimeString("pl-PL", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      return `${formattedDate} ${formattedTime}`;
+    } else {
+      return "n/a";
+    }
+  };
+
+  useEffect(() => {
+    const getUserData = async () => {
+      const response = await axios(`/user/${username}`);
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      response.data.forEach((post: any) => {
+        post.whenUpload = DateTimeFormat(post.whenUpload);
+      });
+
+      setPosts(response.data);
+    };
+    getUserData();
+  }, [username]);
+
   return (
     <>
       {/* userpage div */}
@@ -34,7 +74,7 @@ const UserPage = () => {
                 id="username"
                 className="text-white font-arial inline-block font-bold text-2xl italic mb-2"
               >
-                username
+                {username}
               </p>
               <img src={userpageAvatar} alt="avatar" className="w-32 h-32" />
 
@@ -73,7 +113,8 @@ const UserPage = () => {
             </div>
           </div>
         </main>
-        <aside className="w-full lg:w-4/5 2xl:1/3 p-11">
+        <aside className="w-full lg:w-4/5 2xl:1/3 p-11 space-y-5">
+          {/* posts: */}
           {posts.map((post, index) => (
             <div
               key={index}
@@ -81,7 +122,10 @@ const UserPage = () => {
             >
               <div className="flex flex-row space-x-2">
                 <div className=" w-14 h-14 border border-neutral-600 ">
-                  <img src={post.avatar} alt="Avatar" />
+                  <img
+                    src={post.avatar ? post.avatar : "./defaultAvatar.png"}
+                    alt="Avatar"
+                  />
                 </div>
                 <div>
                   <p className="text-sm font-bold">{post.username}</p>

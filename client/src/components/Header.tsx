@@ -3,22 +3,7 @@ import { PanelContext } from "../context/PanelContext";
 import { CookieAuthContext } from "../context/CookieAuthContext";
 
 const Header = () => {
-  const [logoSrc, setLogoSrc] = useState("/logosm.png");
-
-  useEffect(() => {
-    const changeLogo = () => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      window.innerWidth > 640
-        ? setLogoSrc("/logo.png")
-        : setLogoSrc("/logosm.png");
-    };
-    changeLogo();
-
-    window.addEventListener("resize", changeLogo);
-    return () => {
-      window.removeEventListener("resize", changeLogo);
-    };
-  }, []);
+  const [loading, setLoading] = useState(true);
 
   const panelContext = useContext(PanelContext);
   const cookieAuthContext = useContext(CookieAuthContext);
@@ -27,18 +12,22 @@ const Header = () => {
   const { authData, getUser } = cookieAuthContext;
 
   useEffect(() => {
-    getUser();
+    const checkUser = async () => {
+      await getUser();
+      setLoading(false);
+    };
+    checkUser();
   }, []);
-  return (
-    <>
-      <div className="flex flex-col items-center space-y-8 p-4 lg:flex-row lg:justify-between lg:space-y-0">
-        <div className="space-y-1">
-          <img src={logoSrc} alt="VEXTHOJOO" />
-          <hr className="w-3/4 border-fuchsia-500 border sm:w-[125%]" />
-        </div>
 
-        {/* If user is logged in (the token from the cookie is valid), the page will render the user's username and avatar; otherwise, it will render only the login and register buttons. */}
-        {authData.isLoggedIn ? (
+  return (
+    <div className="flex flex-col items-center space-y-8 p-4 lg:flex-row lg:justify-between lg:space-y-0">
+      <div className="space-y-1">
+        <img src="/logo.png" alt="VEXTHOJOO" />
+        <hr className="w-3/4 border-fuchsia-500 border sm:w-[125%]" />
+      </div>
+
+      {!loading &&
+        (authData.isLoggedIn ? (
           <div className="p-4 flex space-x-3">
             <div className="flex flex-col justify-center">
               <span
@@ -75,9 +64,9 @@ const Header = () => {
               REJESTRACJA
             </button>
           </div>
-        )}
-      </div>
-    </>
+        ))}
+    </div>
   );
 };
+
 export default Header;

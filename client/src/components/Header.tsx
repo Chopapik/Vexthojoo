@@ -27,7 +27,6 @@ const Header = () => {
   const { authData, getUser } = cookieAuthContext;
 
   useEffect(() => {
-    console.log(`Is logged: ${authData.isLoggedIn}`);
     getUser();
   }, []);
   return (

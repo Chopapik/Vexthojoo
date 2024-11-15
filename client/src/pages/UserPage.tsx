@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { CookieAuthContext } from "../context/CookieAuthContext";
 
 const UserPage = () => {
   interface PostTypes {
@@ -18,6 +19,9 @@ const UserPage = () => {
     whenLastLogged: string;
     whenRegist: string;
   }
+
+  const cookieAuthContext = useContext(CookieAuthContext);
+  const { authData } = cookieAuthContext; //cookie data
 
   const [postsData, setPostsData] = useState<PostTypes[]>([
     {
@@ -106,31 +110,41 @@ const UserPage = () => {
                 className="w-32 h-32"
               />
 
-              <button
-                id="openEditUserPanel"
-                type="submit"
-                className="button01 w-[150px] mt-10 font-xs bg-gray-600 "
-              >
-                Edycja profilu
-              </button>
-            </div>
+              {authData.isLoggedIn && (
+                <>
+                  <div>
+                    <button
+                      id="openEditUserPanel"
+                      type="submit"
+                      className="button01 w-[150px] mt-10 font-xs bg-gray-600 "
+                    >
+                      Edycja profilu
+                    </button>
+                  </div>
 
-            <div className="flex flex-col items-center w-full">
-              <form method="POST" action="/auth/logout" className="mt-[100px]">
-                <button
-                  type="submit"
-                  className="button01 font-light w-[150px] bg-gray-600"
-                >
-                  Wyloguj się
-                </button>
-              </form>
-              <button
-                id="openUserDeletePanel"
-                type="submit"
-                className="button01 w-[150px] bg-red-600 mt-2"
-              >
-                Usuń konto
-              </button>
+                  <div className="flex flex-col items-center w-full">
+                    <form
+                      method="POST"
+                      action="/auth/logout"
+                      className="mt-[100px]"
+                    >
+                      <button
+                        type="submit"
+                        className="button01 font-light w-[150px] bg-gray-600"
+                      >
+                        Wyloguj się
+                      </button>
+                    </form>
+                    <button
+                      id="openUserDeletePanel"
+                      type="submit"
+                      className="button01 w-[150px] bg-red-600 mt-2"
+                    >
+                      Usuń konto
+                    </button>
+                  </div>
+                </>
+              )}
 
               <div className="mt-10 text-neutral-700 text-sm flex flex-col items-center w-full h-[100px]">
                 <p>Ostatnio online:</p>

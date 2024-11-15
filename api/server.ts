@@ -26,15 +26,15 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 
 //routers import:
+import posts from "./routers/posts";
 import auth from "./routers/auth";
-import postsRouter from "./routers/posts";
 import cookieAuth from "./routers/cookieAuth";
 import user from "./routers/user";
 
 //routers:
+app.use("/posts", posts);
 app.use("/auth", auth);
 app.use("/cookieAuth", cookieAuth);
-app.use("/posts", postsRouter);
 app.use("/user", user);
 
 //static from client:

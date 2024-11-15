@@ -5,6 +5,7 @@ import { CookieAuthContext } from "../context/CookieAuthContext";
 
 const UserPage = () => {
   interface PostTypes {
+    id: number;
     username: string;
     avatar: string;
     whenUpload: string;
@@ -25,6 +26,7 @@ const UserPage = () => {
 
   const [postsData, setPostsData] = useState<PostTypes[]>([
     {
+      id: 0,
       username: "USER",
       avatar: "./defaultAvatar.png",
       whenUpload: "DD-MM-YYYY HH:MM",
@@ -40,6 +42,8 @@ const UserPage = () => {
     whenLastLogged: "DD-MM-YYYY HH:MM",
     whenRegist: "DD-MM-YYYY HH:MM",
   });
+
+  const [refreshPost, setRefreshPost] = useState(false); //refresh posts after post has been removed
 
   const { username } = useParams();
 
@@ -63,6 +67,13 @@ const UserPage = () => {
     } else {
       return "n/a";
     }
+  };
+
+  const deletePost = async (postid: number) => {
+    await axios.delete(`posts/removePost/${postid}`);
+
+    setRefreshPost((prev) => !prev);
+    console.log(refreshPost);
   };
 
   useEffect(() => {
@@ -89,7 +100,7 @@ const UserPage = () => {
       setPostsData(posts);
     };
     getUserData();
-  }, [username]);
+  }, [username, refreshPost]);
 
   return (
     <>
@@ -157,11 +168,18 @@ const UserPage = () => {
         </main>
         <aside className="w-full lg:w-4/5 2xl:1/3 p-11 space-y-5">
           {/* posts: */}
-          {postsData.map((post, index) => (
+          {postsData.map((post) => (
             <div
-              key={index}
-              className=" bg-neutral-900 p-5 space-y-4 w-2/3 text-white"
+              key={post.id}
+              className="relative bg-neutral-900 p-5 space-y-4 w-2/3 text-white"
             >
+              <div className="absolute top-1 right-1 bg-red-600 w-5 h-5">
+                <img
+                  src="/icons/delete.svg"
+                  alt="DELETE"
+                  onClick={() => deletePost(post.id)}
+                />
+              </div>
               <div className="flex flex-row space-x-2">
                 <div className=" w-14 h-14 border border-neutral-600 ">
                   <img

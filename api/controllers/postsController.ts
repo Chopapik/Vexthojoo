@@ -1,7 +1,6 @@
 import express from "express";
 import db from "../mysqlConnection";
 import { Request, Response } from "express";
-import useragent from "express-useragent";
 import UAParser from "ua-parser-js";
 import jwt from "jsonwebtoken";
 

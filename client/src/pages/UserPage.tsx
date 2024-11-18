@@ -102,76 +102,85 @@ const UserPage = () => {
     getUserData();
   }, [username, refreshPost]);
 
+  const [canEdit, setCanEdit] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (authData.username === userData.username) {
+      setCanEdit(true);
+    } else {
+      setCanEdit(false);
+    }
+  });
+
   return (
     <>
       {/* userpage div */}
       <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0">
-        <main className="w-full lg:w-1/5 text-white space-y-4 bg-neutral-950 min-h-screen">
-          <div className="flex flex-col items-center mt-2 space-y-10 h-full">
-            <div className="w-full flex flex-col items-center">
-              <p
-                id="username"
-                className="text-white font-arial inline-block font-bold text-2xl italic mb-2"
-              >
-                {userData.username}
-              </p>
-              <img
-                src={userData.avatar ? userData.avatar : "./defaultAvatar.png"}
-                alt="avatar"
-                className="w-32 h-32"
-              />
+        <main className="w-full flex flex-col items-center lg:w-1/5 text-white bg-neutral-950 md:flex-row">
+          <div>
+            <p
+              id="username"
+              className="text-white font-arial p-3 flex flex-col items-center font-bold text-2xl italic mb-2"
+            >
+              {userData.username}
+            </p>
+            <img
+              src={userData.avatar ? userData.avatar : "./defaultAvatar.png"}
+              alt="avatar"
+              className="w-32 h-32"
+            />
+          </div>
 
-              {authData.isLoggedIn && (
-                <>
-                  <div>
-                    <button
-                      id="openEditUserPanel"
-                      type="submit"
-                      className="button01 w-[150px] mt-10 font-xs bg-gray-600 "
-                    >
-                      Edycja profilu
-                    </button>
-                  </div>
-
-                  <div className="flex flex-col items-center w-full">
-                    <form
-                      method="POST"
-                      action="/auth/logout"
-                      className="mt-[100px]"
-                    >
-                      <button
-                        type="submit"
-                        className="button01 font-light w-[150px] bg-gray-600"
-                      >
-                        Wyloguj się
-                      </button>
-                    </form>
-                    <button
-                      id="openUserDeletePanel"
-                      type="submit"
-                      className="button01 w-[150px] bg-red-600 mt-2"
-                    >
-                      Usuń konto
-                    </button>
-                  </div>
-                </>
-              )}
-
-              <div className="mt-10 text-neutral-700 text-sm flex flex-col items-center w-full h-[100px]">
-                <p>Ostatnio online:</p>
-                <p className="font-bold"> {userData.whenLastLogged} </p>
-                <p className="mt-2">Data rejestracji:</p>
-                <p className="font-bold"> {userData.whenRegist} </p>
+          {canEdit && (
+            <>
+              <div>
+                <button
+                  id="openEditUserPanel"
+                  type="submit"
+                  className="button01 w-[150px] mt-10 font-xs bg-gray-600 "
+                >
+                  Edycja profilu
+                </button>
               </div>
-            </div>
+
+              <div className="flex flex-col items-center w-full">
+                <form
+                  method="POST"
+                  action="/auth/logout"
+                  className="mt-[100px]"
+                >
+                  <button
+                    type="submit"
+                    className="button01 font-light w-[150px] bg-gray-600"
+                  >
+                    Wyloguj się
+                  </button>
+                </form>
+                <button
+                  id="openUserDeletePanel"
+                  type="submit"
+                  className="button01 w-[150px] bg-red-600 mt-2"
+                >
+                  Usuń konto
+                </button>
+              </div>
+            </>
+          )}
+
+          <div className="mt-10 text-neutral-700 text-sm flex flex-col items-center w-full h-[100px]">
+            <p>Ostatnio online:</p>
+            <p className="font-bold"> {userData.whenLastLogged} </p>
+            <p className="mt-2">Data rejestracji:</p>
+            <p className="font-bold"> {userData.whenRegist} </p>
           </div>
         </main>
-        <aside className="w-full lg:w-4/5 2xl:1/3 p-11 space-y-5">
+
+        <aside className="w-full p-11 space-y-5">
           {/* posts: */}
           {postsData.map((post) => (
             <div
               key={post.id}
-              className="relative bg-neutral-900 p-5 space-y-4 w-2/3 text-white"
+              className="relative bg-neutral-900 p-5 space-y-4  text-white"
             >
               <div className="absolute top-1 right-1 bg-red-600 w-5 h-5">
                 <img

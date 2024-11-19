@@ -22,7 +22,9 @@ const Header = () => {
   return (
     <div className="flex flex-col items-center space-y-8 p-4 lg:flex-row lg:justify-between lg:space-y-0">
       <div className="space-y-1">
-        <img src="/logo.png" alt="VEXTHOJOO" />
+        <a href="/">
+          <img src="/logo.png" alt="VEXTHOJOO" />
+        </a>
         <hr className="w-3/4 border-fuchsia-500 border sm:w-[125%]" />
       </div>
 

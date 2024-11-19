@@ -51,13 +51,13 @@ const Home = () => {
     getPosts();
   }, []);
 
-  const context = useContext(PanelContext);
+  const panelContext = useContext(PanelContext);
 
-  if (!context) {
+  if (!panelContext) {
     return <div className="text-red-600">CONTEXT ERR</div>;
   }
 
-  const { showPanel } = context;
+  const { showPanel } = panelContext;
 
   return (
     <>

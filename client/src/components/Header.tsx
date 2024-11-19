@@ -42,12 +42,14 @@ const Header = () => {
             </div>
             <div>
               <div className="w-11 h-11 border border-neutral-600">
-                <img
-                  src={
-                    authData.avatar ? authData.avatar : "./defaultAvatar.png"
-                  }
-                  alt="Avatar"
-                />
+                <a href={`/${authData.username}`}>
+                  <img
+                    src={
+                      authData.avatar ? authData.avatar : "./defaultAvatar.png"
+                    }
+                    alt="Avatar"
+                  />
+                </a>
               </div>
             </div>
           </div>

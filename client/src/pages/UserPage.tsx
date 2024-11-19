@@ -115,12 +115,12 @@ const UserPage = () => {
   return (
     <>
       {/* userpage div */}
-      <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0">
-        <main className="w-full flex flex-col items-center lg:w-1/5 text-white bg-neutral-950 md:flex-row">
+      <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0 ">
+        <main className="text-white w-full flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-around sm:space-y-0 lg:flex-col lg:w-1/5 lg:min-h-[700px]">
           <div>
             <p
               id="username"
-              className="text-white font-arial p-3 flex flex-col items-center font-bold text-2xl italic mb-2"
+              className="text-white font-arial mb-3 flex flex-col items-center font-bold text-2xl italic"
             >
               {userData.username}
             </p>
@@ -134,40 +134,36 @@ const UserPage = () => {
           {canEdit && (
             <>
               <div>
-                <button
-                  id="openEditUserPanel"
-                  type="submit"
-                  className="button01 w-[150px] mt-10 font-xs bg-gray-600 "
-                >
-                  Edycja profilu
-                </button>
-              </div>
+                <div className="sm:h-auto mb-2 lg:h-[200px]">
+                  <button
+                    id="openEditUserPanel"
+                    type="submit"
+                    className="button01 w-[150px] font-xs bg-gray-600 "
+                  >
+                    Edycja profilu
+                  </button>
+                </div>
 
-              <div className="flex flex-col items-center w-full">
-                <form
-                  method="POST"
-                  action="/auth/logout"
-                  className="mt-[100px]"
-                >
+                <div className="flex flex-col items-center">
                   <button
                     type="submit"
                     className="button01 font-light w-[150px] bg-gray-600"
                   >
                     Wyloguj się
                   </button>
-                </form>
-                <button
-                  id="openUserDeletePanel"
-                  type="submit"
-                  className="button01 w-[150px] bg-red-600 mt-2"
-                >
-                  Usuń konto
-                </button>
+                  <button
+                    id="openUserDeletePanel"
+                    type="submit"
+                    className="button01 w-[150px] bg-red-600 mt-2"
+                  >
+                    Usuń konto
+                  </button>
+                </div>
               </div>
             </>
           )}
 
-          <div className="mt-10 text-neutral-700 text-sm flex flex-col items-center w-full h-[100px]">
+          <div className="text-neutral-700 text-sm flex flex-col">
             <p>Ostatnio online:</p>
             <p className="font-bold"> {userData.whenLastLogged} </p>
             <p className="mt-2">Data rejestracji:</p>

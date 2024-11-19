@@ -177,13 +177,18 @@ const UserPage = () => {
               key={post.id}
               className="relative bg-neutral-900 p-5 space-y-4  text-white"
             >
-              <div className="absolute top-1 right-1 bg-red-600 w-5 h-5">
-                <img
-                  src="/icons/delete.svg"
-                  alt="DELETE"
-                  onClick={() => deletePost(post.id)}
-                />
-              </div>
+              {canEdit && (
+                <>
+                  <div className="absolute top-1 right-1 bg-red-600 w-5 h-5">
+                    <img
+                      src="/icons/delete.svg"
+                      alt="DELETE"
+                      onClick={() => deletePost(post.id)}
+                    />
+                  </div>
+                </>
+              )}
+
               <div className="flex flex-row space-x-2">
                 <div className=" w-14 h-14 border border-neutral-600 ">
                   <img

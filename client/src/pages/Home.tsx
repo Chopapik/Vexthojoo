@@ -11,17 +11,8 @@ const Home = () => {
     TEXT: string;
     image: string | null;
   }
-
-  const [posts, setPosts] = useState<postTypes[]>([
-    {
-      username: "USER ",
-      avatar: "./defaultAvatar.png",
-      whenUpload: "DD-MM-YYYY HH:MM",
-      whatDevice: "Windows",
-      TEXT: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      image: null,
-    },
-  ]);
+  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState<postTypes[]>([]);
 
   //posts date formatter:
   const DateTimeFormat = (date: string | Date) => {
@@ -54,6 +45,7 @@ const Home = () => {
       });
 
       setPosts(response.data);
+      setLoading(false);
     };
 
     getPosts();
@@ -70,8 +62,8 @@ const Home = () => {
   return (
     <>
       {/* home div */}
+      {/* posts: */}
       <div className="flex flex-col space-y-5 p-3">
-        {/* posts: */}
         <main className="w-full lg:w-1/2 2xl:w-2/3 text-white space-y-4 flex flex-col items-center">
           <div
             className="w-1/2 border px-6 py-2 rounded-full my-5 font-poppins cursor-pointer"
@@ -81,29 +73,56 @@ const Home = () => {
           >
             Dodaj post głupcze
           </div>
-          {posts.map((post, index) => (
-            <div key={index} className="w-full bg-neutral-900 p-5 space-y-4">
+          {loading ? (
+            <div className="w-full bg-neutral-900 p-5 space-y-4">
               <div className="flex flex-row space-x-2">
-                <div className=" w-14 h-14 border border-neutral-600 ">
-                  <a href={`/${post.username}`}>
-                    <img
-                      src={post.avatar ? post.avatar : "./defaultAvatar.png"}
-                      alt="Avatar"
-                    />
-                  </a>
-                </div>
-                <div>
-                  <p className="text-sm font-bold">{post.username}</p>
-                  <p className="text-xs text-neutral-500">{post.whenUpload}</p>
-                  <p className="text-xs text-cyan-400">
-                    Uploaded from {post.whatDevice}
-                  </p>
+                <div className=" w-14 h-14 border border-neutral-950 bg-neutral-950" />
+                <div className="space-y-1">
+                  <div className="w-[120px] h-3 bg-neutral-950"></div>
+                  <div className="w-[70px] h-3 bg-neutral-950"></div>
+                  <div className="w-[70px] h-3 bg-neutral-950"></div>
                 </div>
               </div>
-              <p className="text-md">{post.TEXT}</p>
-              {post.image ? <img src={post.image}></img> : null}
+              <div className="space-y-1">
+                <div className="w-1/4 h-3 bg-neutral-950"></div>
+                <div className="w-1/3 h-3 bg-neutral-950"></div>
+                <div className="w-1/5 h-3 bg-neutral-950"></div>
+              </div>
             </div>
-          ))}
+          ) : (
+            <>
+              {posts.map((post, index) => (
+                <div
+                  key={index}
+                  className="w-full bg-neutral-900 p-5 space-y-4"
+                >
+                  <div className="flex flex-row space-x-2">
+                    <div className=" w-14 h-14 border border-neutral-600 ">
+                      <a href={`/${post.username}`}>
+                        <img
+                          src={
+                            post.avatar ? post.avatar : "./defaultAvatar.png"
+                          }
+                          alt="Avatar"
+                        />
+                      </a>
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold">{post.username}</p>
+                      <p className="text-xs text-neutral-500">
+                        {post.whenUpload}
+                      </p>
+                      <p className="text-xs text-cyan-400">
+                        Uploaded from {post.whatDevice}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-md">{post.TEXT}</p>
+                  {post.image ? <img src={post.image}></img> : null}
+                </div>
+              ))}
+            </>
+          )}
         </main>
         <aside className="w-full lg:w-1/2 2xl:1/3"></aside>
       </div>

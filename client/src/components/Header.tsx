@@ -56,13 +56,13 @@ const Header = () => {
         ) : (
           <div className="flex flex-col space-y-3 text-white xs:flex-row xs:space-y-0 xs:space-x-4">
             <button
-              className="button01 bg-fuchsia-500"
+              className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500"
               onClick={() => showPanel("loginPanel")}
             >
               LOGOWANIE
             </button>
             <button
-              className="button01 bg-black border-2 border-fuchsia-600"
+              className="button01 bg-black border-2 border-fuchsia-600 hover:shadow-button01 hover:shadow-fuchsia-500"
               onClick={() => showPanel("registerPanel")}
             >
               REJESTRACJA

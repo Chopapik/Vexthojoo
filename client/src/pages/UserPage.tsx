@@ -136,9 +136,8 @@ const UserPage = () => {
               <div>
                 <div className="sm:h-auto mb-2 lg:h-[200px]">
                   <button
-                    id="openEditUserPanel"
                     type="submit"
-                    className="button01 w-[150px] font-xs bg-gray-600 "
+                    className="button01 w-[150px] font-xs bg-gray-600 hover:shadow-button01 hover:shadow-gray-500"
                   >
                     Edycja profilu
                   </button>
@@ -147,14 +146,14 @@ const UserPage = () => {
                 <div className="flex flex-col items-center">
                   <button
                     type="submit"
-                    className="button01 font-light w-[150px] bg-gray-600"
+                    className="button01 font-light w-[150px] bg-gray-600 hover:shadow-button01 hover:shadow-gray-500"
                   >
                     Wyloguj się
                   </button>
                   <button
                     id="openUserDeletePanel"
                     type="submit"
-                    className="button01 w-[150px] bg-red-600 mt-2"
+                    className="button01 w-[150px] bg-red-600 mt-2 hover:shadow-button01 hover:shadow-red-500"
                   >
                     Usuń konto
                   </button>

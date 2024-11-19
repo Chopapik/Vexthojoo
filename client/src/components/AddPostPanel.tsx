@@ -97,7 +97,9 @@ const AddPostPanel = ({
               </div>
             </div>
             <div className="w-full flex justify-center mt-10">
-              <button className="button01 bg-fuchsia-500">dodaj chłopie</button>
+              <button className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500">
+                dodaj chłopie
+              </button>
             </div>
           </form>
         </>

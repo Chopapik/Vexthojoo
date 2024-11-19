@@ -101,7 +101,10 @@ const LoginPanel = ({
                   <label htmlFor="noLogout">Nie wylogowywuj mnie</label>
                 </div>
               </div>
-              <button className="button01 bg-fuchsia-500" type="submit">
+              <button
+                className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500"
+                type="submit"
+              >
                 WŁAŹ
               </button>
             </div>

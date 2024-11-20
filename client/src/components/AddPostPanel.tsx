@@ -47,13 +47,15 @@ const AddPostPanel = ({
     }
   };
 
+  console.log(authData.isLoggedIn);
+
   return (
     <Panel
       closePanelFunction={closePanelFunction}
       isVisible={visiblePanelId === "addPostPanel"}
       content={
         <>
-          {authData.isLoggedIn ? (
+          {!authData.isLoggedIn ? (
             <>
               <div className="flex flex-col items-center space-y-10">
                 <div className="flex flex-col items-center">

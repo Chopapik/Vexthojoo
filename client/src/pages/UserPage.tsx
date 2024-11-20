@@ -28,7 +28,12 @@ const UserPage = () => {
 
   const [postsData, setPostsData] = useState<PostTypes[]>([]);
 
-  const [userData, setUserData] = useState<UserDataTypes>({});
+  const [userData, setUserData] = useState<UserDataTypes>(() => ({
+    username: "",
+    avatar: "",
+    whenLastLogged: "",
+    whenRegist: "",
+  }));
 
   const [refreshPost, setRefreshPost] = useState(false); //refresh posts after post has been removed
 

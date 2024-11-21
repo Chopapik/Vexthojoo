@@ -3,6 +3,7 @@
 import LoginPanel from "./LoginPanel";
 import RegisterPanel from "./RegisterPanel";
 import AddPostPanel from "./AddPostPanel";
+import EditUserPanel from "./EditUserPanel";
 
 import { PanelContext } from "../context/PanelContext";
 import { useContext } from "react";
@@ -26,6 +27,10 @@ const AllPanels = () => {
         visiblePanelId={visiblePanelId}
       />
       <AddPostPanel
+        closePanelFunction={closePanel}
+        visiblePanelId={visiblePanelId}
+      />
+      <EditUserPanel
         closePanelFunction={closePanel}
         visiblePanelId={visiblePanelId}
       />

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { CookieAuthContext } from "../context/CookieAuthContext";
+import { PanelContext } from "../context/PanelContext";
 
 const UserPage = () => {
   interface PostTypes {
@@ -105,6 +106,8 @@ const UserPage = () => {
     }
   });
 
+  const { showPanel } = useContext(PanelContext);
+
   return (
     <>
       {/* userpage div */}
@@ -142,6 +145,7 @@ const UserPage = () => {
                       <button
                         type="submit"
                         className="button01 w-[150px] font-xs bg-gray-600 hover:shadow-button01 hover:shadow-gray-500"
+                        onClick={() => showPanel("editUserPanel")}
                       >
                         Edycja profilu
                       </button>

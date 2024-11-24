@@ -1,6 +1,7 @@
 import Panel from "./Panel";
 import { CookieAuthContext } from "../context/CookieAuthContext";
 import { useContext, useState } from "react";
+import axios from "axios";
 
 const EditUserPanel = ({
   visiblePanelId,
@@ -14,6 +15,31 @@ const EditUserPanel = ({
   const [canSave, setCanSave] = useState<boolean>(false);
 
   const [avatarPreview, setAvatarPreview] = useState("./defaultAvatar.png");
+
+  interface newUserDataTypes {
+    username: string | null;
+    avatar: File | string | null;
+  }
+
+  const [newUserData, setNewUserData] = useState<newUserDataTypes>({
+    username: authData.username,
+    avatar: "",
+  });
+
+  const updateUserData = async () => {
+    // Adding newUserData fields to FormData
+    const formData = new FormData();
+
+    if (newUserData.username) {
+      formData.append("username", newUserData.username);
+    }
+
+    if (newUserData.avatar) {
+      formData.append("avatar", newUserData.avatar);
+    }
+
+    await axios.post("/user/updateData", newUserData);
+  };
 
   return (
     <Panel
@@ -52,15 +78,19 @@ const EditUserPanel = ({
                       onChange={(e) => {
                         if (e.target.files) {
                           const file = e.target.files[0];
-                          if (file.type.substring(0, 5) === "image")
-                            console.log(file.type);
+                          if (file.type.substring(0, 5) === "image") {
+                            const reader = new FileReader();
 
-                          const reader = new FileReader();
-
-                          reader.readAsDataURL(file);
-                          reader.onload = () => {
-                            setAvatarPreview(reader.result as string);
-                          };
+                            reader.readAsDataURL(file);
+                            reader.onload = () => {
+                              setAvatarPreview(reader.result as string);
+                              setNewUserData({
+                                ...newUserData,
+                                avatar: file,
+                              });
+                              setCanSave(true);
+                            };
+                          }
                         }
                       }}
                     />
@@ -75,12 +105,29 @@ const EditUserPanel = ({
                   name="newUsername"
                   className=" bg-neutral-900 border-2 outline-none text-neutral-100 px-6 py-2 order-2 border-neutral-700 hover:border-neutral-500 peer transition-all duration-50 ease-in placeholder-neutral-50"
                   placeholder={authData.username ?? "twoja nazwa"}
+                  onChange={(e) => {
+                    setNewUserData({
+                      ...newUserData,
+                      username: e.target.value,
+                    });
+                    if (
+                      e.target.value === "" ||
+                      e.target.value === authData.username
+                    ) {
+                      setCanSave(false);
+                    } else {
+                      setCanSave(true);
+                    }
+                  }}
                 />
               </div>
             </div>
             <div className="w-full flex justify-center p-10">
               {canSave ? (
-                <button className="button01 bg-cyan-500 hover:shadow-button01 hover:shadow-cyan-500">
+                <button
+                  className="button01 bg-cyan-500 hover:shadow-button01 hover:shadow-cyan-500"
+                  onClick={updateUserData}
+                >
                   zapisz
                 </button>
               ) : (

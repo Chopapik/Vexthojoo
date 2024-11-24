@@ -38,7 +38,7 @@ const EditUserPanel = ({
       formData.append("avatar", newUserData.avatar);
     }
 
-    await axios.post("/user/updateData", newUserData);
+    await axios.post("/user/updateData", formData);
   };
 
   return (

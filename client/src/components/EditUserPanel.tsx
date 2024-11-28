@@ -2,6 +2,7 @@ import Panel from "./Panel";
 import { CookieAuthContext } from "../context/CookieAuthContext";
 import { useContext, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const EditUserPanel = ({
   visiblePanelId,
@@ -10,6 +11,10 @@ const EditUserPanel = ({
   visiblePanelId: string | null;
   closePanelFunction: () => void;
 }) => {
+  const { getUser } = useContext(CookieAuthContext);
+
+  const navigate = useNavigate();
+
   const { authData } = useContext(CookieAuthContext);
 
   const [canSave, setCanSave] = useState<boolean>(false);
@@ -38,7 +43,19 @@ const EditUserPanel = ({
       formData.append("avatar", newUserData.avatar);
     }
 
-    await axios.post("/user/updateData", formData);
+    try {
+      const response = await axios.post("/user/updateData", formData);
+      closePanelFunction();
+      //After successful username change, user will be navigated to ned directiory with /newUsername
+      const newAuthData = response.data.UserData;
+      navigate(`/${newAuthData.username}`);
+      console.log(newAuthData.username);
+      getUser();
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      console.log("Error updating user data:", err.message);
+    }
   };
 
   return (

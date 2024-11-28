@@ -27,6 +27,13 @@ const UserPage = () => {
 
   const [loading, setLoading] = useState(true);
 
+  const [getUserErr, setGetUserErr] = useState(false);
+  const [getUserErrMessage, setGetUserErrMessage] = useState(
+    <>
+      <div></div>
+    </>
+  );
+
   const [postsData, setPostsData] = useState<PostTypes[]>([]);
 
   const [userData, setUserData] = useState<UserDataTypes>(() => ({
@@ -71,27 +78,46 @@ const UserPage = () => {
 
   useEffect(() => {
     const getUserData = async () => {
-      const response = await axios(`/user/${username}`);
+      try {
+        const response = await axios(`/user/${username}`);
 
-      const { posts, userData } = response.data;
+        const { posts, userData } = response.data;
 
-      console.log(userData[0]);
+        console.log(userData[0]);
 
-      setUserData(userData[0]);
+        setUserData(userData[0]);
 
-      //Formating date:
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      posts.forEach((post: any) => {
-        post.whenUpload = DateTimeFormat(post.whenUpload);
-      });
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      userData.forEach((user: any) => {
-        user.whenLastLogged = DateTimeFormat(user.whenLastLogged);
-        user.whenRegist = DateTimeFormat(user.whenRegist);
-      });
+        //Formating date:
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        posts.forEach((post: any) => {
+          post.whenUpload = DateTimeFormat(post.whenUpload);
+        });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        userData.forEach((user: any) => {
+          user.whenLastLogged = DateTimeFormat(user.whenLastLogged);
+          user.whenRegist = DateTimeFormat(user.whenRegist);
+        });
 
-      setPostsData(posts);
-      setLoading(false);
+        setPostsData(posts);
+        setLoading(false);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (err: any) {
+        setGetUserErrMessage(
+          <>
+            <div className="flex flex-col items-center">
+              <p className="text-red-600">Błąd {err.response.status}</p>
+              <p>Nie znaleziono użytkonika:</p>
+              <p className="text-xl font-bold italic">
+                {err.response.data.notFoundUser}
+              </p>
+            </div>
+          </>
+        );
+        // setGetUserErrMessage(`${err.response.data.message} ${err.status}`);
+        setGetUserErr(true);
+        setLoading(false);
+        console.log("ERR");
+      }
     };
     getUserData();
   }, [username, refreshPost]);
@@ -110,139 +136,154 @@ const UserPage = () => {
 
   return (
     <>
-      {/* userpage div */}
-      <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0 ">
-        <main className="text-white w-full flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-between sm:space-y-0 lg:flex-col lg:w-1/5 lg:min-h-[700px]">
-          {loading ? (
-            <>
-              <div className="flex flex-col items-center space-y-3">
-                <div className="h-8 w-[100px] bg-neutral-950"> </div>
-                <div className="w-32 h-32 bg-neutral-950" />
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex flex-col items-center space-y-3">
-                <p
-                  id="username"
-                  className="text-white font-arial items-center font-bold text-2xl italic"
-                >
-                  {userData.username}
-                </p>
-                <img
-                  src={
-                    userData.avatar ? userData.avatar : "./defaultAvatar.png"
-                  }
-                  alt="avatar"
-                  className="w-32 h-32"
-                />
-              </div>
-
-              {canEdit && (
+      {!getUserErr ? (
+        <>
+          {" "}
+          {/* userpage div */}
+          <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0 ">
+            <main className="text-white w-full flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-between sm:space-y-0 lg:flex-col lg:w-1/5 lg:min-h-[700px]">
+              {loading ? (
                 <>
-                  <div>
-                    <div className="sm:h-auto mb-2 lg:h-[200px]">
-                      <button
-                        type="submit"
-                        className="button01 w-[150px] font-xs bg-gray-600 hover:shadow-button01 hover:shadow-gray-500"
-                        onClick={() => showPanel("editUserPanel")}
-                      >
-                        Edycja profilu
-                      </button>
-                    </div>
-
-                    <div className="flex flex-col items-center">
-                      <button
-                        type="submit"
-                        className="button01 font-light w-[150px] bg-gray-600 hover:shadow-button01 hover:shadow-gray-500"
-                      >
-                        Wyloguj się
-                      </button>
-                      <button
-                        id="openUserDeletePanel"
-                        type="submit"
-                        className="button01 w-[150px] bg-red-600 mt-2 hover:shadow-button01 hover:shadow-red-500"
-                      >
-                        Usuń konto
-                      </button>
-                    </div>
+                  <div className="flex flex-col items-center space-y-3">
+                    <div className="h-8 w-[100px] bg-neutral-950"> </div>
+                    <div className="w-32 h-32 bg-neutral-950" />
                   </div>
                 </>
-              )}
+              ) : (
+                <>
+                  <div className="flex flex-col items-center space-y-3">
+                    <p
+                      id="username"
+                      className="text-white font-arial items-center font-bold text-2xl italic"
+                    >
+                      {userData.username}
+                    </p>
+                    <img
+                      src={
+                        userData.avatar
+                          ? userData.avatar
+                          : "./defaultAvatar.png"
+                      }
+                      alt="avatar"
+                      className="w-32 h-32"
+                    />
+                  </div>
 
-              <div className="text-neutral-700 text-sm flex flex-col">
-                <p>Ostatnio online:</p>
-                <p className="font-bold"> {userData.whenLastLogged} </p>
-                <p className="mt-2">Data rejestracji:</p>
-                <p className="font-bold"> {userData.whenRegist} </p>
-              </div>
-            </>
-          )}
-        </main>
-
-        <aside className="w-full p-11 space-y-5">
-          {/* posts: */}
-
-          {loading ? (
-            <div className="w-full bg-neutral-900 p-5 space-y-4">
-              <div className="flex flex-row space-x-2">
-                <div className=" w-14 h-14 border border-neutral-950 bg-neutral-950" />
-                <div className="space-y-1">
-                  <div className="w-[120px] h-3 bg-neutral-950"></div>
-                  <div className="w-[70px] h-3 bg-neutral-950"></div>
-                  <div className="w-[70px] h-3 bg-neutral-950"></div>
-                </div>
-              </div>
-              <div className="space-y-1">
-                <div className="w-1/4 h-3 bg-neutral-950"></div>
-                <div className="w-1/3 h-3 bg-neutral-950"></div>
-                <div className="w-1/5 h-3 bg-neutral-950"></div>
-              </div>
-            </div>
-          ) : (
-            <>
-              {postsData.map((post) => (
-                <div
-                  key={post.id}
-                  className="relative bg-neutral-900 p-5 space-y-4  text-white"
-                >
                   {canEdit && (
                     <>
-                      <div className="absolute top-1 right-1 bg-red-600 w-5 h-5">
-                        <img
-                          src="/icons/delete.svg"
-                          alt="DELETE"
-                          onClick={() => deletePost(post.id)}
-                        />
+                      <div>
+                        <div className="sm:h-auto mb-2 lg:h-[200px]">
+                          <button
+                            type="submit"
+                            className="button01 w-[150px] font-xs bg-gray-600 hover:shadow-button01 hover:shadow-gray-500"
+                            onClick={() => showPanel("editUserPanel")}
+                          >
+                            Edycja profilu
+                          </button>
+                        </div>
+
+                        <div className="flex flex-col items-center">
+                          <button
+                            type="submit"
+                            className="button01 font-light w-[150px] bg-gray-600 hover:shadow-button01 hover:shadow-gray-500"
+                          >
+                            Wyloguj się
+                          </button>
+                          <button
+                            id="openUserDeletePanel"
+                            type="submit"
+                            className="button01 w-[150px] bg-red-600 mt-2 hover:shadow-button01 hover:shadow-red-500"
+                          >
+                            Usuń konto
+                          </button>
+                        </div>
                       </div>
                     </>
                   )}
 
+                  <div className="text-neutral-700 text-sm flex flex-col">
+                    <p>Ostatnio online:</p>
+                    <p className="font-bold"> {userData.whenLastLogged} </p>
+                    <p className="mt-2">Data rejestracji:</p>
+                    <p className="font-bold"> {userData.whenRegist} </p>
+                  </div>
+                </>
+              )}
+            </main>
+
+            <aside className="w-full p-11 space-y-5">
+              {/* posts: */}
+
+              {loading ? (
+                <div className="w-full bg-neutral-900 p-5 space-y-4">
                   <div className="flex flex-row space-x-2">
-                    <div className=" w-14 h-14 border border-neutral-600 ">
-                      <img
-                        src={post.avatar ? post.avatar : "./defaultAvatar.png"}
-                        alt="Avatar"
-                      />
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold">{post.username}</p>
-                      <p className="text-xs text-neutral-500">
-                        {post.whenUpload}
-                      </p>
-                      <p className="text-xs text-cyan-400">
-                        Uploaded from {post.whatDevice}
-                      </p>
+                    <div className=" w-14 h-14 border border-neutral-950 bg-neutral-950" />
+                    <div className="space-y-1">
+                      <div className="w-[120px] h-3 bg-neutral-950"></div>
+                      <div className="w-[70px] h-3 bg-neutral-950"></div>
+                      <div className="w-[70px] h-3 bg-neutral-950"></div>
                     </div>
                   </div>
-                  <p className="text-md">{post.TEXT}</p>
-                  {post.image ? <img src={post.image}></img> : null}
+                  <div className="space-y-1">
+                    <div className="w-1/4 h-3 bg-neutral-950"></div>
+                    <div className="w-1/3 h-3 bg-neutral-950"></div>
+                    <div className="w-1/5 h-3 bg-neutral-950"></div>
+                  </div>
                 </div>
-              ))}
-            </>
-          )}
-        </aside>
-      </div>
+              ) : (
+                <>
+                  {postsData.map((post) => (
+                    <div
+                      key={post.id}
+                      className="relative bg-neutral-900 p-5 space-y-4  text-white"
+                    >
+                      {canEdit && (
+                        <>
+                          <div className="absolute top-1 right-1 bg-red-600 w-5 h-5">
+                            <img
+                              src="/icons/delete.svg"
+                              alt="DELETE"
+                              onClick={() => deletePost(post.id)}
+                            />
+                          </div>
+                        </>
+                      )}
+
+                      <div className="flex flex-row space-x-2">
+                        <div className=" w-14 h-14 border border-neutral-600 ">
+                          <img
+                            src={
+                              post.avatar ? post.avatar : "./defaultAvatar.png"
+                            }
+                            alt="Avatar"
+                          />
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold">{post.username}</p>
+                          <p className="text-xs text-neutral-500">
+                            {post.whenUpload}
+                          </p>
+                          <p className="text-xs text-cyan-400">
+                            Uploaded from {post.whatDevice}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="text-md">{post.TEXT}</p>
+                      {post.image ? <img src={post.image}></img> : null}
+                    </div>
+                  ))}
+                </>
+              )}
+            </aside>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="text-white w-full h-[50vh] flex justify-center items-center">
+            <span>{getUserErrMessage}</span>
+          </div>
+        </>
+      )}
     </>
   );
 };

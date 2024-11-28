@@ -28,3 +28,25 @@ export const userPage = async (req: Request, res: Response) => {
     res.status(500);
   }
 };
+
+export const updateData = async (req: Request, res: Response) => {
+  console.log("test");
+  const { username } = req.body;
+  const avatar = req.file;
+  const cookie = req.cookies.token;
+  const secret = process.env.SECRET;
+
+  if (cookie && secret) {
+    const decodedToken = jwt.verify(cookie, secret) as {
+      userid: number;
+      username: string;
+      avatar: File;
+    };
+
+    const UserData = {
+      userid: decodedToken.userid,
+      username: decodedToken.username,
+      avatar: decodedToken.avatar,
+    };
+  }
+};

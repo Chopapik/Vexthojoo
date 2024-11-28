@@ -20,17 +20,14 @@ export const register = async (req: Request, res: Response) => {
     res
       .status(409)
       .json({ field: "usernameErr", message: "Nazwa jest już zajęta" });
-    console.log(`"${username}" username has been used`);
   } else if (username.length > 20) {
     res
       .status(409)
       .json({ field: "usernameErr", message: "Nazwa jest za długa" });
-    console.log(`"${username}" username too long`);
   } else if (password !== rePassword) {
     res
       .status(409)
       .json({ field: "passwordErr", message: "Hasła się nie zgadzają" });
-    console.log(`"${username}" user's password doesn't match`);
   } else if (acceptTerm === false) {
     res.status(409).json({
       field: "acceptTermErr",
@@ -99,7 +96,6 @@ export const login = async (req: Request, res: Response) => {
           res.cookie("token", token, {
             httpOnly: true,
           });
-        console.log("utworzono ciastko");
       } else {
         console.log("env secret err");
       }

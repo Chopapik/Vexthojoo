@@ -73,7 +73,6 @@ const UserPage = () => {
     await axios.delete(`posts/removePost/${postid}`);
 
     setRefreshPost((prev) => !prev);
-    console.log(refreshPost);
   };
 
   useEffect(() => {
@@ -82,8 +81,6 @@ const UserPage = () => {
         const response = await axios(`/user/${username}`);
 
         const { posts, userData } = response.data;
-
-        console.log(userData[0]);
 
         setUserData(userData[0]);
 
@@ -116,7 +113,6 @@ const UserPage = () => {
         // setGetUserErrMessage(`${err.response.data.message} ${err.status}`);
         setGetUserErr(true);
         setLoading(false);
-        console.log("ERR");
       }
     };
     getUserData();

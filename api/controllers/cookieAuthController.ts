@@ -9,8 +9,6 @@ export const cookieLogin = async (req: Request, res: Response) => {
   if (token) {
     if (secret) {
       const cookieLoginUserData = await jwt.verify(token, secret);
-      console.log(cookieLoginUserData);
-
       interface cookieUserData {
         username: string;
         userid: number;

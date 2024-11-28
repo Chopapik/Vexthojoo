@@ -17,8 +17,6 @@ export const userPage = async (req: Request, res: Response) => {
       [username]
     );
 
-    console.log(userData);
-
     if (userData.length > 0) {
       res.json({ posts: posts, userData: userData });
     } else {
@@ -30,7 +28,6 @@ export const userPage = async (req: Request, res: Response) => {
 };
 
 export const updateData = async (req: Request, res: Response) => {
-  console.log("test");
   const { username } = req.body;
   const avatar = req.file;
   const cookie = req.cookies.token;
@@ -50,7 +47,6 @@ export const updateData = async (req: Request, res: Response) => {
     };
 
     //Updating only username:
-    console.log(`username z body: ${req.body.username}`);
     if (username !== undefined) {
       try {
         await db.query("UPDATE users SET username = ? WHERE id=?", [

@@ -49,7 +49,6 @@ const EditUserPanel = ({
       //After successful username change, user will be navigated to ned directiory with /newUsername
       const newAuthData = response.data.UserData;
       navigate(`/${newAuthData.username}`);
-      console.log(newAuthData.username);
       getUser();
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

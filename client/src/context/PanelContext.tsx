@@ -21,7 +21,6 @@ const PanelProvider = ({ children }: PanelProvidertypes) => {
 
   const showPanel = (panelId: string) => {
     setVisiblePanelId(panelId);
-    console.log(panelId);
   };
 
   const closePanel = () => {

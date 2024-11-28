@@ -47,8 +47,6 @@ const AddPostPanel = ({
     }
   };
 
-  console.log(authData.isLoggedIn);
-
   return (
     <Panel
       closePanelFunction={closePanelFunction}

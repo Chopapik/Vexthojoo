@@ -48,5 +48,34 @@ export const updateData = async (req: Request, res: Response) => {
       username: decodedToken.username,
       avatar: decodedToken.avatar,
     };
+
+    //Updating only username:
+    console.log(`username z body: ${req.body.username}`);
+    if (username !== undefined) {
+      try {
+        await db.query("UPDATE users SET username = ? WHERE id=?", [
+          username,
+          decodedToken.userid,
+        ]);
+        UserData.username = username;
+      } catch (err) {
+        console.log("Users data update in db err");
+      }
+    }
+
+    res.clearCookie("token");
+
+    const token = jwt.sign(
+      {
+        username: UserData.username,
+        userid: UserData.userid,
+      },
+      secret
+    );
+    res.cookie("token", token, {
+      httpOnly: true,
+    });
+
+    res.json({ UserData });
   }
 };

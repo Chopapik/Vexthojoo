@@ -1,7 +1,13 @@
 import { userPage, updateData } from "../controllers/usersController";
-import router from "./auth";
+import express from "express";
+import multer from "multer";
+
+const router = express.Router();
+const upload = multer({
+  dest: "/uploads/avatars",
+});
 
 router.get("/:username", userPage);
-router.post("/updateData", updateData);
+router.post("/updateData", upload.single("avatar"), updateData);
 
 export default router;

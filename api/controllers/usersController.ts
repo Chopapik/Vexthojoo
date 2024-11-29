@@ -33,7 +33,12 @@ export const updateData = async (req: Request, res: Response) => {
   const cookie = req.cookies.token;
   const secret = process.env.SECRET;
 
-  if (cookie && secret) {
+  const [foundUser] = await db.query(
+    "SELECT username FROM users WHERE username=?",
+    [username]
+  );
+
+  if (cookie && secret && !(foundUser.length > 0)) {
     const decodedToken = jwt.verify(cookie, secret) as {
       userid: number;
       username: string;
@@ -73,5 +78,7 @@ export const updateData = async (req: Request, res: Response) => {
     });
 
     res.json({ UserData });
+  } else {
+    res.status(400).json({ message: "Nazwa jest zajęta" });
   }
 };

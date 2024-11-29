@@ -21,6 +21,8 @@ const EditUserPanel = ({
 
   const [avatarPreview, setAvatarPreview] = useState("./defaultAvatar.png");
 
+  const [updateError, setUpdateError] = useState("test");
+
   interface newUserDataTypes {
     username: string | null;
     avatar: File | string | null;
@@ -53,7 +55,7 @@ const EditUserPanel = ({
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      console.log("Error updating user data:", err.message);
+      setUpdateError(err.response.data.message);
     }
   };
 
@@ -137,6 +139,9 @@ const EditUserPanel = ({
                   }}
                 />
               </div>
+            </div>
+            <div className="absolute w-full flex flex-col items-center left-0">
+              <span className="text-red-600 text-sm">{updateError}</span>
             </div>
             <div className="w-full flex justify-center p-10">
               {canSave ? (

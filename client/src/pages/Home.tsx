@@ -36,6 +36,10 @@ const Home = () => {
     }
   };
 
+  //  *BLOCK ANIMATIONS*
+
+  const [rotateButtonBlock2, setRotateButtonBlock2] = useState(false);
+
   useEffect(() => {
     const getPosts = async () => {
       const response = await axios.get("/posts/printAllPosts");
@@ -145,14 +149,21 @@ const Home = () => {
             </div>
           </a>
           {/* block2 */}
-          <div className="w-full py-1 sm:w-full lg:w-full xl:w-3/4 h-[550px] text-sm bg-neutral-800 rounded-xl overflow-hidden flex flex-col justify-between">
+          <div
+            className={`w-full py-1 sm:w-full lg:w-full xl:w-3/4 h-${
+              rotateButtonBlock2 ? "8" : "[550px]"
+            } text-sm bg-neutral-800 rounded-xl overflow-hidden flex flex-col justify-between transition-all ease-in-out duration-200`}
+          >
             <div>
-              <div className="text-neutral-600 font-bold flex justify-between px-3 ">
+              <div className="text-neutral-600 font-bold flex justify-between px-2">
                 <span>chat morcin</span>
                 <img
                   src="/icons/upArrrow.svg"
-                  className="w-5 float-right cursor-pointer"
+                  className={`w-5 float-right cursor-pointer transition-transform ease-in duration-200 ${
+                    rotateButtonBlock2 ? "rotate-180" : ""
+                  }`}
                   alt="Hide/Show"
+                  onClick={() => setRotateButtonBlock2((prev) => !prev)}
                 />
               </div>
               <div className="flex w-full flex-col text-neutral-100 font-roboto space-y-5 px-3 mt-4 ">

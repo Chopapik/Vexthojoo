@@ -125,6 +125,7 @@ const Home = () => {
           )}
         </main>
         <aside className="w-full lg:w-1/2 2xl:1/3 md:p-11 space-y-11 flex flex-col items-center">
+          {/* block1 */}
           <a href="/thomas">
             <div className="w-full cursor-pointer flex flex-col space-y-3 items-center">
               <div className="flex flex-col items-center space-y-2 md:flex-row md:space-x-5 sm:ml-8">
@@ -143,6 +144,53 @@ const Home = () => {
               </div>
             </div>
           </a>
+          {/* block2 */}
+          <div className=" relative w-full py-1 sm:w-full lg:w-full xl:w-3/4 h-[550px] text-sm bg-neutral-800 rounded-xl overflow-hidden space-y-2">
+            <div className="text-neutral-600 font-bold flex justify-between px-3 ">
+              <span>chat morcin</span>
+              <img
+                src="/icons/upArrrow.svg"
+                className="w-5 float-right cursor-pointer"
+                alt="Hide/Show"
+              />
+            </div>
+            <div className="flex w-full flex-col text-neutral-100 font-roboto space-y-5 px-3 ">
+              <div className="w-full flex justify-end">
+                <div className="bg-zinc-700 py-2 px-4 rounded-3xl">
+                  <span>Question content</span>
+                </div>
+              </div>
+              <div className="flex space-x-3">
+                <div className="w-11">
+                  <div className="w-10 h-10 border-[2px] border-zinc-700 rounded-full overflow-hidden">
+                    <img src="/ico.png" alt="ico" />
+                  </div>
+                </div>
+                <div>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Officiis eveniet quasi tempore animi veritatis laudantium
+                    maxime porro nihil nostrum? Tenetur fuga, harum id dolorem
+                    at aliquam eum mollitia quaerat nulla!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="w-full flex justify-center h-10 absolute bottom-4">
+              <div className="bg-neutral-700 w-3/4 flex justify-between rounded-full text-neutral-200">
+                <input
+                  type="text"
+                  placeholder="Nie no zadoj pytanie"
+                  className="bg-transparent px-4 outline-none flex-grow"
+                />
+                <div className="w-10 h-10 flex justify-center items-center ">
+                  <div className="w-8 h-8 bg-neutral-800 rounded-full flex justify-center items-center">
+                    <img src="/icons/upArrow2.svg" alt="send" className="w-4" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </aside>
       </div>
     </>

@@ -145,38 +145,40 @@ const Home = () => {
             </div>
           </a>
           {/* block2 */}
-          <div className=" relative w-full py-1 sm:w-full lg:w-full xl:w-3/4 h-[550px] text-sm bg-neutral-800 rounded-xl overflow-hidden space-y-2">
-            <div className="text-neutral-600 font-bold flex justify-between px-3 ">
-              <span>chat morcin</span>
-              <img
-                src="/icons/upArrrow.svg"
-                className="w-5 float-right cursor-pointer"
-                alt="Hide/Show"
-              />
-            </div>
-            <div className="flex w-full flex-col text-neutral-100 font-roboto space-y-5 px-3 ">
-              <div className="w-full flex justify-end">
-                <div className="bg-zinc-700 py-2 px-4 rounded-3xl">
-                  <span>Question content</span>
-                </div>
+          <div className="w-full py-1 sm:w-full lg:w-full xl:w-3/4 h-[550px] text-sm bg-neutral-800 rounded-xl overflow-hidden flex flex-col justify-between">
+            <div>
+              <div className="text-neutral-600 font-bold flex justify-between px-3 ">
+                <span>chat morcin</span>
+                <img
+                  src="/icons/upArrrow.svg"
+                  className="w-5 float-right cursor-pointer"
+                  alt="Hide/Show"
+                />
               </div>
-              <div className="flex space-x-3">
-                <div className="w-11">
-                  <div className="w-10 h-10 border-[2px] border-zinc-700 rounded-full overflow-hidden">
-                    <img src="/ico.png" alt="ico" />
+              <div className="flex w-full flex-col text-neutral-100 font-roboto space-y-5 px-3 mt-4 ">
+                <div className="w-full flex justify-end">
+                  <div className="bg-zinc-700 py-2 px-4 rounded-3xl">
+                    <span>Question content</span>
                   </div>
                 </div>
-                <div>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Officiis eveniet quasi tempore animi veritatis laudantium
-                    maxime porro nihil nostrum? Tenetur fuga, harum id dolorem
-                    at aliquam eum mollitia quaerat nulla!
-                  </p>
+                <div className="flex space-x-3">
+                  <div className="w-11">
+                    <div className="w-10 h-10 border-[2px] border-zinc-700 rounded-full overflow-hidden">
+                      <img src="/ico.png" alt="ico" />
+                    </div>
+                  </div>
+                  <div>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Officiis eveniet quasi tempore animi veritatis laudantium
+                      maxime porro nihil nostrum? Tenetur fuga, harum id dolorem
+                      at aliquam eum mollitia quaerat nulla!
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="w-full flex justify-center h-10 absolute bottom-4">
+            <div className="w-full flex justify-center h-10 mb-4">
               <div className="bg-neutral-700 w-3/4 flex justify-between rounded-full text-neutral-200">
                 <input
                   type="text"

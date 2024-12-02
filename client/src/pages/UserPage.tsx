@@ -153,8 +153,8 @@ const UserPage = () => {
       {!getUserErr ? (
         <>
           {/* userpage div */}
-          <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0 ">
-            <main className="text-white w-full flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-between sm:space-y-0 lg:flex-col lg:w-1/5 lg:min-h-[700px]">
+          <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0 2xl:w-[1536px]">
+            <main className="text-white w-full flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-between sm:space-y-0 lg:flex-col lg:w-1/5 lg:min-h-[700px] ">
               {loading ? (
                 <>
                   <div className="flex flex-col items-center space-y-3">

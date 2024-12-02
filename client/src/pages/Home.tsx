@@ -150,8 +150,8 @@ const Home = () => {
           </a>
           {/* block2 */}
           <div
-            className={`w-full py-1 sm:w-full lg:w-full xl:w-3/4 h-${
-              rotateButtonBlock2 ? "8" : "[550px]"
+            className={`w-full py-1 sm:w-full lg:w-full xl:w-3/4 ${
+              rotateButtonBlock2 ? "h-8" : "h-[550px]"
             } text-sm bg-neutral-800 rounded-xl overflow-hidden flex flex-col justify-between transition-all ease-in-out duration-200`}
           >
             <div>

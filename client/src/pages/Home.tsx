@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { PanelContext } from "../context/PanelContext";
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import ChatBlock from "../components/ChatBlock";
 
 const Home = () => {
   interface postTypes {
@@ -169,6 +170,8 @@ const Home = () => {
               </div>
             </div>
           </a>
+          {/* block2 */}
+          <ChatBlock />
         </aside>
       </div>
     </>

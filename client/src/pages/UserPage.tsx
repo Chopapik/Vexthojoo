@@ -29,13 +29,15 @@ const UserPage = () => {
   const [loading, setLoading] = useState(true);
 
   const [getUserErr, setGetUserErr] = useState(false);
+  const [postOpacity, setPostOpacity] = useState<boolean[]>([]);
+
   const [getUserErrMessage, setGetUserErrMessage] = useState(
     <>
       <div></div>
     </>
   );
 
-  const [postsData, setPostsData] = useState<PostTypes[]>([]);
+  const [posts, setPosts] = useState<PostTypes[]>([]);
 
   const [userData, setUserData] = useState<UserDataTypes>(() => ({
     username: "",
@@ -47,6 +49,16 @@ const UserPage = () => {
   const [refreshPost, setRefreshPost] = useState(false); //refresh posts after post has been removed
 
   const { username } = useParams();
+
+  const showPost = async (index: number) => {
+    setTimeout(() => {
+      setPostOpacity((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }, (index + 1) * 20);
+  };
 
   //posts date formatter:
   const DateTimeFormat = (date: string | Date) => {
@@ -96,7 +108,7 @@ const UserPage = () => {
           user.whenRegist = DateTimeFormat(user.whenRegist);
         });
 
-        setPostsData(posts);
+        setPosts(posts);
         setLoading(false);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
@@ -212,9 +224,7 @@ const UserPage = () => {
               )}
             </main>
 
-            <aside className="w-full p-11 space-y-5">
-              {/* posts: */}
-
+            <aside className="w-full p-11 space-y-5 text-white">
               {loading ? (
                 <div className="w-full bg-neutral-900 p-5 space-y-4">
                   <div className="flex flex-row space-x-2">
@@ -232,47 +242,55 @@ const UserPage = () => {
                   </div>
                 </div>
               ) : (
+                //  posts
                 <>
-                  {postsData.map((post) => (
-                    <div
-                      key={post.id}
-                      className="relative bg-neutral-900 p-5 space-y-4  text-white"
-                    >
-                      {canEdit && (
-                        <>
-                          <div className="absolute top-1 right-1 bg-red-600 w-5 h-5">
+                  {posts.map((post, index) => {
+                    showPost(index);
+                    return (
+                      <div
+                        key={index}
+                        className={`w-full bg-neutral-900 p-5 space-y-4 ${
+                          postOpacity[index] ? "opacity-100" : "opacity-0"
+                        } transition-all ease-linear duration-200`}
+                      >
+                        {canEdit && (
+                          <>
+                            <div className="absolute top-1 right-1 bg-red-600 w-5 h-5">
+                              <img
+                                src="/icons/delete.svg"
+                                alt="DELETE"
+                                onClick={() => deletePost(post.id)}
+                              />
+                            </div>
+                          </>
+                        )}
+
+                        <div className="flex flex-row space-x-2">
+                          <div className=" w-14 h-14 border border-neutral-600 ">
                             <img
-                              src="/icons/delete.svg"
-                              alt="DELETE"
-                              onClick={() => deletePost(post.id)}
+                              src={
+                                post.avatar
+                                  ? post.avatar
+                                  : "./defaultAvatar.png"
+                              }
+                              alt="Avatar"
                             />
                           </div>
-                        </>
-                      )}
-
-                      <div className="flex flex-row space-x-2">
-                        <div className=" w-14 h-14 border border-neutral-600 ">
-                          <img
-                            src={
-                              post.avatar ? post.avatar : "./defaultAvatar.png"
-                            }
-                            alt="Avatar"
-                          />
+                          <div>
+                            <p className="text-sm font-bold">{post.username}</p>
+                            <p className="text-xs text-neutral-500">
+                              {post.whenUpload}
+                            </p>
+                            <p className="text-xs text-cyan-400">
+                              Uploaded from {post.whatDevice}
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-sm font-bold">{post.username}</p>
-                          <p className="text-xs text-neutral-500">
-                            {post.whenUpload}
-                          </p>
-                          <p className="text-xs text-cyan-400">
-                            Uploaded from {post.whatDevice}
-                          </p>
-                        </div>
+                        <p className="text-md">{post.TEXT}</p>
+                        {post.image ? <img src={post.image}></img> : null}
                       </div>
-                      <p className="text-md">{post.TEXT}</p>
-                      {post.image ? <img src={post.image}></img> : null}
-                    </div>
-                  ))}
+                    );
+                  })}
                 </>
               )}
             </aside>

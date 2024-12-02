@@ -14,6 +14,10 @@ const Home = () => {
   }
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState<postTypes[]>([]);
+  const [rotateButtonBlock2, setRotateButtonBlock2] = useState(false);
+  const [postOpacity, setPostOpacity] = useState<boolean[]>([]);
+
+  const { closePanel } = useContext(PanelContext);
 
   //posts date formatter:
   const DateTimeFormat = (date: string | Date) => {
@@ -37,10 +41,6 @@ const Home = () => {
     }
   };
 
-  //  *BLOCK ANIMATIONS*
-
-  const [rotateButtonBlock2, setRotateButtonBlock2] = useState(false);
-
   useEffect(() => {
     const getPosts = async () => {
       const response = await axios.get("/posts/printAllPosts");
@@ -51,10 +51,21 @@ const Home = () => {
 
       setPosts(response.data);
       setLoading(false);
+      setPostOpacity(new Array(posts.length).fill(false));
     };
 
     getPosts();
-  }, []);
+  }, [closePanel]);
+
+  const showPost = async (index: number) => {
+    setTimeout(() => {
+      setPostOpacity((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }, (index + 1) * 20);
+  };
 
   const panelContext = useContext(PanelContext);
 
@@ -72,7 +83,6 @@ const Home = () => {
         </Helmet>
       </div>
       {/* home div */}
-      {/* posts: */}
       <div className="flex flex-col space-y-5 p-3 md:flex-row md:space-y-0 w-full 2xl:w-[1536px]">
         <main className="w-full lg:w-1/2 2xl:w-2/3 text-white space-y-4 flex flex-col items-center">
           <div
@@ -100,37 +110,43 @@ const Home = () => {
               </div>
             </div>
           ) : (
+            //  posts:
             <>
-              {posts.map((post, index) => (
-                <div
-                  key={index}
-                  className="w-full bg-neutral-900 p-5 space-y-4"
-                >
-                  <div className="flex flex-row space-x-2">
-                    <div className=" w-14 h-14 border border-neutral-600 ">
-                      <a href={`/${post.username}`}>
-                        <img
-                          src={
-                            post.avatar ? post.avatar : "./defaultAvatar.png"
-                          }
-                          alt="Avatar"
-                        />
-                      </a>
+              {posts.map((post, index) => {
+                showPost(index);
+                return (
+                  <div
+                    key={index}
+                    className={`w-full bg-neutral-900 p-5 space-y-4 ${
+                      postOpacity[index] ? "opacity-100" : "opacity-0"
+                    } transition-all ease-linear duration-200`}
+                  >
+                    <div className="flex flex-row space-x-2">
+                      <div className=" w-14 h-14 border border-neutral-600 ">
+                        <a href={`/${post.username}`}>
+                          <img
+                            src={
+                              post.avatar ? post.avatar : "./defaultAvatar.png"
+                            }
+                            alt="Avatar"
+                          />
+                        </a>
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold">{post.username}</p>
+                        <p className="text-xs text-neutral-500">
+                          {post.whenUpload}
+                        </p>
+                        <p className="text-xs text-cyan-400">
+                          Uploaded from {post.whatDevice}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm font-bold">{post.username}</p>
-                      <p className="text-xs text-neutral-500">
-                        {post.whenUpload}
-                      </p>
-                      <p className="text-xs text-cyan-400">
-                        Uploaded from {post.whatDevice}
-                      </p>
-                    </div>
+                    <p className="text-md">{post.TEXT}</p>
+                    {post.image ? <img src={post.image}></img> : null}
                   </div>
-                  <p className="text-md">{post.TEXT}</p>
-                  {post.image ? <img src={post.image}></img> : null}
-                </div>
-              ))}
+                );
+              })}
             </>
           )}
         </main>

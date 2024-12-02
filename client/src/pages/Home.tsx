@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { PanelContext } from "../context/PanelContext";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   interface postTypes {
@@ -65,6 +66,11 @@ const Home = () => {
 
   return (
     <>
+      <div>
+        <Helmet>
+          <title>Vexthojoo - strona główna</title>
+        </Helmet>
+      </div>
       {/* home div */}
       {/* posts: */}
       <div className="flex flex-col space-y-5 p-3 md:flex-row md:space-y-0 w-full 2xl:w-[1536px]">

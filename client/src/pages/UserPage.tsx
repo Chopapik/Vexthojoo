@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { CookieAuthContext } from "../context/CookieAuthContext";
 import { PanelContext } from "../context/PanelContext";
+import { Helmet } from "react-helmet";
 
 const UserPage = () => {
   interface PostTypes {
@@ -132,9 +133,13 @@ const UserPage = () => {
 
   return (
     <>
+      <div>
+        <Helmet>
+          <title>Vexthojoo - {userData.username}</title>
+        </Helmet>
+      </div>
       {!getUserErr ? (
         <>
-          {" "}
           {/* userpage div */}
           <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0 ">
             <main className="text-white w-full flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-between sm:space-y-0 lg:flex-col lg:w-1/5 lg:min-h-[700px]">

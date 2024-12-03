@@ -57,15 +57,21 @@ const Home = () => {
     getPosts();
   }, [closePanel]);
 
-  const showPost = async (index: number) => {
-    setTimeout(() => {
-      setPostOpacity((prevState) => {
-        const newState = [...prevState];
-        newState[index] = true;
-        return newState;
-      });
-    }, (index + 1) * 20);
-  };
+  useEffect(() => {
+    const showPost = async (index: number) => {
+      setTimeout(() => {
+        setPostOpacity((prevState) => {
+          const newState = [...prevState];
+          newState[index] = true;
+          return newState;
+        });
+      }, (index + 10) * 20);
+    };
+
+    posts.forEach((_, index) => {
+      showPost(index);
+    });
+  }, [posts]);
 
   const panelContext = useContext(PanelContext);
 
@@ -113,7 +119,6 @@ const Home = () => {
             //  posts:
             <>
               {posts.map((post, index) => {
-                showPost(index);
                 return (
                   <div
                     key={index}

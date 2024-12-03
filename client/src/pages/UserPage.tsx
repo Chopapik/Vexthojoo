@@ -50,15 +50,21 @@ const UserPage = () => {
 
   const { username } = useParams();
 
-  const showPost = async (index: number) => {
-    setTimeout(() => {
-      setPostOpacity((prevState) => {
-        const newState = [...prevState];
-        newState[index] = true;
-        return newState;
-      });
-    }, (index + 1) * 20);
-  };
+  useEffect(() => {
+    const showPost = async (index: number) => {
+      setTimeout(() => {
+        setPostOpacity((prevState) => {
+          const newState = [...prevState];
+          newState[index] = true;
+          return newState;
+        });
+      }, (index + 10) * 20);
+    };
+
+    posts.forEach((_, index) => {
+      showPost(index);
+    });
+  }, [posts]);
 
   //posts date formatter:
   const DateTimeFormat = (date: string | Date) => {
@@ -245,11 +251,10 @@ const UserPage = () => {
                 //  posts
                 <>
                   {posts.map((post, index) => {
-                    showPost(index);
                     return (
                       <div
                         key={index}
-                        className={`w-full bg-neutral-900 p-5 space-y-4 ${
+                        className={`relative w-full bg-neutral-900 p-5 space-y-4 ${
                           postOpacity[index] ? "opacity-100" : "opacity-0"
                         } transition-all ease-linear duration-200`}
                       >

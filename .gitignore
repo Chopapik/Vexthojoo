@@ -3,6 +3,7 @@
 /client/node_modules
 /api/node_modules
 /api/public/usersAvatars/*
+/client/src/private/*
 # Environment variables
 .env
 .env.*

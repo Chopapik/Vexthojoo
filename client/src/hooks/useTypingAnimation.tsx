@@ -29,7 +29,7 @@ const useTypingAnimation = (
           if (i === inputContent.length - 1) {
             setIsTyping(false);
           }
-        }, 40 * i);
+        }, 20 * i);
       }
     }, startTypingDelay);
   }, [trigger, inputContent, startTypingDelay]);

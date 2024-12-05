@@ -14,7 +14,7 @@ const Block = ({
   return (
     <>
       <div
-        className={`w-full py-1 sm:w-full lg:w-full xl:w-3/4 ${
+        className={`w-full py-1 xs:w-3/4 md:w-3/4 lg:w-full xl:w-3/4 ${
           rotateButtonBlock2 ? "h-8" : "h-[550px]"
         } text-sm ${background} rounded-xl overflow-hidden flex flex-col justify-between transition-all ease-in-out duration-200`}
       >
@@ -30,8 +30,8 @@ const Block = ({
               onClick={() => setRotateButtonBlock2((prev) => !prev)}
             />
           </div>
-          {content}
         </div>
+        <div className="h-full ">{content}</div>
       </div>
       ;
     </>

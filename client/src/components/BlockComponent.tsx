@@ -32,20 +32,6 @@ const Block = ({
           </div>
           {content}
         </div>
-        <div className="w-full flex justify-center h-10 mb-4">
-          <div className="bg-neutral-700 w-3/4 flex justify-between rounded-full text-neutral-200">
-            <input
-              type="text"
-              placeholder="Nie no zadoj pytanie"
-              className="bg-transparent px-4 outline-none flex-grow"
-            />
-            <div className="w-10 h-10 flex justify-center items-center ">
-              <div className="w-8 h-8 bg-neutral-800 rounded-full flex justify-center items-center">
-                <img src="/icons/upArrow2.svg" alt="send" className="w-4" />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       ;
     </>

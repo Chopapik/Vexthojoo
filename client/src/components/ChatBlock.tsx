@@ -33,31 +33,37 @@ const ChatBlock = () => {
         background={"bg-neutral-800"}
         content={
           <>
-            <div className="w-full flex flex-col">
-              <div className="flex w-full flex-col text-neutral-100 font-roboto space-y-5 px-3 mt-4 ">
-                <div className="w-full flex justify-end">
-                  <div
-                    className={`bg-zinc-700 py-2 px-4 rounded-3xl ${
-                      question === "" ? "hidden" : "visible"
-                    } `}
-                  >
-                    <span>{question}</span>
-                  </div>
-                </div>
-                <div className="flex space-x-3">
-                  <div className="w-11">
-                    <div className="w-10 h-10 border-[2px] border-zinc-700 rounded-full overflow-hidden">
-                      <img src="/ico.png" alt="ico" />
+            <div className="min-h-full flex flex-col justify-between">
+              <div className="w-full flex-grow ">
+                <div className="w-full flex flex-col ">
+                  <div className="flex w-full flex-col text-neutral-100 font-roboto space-y-5 px-3 mt-4 fl">
+                    <div className="w-full flex justify-end">
+                      <div
+                        className={`bg-zinc-700 py-2 px-4 rounded-3xl ${
+                          question === "" ? "hidden" : "visible"
+                        } `}
+                      >
+                        <span>{question}</span>
+                      </div>
+                    </div>
+                    <div className="flex space-x-3">
+                      <div className="w-11">
+                        <div className="w-10 h-10 border-[2px] border-zinc-700 rounded-full overflow-hidden">
+                          <img src="/ico.png" alt="ico" />
+                        </div>
+                      </div>
+                      <div className="flex-grow">
+                        <span>
+                          {content}
+                          {cursor}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex-grow">
-                    <span>
-                      {content}
-                      {cursor}
-                    </span>
-                  </div>
                 </div>
-                <div className="w-full flex justify-center h-10 mb-4">
+              </div>
+              <div className="w-full h-10 mb-5">
+                <div className=" flex justify-center h-10 mb-4">
                   <div className="bg-neutral-700 w-3/4 flex justify-between rounded-full text-neutral-200">
                     <input
                       disabled={isTyping}

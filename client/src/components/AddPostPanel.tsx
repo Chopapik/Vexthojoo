@@ -74,63 +74,64 @@ const AddPostPanel = ({
             </>
           ) : (
             <>
-              <form onSubmit={addPost}>
-                <div className="space-y-10">
-                  <div>
-                    <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1">
-                      DODAJ P0ST
-                    </span>
-                    <hr className="border-neutral-500 w-3/4" />
-                  </div>
+              <div className="space-y-10">
+                <div>
+                  <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1">
+                    DODAJ P0ST
+                  </span>
+                  <hr className="border-neutral-500 w-3/4" />
+                </div>
 
-                  <div className="bg-neutral-700 w-full p-2">
-                    <textarea
-                      className="bg-transparent w-full h-[200px] outline-none"
-                      placeholder="napisz coś głupcze"
-                      name="text"
-                      onChange={(e) => {
-                        setNumberOfLetters(e.target.value.length);
-                        setPostData({ ...postData, text: e.target.value });
-                      }}
-                    ></textarea>
-                    <label
-                      htmlFor="image"
-                      className="text-sm cursor-pointer inline-block"
-                    >
-                      <img
-                        src="../../public/icons/image.svg"
-                        className="w-7"
-                        alt="dodaj zdjęcie"
-                      />
-                    </label>
-
-                    <input
-                      id="image"
-                      type="file"
-                      className="hidden"
-                      name="image"
-                      onChange={(e) => {
-                        setPostData({
-                          ...postData,
-                          picturePath: e.target.value,
-                        });
-                      }}
+                <div className="bg-neutral-700 w-full p-2">
+                  <textarea
+                    className="bg-transparent w-full h-[200px] outline-none"
+                    placeholder="napisz coś głupcze"
+                    name="text"
+                    onChange={(e) => {
+                      setNumberOfLetters(e.target.value.length);
+                      setPostData({ ...postData, text: e.target.value });
+                    }}
+                  ></textarea>
+                  <label
+                    htmlFor="image"
+                    className="text-sm cursor-pointer inline-block"
+                  >
+                    <img
+                      src="./icons/image.svg"
+                      className="w-7"
+                      alt="dodaj zdjęcie"
                     />
-                    <div
-                      className={`${numberOfLettersStyle} text-sm font-bold float-right inline-block`}
-                    >
-                      <span>{numberOfLetters}</span>
-                      <span> / 510</span>
-                    </div>
-                    <div className="absolute text-red-600">{addPostErr}</div>
+                  </label>
+
+                  <input
+                    id="image"
+                    type="file"
+                    className="hidden"
+                    name="image"
+                    onChange={(e) => {
+                      setPostData({
+                        ...postData,
+                        picturePath: e.target.value,
+                      });
+                    }}
+                  />
+                  <div
+                    className={`${numberOfLettersStyle} text-sm font-bold float-right inline-block`}
+                  >
+                    <span>{numberOfLetters}</span>
+                    <span> / 510</span>
                   </div>
+                  <div className="absolute text-red-600">{addPostErr}</div>
                 </div>
-                <div className="w-full flex justify-center mt-10">
-                  <button className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500">
-                    dodaj chłopie
-                  </button>
-                </div>
-              </form>
+              </div>
+              <div className="w-full flex justify-center mt-10">
+                <button
+                  className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500"
+                  onClick={addPost}
+                >
+                  dodaj chłopie
+                </button>
+              </div>
             </>
           )}
         </>

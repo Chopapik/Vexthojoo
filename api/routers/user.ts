@@ -4,7 +4,7 @@ import multer from "multer";
 
 const router = express.Router();
 const upload = multer({
-  dest: "/uploads/avatars",
+  dest: "./uploads/UsersAvatars",
 });
 
 router.get("/:username", userPage);

@@ -16,6 +16,7 @@ const UserPage = () => {
     image: string | null;
   }
 
+  const { closePanel, showPanel } = useContext(PanelContext);
   interface UserDataTypes {
     username: string;
     avatar: string;
@@ -135,7 +136,7 @@ const UserPage = () => {
       }
     };
     getUserData();
-  }, [username, refreshPost]);
+  }, [username, refreshPost, closePanel]);
 
   const [canEdit, setCanEdit] = useState<boolean>(false);
 
@@ -146,8 +147,6 @@ const UserPage = () => {
       setCanEdit(false);
     }
   });
-
-  const { showPanel } = useContext(PanelContext);
 
   return (
     <>

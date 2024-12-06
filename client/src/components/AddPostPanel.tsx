@@ -21,12 +21,17 @@ const AddPostPanel = ({
   const [numberOfLettersStyle, setnumberOfLettersStyle] =
     useState("text-gray-400");
   const [addPostErr, setPostErr] = useState("");
+  const [blockButton, setBlockButton] = useState<boolean>(false);
 
   useEffect(() => {
     if (numberOfLetters > 510) {
       setnumberOfLettersStyle("text-red-600 ");
+      setBlockButton(true);
+    } else if (numberOfLetters === 0) {
+      setBlockButton(true);
     } else {
       setnumberOfLettersStyle("text-gray-400");
+      setBlockButton(false);
     }
   }, [numberOfLetters]);
 
@@ -125,12 +130,18 @@ const AddPostPanel = ({
                 </div>
               </div>
               <div className="w-full flex justify-center mt-10">
-                <button
-                  className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500"
-                  onClick={addPost}
-                >
-                  dodaj chłopie
-                </button>
+                {blockButton ? (
+                  <button className="button01 bg-gray-500" onClick={addPost}>
+                    dodaj chłopie
+                  </button>
+                ) : (
+                  <button
+                    className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500"
+                    onClick={addPost}
+                  >
+                    dodaj chłopie
+                  </button>
+                )}
               </div>
             </>
           )}

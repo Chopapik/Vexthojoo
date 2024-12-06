@@ -159,7 +159,7 @@ const UserPage = () => {
         <>
           {/* userpage div */}
           <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0 2xl:w-[1536px]">
-            <main className="text-white w-full flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-between sm:space-y-0 lg:flex-col lg:w-1/5 lg:min-h-[700px] ">
+            <main className="text-white w-full flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-between sm:space-y-0 lg:flex-col lg:w-1/5 lg:min-h-[700px] lg:justify-normal lg:space-y-14">
               {loading ? (
                 <>
                   <div className="flex flex-col items-center space-y-3">
@@ -186,11 +186,10 @@ const UserPage = () => {
                       className="w-32 h-32 object-cover"
                     />
                   </div>
-
                   {canEdit && (
                     <>
                       <div>
-                        <div className="sm:h-auto mb-2 lg:h-[200px]">
+                        <div className="sm:h-auto mb-2 lg:h-[100px]">
                           <button
                             type="submit"
                             className="button01 w-[150px] font-xs bg-gray-600 hover:shadow-button01 hover:shadow-gray-500"
@@ -218,8 +217,7 @@ const UserPage = () => {
                       </div>
                     </>
                   )}
-
-                  <div className="text-neutral-700 text-sm flex flex-col">
+                  <div className="text-neutral-700 text-sm flex flex-col lg:flex-grow lg:justify-end">
                     <p>Ostatnio online:</p>
                     <p className="font-bold"> {userData.whenLastLogged} </p>
                     <p className="mt-2">Data rejestracji:</p>

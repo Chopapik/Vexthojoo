@@ -50,7 +50,14 @@ const EditUserPanel = ({
       closePanelFunction();
       //After successful username change, user will be navigated to ned directiory with /newUsername
       const newAuthData = response.data.UserData;
-      navigate(`/${newAuthData.username}`);
+      console.log(newAuthData);
+
+      if (
+        newAuthData.username !== undefined &&
+        newAuthData.username !== authData.username
+      ) {
+        navigate(`/${newAuthData.username}`);
+      }
       getUser();
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

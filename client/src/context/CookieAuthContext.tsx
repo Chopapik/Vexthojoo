@@ -42,6 +42,7 @@ export const CookieAuthProvider = ({ children }: { children: ReactNode }) => {
         avatar: response.data.avatar,
       });
       console.log(` ${response.data.message}`);
+      console.log("Response data:", response.data);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.log(`Cookie login err: ${err.response.data.message}`);

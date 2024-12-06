@@ -39,6 +39,8 @@ app.use("/user", user);
 
 //static from client:
 app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads"))); //all files available under URL host/uploads
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
 });

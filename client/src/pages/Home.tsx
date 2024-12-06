@@ -134,6 +134,7 @@ const Home = () => {
                               post.avatar ? post.avatar : "./defaultAvatar.png"
                             }
                             alt="Avatar"
+                            className="w-14 h-14 object-cover"
                           />
                         </a>
                       </div>

@@ -183,7 +183,7 @@ const UserPage = () => {
                           : "./defaultAvatar.png"
                       }
                       alt="avatar"
-                      className="w-32 h-32"
+                      className="w-32 h-32 object-cover"
                     />
                   </div>
 
@@ -278,6 +278,7 @@ const UserPage = () => {
                                   : "./defaultAvatar.png"
                               }
                               alt="Avatar"
+                              className="w-14 h-14 object-cover"
                             />
                           </div>
                           <div>

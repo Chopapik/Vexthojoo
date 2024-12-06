@@ -48,6 +48,7 @@ const Header = () => {
                       authData.avatar ? authData.avatar : "./defaultAvatar.png"
                     }
                     alt="Avatar"
+                    className="object-cover w-11 h-11"
                   />
                 </a>
               </div>

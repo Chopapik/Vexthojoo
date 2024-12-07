@@ -3,6 +3,8 @@
 /client/node_modules
 /api/node_modules
 /api/uploads/usersAvatars/*
+/api/uploads/postsImages/*
+
 /client/src/private/*
 
 # Environment variables

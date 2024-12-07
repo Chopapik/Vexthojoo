@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import Panel from "./Panel";
 import axios from "axios";
 import { CookieAuthContext } from "../context/CookieAuthContext";
@@ -11,6 +11,11 @@ const AddPostPanel = ({
   visiblePanelId: string | null;
   closePanelFunction: () => void;
 }) => {
+  interface postDataTypes {
+    text: string;
+    image: File | null;
+  }
+
   const cookieAuthContext = useContext(CookieAuthContext);
   const { authData } = cookieAuthContext;
 
@@ -21,7 +26,9 @@ const AddPostPanel = ({
   const [numberOfLettersStyle, setnumberOfLettersStyle] =
     useState("text-gray-400");
   const [addPostErr, setPostErr] = useState("");
-  const [blockButton, setBlockButton] = useState<boolean>(false);
+  const [blockButton, setBlockButton] = useState<boolean>(true);
+
+  const [imagePreview, setImagePreview] = useState<string>("");
 
   useEffect(() => {
     if (numberOfLetters > 510) {
@@ -35,13 +42,24 @@ const AddPostPanel = ({
     }
   }, [numberOfLetters]);
 
-  const [postData, setPostData] = useState({ text: "", picturePath: "" });
+  const [postData, setPostData] = useState<postDataTypes>({
+    text: "",
+    image: null,
+  });
 
-  const addPost = async (e: React.FormEvent) => {
+  const addPost = async () => {
     try {
-      e.preventDefault();
+      const formData = new FormData();
 
-      await axios.post("/posts/addPost", postData);
+      if (postData.text) {
+        formData.append("text", postData.text);
+      }
+
+      if (postData.image) {
+        formData.append("image", postData.image);
+      }
+
+      await axios.post("/posts/addPost", formData);
       closePanelFunction();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
@@ -97,6 +115,15 @@ const AddPostPanel = ({
                       setPostData({ ...postData, text: e.target.value });
                     }}
                   ></textarea>
+                  <div className="p-10 w-full flex justify-center">
+                    {imagePreview && (
+                      <img
+                        src={imagePreview}
+                        alt=""
+                        className="object-scale-down border-2 border-neutral-600 "
+                      />
+                    )}
+                  </div>
                   <label
                     htmlFor="image"
                     className="text-sm cursor-pointer inline-block"
@@ -114,10 +141,21 @@ const AddPostPanel = ({
                     className="hidden"
                     name="image"
                     onChange={(e) => {
-                      setPostData({
-                        ...postData,
-                        picturePath: e.target.value,
-                      });
+                      if (e.target.files) {
+                        const file = e.target.files[0];
+
+                        if (file.type.substring(0, 5) === "image") {
+                          const reader = new FileReader();
+
+                          reader.readAsDataURL(file);
+
+                          reader.onload = () => {
+                            setImagePreview(reader.result as string);
+                            setPostData({ ...postData, image: file });
+                            setBlockButton(false);
+                          };
+                        }
+                      }
                     }}
                   />
                   <div
@@ -131,7 +169,7 @@ const AddPostPanel = ({
               </div>
               <div className="w-full flex justify-center mt-10">
                 {blockButton ? (
-                  <button className="button01 bg-gray-500" onClick={addPost}>
+                  <button className="button01 bg-gray-500">
                     dodaj chłopie
                   </button>
                 ) : (

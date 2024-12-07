@@ -13,7 +13,7 @@ const UserPage = () => {
     whenUpload: string;
     whatDevice: string;
     TEXT: string;
-    image: string | null;
+    imagePath: string | null;
   }
 
   const { closePanel, showPanel } = useContext(PanelContext);
@@ -39,6 +39,11 @@ const UserPage = () => {
   );
 
   const [posts, setPosts] = useState<PostTypes[]>([]);
+
+  const [showDeletePostMessage, setShowDeletePostMessage] = useState<boolean[]>(
+    []
+  );
+  const [showEditPostMessage, setShowEditPostMessage] = useState<boolean[]>([]);
 
   const [userData, setUserData] = useState<UserDataTypes>(() => ({
     username: "",
@@ -143,11 +148,37 @@ const UserPage = () => {
   useEffect(() => {
     if (authData.username === userData.username) {
       setCanEdit(true);
+      setShowDeletePostMessage(new Array(posts.length).fill(false));
+      setShowEditPostMessage(new Array(posts.length).fill(false));
     } else {
       setCanEdit(false);
     }
-  });
+  }, [loading]);
 
+  const handleShowEditPostMessage = (index: number) => {
+    setShowEditPostMessage((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+    setShowDeletePostMessage((prevState) => {
+      const newState = [...prevState];
+      newState[index] = false;
+      return newState;
+    });
+  };
+  const handleShowDeletePostMessage = (index: number) => {
+    setShowDeletePostMessage((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+    setShowEditPostMessage((prevState) => {
+      const newState = [...prevState];
+      newState[index] = false;
+      return newState;
+    });
+  };
   return (
     <>
       <div>
@@ -257,12 +288,74 @@ const UserPage = () => {
                       >
                         {canEdit && (
                           <>
-                            <div className="absolute top-1 right-1 bg-red-600 w-5 h-5">
-                              <img
-                                src="/icons/delete.svg"
-                                alt="DELETE"
-                                onClick={() => deletePost(post.id)}
-                              />
+                            <div className="absolute flex right-0 top-0 space-x-2 p-2">
+                              {showEditPostMessage[index] && (
+                                <>
+                                  <div className="p-0.5 bg-neutral-700 cursor-pointer flex space-x-3 ">
+                                    <span className="ml-2">Zapisać post?</span>
+                                    <div className="flex">
+                                      <img
+                                        src="/icons/yes.svg"
+                                        alt="tak"
+                                        className="hover:brightness-50"
+                                      />
+                                      <img
+                                        src="/icons/no.svg"
+                                        alt="nie"
+                                        onClick={() =>
+                                          handleShowEditPostMessage(index)
+                                        }
+                                        className="hover:brightness-50"
+                                      />
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+                              {showDeletePostMessage[index] && (
+                                <>
+                                  <div className="p-0.5 bg-neutral-700 cursor-pointer flex space-x-3 ">
+                                    <span className="ml-2">Usunąć post?</span>
+                                    <div className="flex">
+                                      <img
+                                        src="/icons/yes.svg"
+                                        alt="tak"
+                                        className="hover:brightness-50"
+                                        onClick={() => {
+                                          deletePost(post.id);
+                                          handleShowDeletePostMessage(index);
+                                        }}
+                                      />
+                                      <img
+                                        src="/icons/no.svg"
+                                        alt="nie"
+                                        onClick={() =>
+                                          handleShowDeletePostMessage(index)
+                                        }
+                                        className="hover:brightness-50"
+                                      />
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+
+                              <div className="p-0.5 bg-neutral-700 cursor-pointer">
+                                <img
+                                  src="/icons/edit.svg"
+                                  alt="edit post"
+                                  onClick={() =>
+                                    handleShowEditPostMessage(index)
+                                  }
+                                />
+                              </div>
+                              <div className="p-0.5 bg-red-700 cursor-pointer">
+                                <img
+                                  src="/icons/delete.svg"
+                                  alt="remove post"
+                                  onClick={() =>
+                                    handleShowDeletePostMessage(index)
+                                  }
+                                />
+                              </div>
                             </div>
                           </>
                         )}
@@ -290,7 +383,12 @@ const UserPage = () => {
                           </div>
                         </div>
                         <p className="text-md">{post.TEXT}</p>
-                        {post.image ? <img src={post.image}></img> : null}
+                        {post.imagePath ? (
+                          <img
+                            src={post.imagePath}
+                            className="min-w-[25%] max-w-[30%]"
+                          ></img>
+                        ) : null}
                       </div>
                     );
                   })}

@@ -1,6 +1,6 @@
 import Panel from "./Panel";
 import { CookieAuthContext } from "../context/CookieAuthContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -11,11 +11,9 @@ const EditUserPanel = ({
   visiblePanelId: string | null;
   closePanelFunction: () => void;
 }) => {
-  const { getUser } = useContext(CookieAuthContext);
+  const { getUser, authData } = useContext(CookieAuthContext);
 
   const navigate = useNavigate();
-
-  const { authData } = useContext(CookieAuthContext);
 
   const [canSave, setCanSave] = useState<boolean>(false);
 
@@ -32,6 +30,10 @@ const EditUserPanel = ({
     username: authData.username,
     avatar: "",
   });
+
+  useEffect(() => {
+    setAvatarPreview(authData.avatar || "./defaultAvatar.png");
+  }, [authData]);
 
   const updateUserData = async () => {
     // Adding newUserData fields to FormData

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
 
-export const cookieLogin = async (req: Request, res: Response) => {
+const cookieLogin = async (req: Request, res: Response) => {
   const token = req.cookies.token;
   const secret = process.env.SECRET;
 
@@ -34,3 +34,5 @@ export const cookieLogin = async (req: Request, res: Response) => {
     res.status(401).json({ message: "Unauthorized: Invalid token." });
   }
 };
+
+export default cookieLogin;

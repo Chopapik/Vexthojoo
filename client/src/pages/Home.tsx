@@ -11,7 +11,7 @@ const Home = () => {
     whenUpload: string;
     whatDevice: string;
     TEXT: string;
-    image: string | null;
+    imagePath: string | null;
   }
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState<postTypes[]>([]);
@@ -149,7 +149,12 @@ const Home = () => {
                       </div>
                     </div>
                     <p className="text-md">{post.TEXT}</p>
-                    {post.image ? <img src={post.image}></img> : null}
+                    {post.imagePath ? (
+                      <img
+                        src={post.imagePath}
+                        className="min-w-[25%] max-w-[55%]"
+                      ></img>
+                    ) : null}
                   </div>
                 );
               })}

@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 
 export const printAllPosts = async (req: Request, res: Response) => {
   const [posts] = await db.query(
-    "SELECT u.username,u.avatar,p.TEXT,p.whenUpload,p.whatDevice FROM users u JOIN posts p ON p.user_id=u.id ORDER BY p.whenUpload DESC"
+    "SELECT u.username,u.avatar,p.TEXT,p.whenUpload,p.whatDevice,p.imagePath FROM users u JOIN posts p ON p.user_id=u.id ORDER BY p.whenUpload DESC"
   );
 
   res.json(posts);
@@ -14,7 +14,8 @@ export const printAllPosts = async (req: Request, res: Response) => {
 
 export const addPost = async (req: Request, res: Response) => {
   try {
-    const { text, filePath } = req.body;
+    const { text } = req.body;
+    const image = req.file;
 
     const whenUpload = new Date();
 
@@ -30,12 +31,20 @@ export const addPost = async (req: Request, res: Response) => {
 
     const { userid } = <decodedUserDataTokenTypes>decodedUserDataToken;
 
+    const protocol = req.protocol;
+    const host = req.get("host");
+
+    const imagePath = image
+      ? `${protocol}://${host}/uploads/postsImages/${image?.filename}`
+      : null;
+
     await db.query(
-      "INSERT INTO posts (TEXT,image,whenUpload,whatDevice,user_id) VALUES (?,?,?,?,?)",
-      [text, filePath, whenUpload, whatDevice, userid]
+      "INSERT INTO posts (TEXT,imagePath,whenUpload,whatDevice,user_id) VALUES (?,?,?,?,?)",
+      [text, imagePath, whenUpload, whatDevice, userid]
     );
     res.status(201).json({ message: "Post utworzony" });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: `Coś się zdupcyło: ${err}` });
   }
 };

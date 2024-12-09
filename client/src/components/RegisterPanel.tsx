@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Panel from "./Panel";
 import axios from "axios";
+import Panel from "../shared/Panel";
 
 const RegisterPanel = ({
   visiblePanelId,

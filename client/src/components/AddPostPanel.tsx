@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import Panel from "./Panel";
+import Panel from "../shared/Panel";
 import axios from "axios";
 import { CookieAuthContext } from "../context/CookieAuthContext";
 import { PanelContext } from "../context/PanelContext";

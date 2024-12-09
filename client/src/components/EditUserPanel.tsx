@@ -1,4 +1,4 @@
-import Panel from "./Panel";
+import Panel from "../shared/Panel";
 import { CookieAuthContext } from "../context/CookieAuthContext";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";

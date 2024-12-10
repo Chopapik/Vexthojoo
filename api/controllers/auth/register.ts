@@ -16,15 +16,15 @@ const register = async (req: Request, res: Response) => {
   if (foundUser.length > 0) {
     res
       .status(409)
-      .json({ field: "usernameErr", message: "Nazwa jest już zajęta" });
+      .json({ field: "usernameError", message: "Nazwa jest już zajęta" });
   } else if (username.length > 20) {
     res
       .status(409)
-      .json({ field: "usernameErr", message: "Nazwa jest za długa" });
+      .json({ field: "usernameError", message: "Nazwa jest za długa" });
   } else if (password !== rePassword) {
     res
       .status(409)
-      .json({ field: "passwordErr", message: "Hasła się nie zgadzają" });
+      .json({ field: "passwordError", message: "Hasła się nie zgadzają" });
   } else if (acceptTerm === false) {
     res.status(409).json({
       field: "acceptTermErr",

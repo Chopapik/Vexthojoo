@@ -1,85 +1,11 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import { PanelContext } from "../context/PanelContext";
-import axios from "axios";
 import { Helmet } from "react-helmet";
 import ChatBlock from "../components/ChatBlock";
+import PostsList from "../components/posts/PostsList";
 
 const Home = () => {
-  interface postTypes {
-    username: string;
-    avatar: string;
-    whenUpload: string;
-    whatDevice: string;
-    TEXT: string;
-    imagePath: string | null;
-  }
-  const [loading, setLoading] = useState(true);
-  const [posts, setPosts] = useState<postTypes[]>([]);
-  const [postOpacity, setPostOpacity] = useState<boolean[]>([]);
-
-  const { closePanel } = useContext(PanelContext);
-
-  //posts date formatter:
-  const DateTimeFormat = (date: string | Date) => {
-    date = new Date(date);
-
-    if (date) {
-      const formattedDate = date.toLocaleDateString("pl-PL", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      });
-
-      const formattedTime = date.toLocaleTimeString("pl-PL", {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-
-      return `${formattedDate} ${formattedTime}`;
-    } else {
-      return "n/a";
-    }
-  };
-
-  useEffect(() => {
-    const getPosts = async () => {
-      const response = await axios.get("/posts/printAllPosts");
-
-      response.data.forEach((post: { whenUpload: string }) => {
-        post.whenUpload = DateTimeFormat(post.whenUpload);
-      });
-
-      setPosts(response.data);
-      setLoading(false);
-      setPostOpacity(new Array(posts.length).fill(false));
-    };
-
-    getPosts();
-  }, [closePanel]);
-
-  useEffect(() => {
-    const showPost = async (index: number) => {
-      setTimeout(() => {
-        setPostOpacity((prevState) => {
-          const newState = [...prevState];
-          newState[index] = true;
-          return newState;
-        });
-      }, (index + 10) * 20);
-    };
-
-    posts.forEach((_, index) => {
-      showPost(index);
-    });
-  }, [posts]);
-
-  const panelContext = useContext(PanelContext);
-
-  if (!panelContext) {
-    return <div className="text-red-600">CONTEXT ERR</div>;
-  }
-
-  const { showPanel } = panelContext;
+  const { showPanel } = useContext(PanelContext);
 
   return (
     <>
@@ -99,67 +25,7 @@ const Home = () => {
           >
             Dodaj post głupcze
           </div>
-          {loading ? (
-            <div className="w-full bg-neutral-900 p-5 space-y-4">
-              <div className="flex flex-row space-x-2">
-                <div className=" w-14 h-14 border border-neutral-950 bg-neutral-950" />
-                <div className="space-y-1">
-                  <div className="w-[120px] h-3 bg-neutral-950"></div>
-                  <div className="w-[70px] h-3 bg-neutral-950"></div>
-                  <div className="w-[70px] h-3 bg-neutral-950"></div>
-                </div>
-              </div>
-              <div className="space-y-1">
-                <div className="w-1/4 h-3 bg-neutral-950"></div>
-                <div className="w-1/3 h-3 bg-neutral-950"></div>
-                <div className="w-1/5 h-3 bg-neutral-950"></div>
-              </div>
-            </div>
-          ) : (
-            //  posts:
-            <>
-              {posts.map((post, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={`w-full bg-neutral-900 p-5 space-y-4 ${
-                      postOpacity[index] ? "opacity-100" : "opacity-0"
-                    } transition-all ease-linear duration-200`}
-                  >
-                    <div className="flex flex-row space-x-2">
-                      <div className=" w-14 h-14 border border-neutral-600 ">
-                        <a href={`/${post.username}`}>
-                          <img
-                            src={
-                              post.avatar ? post.avatar : "./defaultAvatar.png"
-                            }
-                            alt="Avatar"
-                            className="w-14 h-14 object-cover"
-                          />
-                        </a>
-                      </div>
-                      <div>
-                        <p className="text-sm font-bold">{post.username}</p>
-                        <p className="text-xs text-neutral-500">
-                          {post.whenUpload}
-                        </p>
-                        <p className="text-xs text-cyan-400">
-                          Uploaded from {post.whatDevice}
-                        </p>
-                      </div>
-                    </div>
-                    <p className="text-md">{post.TEXT}</p>
-                    {post.imagePath ? (
-                      <img
-                        src={post.imagePath}
-                        className="min-w-[25%] max-w-[55%]"
-                      ></img>
-                    ) : null}
-                  </div>
-                );
-              })}
-            </>
-          )}
+          <PostsList />
         </main>
         <aside className="w-full lg:w-1/2 2xl:1/3 md:p-11 space-y-11 flex flex-col items-center">
           {/* block1 */}

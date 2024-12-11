@@ -6,7 +6,7 @@ import UserPage from "./pages/UserPage";
 import axios from "axios";
 
 import { PanelProvider } from "./context/PanelContext";
-import AllPanels from "./components/AllPanels";
+import PanelsContainer from "./components/PanelsContainer";
 import { CookieAuthProvider } from "./context/CookieAuthContext";
 //api url:
 axios.defaults.baseURL = "http://localhost:3000";
@@ -17,7 +17,7 @@ function App() {
       <Router>
         <CookieAuthProvider>
           <PanelProvider>
-            <AllPanels />
+            <PanelsContainer />
             <div className="bg-black h-full">
               <Header />
               <Routes>

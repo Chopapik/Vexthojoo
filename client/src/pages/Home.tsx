@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { PanelContext } from "../context/PanelContext";
 import { Helmet } from "react-helmet";
-import ChatBlock from "../components/ChatBlock";
+import ChatAiContainer from "../components/blocks/chatAi/ChatAiContainer";
 import PostsList from "../components/posts/PostsList";
 
 const Home = () => {
@@ -48,7 +48,7 @@ const Home = () => {
             </div>
           </a>
           {/* block2 */}
-          <ChatBlock />
+          <ChatAiContainer />
         </aside>
       </div>
     </>

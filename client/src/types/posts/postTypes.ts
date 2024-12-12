@@ -3,12 +3,26 @@ export interface postDataTypes {
   avatar: string;
   whenUpload: string;
   whatDevice: string;
-  TEXT: string;
-  imagePath: string | null;
+  text: string;
+  imagePath?: string;
 }
 
 export interface postTypes {
   index: number;
   postData: postDataTypes;
   postOpacity: boolean[];
+}
+
+export interface postContentDataTypes {
+  text: string;
+  image?: File;
+}
+
+export interface addPostPanelTypes {
+  setPostContentData: React.Dispatch<
+    React.SetStateAction<postContentDataTypes>
+  >;
+  postContentData: postContentDataTypes;
+  addPostFunction: () => void;
+  addPostError: string;
 }

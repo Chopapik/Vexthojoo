@@ -12,11 +12,15 @@ const useTypingAnimation = (
   //cursor animation
   useEffect(() => {
     console.log(inputContent);
-    const interval = setInterval(() => {
-      setCursor((prevCursor) => (prevCursor === "" ? "▌" : ""));
-    }, cursorBlinkingDelay);
-    return () => clearInterval(interval);
-  }, []);
+    if (isTyping === false) {
+      const interval = setInterval(() => {
+        setCursor((prevCursor) => (prevCursor === "" ? "▌" : ""));
+      }, cursorBlinkingDelay);
+      return () => clearInterval(interval);
+    } else {
+      setCursor("▌");
+    }
+  }, [isTyping]);
   //typing animation
   useEffect(() => {
     setContent("");
@@ -34,7 +38,15 @@ const useTypingAnimation = (
     }, startTypingDelay);
   }, [trigger, inputContent, startTypingDelay]);
 
-  return { content, cursor, isTyping };
+  return {
+    content: (
+      <>
+        <span className="mr-1 ">{content}</span>
+        <span>{cursor}</span>
+      </>
+    ),
+    isTyping,
+  };
 };
 
 export default useTypingAnimation;

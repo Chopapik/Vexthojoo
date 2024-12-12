@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { postDataTypes } from "../../../types/posts/postTypes";
-import fetchPostsService from "../../../services/posts/fetchPostsService";
-import PostSkeleton from "../PostSkeleton";
-import Post from "../Post";
+import { postDataTypes } from "../../types/posts/postTypes";
+import fetchPostsService from "../../services/posts/fetchPostsService";
+import PostSkeleton from "./PostSkeleton";
+import Post from "./Post";
 
 const PostsList = () => {
   const [loading, setLoading] = useState(true);
@@ -10,17 +10,16 @@ const PostsList = () => {
   const [postOpacity, setPostOpacity] = useState<boolean[]>([]);
 
   useEffect(() => {
-    const handleFetchingposts = async () => {
+    const handleFetchingPosts = async () => {
       const posts = await fetchPostsService();
       setPostsData(posts);
+      setLoading(false);
     };
-    handleFetchingposts();
-    setLoading(false);
+    handleFetchingPosts();
   }, []);
 
   useEffect(() => {
-    console.log("odswiezenie");
-    const showPost = async (index: number) => {
+    postsData.forEach((_, index: number) => {
       setTimeout(() => {
         setPostOpacity((prevState) => {
           const newState = [...prevState];
@@ -28,11 +27,8 @@ const PostsList = () => {
           return newState;
         });
       }, (index + 10) * 20);
-    };
-    postsData.forEach((_, index: number) => {
-      showPost(index);
     });
-  });
+  }, [postsData]);
 
   return (
     <>

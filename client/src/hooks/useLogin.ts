@@ -15,6 +15,18 @@ const useLogin = () => {
     noLogout: false,
   });
 
+  const handleSetUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoginData({ ...loginData, username: e.target.value });
+  };
+
+  const handleSetPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoginData({ ...loginData, password: e.target.value });
+  };
+
+  const handleSetNoLogout = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoginData({ ...loginData, noLogout: e.target.checked });
+  };
+
   const [loginError, setLoginError] = useState<string>("");
 
   const handleLogin = async () => {
@@ -27,7 +39,15 @@ const useLogin = () => {
       getUser();
     }
   };
-  return { handleLogin, setLoginData, loginData, loginError };
+  return {
+    handleLogin,
+    setLoginData,
+    loginData,
+    loginError,
+    handleSetUsername,
+    handleSetPassword,
+    handleSetNoLogout,
+  };
 };
 
 export default useLogin;

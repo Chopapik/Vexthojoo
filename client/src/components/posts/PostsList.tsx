@@ -4,7 +4,7 @@ import fetchPostsService from "../../services/posts/fetchPostsService";
 import PostSkeleton from "./PostSkeleton";
 import Post from "./Post";
 
-const PostsList = () => {
+const PostsList = ({ displayByUser }: { displayByUser?: string }) => {
   const [loading, setLoading] = useState(true);
   const [postsData, setPostsData] = useState<postDataTypes[]>([]);
   const [postOpacity, setPostOpacity] = useState<boolean[]>([]);
@@ -12,7 +12,16 @@ const PostsList = () => {
   useEffect(() => {
     const handleFetchingPosts = async () => {
       const posts = await fetchPostsService();
-      setPostsData(posts);
+
+      if (displayByUser) {
+        const postsByUser = posts.filter(
+          (post: postDataTypes) => post.username === displayByUser
+        );
+        setPostsData(postsByUser);
+      } else {
+        setPostsData(posts);
+      }
+
       setLoading(false);
     };
     handleFetchingPosts();

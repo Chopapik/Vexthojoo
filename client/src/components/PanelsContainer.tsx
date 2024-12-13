@@ -1,12 +1,12 @@
 //The PanelsContaine component contains all the project's panels, which are always positioned above other component
-import EditUserPanel from "./EditUserPanel";
+import EditUserPanel from "./EditUserPanel"; //to refactor
 
 import { PanelContext } from "../context/PanelContext";
 import { useContext } from "react";
 
-import RegisterContainer from "./auth/register/RegisterContainer";
-import LoginContainer from "./auth/login/LoginContainer";
-import AddPostContainer from "./posts/addPost/AddPostContainer";
+import LoginPanel from "./auth/Login/LoginPanel";
+import RegisterPanel from "./auth/Register/RegisterPanel";
+import AddPostPanel from "./posts/addPost/AddPostPanel";
 
 const PanelsContainer = () => {
   const context = useContext(PanelContext);
@@ -19,9 +19,9 @@ const PanelsContainer = () => {
   return (
     <>
       {/* NEW COMPONENT */}
-      <RegisterContainer />
-      <LoginContainer />
-      <AddPostContainer />
+      <RegisterPanel />
+      <LoginPanel />
+      <AddPostPanel />
 
       <EditUserPanel
         closePanelFunction={closePanel}

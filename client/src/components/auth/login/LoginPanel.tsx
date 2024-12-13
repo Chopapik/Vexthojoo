@@ -3,10 +3,19 @@ import Panel from "../../../shared/Panel";
 import { PanelContext } from "../../../context/PanelContext";
 import useLogin from "../../../hooks/useLogin";
 
+import InputTextComponent from "../InputTextComponent";
+import InputCheckboxComponent from "../InputCheckboxComponent";
+
 const LoginPanel = () => {
   const { visiblePanelId, closePanel } = useContext(PanelContext);
 
-  const { handleLogin, setLoginData, loginData, loginError } = useLogin();
+  const {
+    handleLogin,
+    loginError,
+    handleSetUsername,
+    handleSetPassword,
+    handleSetNoLogout,
+  } = useLogin();
 
   return (
     <Panel
@@ -19,55 +28,28 @@ const LoginPanel = () => {
               </span>
               <hr className="border-neutral-500 w-3/4" />
             </div>
-
             <div className="flex flex-col space-y-11 w-3/4">
-              <div className="relative">
-                <input
-                  type="text"
-                  className="input01 border-b-2 border-white"
-                  name="username"
-                  placeholder=""
-                  onChange={(e) => {
-                    setLoginData({ ...loginData, username: e.target.value });
-                  }}
-                />
-                <label htmlFor="username" className="label01 ">
-                  NAZWA
-                </label>
-              </div>
-              <div className="relative">
-                <input
-                  type="password"
-                  className="input01  border-b-2 border-white"
-                  name="password"
-                  placeholder=""
-                  onChange={(e) => {
-                    setLoginData({ ...loginData, password: e.target.value });
-                  }}
-                />
-                <label htmlFor="username" className="label01">
-                  HASŁO
-                </label>
-                <span className="text-xs text-red-600 absolute right-0 top-10">
-                  {loginError}
-                </span>
-              </div>
+              <InputTextComponent
+                type={"text"}
+                label={"NAZWA"}
+                error={loginError}
+                handleInputData={handleSetUsername}
+                enableErrorMessage={false}
+              />
+              <InputTextComponent
+                type={"password"}
+                label={"HASŁO"}
+                error={loginError}
+                handleInputData={handleSetPassword}
+                enableErrorMessage={true}
+              />
             </div>
-            <div className="text-xs flex flex-row items-center justify-between">
-              <div className="space-x-1">
-                <input
-                  type="checkbox"
-                  name="noLogout"
-                  onChange={(e) => {
-                    setLoginData({
-                      ...loginData,
-                      noLogout: e.target.checked,
-                    });
-                  }}
-                />
-                <label htmlFor="noLogout">Nie wylogowywuj mnie</label>
-              </div>
-            </div>
+            <InputCheckboxComponent
+              handleInputData={handleSetNoLogout}
+              label={"Nie wylogowywuj mnie"}
+              error={undefined}
+              enableErrorMessage={false}
+            />
             <button
               className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500"
               type="submit"

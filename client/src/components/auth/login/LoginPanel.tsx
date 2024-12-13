@@ -3,8 +3,8 @@ import Panel from "../../../shared/Panel";
 import { PanelContext } from "../../../context/PanelContext";
 import useLogin from "../../../hooks/useLogin";
 
-import InputTextComponent from "../InputTextComponent";
-import InputCheckboxComponent from "../InputCheckboxComponent";
+import InputOneLineForm from "../../../shared/InputOneLineForm";
+import InputCheckboxForm from "../../../shared/InputCheckboxForm";
 
 const LoginPanel = () => {
   const { visiblePanelId, closePanel } = useContext(PanelContext);
@@ -29,14 +29,14 @@ const LoginPanel = () => {
               <hr className="border-neutral-500 w-3/4" />
             </div>
             <div className="flex flex-col space-y-11 w-3/4">
-              <InputTextComponent
+              <InputOneLineForm
                 type={"text"}
                 label={"NAZWA"}
                 error={loginError}
                 handleInputData={handleSetUsername}
                 enableErrorMessage={false}
               />
-              <InputTextComponent
+              <InputOneLineForm
                 type={"password"}
                 label={"HASŁO"}
                 error={loginError}
@@ -44,7 +44,7 @@ const LoginPanel = () => {
                 enableErrorMessage={true}
               />
             </div>
-            <InputCheckboxComponent
+            <InputCheckboxForm
               handleInputData={handleSetNoLogout}
               label={"Nie wylogowywuj mnie"}
               error={undefined}

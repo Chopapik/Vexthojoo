@@ -3,8 +3,8 @@ import Panel from "../../../shared/Panel";
 import { PanelContext } from "../../../context/PanelContext";
 import useRegister from "../../../hooks/useRegister";
 
-import InputTextComponent from "../InputTextComponent";
-import InputCheckboxComponent from "../InputCheckboxComponent";
+import InputOneLineForm from "../../../shared/InputOneLineForm";
+import InputCheckboxForm from "../../../shared/InputCheckboxForm";
 
 const RegisterPanel = () => {
   const { visiblePanelId, closePanel } = useContext(PanelContext);
@@ -32,21 +32,21 @@ const RegisterPanel = () => {
               <hr className="border-neutral-500 w-3/4" />
             </div>
             <div className="flex flex-col space-y-11 w-3/4">
-              <InputTextComponent
+              <InputOneLineForm
                 type={"text"}
                 label={"NAZWA"}
                 error={usernameError}
                 handleInputData={handleSetUsername}
                 enableErrorMessage={true}
               />
-              <InputTextComponent
+              <InputOneLineForm
                 type={"password"}
                 label={"HASŁO"}
                 error={passwordError}
                 handleInputData={handleSetPassword}
                 enableErrorMessage={false}
               />
-              <InputTextComponent
+              <InputOneLineForm
                 type={"password"}
                 label={"POWTÓRZ HASŁO"}
                 error={passwordError}
@@ -54,7 +54,7 @@ const RegisterPanel = () => {
                 enableErrorMessage={true}
               />
             </div>
-            <InputCheckboxComponent
+            <InputCheckboxForm
               handleInputData={handleSetAcceptTerm}
               label={"Akceptuje regulamin"}
               error={acceptTermError}

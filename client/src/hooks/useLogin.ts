@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
-import loginService from "../../../services/auth/loginService";
-import LoginPanel from "./LoginPanel";
-import { PanelContext } from "../../../context/PanelContext";
-import { loginDataTypes } from "../../../types/auth/loginTypes";
-import { CookieAuthContext } from "../../../context/CookieAuthContext";
 
-const LoginContainer = () => {
+import loginService from "../services/auth/loginService";
+import { PanelContext } from "../context/PanelContext";
+import { loginDataTypes } from "../types/auth/loginTypes";
+import { CookieAuthContext } from "../context/CookieAuthContext";
+
+const useLogin = () => {
   const { closePanel } = useContext(PanelContext);
   const { getUser } = useContext(CookieAuthContext);
 
@@ -27,14 +27,7 @@ const LoginContainer = () => {
       getUser();
     }
   };
-  return (
-    <LoginPanel
-      loginFunction={handleLogin}
-      setLoginData={setLoginData}
-      loginData={loginData}
-      loginError={loginError}
-    />
-  );
+  return { handleLogin, setLoginData, loginData, loginError };
 };
 
-export default LoginContainer;
+export default useLogin;

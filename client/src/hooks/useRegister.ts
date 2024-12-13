@@ -1,14 +1,12 @@
 import { useState, useContext } from "react";
-import registerService from "../../../services/auth/registerService";
-import RegisterPanel from "./RegisterPanel";
+import registerService from "../services/auth/registerService";
 import {
   registerDataTypes,
   registerErrorTypes,
-} from "../../../types/auth/registerTypes";
+} from "../types/auth/registerTypes";
+import { PanelContext } from "../context/PanelContext";
 
-import { PanelContext } from "../../../context/PanelContext";
-
-const RegisterContainer = () => {
+const useRegister = () => {
   const { closePanel } = useContext(PanelContext);
 
   const [registerData, setRegisterData] = useState<registerDataTypes>({
@@ -41,14 +39,8 @@ const RegisterContainer = () => {
       closePanel();
     }
   };
-  return (
-    <RegisterPanel
-      registerFunction={handleRegister}
-      registerData={registerData}
-      setRegisterData={setRegisterData}
-      registerError={registerError}
-    />
-  );
+
+  return { handleRegister, registerData, setRegisterData, registerError };
 };
 
-export default RegisterContainer;
+export default useRegister;

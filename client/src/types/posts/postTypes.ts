@@ -11,6 +11,7 @@ export interface postTypes {
   index: number;
   postData: postDataTypes;
   postOpacity: boolean[];
+  enableOptions?: boolean;
 }
 
 export interface postContentDataTypes {

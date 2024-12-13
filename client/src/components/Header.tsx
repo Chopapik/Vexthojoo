@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { PanelContext } from "../context/PanelContext";
 import { CookieAuthContext } from "../context/CookieAuthContext";
 
+import logo from "../assets/images/logo.png";
+import defaultAvatar from "../assets/images/defaultAvatar.png";
 const Header = () => {
   const [loading, setLoading] = useState(true);
 
@@ -23,7 +25,7 @@ const Header = () => {
     <div className="flex flex-col items-center space-y-8 p-4 lg:flex-row lg:justify-between lg:space-y-0">
       <div className="space-y-1">
         <a href="/">
-          <img src="/logo.png" alt="VEXTHOJOO" />
+          <img src={logo} alt="VEXTHOJOO" />
         </a>
         <hr className="w-3/4 border-fuchsia-500 border sm:w-[125%]" />
       </div>
@@ -44,9 +46,7 @@ const Header = () => {
               <div className="w-11 h-11 border border-neutral-600">
                 <a href={`/${authData.username}`}>
                   <img
-                    src={
-                      authData.avatar ? authData.avatar : "./defaultAvatar.png"
-                    }
+                    src={authData.avatar ? authData.avatar : defaultAvatar}
                     alt="Avatar"
                     className="object-cover w-11 h-11"
                   />

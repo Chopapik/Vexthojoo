@@ -1,15 +1,12 @@
 import { useContext } from "react";
 import Panel from "../../../shared/Panel";
-import { loginPanelTypes } from "../../../types/auth/loginTypes";
 import { PanelContext } from "../../../context/PanelContext";
+import useLogin from "../../../hooks/useLogin";
 
-const LoginPanel = ({
-  loginFunction,
-  setLoginData,
-  loginData,
-  loginError,
-}: loginPanelTypes) => {
+const LoginPanel = () => {
   const { visiblePanelId, closePanel } = useContext(PanelContext);
+
+  const { handleLogin, setLoginData, loginData, loginError } = useLogin();
 
   return (
     <Panel
@@ -74,7 +71,7 @@ const LoginPanel = ({
             <button
               className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500"
               type="submit"
-              onClick={loginFunction}
+              onClick={handleLogin}
             >
               WŁAŹ
             </button>

@@ -1,17 +1,15 @@
 import { useState } from "react";
-import { chatAiBlockTypes } from "../../../types/blocks/chatAiTypes";
 import Block from "../Block";
+import useChatAiReponse from "../../../hooks/useChatAiReponse";
 
 import chatIcon from "../../../assets/images/ico.png";
 import sendIcon from "../../../assets/icons/upArrow2.svg";
 
-const ChatAiBlock = ({
-  setUserQuestionInput,
-  chatAiColumn,
-  handleChatResponse,
-  isTyping,
-}: chatAiBlockTypes) => {
+const ChatAiBlock = () => {
   const [inputValue, setInputValue] = useState<string>("");
+
+  const { setUserQuestionInput, chatAiColumn, handleChatResponse, isTyping } =
+    useChatAiReponse();
 
   return (
     <>

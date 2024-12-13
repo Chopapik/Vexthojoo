@@ -1,15 +1,13 @@
 import { useContext } from "react";
 import Panel from "../../../shared/Panel";
-import { registerPanelTypes } from "../../../types/auth/registerTypes";
 import { PanelContext } from "../../../context/PanelContext";
+import useRegister from "../../../hooks/useRegister";
 
-const RegisterPanel = ({
-  registerFunction,
-  setRegisterData,
-  registerData,
-  registerError,
-}: registerPanelTypes) => {
+const RegisterPanel = () => {
   const { visiblePanelId, closePanel } = useContext(PanelContext);
+
+  const { handleRegister, registerData, setRegisterData, registerError } =
+    useRegister();
 
   return (
     <Panel
@@ -114,7 +112,7 @@ const RegisterPanel = ({
             </div>
             <button
               type="submit"
-              onClick={registerFunction}
+              onClick={handleRegister}
               className="button01 bg-fuchsia-500 mb-5"
             >
               WŁAŹ

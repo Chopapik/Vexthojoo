@@ -1,16 +1,11 @@
 import { useContext } from "react";
 import { PanelContext } from "../../../context/PanelContext";
 import { CookieAuthContext } from "../../../context/CookieAuthContext";
-import { addPostPanelTypes } from "../../../types/posts/postTypes";
 import Panel from "../../../shared/Panel";
 import { useState, useEffect } from "react";
+import useAddPost from "../../../hooks/useAddPost";
 
-const AddPostPanel = ({
-  setPostContentData,
-  postContentData,
-  addPostFunction,
-  addPostError,
-}: addPostPanelTypes) => {
+const AddPostPanel = () => {
   const { showPanel, closePanel, visiblePanelId } = useContext(PanelContext);
   const { authData } = useContext(CookieAuthContext);
 
@@ -18,7 +13,8 @@ const AddPostPanel = ({
   const [blockUpload, setBlockUpload] = useState<boolean>(true);
 
   const [imagePreview, setImagePreview] = useState<string>("");
-
+  const { setPostContentData, postContentData, addPostError, handleAddPost } =
+    useAddPost();
   useEffect(() => {
     if (numberOfLetters > 510) {
       setBlockUpload(true);
@@ -143,7 +139,7 @@ const AddPostPanel = ({
                 ) : (
                   <button
                     className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500"
-                    onClick={addPostFunction}
+                    onClick={handleAddPost}
                   >
                     dodaj chłopie
                   </button>

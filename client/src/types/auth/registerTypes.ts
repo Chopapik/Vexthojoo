@@ -6,7 +6,7 @@ export interface registerDataTypes {
 }
 
 export interface registerErrorTypes {
-  usernameError: string | null;
-  passwordError: string | null;
-  acceptTermError: string | null;
+  usernameError?: string;
+  passwordError?: string;
+  acceptTermError?: string;
 }

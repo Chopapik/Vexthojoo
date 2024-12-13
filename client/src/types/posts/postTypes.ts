@@ -17,12 +17,3 @@ export interface postContentDataTypes {
   text: string;
   image?: File;
 }
-
-export interface addPostPanelTypes {
-  setPostContentData: React.Dispatch<
-    React.SetStateAction<postContentDataTypes>
-  >;
-  postContentData: postContentDataTypes;
-  addPostFunction: () => void;
-  addPostError: string;
-}

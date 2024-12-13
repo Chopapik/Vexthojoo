@@ -10,10 +10,3 @@ export interface registerErrorTypes {
   passwordError: string | null;
   acceptTermError: string | null;
 }
-
-export interface registerPanelTypes {
-  registerFunction: () => void;
-  setRegisterData: React.Dispatch<React.SetStateAction<registerDataTypes>>;
-  registerData: registerDataTypes;
-  registerError: registerErrorTypes;
-}

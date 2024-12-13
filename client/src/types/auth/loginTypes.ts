@@ -3,10 +3,3 @@ export interface loginDataTypes {
   password: string;
   noLogout: boolean;
 }
-
-export interface loginPanelTypes {
-  loginFunction: () => void;
-  setLoginData: React.Dispatch<React.SetStateAction<loginDataTypes>>;
-  loginData: loginDataTypes;
-  loginError: string;
-}

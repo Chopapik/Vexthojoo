@@ -4,7 +4,13 @@ import fetchPostsService from "../../services/posts/fetchPostsService";
 import PostSkeleton from "./PostSkeleton";
 import Post from "./Post";
 
-const PostsList = ({ displayByUser }: { displayByUser?: string }) => {
+const PostsList = ({
+  displayByUser,
+  enableOptions,
+}: {
+  displayByUser?: string;
+  enableOptions: boolean;
+}) => {
   const [loading, setLoading] = useState(true);
   const [postsData, setPostsData] = useState<postDataTypes[]>([]);
   const [postOpacity, setPostOpacity] = useState<boolean[]>([]);
@@ -52,6 +58,7 @@ const PostsList = ({ displayByUser }: { displayByUser?: string }) => {
                 index={index}
                 postData={postData}
                 postOpacity={postOpacity}
+                enableOptions={enableOptions}
               />
             );
           })}

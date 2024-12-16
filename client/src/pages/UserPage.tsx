@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import useDisplayUserData from "../hooks/useDisplayUserData";
 import { Helmet } from "react-helmet";
-import { useEffect } from "react";
 
 import PostsList from "../components/posts/PostsList";
 import PostSkeleton from "../components/posts/PostSkeleton";
@@ -12,10 +11,6 @@ const UserPage = () => {
   const { username } = useParams();
   const { userData, loading, canEdit, error, errorContent } =
     useDisplayUserData(username || "");
-
-  useEffect(() => {
-    console.log(errorContent);
-  });
 
   return (
     <>
@@ -36,7 +31,7 @@ const UserPage = () => {
             {loading ? (
               <PostSkeleton />
             ) : (
-              <PostsList displayByUser={username} />
+              <PostsList displayByUser={username} enableOptions={canEdit} />
             )}
           </div>
         </div>

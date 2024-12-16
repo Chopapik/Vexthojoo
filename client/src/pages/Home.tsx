@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet";
 import PostsList from "../components/posts/PostsList";
 import ChatAiBlock from "../components/blocks/chatAi/ChatAiBlock";
 
+import thomasIcon from "../assets/images/thomas.png";
+
 const Home = () => {
   const { showPanel } = useContext(PanelContext);
 
@@ -25,14 +27,14 @@ const Home = () => {
           >
             Dodaj post głupcze
           </div>
-          <PostsList />
+          <PostsList enableOptions={false} />
         </main>
         <aside className="w-full lg:w-1/2 2xl:1/3 md:p-11 space-y-11 flex flex-col items-center">
           {/* block1 */}
           <a href="/thomas">
             <div className="w-full cursor-pointer flex flex-col space-y-3 items-center">
               <div className="flex flex-col items-center space-y-2 md:flex-row md:space-x-5 sm:ml-8">
-                <img src="./thomas.png" className="" alt="Thomas" />
+                <img src={thomasIcon} className="" alt="Thomas" />
                 <p className="text-center text-fuchsia-900 w-4/5 text-xs sm:text-start sm:w-[250px]">
                   Die beste Katzenwebsite, die es in der Slowakei gibt. Ich
                   hoffe, dass es gut übersetzt ist und nicht irgendein Mist.

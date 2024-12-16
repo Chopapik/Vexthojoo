@@ -23,7 +23,7 @@ const Post = ({ index, postData, postOpacity, enableOptions }: postTypes) => {
                       postData.avatarPath ? postData.avatarPath : defaultAvatar
                     }
                     alt="Avatar"
-                    className="w-14 h-14 object-cover"
+                    className="object-cover"
                   />
                 </a>
               </div>

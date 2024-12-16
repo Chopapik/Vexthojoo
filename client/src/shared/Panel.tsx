@@ -1,3 +1,5 @@
+import closeIcon from "../assets/icons/close.svg";
+
 const Panel = ({
   content,
   isVisible,
@@ -20,7 +22,7 @@ const Panel = ({
                     className="bg-neutral-700 w-4 h-4 hover:bg-red-500 transition-all ease-in duration-25"
                     onClick={closePanelFunction}
                   >
-                    <img src="/icons/close.svg" />
+                    <img src={closeIcon} />
                   </button>
                 </div>
                 {content}

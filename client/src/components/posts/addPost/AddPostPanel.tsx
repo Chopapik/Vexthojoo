@@ -5,6 +5,8 @@ import Panel from "../../../shared/Panel";
 import { useState, useEffect } from "react";
 import useAddPost from "../../../hooks/useAddPost";
 
+import imageIcon from "../../../assets/icons/image.svg";
+
 const AddPostPanel = () => {
   const { showPanel, closePanel, visiblePanelId } = useContext(PanelContext);
   const { authData } = useContext(CookieAuthContext);
@@ -86,11 +88,7 @@ const AddPostPanel = () => {
                     htmlFor="image"
                     className="text-sm cursor-pointer inline-block"
                   >
-                    <img
-                      src="./icons/image.svg"
-                      className="w-7"
-                      alt="dodaj zdjęcie"
-                    />
+                    <img src={imageIcon} className="w-7" alt="dodaj zdjęcie" />
                   </label>
 
                   <input

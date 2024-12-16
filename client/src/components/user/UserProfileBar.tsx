@@ -3,7 +3,6 @@ import { PanelContext } from "../../context/PanelContext";
 import { UserDataTypes } from "../../types/user/userDataTypes";
 
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
-import { useEffect } from "react";
 const UserProfileBar = ({
   userData,
   canEdit,
@@ -12,10 +11,6 @@ const UserProfileBar = ({
   canEdit: boolean;
 }) => {
   const { showPanel } = useContext(PanelContext);
-
-  useEffect(() => {
-    console.log(userData);
-  });
 
   return (
     <>

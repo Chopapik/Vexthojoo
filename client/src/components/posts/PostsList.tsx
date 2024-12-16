@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { postDataTypes } from "../../types/posts/postTypes";
 import fetchPostsService from "../../services/posts/fetchPostsService";
 import PostSkeleton from "./PostSkeleton";
 import Post from "./Post";
+import { CookieAuthContext } from "../../context/CookieAuthContext";
 
 const PostsList = ({
   displayByUser,
@@ -14,6 +15,8 @@ const PostsList = ({
   const [loading, setLoading] = useState(true);
   const [postsData, setPostsData] = useState<postDataTypes[]>([]);
   const [postOpacity, setPostOpacity] = useState<boolean[]>([]);
+
+  const { getUser } = useContext(CookieAuthContext);
 
   useEffect(() => {
     const handleFetchingPosts = async () => {
@@ -31,7 +34,7 @@ const PostsList = ({
       setLoading(false);
     };
     handleFetchingPosts();
-  }, []);
+  }, [getUser]);
 
   useEffect(() => {
     postsData.forEach((_, index: number) => {

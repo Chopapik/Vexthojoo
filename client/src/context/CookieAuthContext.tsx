@@ -1,13 +1,7 @@
 //This context
 import axios from "axios";
 import { createContext, ReactNode, useState } from "react";
-
-interface CookieAuthTypes {
-  isLoggedIn: boolean;
-  userid: number | null;
-  username: string | null;
-  avatar: string | null;
-}
+import { CookieAuthTypes } from "../types/auth/cookieAuthTypes";
 
 export const CookieAuthContext = createContext<{
   authData: CookieAuthTypes;
@@ -17,7 +11,7 @@ export const CookieAuthContext = createContext<{
     isLoggedIn: false,
     userid: null,
     username: null,
-    avatar: null,
+    avatarPath: null,
   },
   getUser: async () => {},
 });
@@ -27,7 +21,7 @@ export const CookieAuthProvider = ({ children }: { children: ReactNode }) => {
     isLoggedIn: false,
     userid: null,
     username: null,
-    avatar: null,
+    avatarPath: null,
   });
 
   const getUser = async () => {
@@ -39,7 +33,7 @@ export const CookieAuthProvider = ({ children }: { children: ReactNode }) => {
         isLoggedIn: true,
         userid: response.data.userid,
         username: response.data.username,
-        avatar: response.data.avatar,
+        avatarPath: response.data.avatarPath,
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {

@@ -12,18 +12,18 @@ const cookieLogin = async (req: Request, res: Response) => {
       interface cookieUserData {
         username: string;
         userid: number;
-        avatar: string;
+        avatarPath: string;
         issueat: number;
       }
 
       //cookie token user data
-      const { username, userid, avatar, issueat } =
+      const { username, userid, avatarPath, issueat } =
         cookieLoginUserData as cookieUserData;
 
       res.status(200).json({
         username: username,
         userid: userid,
-        avatar: avatar,
+        avatarPath: avatarPath,
         issueat: issueat,
         message: "User authorised.",
       });

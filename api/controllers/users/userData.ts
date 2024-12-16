@@ -6,7 +6,7 @@ const userData = async (req: Request, res: Response) => {
 
   try {
     const [userData] = await db.query(
-      "SELECT username,avatar,whenRegist,whenLastLogged FROM users WHERE username=?",
+      "SELECT username,avatarPath,whenRegist,whenLastLogged FROM users WHERE username=?",
       [username]
     );
 

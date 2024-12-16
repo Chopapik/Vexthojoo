@@ -7,7 +7,7 @@ const updateUserData = async (req: Request, res: Response) => {
   interface userDataTypes {
     userid: number;
     username: string | undefined;
-    avatar: string | undefined;
+    avatarPath: string | undefined;
   }
   const protocol = req.protocol;
   const hostName = req.get("host");
@@ -31,7 +31,7 @@ const updateUserData = async (req: Request, res: Response) => {
     const UserData: userDataTypes = {
       userid: decodedToken.userid,
       username: decodedToken.username,
-      avatar: decodedToken.avatar,
+      avatarPath: decodedToken.avatarPath,
     };
 
     //Updating username:
@@ -52,11 +52,11 @@ const updateUserData = async (req: Request, res: Response) => {
       const avatarPath = `${protocol}://${hostName}/uploads/UsersAvatars/${avatar.filename}`;
 
       try {
-        await db.query("UPDATE users SET avatar = ? WHERE id=?", [
+        await db.query("UPDATE users SET avatarPath = ? WHERE id=?", [
           avatarPath,
           decodedToken.userid,
         ]);
-        UserData.avatar = avatarPath;
+        UserData.avatarPath = avatarPath;
       } catch (err) {
         console.log("Users data update in db err");
       }
@@ -69,7 +69,7 @@ const updateUserData = async (req: Request, res: Response) => {
       {
         username: UserData.username,
         userid: UserData.userid,
-        avatar: UserData.avatar,
+        avatarPath: UserData.avatarPath,
       },
       secret
     );

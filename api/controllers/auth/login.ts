@@ -17,6 +17,7 @@ const login = async (req: Request, res: Response) => {
         username: findUser_username,
         password: findUser_password,
         id: finUser_userid,
+        avatarPath: findUser_avatarPath,
       },
     ] = findUser;
 
@@ -30,6 +31,7 @@ const login = async (req: Request, res: Response) => {
           {
             username: findUser_username,
             userid: finUser_userid,
+            avatarPath: findUser_avatarPath,
           },
           secret
         );

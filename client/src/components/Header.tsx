@@ -48,7 +48,11 @@ const Header = () => {
                 <div className="w-11 h-11 border border-neutral-600">
                   <a href={`/${authData.username}`}>
                     <img
-                      src={authData.avatar ? authData.avatar : defaultAvatar}
+                      src={
+                        authData.avatarPath
+                          ? authData.avatarPath
+                          : defaultAvatar
+                      }
                       alt="Avatar"
                       className="object-cover w-11 h-11"
                     />

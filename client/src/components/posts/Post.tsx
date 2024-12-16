@@ -19,7 +19,9 @@ const Post = ({ index, postData, postOpacity, enableOptions }: postTypes) => {
               <div className=" w-14 h-14 border border-neutral-600 ">
                 <a href={`/${postData.username}`}>
                   <img
-                    src={postData.avatar ? postData.avatar : defaultAvatar}
+                    src={
+                      postData.avatarPath ? postData.avatarPath : defaultAvatar
+                    }
                     alt="Avatar"
                     className="w-14 h-14 object-cover"
                   />

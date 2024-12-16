@@ -1,6 +1,6 @@
 export interface postDataTypes {
   username: string;
-  avatar: string;
+  avatarPath: string;
   whenUpload: string;
   whatDevice: string;
   text: string;

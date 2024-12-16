@@ -1,6 +1,6 @@
 export interface UserDataTypes {
   username: string;
-  avatar?: string;
+  avatarPath?: string;
   whenLastLogged: string;
   whenRegist: string;
 }

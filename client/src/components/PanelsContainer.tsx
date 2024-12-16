@@ -7,7 +7,6 @@ import EditUserPanel from "./user/EditUserPanel";
 const PanelsContainer = () => {
   return (
     <>
-      {/* NEW COMPONENT */}
       <RegisterPanel />
       <LoginPanel />
       <AddPostPanel />

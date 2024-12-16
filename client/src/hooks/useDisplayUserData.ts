@@ -29,8 +29,6 @@ const useDisplayUserData = (username: string) => {
     const handleFetchUserData = async (username: string) => {
       const response = await fetchUserDataService(username);
 
-      console.log(`test:${JSON.stringify(response)}`);
-
       if (response) {
         const { fetchUserData, fetchUserError } = response;
 

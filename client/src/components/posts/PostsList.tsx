@@ -1,9 +1,9 @@
-import { useState, useEffect, useContext } from "react";
-import { postDataTypes } from "../../types/posts/postTypes";
-import fetchPostsService from "../../services/posts/fetchPostsService";
 import PostSkeleton from "./PostSkeleton";
 import Post from "./Post";
-import { CookieAuthContext } from "../../context/CookieAuthContext";
+import useListPosts from "../../hooks/useListPosts";
+import useRemovePost from "../../hooks/useRemovePost";
+
+import { postDataTypes } from "../../types/posts/postTypes";
 
 const PostsList = ({
   displayByUser,
@@ -12,41 +12,9 @@ const PostsList = ({
   displayByUser?: string;
   enableOptions: boolean;
 }) => {
-  const [loading, setLoading] = useState(true);
-  const [postsData, setPostsData] = useState<postDataTypes[]>([]);
-  const [postOpacity, setPostOpacity] = useState<boolean[]>([]);
+  const { loading, postsData, postOpacity } = useListPosts(displayByUser);
 
-  const { getUser } = useContext(CookieAuthContext);
-
-  useEffect(() => {
-    const handleFetchingPosts = async () => {
-      const posts = await fetchPostsService();
-
-      if (displayByUser) {
-        const postsByUser = posts.filter(
-          (post: postDataTypes) => post.username === displayByUser
-        );
-        setPostsData(postsByUser);
-      } else {
-        setPostsData(posts);
-      }
-
-      setLoading(false);
-    };
-    handleFetchingPosts();
-  }, [getUser]);
-
-  useEffect(() => {
-    postsData.forEach((_, index: number) => {
-      setTimeout(() => {
-        setPostOpacity((prevState) => {
-          const newState = [...prevState];
-          newState[index] = true;
-          return newState;
-        });
-      }, (index + 10) * 20);
-    });
-  }, [postsData]);
+  const { setDeleteModeEnable, deleteModeEnable } = useRemovePost();
 
   return (
     <>
@@ -62,6 +30,8 @@ const PostsList = ({
                 postData={postData}
                 postOpacity={postOpacity}
                 enableOptions={enableOptions}
+                deleteModeEnable={deleteModeEnable}
+                setDeleteModeEnable={setDeleteModeEnable}
               />
             );
           })}

@@ -4,6 +4,7 @@ import { CookieAuthContext } from "../../../context/CookieAuthContext";
 import Panel from "../../../shared/Panel";
 import { useState, useEffect } from "react";
 import useAddPost from "../../../hooks/useAddPost";
+import Button01 from "../../buttons/Button01";
 
 import imageIcon from "../../../assets/icons/image.svg";
 
@@ -41,15 +42,15 @@ const AddPostPanel = () => {
 
                   <span>__̴ı̴̴̡̡̡ ̡͌l̡̡̡ ̡͌l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡.___</span>
                 </div>
-                <button
-                  className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500"
+                <Button01
+                  color="bg-fuchsia-500"
+                  shadowColor="fuchsia"
+                  content="LOGOWANIE"
                   onClick={() => {
                     closePanel();
                     showPanel("loginPanel");
                   }}
-                >
-                  LOGOWANIE
-                </button>
+                />
               </div>
             </>
           ) : (
@@ -120,7 +121,7 @@ const AddPostPanel = () => {
                   />
                   <div
                     className={`${
-                      blockUpload ? "text-red-500" : "text-neutral-100"
+                      blockUpload ? "text-red-600" : "text-neutral-100"
                     } text-sm font-bold float-right inline-block`}
                   >
                     <span>{numberOfLetters}</span>
@@ -130,18 +131,13 @@ const AddPostPanel = () => {
                 </div>
               </div>
               <div className="w-full flex justify-center mt-10">
-                {blockUpload ? (
-                  <button className="button01 bg-gray-500">
-                    dodaj chłopie
-                  </button>
-                ) : (
-                  <button
-                    className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500"
-                    onClick={handleAddPost}
-                  >
-                    dodaj chłopie
-                  </button>
-                )}
+                <Button01
+                  disableButton={blockUpload}
+                  color="bg-fuchsia-500"
+                  shadowColor="fuchsia"
+                  content="dodaj debilu"
+                  onClick={handleAddPost}
+                />
               </div>
             </>
           )}

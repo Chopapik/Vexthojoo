@@ -3,6 +3,7 @@ import { PanelContext } from "../../context/PanelContext";
 import { useContext } from "react";
 import useUpdateUserData from "../../hooks/useUpdateUserData";
 import { CookieAuthContext } from "../../context/CookieAuthContext";
+import Button01 from "../buttons/Button01";
 
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
 
@@ -77,17 +78,13 @@ const EditUserPanel = () => {
                 <span className="text-red-600 text-sm">{error}</span>
               </div>
               <div className="w-full flex justify-center p-10">
-                <button
-                  className={`button01 ${
-                    canSave
-                      ? "bg-cyan-500 hover:shadow-button01 hover:shadow-cyan-500"
-                      : "bg-gray-500 hover:bg-gray-500"
-                  }`}
-                  onClick={canSave ? handleUserDataUpdate : undefined}
-                  disabled={!canSave}
-                >
-                  zapisz
-                </button>
+                <Button01
+                  disableButton={!canSave}
+                  color="bg-fuchsia-500"
+                  shadowColor="fuchsia"
+                  content="zapisz"
+                  onClick={handleUserDataUpdate}
+                />
               </div>
             </div>
           </>

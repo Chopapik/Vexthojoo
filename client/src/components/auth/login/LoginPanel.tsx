@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Panel from "../../../shared/Panel";
 import { PanelContext } from "../../../context/PanelContext";
 import useLogin from "../../../hooks/useLogin";
+import Button01 from "../../buttons/Button01";
 
 import InputOneLineForm from "../../../shared/InputOneLineForm";
 import InputCheckboxForm from "../../../shared/InputCheckboxForm";
@@ -50,13 +51,12 @@ const LoginPanel = () => {
               error={undefined}
               enableErrorMessage={false}
             />
-            <button
-              className="button01 bg-fuchsia-500 hover:shadow-button01 hover:shadow-fuchsia-500"
-              type="submit"
+            <Button01
+              color="bg-fuchsia-500"
+              shadowColor="fuchsia"
+              content="WŁAŹ"
               onClick={handleLogin}
-            >
-              WŁAŹ
-            </button>
+            />
           </div>
         </>
       }

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Panel from "../../../shared/Panel";
 import { PanelContext } from "../../../context/PanelContext";
 import useRegister from "../../../hooks/useRegister";
+import Button01 from "../../buttons/Button01";
 
 import InputOneLineForm from "../../../shared/InputOneLineForm";
 import InputCheckboxForm from "../../../shared/InputCheckboxForm";
@@ -60,13 +61,12 @@ const RegisterPanel = () => {
               error={acceptTermError}
               enableErrorMessage={true}
             />
-            <button
-              type="submit"
+            <Button01
+              color="bg-fuchsia-500"
+              shadowColor="fuchsia"
+              content="WŁAŹ"
               onClick={handleRegister}
-              className="button01 bg-fuchsia-500 mb-5"
-            >
-              WŁAŹ
-            </button>
+            />
           </div>
         </>
       }

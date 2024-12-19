@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { PanelContext } from "../../context/PanelContext";
 import { UserDataTypes } from "../../types/user/userDataTypes";
+import Button01 from "../buttons/Button01";
 
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
 const UserProfileBar = ({
@@ -30,32 +31,25 @@ const UserProfileBar = ({
       </div>
       {canEdit && (
         <>
-          <div>
-            <div className="sm:h-auto mb-2 lg:h-[100px]">
-              <button
-                type="submit"
-                className="button01 w-[150px] font-xs bg-gray-600 hover:shadow-button01 hover:shadow-gray-500"
+          <div className="flex flex-col w-[160px] space-y-3">
+            <div className="lg:mb-14">
+              <Button01
+                color="bg-gray-600"
+                shadowColor="gray"
+                content="Edycja profilu"
                 onClick={() => showPanel("editUserPanel")}
-              >
-                Edycja profilu
-              </button>
+              />
             </div>
-
-            <div className="flex flex-col items-center">
-              <button
-                type="submit"
-                className="button01 font-light w-[150px] bg-gray-600 hover:shadow-button01 hover:shadow-gray-500"
-              >
-                Wyloguj się
-              </button>
-              <button
-                id="openUserDeletePanel"
-                type="submit"
-                className="button01 w-[150px] bg-red-600 mt-2 hover:shadow-button01 hover:shadow-red-500"
-              >
-                Usuń konto
-              </button>
-            </div>
+            <Button01
+              color="bg-gray-600"
+              shadowColor="gray"
+              content="Wyloguj się"
+            />
+            <Button01
+              color="bg-red-600"
+              shadowColor="red"
+              content="Usuń konto"
+            />
           </div>
         </>
       )}

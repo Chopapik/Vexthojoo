@@ -12,9 +12,11 @@ const PostsList = ({
   displayByUser?: string;
   enableOptions: boolean;
 }) => {
-  const { loading, postsData, postOpacity } = useListPosts(displayByUser);
+  const { loading, postsData, postOpacity, handleFetchingPosts } =
+    useListPosts(displayByUser);
 
-  const { setDeleteModeEnable, deleteModeEnable } = useRemovePost();
+  const { deleteModeEnable, handleDeletePost, handleDeleteModeEnable } =
+    useRemovePost(postsData, handleFetchingPosts);
 
   return (
     <>
@@ -25,13 +27,15 @@ const PostsList = ({
           {postsData.map((postData: postDataTypes, index: number) => {
             return (
               <Post
+                id={postData.id}
                 key={index}
                 index={index}
                 postData={postData}
                 postOpacity={postOpacity}
                 enableOptions={enableOptions}
-                deleteModeEnable={deleteModeEnable}
-                setDeleteModeEnable={setDeleteModeEnable}
+                deleteModeEnable={deleteModeEnable[index]} //enabling delete mode for specify post, by index
+                handleDeleteModeEnable={handleDeleteModeEnable}
+                handleDeletePost={handleDeletePost}
               />
             );
           })}

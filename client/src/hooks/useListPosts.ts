@@ -21,7 +21,9 @@ const useListPosts = (displayByUser?: string) => {
 
     setLoading(false);
   };
-  handleFetchingPosts();
+  useEffect(() => {
+    handleFetchingPosts();
+  }, []);
 
   useEffect(() => {
     //Post smooth displaying animation

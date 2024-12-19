@@ -1,35 +1,30 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import fetchPostsService from "../services/posts/fetchPostsService";
-import { CookieAuthContext } from "../context/CookieAuthContext";
 import { postDataTypes } from "../types/posts/postTypes";
 
 const useListPosts = (displayByUser?: string) => {
   const [loading, setLoading] = useState(true);
   const [postsData, setPostsData] = useState<postDataTypes[]>([]);
-  const [postOpacity, setPostOpacity] = useState<boolean[]>([]); //postOpacity[] contains boolean information for every post and is use for printing animation
+  const [postOpacity, setPostOpacity] = useState<boolean[]>([]);
 
-  const { getUser } = useContext(CookieAuthContext);
+  const handleFetchingPosts = async () => {
+    const posts = await fetchPostsService();
 
-  useEffect(() => {
-    const handleFetchingPosts = async () => {
-      const posts = await fetchPostsService();
+    if (displayByUser) {
+      const postsByUser = posts.filter(
+        (post: postDataTypes) => post.username === displayByUser
+      );
+      setPostsData(postsByUser);
+    } else {
+      setPostsData(posts);
+    }
 
-      if (displayByUser) {
-        const postsByUser = posts.filter(
-          (post: postDataTypes) => post.username === displayByUser
-        );
-        setPostsData(postsByUser);
-      } else {
-        setPostsData(posts);
-      }
-
-      setLoading(false);
-    };
-    handleFetchingPosts();
-  }, [getUser]);
+    setLoading(false);
+  };
+  handleFetchingPosts();
 
   useEffect(() => {
-    //printing posts animation
+    //Post smooth displaying animation
     postsData.forEach((_, index: number) => {
       setTimeout(() => {
         setPostOpacity((prevState) => {
@@ -41,7 +36,7 @@ const useListPosts = (displayByUser?: string) => {
     });
   }, [postsData]);
 
-  return { postsData, loading, postOpacity };
+  return { postsData, loading, postOpacity, handleFetchingPosts };
 };
 
 export default useListPosts;

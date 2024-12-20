@@ -14,7 +14,7 @@ export default {
         "xs": "400px",
       },
       boxShadow: {
-        "button01": "0px 0px 10px 0.1px"
+        "straight": "0px 0px 10px 0.1px"
       },
     },
   },

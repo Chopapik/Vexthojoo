@@ -1,14 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Panel from "../../../shared/Panel";
 import { PanelContext } from "../../../context/PanelContext";
 import useLogin from "../../../hooks/useLogin";
 import Button01 from "../../buttons/Button01";
-
 import InputOneLineForm from "../../../shared/InputOneLineForm";
 import InputCheckboxForm from "../../../shared/InputCheckboxForm";
+import { useCookieAcceptContext } from "../../../context/CookieAcceptContext";
 
 const LoginPanel = () => {
   const { visiblePanelId, closePanel } = useContext(PanelContext);
+
+  const { isCookieAccept } = useCookieAcceptContext();
 
   const {
     handleLogin,
@@ -17,6 +19,10 @@ const LoginPanel = () => {
     handleSetPassword,
     handleSetNoLogout,
   } = useLogin();
+
+  useEffect(() => {
+    console.log("LoginPanel.tsx: isCookieAccept: ", isCookieAccept);
+  }, [isCookieAccept]);
 
   return (
     <Panel
@@ -45,12 +51,14 @@ const LoginPanel = () => {
                 enableErrorMessage={true}
               />
             </div>
-            <InputCheckboxForm
-              handleInputData={handleSetNoLogout}
-              label={"Nie wylogowywuj mnie"}
-              error={undefined}
-              enableErrorMessage={false}
-            />
+            {isCookieAccept && (
+              <InputCheckboxForm
+                handleInputData={handleSetNoLogout}
+                label={"Nie wylogowywuj mnie"}
+                error={undefined}
+                enableErrorMessage={false}
+              />
+            )}
             <Button01
               color="bg-fuchsia-500"
               shadowColor="fuchsia"

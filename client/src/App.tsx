@@ -8,13 +8,15 @@ import axios from "axios";
 import { PanelProvider } from "./context/PanelContext";
 import PanelsContainer from "./components/PanelsContainer";
 import { CookieAuthProvider } from "./context/CookieAuthContext";
+import { CookieAcceptProvider } from "./context/CookieAcceptContext";
+
 //api url:
 axios.defaults.baseURL = "http://localhost:3000";
 
 function App() {
   return (
-    <>
-      <Router>
+    <Router>
+      <CookieAcceptProvider>
         <CookieAuthProvider>
           <PanelProvider>
             <PanelsContainer />
@@ -28,8 +30,8 @@ function App() {
             </div>
           </PanelProvider>
         </CookieAuthProvider>
-      </Router>
-    </>
+      </CookieAcceptProvider>
+    </Router>
   );
 }
 

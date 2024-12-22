@@ -9,6 +9,7 @@ import { PanelProvider } from "./context/PanelContext";
 import PanelsContainer from "./components/PanelsContainer";
 import { CookieAuthProvider } from "./context/CookieAuthContext";
 import { CookieAcceptProvider } from "./context/CookieAcceptContext";
+import PageContainer from "./components/PageContainer";
 
 //api url:
 axios.defaults.baseURL = "http://localhost:3000";
@@ -20,14 +21,14 @@ function App() {
         <CookieAuthProvider>
           <PanelProvider>
             <PanelsContainer />
-            <div className="bg-black h-full">
+            <PageContainer>
               <Header />
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/:username" element={<UserPage />} />
               </Routes>
               <Footer />
-            </div>
+            </PageContainer>
           </PanelProvider>
         </CookieAuthProvider>
       </CookieAcceptProvider>

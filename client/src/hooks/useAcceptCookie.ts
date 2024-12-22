@@ -6,34 +6,23 @@ const useAcceptCookie = () => {
   const [showAcceptCookieBar, setShowAcceptCookieBar] =
     useState<boolean>(false);
 
-  const handleAcceptCookie = (isUserAcceptedCookies: boolean) => {
-    setIsCookieAccept(isUserAcceptedCookies);
-    cookies.set(
-      "acceptCookie",
-      isUserAcceptedCookies ? "cookiesAccepted" : "cookiesNotAccepted"
-    );
+  const handleAcceptCookie = () => {
+    setIsCookieAccept(true);
+    cookies.set("acceptCookie", "cookiesAccepted", { expires: 180 });
     setShowAcceptCookieBar(false);
   };
 
   useEffect(() => {
-    const showCookieAcceptBar = () => {
-      const cookieValue = cookies.get("acceptCookie");
+    const cookieValue = cookies.get("acceptCookie");
 
-      if (!cookieValue) {
-        setTimeout(() => {
-          setShowAcceptCookieBar(true);
-        }, 3000);
-      }
-    };
-
-    showCookieAcceptBar();
-  }, [showAcceptCookieBar]);
+    if (!cookieValue) setShowAcceptCookieBar(true);
+  }, []);
 
   useEffect(() => {
     const cookieValue = cookies.get("acceptCookie");
     if (cookieValue === "cookiesAccepted") {
       setIsCookieAccept(true);
-    } else if (cookieValue === "cookiesNotAccepted") {
+    } else if (!cookieValue) {
       setIsCookieAccept(false);
     }
   }, []);

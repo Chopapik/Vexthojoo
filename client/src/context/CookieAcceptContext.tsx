@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext } from "react";
 import useAcceptCookie from "../hooks/useAcceptCookie";
 
 interface CookieAcceptContextTypes {
-  handleAcceptCookie: (isUserAcceptedCookies: boolean) => void;
+  handleAcceptCookie: () => void;
   isCookieAccept: boolean;
   showAcceptCookieBar: boolean;
 }

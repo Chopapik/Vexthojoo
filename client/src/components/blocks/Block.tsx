@@ -22,7 +22,9 @@ const Block = ({
     setHideBlock((prev) => {
       const newState = !prev;
       if (isCookieAccept)
-        cookie.set(`${name}State`, newState ? "hidden" : "visible");
+        cookie.set(`${name}State`, newState ? "hidden" : "visible", {
+          expires: 365 * 10, // Set cookie to expire in 10 years
+        });
 
       return newState;
     });

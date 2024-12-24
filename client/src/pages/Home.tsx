@@ -5,7 +5,7 @@ import PostsList from "../components/posts/PostsList";
 import ChatAiBlock from "../components/blocks/chatAi/ChatAiBlock";
 
 import thomasIcon from "../assets/images/thomas.png";
-
+import iconFrowardIcon from "../assets/icons/forwardIcon.svg";
 const Home = () => {
   const { showPanel } = useContext(PanelContext);
 
@@ -18,14 +18,19 @@ const Home = () => {
       </div>
       {/* home div */}
       <div className="flex flex-col space-y-5 p-3 md:flex-row md:space-y-0 w-full 2xl:w-[1536px] min-h-[80vh]">
-        <main className="w-full lg:w-1/2 2xl:w-2/3 text-white space-y-4 flex flex-col items-center">
-          <div
-            className="w-1/2 border px-6 py-2 rounded-full my-5 font-poppins cursor-pointer"
-            onClick={() => {
-              showPanel("addPostPanel");
-            }}
-          >
-            Dodaj post głupcze
+        <main className="w-full lg:w-1/2 2xl:w-2/3 text-neutral-300 space-y-4 flex flex-col items-center">
+          <div className="w-3/4 border-b border-cyan-400 mb-10">
+            <div
+              className=" bg-neutral-900 px-5 border-l-8  border-neutral-800  py-4 font-poppins cursor-pointer hover:border-cyan-300 box-border transition-colors ease-in-out duration-300"
+              onClick={() => {
+                showPanel("addPostPanel");
+              }}
+            >
+              <div className="flex w-full justify-between items-center">
+                Dodaj post głupcze
+                <img src={iconFrowardIcon} alt="forwardIcon" />
+              </div>
+            </div>
           </div>
           <PostsList enableOptions={false} />
         </main>

@@ -23,7 +23,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center space-y-8 p-4 lg:flex-row lg:justify-between lg:space-y-0 ">
+    <div className="flex flex-col items-center space-y-8 p-4 lg:flex-row lg:justify-between lg:space-y-0">
       <div className="space-y-1">
         <a href="/">
           <img src={logo} alt="VEXTHOJOO" />
@@ -59,7 +59,7 @@ const Header = () => {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col space-y-3 text-white xs:flex-row xs:space-y-0 xs:space-x-4 min-h-ful">
+            <div className="flex flex-col space-y-3 text-white xs:flex-row xs:space-y-0 xs:space-x-4 h-[90px] items-center mr-5">
               <Button01
                 color="bg-fuchsia-500"
                 shadowColor="fuchsia"

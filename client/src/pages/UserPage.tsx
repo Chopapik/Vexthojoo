@@ -19,8 +19,8 @@ const UserPage = () => {
       </Helmet>
 
       {!error ? (
-        <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0 2xl:w-[1536px]">
-          <div className="text-white w-full flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-between sm:space-y-0 lg:flex-col lg:w-1/5 lg:min-h-[700px] lg:justify-normal lg:space-y-14">
+        <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0 2xl:w-[1536px] min-h-[85vh]">
+          <div className="text-white flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-around sm:space-y-0 lg:flex-col lg:w-1/5 lg:min-h-[700px] lg:justify-normal lg:space-y-14">
             {loading ? (
               <UserProfileBarSkeleton />
             ) : (
@@ -36,7 +36,7 @@ const UserPage = () => {
           </div>
         </div>
       ) : (
-        <div className="text-white w-full h-[50vh] flex justify-center items-center">
+        <div className="text-white w-full h-[50vh] mb-[30vh] flex justify-center items-center">
           <div className="flex flex-col items-center">
             <p className="text-red-600">Błąd {errorContent.status}</p>
             <p>Nie znaleziono użytkownika:</p>

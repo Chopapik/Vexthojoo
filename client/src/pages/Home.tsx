@@ -17,7 +17,7 @@ const Home = () => {
         </Helmet>
       </div>
       {/* home div */}
-      <div className="flex flex-col space-y-5 p-3 md:flex-row md:space-y-0 w-full 2xl:w-[1536px]">
+      <div className="flex flex-col space-y-5 p-3 md:flex-row md:space-y-0 w-full 2xl:w-[1536px] min-h-[80vh]">
         <main className="w-full lg:w-1/2 2xl:w-2/3 text-white space-y-4 flex flex-col items-center">
           <div
             className="w-1/2 border px-6 py-2 rounded-full my-5 font-poppins cursor-pointer"

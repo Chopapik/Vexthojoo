@@ -8,7 +8,7 @@ const Button02 = ({
   onClick,
 }: buttonTypes) => {
   return (
-    <div
+    <button
       className={`${color} ${border} flex justify-center items-center relative z-10 min-w-[100px] py-[5px] px-5 text-md font-poppins
         ${
           disableButton
@@ -18,7 +18,7 @@ const Button02 = ({
       onClick={!disableButton ? onClick : undefined}
     >
       {content}
-    </div>
+    </button>
   );
 };
 

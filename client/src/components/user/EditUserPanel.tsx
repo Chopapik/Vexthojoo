@@ -1,7 +1,7 @@
 import Panel from "../../shared/Panel";
 import { PanelContext } from "../../context/PanelContext";
 import { useContext } from "react";
-import useUpdateUserData from "../../hooks/useUpdateUserData";
+import useUpdateUserData from "../../hooks/user/useUpdateUserData";
 import { CookieAuthContext } from "../../context/CookieAuthContext";
 import Button01 from "../buttons/Button01";
 

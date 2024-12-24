@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import fetchPostsService from "../services/posts/fetchPostsService";
-import { postDataTypes } from "../types/posts/postTypes";
+import fetchPostsService from "../../services/posts/fetchPostsService";
+import { postDataTypes } from "../../types/posts/postTypes";
 
 const useListPosts = (displayByUser?: string) => {
   const [loading, setLoading] = useState(true);

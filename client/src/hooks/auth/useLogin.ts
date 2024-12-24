@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
 
-import loginService from "../services/auth/loginService";
-import { PanelContext } from "../context/PanelContext";
-import { loginDataTypes } from "../types/auth/loginTypes";
-import { CookieAuthContext } from "../context/CookieAuthContext";
+import loginService from "../../services/auth/loginService";
+import { PanelContext } from "../../context/PanelContext";
+import { loginDataTypes } from "../../types/auth/loginTypes";
+import { CookieAuthContext } from "../../context/CookieAuthContext";
 
 const useLogin = () => {
   const { closePanel } = useContext(PanelContext);

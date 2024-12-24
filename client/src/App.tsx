@@ -1,15 +1,15 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
 import UserPage from "./pages/UserPage";
 import axios from "axios";
 
 import { PanelProvider } from "./context/PanelContext";
-import PanelsContainer from "./components/PanelsContainer";
+import PanelsContainer from "./components/layout/PanelsContainer";
 import { CookieAuthProvider } from "./context/CookieAuthContext";
 import { CookieAcceptProvider } from "./context/CookieAcceptContext";
-import PageContainer from "./components/PageContainer";
+import PageContainer from "./components/layout/PageContainer";
 
 //api url:
 axios.defaults.baseURL = "http://localhost:3000";

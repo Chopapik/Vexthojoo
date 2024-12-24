@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CookieAuthContext } from "../context/CookieAuthContext";
-import updateUserDataService from "../services/user/updateUserDataService";
+import { CookieAuthContext } from "../../context/CookieAuthContext";
+import updateUserDataService from "../../services/user/updateUserDataService";
 import {
   newUserDataTypes,
   cookieUserDataTypes,
-} from "../types/user/userDataTypes";
+} from "../../types/user/userDataTypes";
 import { useNavigate } from "react-router-dom";
-import { PanelContext } from "../context/PanelContext";
+import { PanelContext } from "../../context/PanelContext";
 
-import defaultAvatar from "../assets/images/defaultAvatar.png";
+import defaultAvatar from "../../assets/images/defaultAvatar.png";
 
 const useUpdateUserData = () => {
   const { authData, getUser } = useContext(CookieAuthContext);

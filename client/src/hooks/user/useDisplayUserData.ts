@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import fetchUserDataService from "../services/user/fetchUserDataService";
-import { UserDataTypes } from "../types/user/userDataTypes";
-import DateTimeFormat from "../utils/DateTimeFormat";
-import { CookieAuthContext } from "../context/CookieAuthContext";
+import fetchUserDataService from "../../services/user/fetchUserDataService";
+import { UserDataTypes } from "../../types/user/userDataTypes";
+import DateTimeFormat from "../../utils/DateTimeFormat";
+import { CookieAuthContext } from "../../context/CookieAuthContext";
 
 const useDisplayUserData = (username: string) => {
   const [userData, setUserData] = useState<UserDataTypes>({

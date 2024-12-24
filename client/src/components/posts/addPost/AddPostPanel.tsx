@@ -3,7 +3,7 @@ import { PanelContext } from "../../../context/PanelContext";
 import { CookieAuthContext } from "../../../context/CookieAuthContext";
 import Panel from "../../../shared/Panel";
 import { useState, useEffect } from "react";
-import useAddPost from "../../../hooks/useAddPost";
+import useAddPost from "../../../hooks/posts/useAddPost";
 import Button01 from "../../buttons/Button01";
 
 import imageIcon from "../../../assets/icons/image.svg";

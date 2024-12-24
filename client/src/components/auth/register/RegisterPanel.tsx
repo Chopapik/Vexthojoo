@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Panel from "../../../shared/Panel";
 import { PanelContext } from "../../../context/PanelContext";
-import useRegister from "../../../hooks/useRegister";
+import useRegister from "../../../hooks/auth/useRegister";
 import Button01 from "../../buttons/Button01";
 
 import InputOneLineForm from "../../../shared/InputOneLineForm";

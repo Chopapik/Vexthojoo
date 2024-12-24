@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { PanelContext } from "../context/PanelContext";
-import { CookieAuthContext } from "../context/CookieAuthContext";
-import Button01 from "./buttons/Button01";
+import { PanelContext } from "../../context/PanelContext";
+import { CookieAuthContext } from "../../context/CookieAuthContext";
+import Button01 from "../buttons/Button01";
 
-import logo from "../assets/images/logo.png";
-import defaultAvatar from "../assets/images/defaultAvatar.png";
+import logo from "../../assets/images/logo.png";
+import defaultAvatar from "../../assets/images/defaultAvatar.png";
 const Header = () => {
   const [loading, setLoading] = useState(true);
 

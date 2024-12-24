@@ -1,7 +1,7 @@
 import PostSkeleton from "./PostSkeleton";
 import Post from "./Post";
-import useListPosts from "../../hooks/useListPosts";
-import useRemovePost from "../../hooks/useRemovePost";
+import useListPosts from "../../hooks/posts/useListPosts";
+import useRemovePost from "../../hooks/posts/useRemovePost";
 
 import { postDataTypes } from "../../types/posts/postTypes";
 

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import useDisplayUserData from "../hooks/useDisplayUserData";
+import useDisplayUserData from "../hooks/user/useDisplayUserData";
 import { Helmet } from "react-helmet";
 
 import PostsList from "../components/posts/PostsList";

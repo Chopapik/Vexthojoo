@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useCookieAcceptContext } from "../context/CookieAcceptContext";
+import { useCookieAcceptContext } from "../../context/CookieAcceptContext";
 
 const PageContainer = ({ children }: { children: ReactNode }) => {
   const { isCookieAccept } = useCookieAcceptContext();

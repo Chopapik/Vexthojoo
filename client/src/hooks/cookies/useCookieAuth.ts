@@ -1,6 +1,6 @@
-import cookieAuthService from "../services/auth/cookieAuthService";
+import cookieAuthService from "../../services/auth/cookieAuthService";
 import { useState } from "react";
-import { CookieAuthTypes } from "../types/auth/cookieAuthTypes";
+import { CookieAuthTypes } from "../../types/auth/cookieAuthTypes";
 
 const useCookieAuth = () => {
   const [authData, setAuthData] = useState<CookieAuthTypes>({

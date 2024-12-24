@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
-import registerService from "../services/auth/registerService";
+import registerService from "../../services/auth/registerService";
 import {
   registerDataTypes,
   registerErrorTypes,
-} from "../types/auth/registerTypes";
-import { PanelContext } from "../context/PanelContext";
+} from "../../types/auth/registerTypes";
+import { PanelContext } from "../../context/PanelContext";
 
 const useRegister = () => {
   const { closePanel } = useContext(PanelContext);

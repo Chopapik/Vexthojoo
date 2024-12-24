@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { postDataTypes } from "../types/posts/postTypes";
-import removePostService from "../services/posts/removePostService";
+import { postDataTypes } from "../../types/posts/postTypes";
+import removePostService from "../../services/posts/removePostService";
 
 const useRemovePost = (
   postsData: postDataTypes[],

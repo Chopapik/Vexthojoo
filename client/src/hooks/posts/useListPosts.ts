@@ -1,26 +1,11 @@
 import { useState, useEffect } from "react";
-import fetchPostsService from "../../services/posts/fetchPostsService";
-import { postDataTypes } from "../../types/posts/postTypes";
+import { usePostsContext } from "../../context/PostsContext";
 
-const useListPosts = (displayByUser?: string) => {
-  const [loading, setLoading] = useState(true);
-  const [postsData, setPostsData] = useState<postDataTypes[]>([]);
+const useListPosts = () => {
   const [postOpacity, setPostOpacity] = useState<boolean[]>([]);
 
-  const handleFetchingPosts = async () => {
-    const posts = await fetchPostsService();
+  const { handleFetchingPosts, postsData, loading } = usePostsContext();
 
-    if (displayByUser) {
-      const postsByUser = posts.filter(
-        (post: postDataTypes) => post.username === displayByUser
-      );
-      setPostsData(postsByUser);
-    } else {
-      setPostsData(posts);
-    }
-
-    setLoading(false);
-  };
   useEffect(() => {
     handleFetchingPosts();
   }, []);

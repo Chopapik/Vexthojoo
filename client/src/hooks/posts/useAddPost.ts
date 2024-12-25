@@ -36,7 +36,6 @@ const useAddPost = () => {
   };
   return {
     handlePostContentData,
-    postContentData,
     addPostError,
     handleAddPost,
   };

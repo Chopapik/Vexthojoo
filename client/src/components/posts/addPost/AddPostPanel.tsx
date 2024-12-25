@@ -16,12 +16,7 @@ const AddPostPanel = () => {
   const [blockUpload, setBlockUpload] = useState<boolean>(true);
 
   const [imagePreview, setImagePreview] = useState<string>("");
-  const {
-    handlePostContentData,
-    postContentData,
-    addPostError,
-    handleAddPost,
-  } = useAddPost();
+  const { handlePostContentData, addPostError, handleAddPost } = useAddPost();
   useEffect(() => {
     if (numberOfLetters > 510) {
       setBlockUpload(true);
@@ -111,7 +106,6 @@ const AddPostPanel = () => {
                             setImagePreview(reader.result as string);
                             handlePostContentData(e);
                             setBlockUpload(false);
-                            console.log(postContentData);
                           };
                         }
                       }

@@ -16,8 +16,12 @@ const AddPostPanel = () => {
   const [blockUpload, setBlockUpload] = useState<boolean>(true);
 
   const [imagePreview, setImagePreview] = useState<string>("");
-  const { setPostContentData, postContentData, addPostError, handleAddPost } =
-    useAddPost();
+  const {
+    handlePostContentData,
+    postContentData,
+    addPostError,
+    handleAddPost,
+  } = useAddPost();
   useEffect(() => {
     if (numberOfLetters > 510) {
       setBlockUpload(true);
@@ -70,10 +74,7 @@ const AddPostPanel = () => {
                     name="text"
                     onChange={(e) => {
                       setNumberOfLetters(e.target.value.length);
-                      setPostContentData({
-                        ...postContentData,
-                        text: e.target.value,
-                      });
+                      handlePostContentData(e);
                     }}
                   ></textarea>
                   <div className="p-10 w-full flex justify-center">
@@ -108,10 +109,7 @@ const AddPostPanel = () => {
 
                           reader.onload = () => {
                             setImagePreview(reader.result as string);
-                            setPostContentData({
-                              ...postContentData,
-                              image: file,
-                            });
+                            handlePostContentData(e);
                             setBlockUpload(false);
                             console.log(postContentData);
                           };

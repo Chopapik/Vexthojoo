@@ -14,6 +14,17 @@ const useAddPost = () => {
     image: undefined,
   });
 
+  const handlePostContentData = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, files } = e.target as HTMLInputElement;
+
+    setPostContentData((prevState) => ({
+      ...prevState,
+      [name]: files ? files[0] : value,
+    }));
+  };
+
   const handleAddPost = async () => {
     const errorMessage = await addPostService(postContentData);
 
@@ -23,7 +34,12 @@ const useAddPost = () => {
       closePanel();
     }
   };
-  return { setPostContentData, postContentData, addPostError, handleAddPost };
+  return {
+    handlePostContentData,
+    postContentData,
+    addPostError,
+    handleAddPost,
+  };
 };
 
 export default useAddPost;

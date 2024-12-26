@@ -10,6 +10,7 @@ import PanelsContainer from "./components/layout/PanelsContainer";
 import { CookieAuthProvider } from "./context/CookieAuthContext";
 import { CookieAcceptProvider } from "./context/CookieAcceptContext";
 import PageContainer from "./components/layout/PageContainer";
+import { PostsProvider } from "./context/PostsContext";
 
 //api url:
 axios.defaults.baseURL = "http://localhost:3000";
@@ -19,17 +20,19 @@ function App() {
     <Router>
       <CookieAcceptProvider>
         <CookieAuthProvider>
-          <PanelProvider>
-            <PanelsContainer />
-            <PageContainer>
-              <Header />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/:username" element={<UserPage />} />
-              </Routes>
-              <Footer />
-            </PageContainer>
-          </PanelProvider>
+          <PostsProvider>
+            <PanelProvider>
+              <PanelsContainer />
+              <PageContainer>
+                <Header />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/:username" element={<UserPage />} />
+                </Routes>
+                <Footer />
+              </PageContainer>
+            </PanelProvider>
+          </PostsProvider>
         </CookieAuthProvider>
       </CookieAcceptProvider>
     </Router>

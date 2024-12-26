@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { PanelContext } from "../../../context/PanelContext";
-import { CookieAuthContext } from "../../../context/CookieAuthContext";
-import Panel from "../../../shared/Panel";
+import { PanelContext } from "../../context/PanelContext";
+import { CookieAuthContext } from "../../context/CookieAuthContext";
+import Panel from "../../shared/Panel";
 import { useState, useEffect } from "react";
-import useAddPost from "../../../hooks/posts/useAddPost";
-import Button01 from "../../buttons/Button01";
+import useAddPost from "../../hooks/posts/useAddPost";
+import Button01 from "../buttons/Button01";
 
-import imageIcon from "../../../assets/icons/image.svg";
+import imageIcon from "../../assets/icons/image.svg";
 
 const AddPostPanel = () => {
   const { showPanel, closePanel, visiblePanelId } = useContext(PanelContext);

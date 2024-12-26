@@ -1,10 +1,10 @@
-import { postTypes } from "../../types/posts/postTypes";
+import { postTypes } from "../../../types/posts/postTypes";
 
-import defaultAvatar from "../../assets/images/defaultAvatar.png";
-import deleteIcon from "../../assets/icons/delete.svg";
-import editIcon from "../../assets/icons/edit.svg";
-import yesIcon from "../../assets/icons/yes.svg";
-import noIcon from "../../assets/icons/no.svg";
+import defaultAvatar from "../../../assets/images/defaultAvatar.png";
+import deleteIcon from "../../../assets/icons/delete.svg";
+import editIcon from "../../../assets/icons/edit.svg";
+import yesIcon from "../../../assets/icons/yes.svg";
+import noIcon from "../../../assets/icons/no.svg";
 
 const Post = ({
   id,

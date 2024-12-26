@@ -3,7 +3,7 @@ import useDisplayUserData from "../hooks/user/useDisplayUserData";
 import { Helmet } from "react-helmet";
 
 import PostsList from "../components/posts/PostsList";
-import PostSkeleton from "../components/posts/PostSkeleton";
+import PostSkeleton from "../components/posts/postComponents/PostSkeleton";
 import UserProfileBar from "../components/user/UserProfileBar";
 import UserProfileBarSkeleton from "../components/user/UserProfileBarSkeleton";
 

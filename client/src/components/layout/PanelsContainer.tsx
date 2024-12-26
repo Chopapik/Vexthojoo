@@ -4,7 +4,7 @@
 
 import LoginPanel from "../auth/Login/LoginPanel";
 import RegisterPanel from "../auth/Register/RegisterPanel";
-import AddPostPanel from "../posts/addPost/AddPostPanel";
+import AddPostPanel from "../posts/AddPostPanel";
 import EditUserPanel from "../user/EditUserPanel";
 import CookieAcceptBar from "../CookieAcceptBar";
 

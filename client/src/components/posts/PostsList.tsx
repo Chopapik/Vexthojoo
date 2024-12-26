@@ -1,5 +1,5 @@
 import PostSkeleton from "./postComponents/PostSkeleton";
-import Post from "./postComponents/Post";
+import PostLayout from "./postComponents/PostLayout";
 import useListPosts from "../../hooks/posts/useListPosts";
 import useRemovePost from "../../hooks/posts/useRemovePost";
 import { postDataTypes } from "../../types/posts/postTypes";
@@ -32,7 +32,7 @@ const PostsList = ({
         <>
           {postsData.map((postData: postDataTypes, index: number) => {
             return (
-              <Post
+              <PostLayout
                 id={postData.id}
                 key={index}
                 index={index}

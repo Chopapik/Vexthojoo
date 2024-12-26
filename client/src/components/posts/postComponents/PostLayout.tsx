@@ -13,15 +13,18 @@ const PostLayout = ({
   deleteModeEnable,
   handleDeleteModeEnable,
   handleDeletePost,
+  editModeEnable,
+  handleEditModeEnable,
 }: postTypes) => {
   return (
     postData && (
       <>
         <div
           key={index}
-          className={`w-full bg-neutral-900 p-5 space-y-4 border-l border-b border-neutral-700 ${
-            deleteModeEnable && " border-red-700"
-          } ${
+          className={`w-full bg-neutral-900 p-5 space-y-4 border-l border-b border-neutral-700            
+          ${deleteModeEnable && " border-red-700"}   
+          ${editModeEnable && " border-cyan-500"}    
+          ${
             postOpacity[index] ? "opacity-100" : "opacity-0"
           } transition-all ease-linear duration-200 `}
         >
@@ -55,6 +58,8 @@ const PostLayout = ({
                 deleteModeEnable={deleteModeEnable}
                 handleDeleteModeEnable={handleDeleteModeEnable}
                 handleDeletePost={handleDeletePost}
+                editModeEnable={editModeEnable}
+                handleEditModeEnable={handleEditModeEnable}
               />
             )}
           </div>

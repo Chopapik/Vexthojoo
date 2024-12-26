@@ -5,6 +5,7 @@ import useRemovePost from "../../hooks/posts/useRemovePost";
 import { postDataTypes } from "../../types/posts/postTypes";
 import { usePostsContext } from "../../context/PostsContext";
 import { useEffect } from "react";
+import useEditPost from "../../hooks/posts/useEditPost";
 
 const PostsList = ({
   displayByUser,
@@ -17,6 +18,8 @@ const PostsList = ({
 
   const { deleteModeEnable, handleDeletePost, handleDeleteModeEnable } =
     useRemovePost(postsData);
+
+  const { editModeEnable, handleEditModeEnable } = useEditPost(postsData);
 
   const { handleFetchingPosts } = usePostsContext();
 
@@ -42,6 +45,8 @@ const PostsList = ({
                 deleteModeEnable={deleteModeEnable[index]} //enabling delete mode for specify post, by index
                 handleDeleteModeEnable={handleDeleteModeEnable}
                 handleDeletePost={handleDeletePost}
+                editModeEnable={editModeEnable[index]}
+                handleEditModeEnable={handleEditModeEnable}
               />
             );
           })}

@@ -16,10 +16,12 @@ export interface postTypes {
   //postOpacity array contains opacity state for each post, which is used to control  the animation effect for displaying
   enableOptions?: boolean;
   deleteModeEnable?: boolean;
+  editModeEnable: boolean;
   handleDeleteModeEnable: (index: number) => void;
   handleDeletePost: (id: number, index: number) => void;
   // "id" is the unique identifier in database
   // "index" is position of the post in the list
+  handleEditModeEnable: (index: number) => void;
 }
 
 export interface postContentDataTypes {

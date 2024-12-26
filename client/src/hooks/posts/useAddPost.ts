@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import addPostService from "../../services/posts/addPostService";
 import { postContentDataTypes } from "../../types/posts/postTypes";
 import { PanelContext } from "../../context/PanelContext";
+import { usePostsContext } from "../../context/PostsContext";
 
 const useAddPost = () => {
   const { closePanel } = useContext(PanelContext);
@@ -13,6 +14,8 @@ const useAddPost = () => {
     text: "",
     image: undefined,
   });
+
+  const { handleFetchingPosts } = usePostsContext();
 
   const handlePostContentData = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -32,6 +35,7 @@ const useAddPost = () => {
       setAddPostError(errorMessage);
     } else {
       closePanel();
+      handleFetchingPosts();
     }
   };
   return {

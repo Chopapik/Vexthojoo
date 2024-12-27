@@ -6,19 +6,23 @@ import noIcon from "../../../assets/icons/no.svg";
 const PostOptionsButtons = ({
   id,
   index,
+  updateModeEnable,
+  //post delete
   deleteModeEnable,
   handleDeleteModeEnable,
   handleDeletePost,
-  editModeEnable,
-  handleEditModeEnable,
+  //post update
+  handleUpdatePost,
+  toggleUpdateMode,
 }: {
   id: number;
   index: number;
   deleteModeEnable?: boolean;
+  updateModeEnable: boolean;
   handleDeleteModeEnable: (index: number) => void;
   handleDeletePost: (id: number, index: number) => void;
-  editModeEnable: boolean;
-  handleEditModeEnable: (index: number) => void;
+  handleUpdatePost: (postIdToUpdate: number, index: number) => void;
+  toggleUpdateMode: (index: number) => void;
 }) => {
   return (
     <div className="flex h-7 space-x-2">
@@ -44,7 +48,7 @@ const PostOptionsButtons = ({
         </div>
       )}
 
-      {editModeEnable && (
+      {updateModeEnable && (
         <div className="h-7 w-auto px-3 flex justify-center items-center bg-neutral-700">
           Zapisać zmiany?
           <div className="flex ml-3 space-x-1 w-[50px]">
@@ -52,18 +56,15 @@ const PostOptionsButtons = ({
               <img
                 src={yesIcon}
                 alt="yes"
-                // onClick={() => handleDeletePost(id, index)}
+                onClick={() => handleUpdatePost(id, index)}
                 className="hover:brightness-50"
               />
             </div>
-            <div
-              className="flex justify-center items-center"
-              onClick={() => handleEditModeEnable(index)}
-            >
+            <div className="flex justify-center items-center">
               <img
                 src={noIcon}
                 alt="no"
-                // onClick={() => handleDeleteModeEnable(index)}
+                onClick={() => toggleUpdateMode(index)}
                 className="hover:brightness-50"
               />
             </div>
@@ -74,8 +75,8 @@ const PostOptionsButtons = ({
       <div
         className="h-7 w-7 flex justify-center items-center bg-neutral-700 hover:bg-neutral-500 cursor-pointer"
         onClick={() => {
-          handleEditModeEnable(index);
           if (deleteModeEnable) handleDeleteModeEnable(index);
+          toggleUpdateMode(index);
         }}
       >
         <img src={editIcon} alt="edit post" />
@@ -84,8 +85,8 @@ const PostOptionsButtons = ({
       <div
         className="h-7 w-7 flex justify-center items-center bg-red-700 hover:bg-red-500 cursor-pointer"
         onClick={() => {
+          if (updateModeEnable) toggleUpdateMode(index);
           handleDeleteModeEnable(index);
-          if (editModeEnable) handleEditModeEnable(index);
         }}
       >
         <img src={deleteIcon} alt="remove post" />

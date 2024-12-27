@@ -19,7 +19,12 @@ const PostsList = ({
   const { deleteModeEnable, handleDeletePost, handleDeleteModeEnable } =
     useRemovePost(postsData);
 
-  const { editModeEnable, handleEditModeEnable } = useUpdatePost(postsData);
+  const {
+    updateModeEnable,
+    toggleUpdateMode,
+    handleSetNewPostContentData,
+    handleUpdatePost,
+  } = useUpdatePost(postsData);
 
   const { handleFetchingPosts } = usePostsContext();
 
@@ -42,11 +47,15 @@ const PostsList = ({
                 postData={postData}
                 postOpacity={postOpacity}
                 enableOptions={enableOptions}
+                //post delete
                 deleteModeEnable={deleteModeEnable[index]} //enabling delete mode for specify post, by index
                 handleDeleteModeEnable={handleDeleteModeEnable}
                 handleDeletePost={handleDeletePost}
-                editModeEnable={editModeEnable[index]}
-                handleEditModeEnable={handleEditModeEnable}
+                //post update
+                updateModeEnable={updateModeEnable[index]} //enabling edit mode for specify post, by index
+                toggleUpdateMode={toggleUpdateMode}
+                handleSetNewPostContentData={handleSetNewPostContentData}
+                handleUpdatePost={handleUpdatePost}
               />
             );
           })}

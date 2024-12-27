@@ -28,7 +28,9 @@ const PostContent = ({
           }
         />
       ) : (
-        <p className="text-md">{text}</p>
+        <div className="max-w-[90%] overflow-hidden">
+          <p className="text-md">{text}</p>
+        </div>
       )}
       {imagePath ? (
         <img

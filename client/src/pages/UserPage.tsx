@@ -27,7 +27,7 @@ const UserPage = () => {
               <UserProfileBar userData={userData} canEdit={canEdit} />
             )}
           </div>
-          <div className="w-full p-11 space-y-5 text-white">
+          <div className="w-3/4 2xl:w-5/6 p-11 space-y-5 text-white">
             {loading ? (
               <PostSkeleton />
             ) : (

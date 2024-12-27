@@ -4,6 +4,9 @@ import removePostService from "../../services/posts/removePostService";
 import { usePostsContext } from "../../context/PostsContext";
 
 const useRemovePost = (postsData: postDataTypes[]) => {
+  //postsData is an array of objects, each object contains data for one post
+  //length of postsData array is equal to the number of posts in the list
+  //deleteModeEnable is an array of boolean values, each value is used to control delete mode for one post
   const [deleteModeEnable, setDeleteModeEnable] = useState<boolean[]>(
     new Array(postsData.length).fill(false)
   );

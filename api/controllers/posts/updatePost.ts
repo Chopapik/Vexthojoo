@@ -13,6 +13,7 @@ const updatePost = async (req: Request, res: Response) => {
         newText,
         postId,
       ]);
+      await db.query("UPDATE posts SET isEdited = true WHERE id=?", [postId]);
       res.end();
     }
   } catch (error) {

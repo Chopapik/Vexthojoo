@@ -6,6 +6,7 @@ export interface postDataTypes {
   whatDevice: string;
   text: string;
   imagePath?: string;
+  isEdited: boolean;
 }
 
 export interface postTypes {

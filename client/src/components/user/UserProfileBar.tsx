@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { PanelContext } from "../../context/PanelContext";
+import { usePanelContext } from "../../context/PanelContext";
 import { UserDataTypes } from "../../types/user/userDataTypes";
 import Button01 from "../buttons/Button01";
 import useLogout from "../../hooks/auth/useLogout";
@@ -12,7 +11,7 @@ const UserProfileBar = ({
   userData: UserDataTypes;
   canEdit: boolean;
 }) => {
-  const { showPanel } = useContext(PanelContext);
+  const { showPanel } = usePanelContext();
 
   const { handleLogout } = useLogout();
 

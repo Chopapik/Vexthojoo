@@ -1,13 +1,13 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import registerService from "../../services/auth/registerService";
 import {
   registerDataTypes,
   registerErrorTypes,
 } from "../../types/auth/registerTypes";
-import { PanelContext } from "../../context/PanelContext";
+import { usePanelContext } from "../../context/PanelContext";
 
 const useRegister = () => {
-  const { closePanel } = useContext(PanelContext);
+  const { closePanel } = usePanelContext();
 
   const [registerData, setRegisterData] = useState<registerDataTypes>({
     username: "",

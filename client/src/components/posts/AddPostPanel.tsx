@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { PanelContext } from "../../context/PanelContext";
+import { usePanelContext } from "../../context/PanelContext";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
 import Panel from "../../shared/Panel";
 import { useState, useEffect } from "react";
@@ -9,7 +8,7 @@ import Button01 from "../buttons/Button01";
 import imageIcon from "../../assets/icons/image.svg";
 
 const AddPostPanel = () => {
-  const { showPanel, closePanel, visiblePanelId } = useContext(PanelContext);
+  const { showPanel, closePanel, visiblePanelId } = usePanelContext();
   const { authData } = useCookieAuthContext();
 
   const [numberOfLetters, setNumberOfLetters] = useState(0);

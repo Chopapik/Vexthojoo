@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import Panel from "../../../shared/Panel";
-import { PanelContext } from "../../../context/PanelContext";
+import { usePanelContext } from "../../../context/PanelContext";
 import useLogin from "../../../hooks/auth/useLogin";
 import Button01 from "../../buttons/Button01";
 import InputOneLineForm from "../../../shared/InputOneLineForm";
@@ -8,7 +8,7 @@ import InputCheckboxForm from "../../../shared/InputCheckboxForm";
 import { useCookieAcceptContext } from "../../../context/CookieAcceptContext";
 
 const LoginPanel = () => {
-  const { visiblePanelId, closePanel } = useContext(PanelContext);
+  const { visiblePanelId, closePanel } = usePanelContext();
 
   const { isCookieAccept } = useCookieAcceptContext();
 

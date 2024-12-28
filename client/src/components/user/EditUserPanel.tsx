@@ -1,6 +1,5 @@
 import Panel from "../../shared/Panel";
-import { PanelContext } from "../../context/PanelContext";
-import { useContext } from "react";
+import { usePanelContext } from "../../context/PanelContext";
 import useUpdateUserData from "../../hooks/user/useUpdateUserData";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
 import Button01 from "../buttons/Button01";
@@ -18,7 +17,7 @@ const EditUserPanel = () => {
     error,
   } = useUpdateUserData();
 
-  const { visiblePanelId, closePanel } = useContext(PanelContext);
+  const { visiblePanelId, closePanel } = usePanelContext();
   const { authData } = useCookieAuthContext();
   return (
     <Panel

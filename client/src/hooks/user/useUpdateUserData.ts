@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
 import updateUserDataService from "../../services/user/updateUserDataService";
 import {
@@ -6,13 +6,12 @@ import {
   cookieUserDataTypes,
 } from "../../types/user/userDataTypes";
 import { useNavigate } from "react-router-dom";
-import { PanelContext } from "../../context/PanelContext";
-
+import { usePanelContext } from "../../context/PanelContext";
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
 
 const useUpdateUserData = () => {
   const { authData, getUser } = useCookieAuthContext();
-  const { closePanel } = useContext(PanelContext);
+  const { closePanel } = usePanelContext();
   const navigate = useNavigate();
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [canSave, setCanSave] = useState<boolean>(false);

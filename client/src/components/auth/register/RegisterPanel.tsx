@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import Panel from "../../../shared/Panel";
-import { PanelContext } from "../../../context/PanelContext";
+import { usePanelContext } from "../../../context/PanelContext";
 import useRegister from "../../../hooks/auth/useRegister";
 import Button01 from "../../buttons/Button01";
 
@@ -8,7 +7,7 @@ import InputOneLineForm from "../../../shared/InputOneLineForm";
 import InputCheckboxForm from "../../../shared/InputCheckboxForm";
 
 const RegisterPanel = () => {
-  const { visiblePanelId, closePanel } = useContext(PanelContext);
+  const { visiblePanelId, closePanel } = usePanelContext();
 
   const {
     handleRegister,

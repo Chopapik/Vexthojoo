@@ -1,12 +1,11 @@
-import { useContext, useState } from "react";
-
+import { useState } from "react";
 import addPostService from "../../services/posts/addPostService";
 import { postContentDataTypes } from "../../types/posts/postTypes";
-import { PanelContext } from "../../context/PanelContext";
+import { usePanelContext } from "../../context/PanelContext";
 import { usePostsContext } from "../../context/PostsContext";
 
 const useAddPost = () => {
-  const { closePanel } = useContext(PanelContext);
+  const { closePanel } = usePanelContext();
 
   const [addPostError, setAddPostError] = useState<string>("");
 

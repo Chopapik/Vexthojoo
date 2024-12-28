@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { PanelContext } from "../context/PanelContext";
+import { usePanelContext } from "../context/PanelContext";
 import { Helmet } from "react-helmet";
 import PostsList from "../components/posts/PostsList";
 import ChatAiBlock from "../components/blocks/chatAi/ChatAiBlock";
@@ -7,7 +6,7 @@ import ChatAiBlock from "../components/blocks/chatAi/ChatAiBlock";
 import thomasIcon from "../assets/images/thomas.png";
 import iconFrowardIcon from "../assets/icons/forwardIcon.svg";
 const Home = () => {
-  const { showPanel } = useContext(PanelContext);
+  const { showPanel } = usePanelContext();
 
   return (
     <>

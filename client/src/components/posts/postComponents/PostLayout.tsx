@@ -1,5 +1,5 @@
 import { postTypes } from "../../../types/posts/postTypes";
-
+import { useState } from "react";
 import defaultAvatar from "../../../assets/images/defaultAvatar.png";
 import PostOptionsButtons from "./PostOptionsButtons";
 import PostContent from "./PostContent";
@@ -20,6 +20,8 @@ const PostLayout = ({
   handleSetNewPostContentData,
   handleUpdatePost,
 }: postTypes) => {
+  const [blockUpdate, setBlockUpdate] = useState<boolean>(true);
+
   return (
     postData && (
       <>
@@ -67,6 +69,7 @@ const PostLayout = ({
                 updateModeEnable={updateModeEnable}
                 toggleUpdateMode={toggleUpdateMode}
                 handleUpdatePost={handleUpdatePost}
+                blockUpdate={blockUpdate}
               />
             )}
           </div>
@@ -81,6 +84,8 @@ const PostLayout = ({
             imagePath={postData.imagePath}
             updateModeEnable={updateModeEnable}
             handleSetNewPostContentData={handleSetNewPostContentData}
+            setBlockUpdate={setBlockUpdate}
+            blockUpdate={blockUpdate}
           />
         </div>
       </>

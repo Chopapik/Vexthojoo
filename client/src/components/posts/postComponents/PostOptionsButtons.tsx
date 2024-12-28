@@ -14,6 +14,7 @@ const PostOptionsButtons = ({
   //post update
   handleUpdatePost,
   toggleUpdateMode,
+  blockUpdate,
 }: {
   id: number;
   index: number;
@@ -23,6 +24,7 @@ const PostOptionsButtons = ({
   handleDeletePost: (id: number, index: number) => void;
   handleUpdatePost: (postIdToUpdate: number, index: number) => void;
   toggleUpdateMode: (index: number) => void;
+  blockUpdate: boolean;
 }) => {
   return (
     <div className="flex h-7 space-x-2">
@@ -47,7 +49,6 @@ const PostOptionsButtons = ({
           </div>
         </div>
       )}
-
       {updateModeEnable && (
         <div className="h-7 w-auto px-3 flex justify-center items-center bg-neutral-700">
           Zapisać zmiany?
@@ -56,7 +57,9 @@ const PostOptionsButtons = ({
               <img
                 src={yesIcon}
                 alt="yes"
-                onClick={() => handleUpdatePost(id, index)}
+                onClick={
+                  !blockUpdate ? () => handleUpdatePost(id, index) : undefined
+                }
                 className="hover:brightness-50"
               />
             </div>

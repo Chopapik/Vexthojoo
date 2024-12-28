@@ -5,6 +5,7 @@ import useCookieAuth from "../hooks/cookies/useCookieAuth";
 interface CookieAuthContext {
   authData: CookieAuthTypes;
   getUser: () => Promise<void>;
+  resetAuthData: () => void;
 }
 const CookieAuthContext = createContext<CookieAuthContext | undefined>(
   undefined
@@ -20,10 +21,10 @@ export const useCookieAuthContext = () => {
 };
 
 export const CookieAuthProvider = ({ children }: { children: ReactNode }) => {
-  const { getUser, authData } = useCookieAuth();
+  const { getUser, authData, resetAuthData } = useCookieAuth();
 
   return (
-    <CookieAuthContext.Provider value={{ authData, getUser }}>
+    <CookieAuthContext.Provider value={{ authData, getUser, resetAuthData }}>
       {children};
     </CookieAuthContext.Provider>
   );

@@ -1,8 +1,10 @@
 import { Router } from "express";
+import cookieLogin from "../controllers/CookieAuth/cookieLogin";
+import removeAuthCookie from "../controllers/CookieAuth/removeAuthCookie";
 
 const router = Router();
 
-import cookieLogin from "../controllers/CookieAuth/cookieLogin";
 router.get("/cookieLogin", cookieLogin);
+router.get("/removeAuthCookie", removeAuthCookie);
 
 export default router;

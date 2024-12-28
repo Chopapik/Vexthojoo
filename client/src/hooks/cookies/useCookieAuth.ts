@@ -23,6 +23,15 @@ const useCookieAuth = () => {
     }
   };
 
-  return { getUser, authData };
+  const resetAuthData = () => {
+    setAuthData({
+      isLoggedIn: false,
+      userid: null,
+      username: null,
+      avatarPath: null,
+    });
+  };
+
+  return { getUser, authData, resetAuthData };
 };
 export default useCookieAuth;

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { PanelContext } from "../../context/PanelContext";
 import { UserDataTypes } from "../../types/user/userDataTypes";
 import Button01 from "../buttons/Button01";
+import useLogout from "../../hooks/auth/useLogout";
 
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
 const UserProfileBar = ({
@@ -12,6 +13,8 @@ const UserProfileBar = ({
   canEdit: boolean;
 }) => {
   const { showPanel } = useContext(PanelContext);
+
+  const { handleLogout } = useLogout();
 
   return (
     <>
@@ -44,6 +47,7 @@ const UserProfileBar = ({
               color="bg-gray-600"
               shadowColor="gray"
               content="Wyloguj się"
+              onClick={handleLogout}
             />
             <Button01
               color="bg-red-600"

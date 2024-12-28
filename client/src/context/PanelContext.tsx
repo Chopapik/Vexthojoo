@@ -1,4 +1,4 @@
-import { useState, createContext, ReactNode } from "react";
+import { useState, createContext, ReactNode, useContext } from "react";
 
 interface PanelContextTypes {
   visiblePanelId: string | null;
@@ -10,13 +10,19 @@ interface PanelProvidertypes {
   children: ReactNode;
 }
 
-const PanelContext = createContext<PanelContextTypes>({
-  visiblePanelId: null,
-  showPanel: () => {},
-  closePanel: () => {},
-});
+const PanelContext = createContext<PanelContextTypes | undefined>(undefined);
 
-const PanelProvider = ({ children }: PanelProvidertypes) => {
+export const usePanelContext = () => {
+  const context = useContext(PanelContext);
+
+  if (!context) {
+    throw new Error("UsePanelContext must be used within PanelProvider ");
+  }
+
+  return context;
+};
+
+export const PanelProvider = ({ children }: PanelProvidertypes) => {
   const [visiblePanelId, setVisiblePanelId] = useState<string | null>(null);
 
   const showPanel = (panelId: string) => {
@@ -33,5 +39,3 @@ const PanelProvider = ({ children }: PanelProvidertypes) => {
     </PanelContext.Provider>
   );
 };
-
-export { PanelProvider, PanelContext };

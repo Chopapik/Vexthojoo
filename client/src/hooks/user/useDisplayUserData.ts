@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import fetchUserDataService from "../../services/user/fetchUserDataService";
 import { UserDataTypes } from "../../types/user/userDataTypes";
 import DateTimeFormat from "../../utils/DateTimeFormat";
-import { CookieAuthContext } from "../../context/CookieAuthContext";
+import { useCookieAuthContext } from "../../context/CookieAuthContext";
 
 const useDisplayUserData = (username: string) => {
   const [userData, setUserData] = useState<UserDataTypes>({
@@ -23,7 +23,7 @@ const useDisplayUserData = (username: string) => {
   });
   const [canEdit, setCanEdit] = useState<boolean>(false);
 
-  const { authData } = useContext(CookieAuthContext);
+  const { authData } = useCookieAuthContext();
 
   useEffect(() => {
     const handleFetchUserData = async (username: string) => {

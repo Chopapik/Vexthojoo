@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CookieAuthContext } from "../../context/CookieAuthContext";
+import { useCookieAuthContext } from "../../context/CookieAuthContext";
 import updateUserDataService from "../../services/user/updateUserDataService";
 import {
   newUserDataTypes,
@@ -11,7 +11,7 @@ import { PanelContext } from "../../context/PanelContext";
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
 
 const useUpdateUserData = () => {
-  const { authData, getUser } = useContext(CookieAuthContext);
+  const { authData, getUser } = useCookieAuthContext();
   const { closePanel } = useContext(PanelContext);
   const navigate = useNavigate();
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);

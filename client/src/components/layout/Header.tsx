@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { PanelContext } from "../../context/PanelContext";
-import { CookieAuthContext } from "../../context/CookieAuthContext";
 import Button01 from "../buttons/Button01";
+import { useCookieAuthContext } from "../../context/CookieAuthContext";
 
 import logo from "../../assets/images/logo.png";
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
@@ -9,10 +9,10 @@ const Header = () => {
   const [loading, setLoading] = useState(true);
 
   const panelContext = useContext(PanelContext);
-  const cookieAuthContext = useContext(CookieAuthContext);
+
+  const { getUser, authData } = useCookieAuthContext();
 
   const { showPanel } = panelContext;
-  const { authData, getUser } = cookieAuthContext;
 
   useEffect(() => {
     const checkUser = async () => {

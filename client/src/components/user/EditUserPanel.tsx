@@ -2,7 +2,7 @@ import Panel from "../../shared/Panel";
 import { PanelContext } from "../../context/PanelContext";
 import { useContext } from "react";
 import useUpdateUserData from "../../hooks/user/useUpdateUserData";
-import { CookieAuthContext } from "../../context/CookieAuthContext";
+import { useCookieAuthContext } from "../../context/CookieAuthContext";
 import Button01 from "../buttons/Button01";
 
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
@@ -19,7 +19,7 @@ const EditUserPanel = () => {
   } = useUpdateUserData();
 
   const { visiblePanelId, closePanel } = useContext(PanelContext);
-  const { authData } = useContext(CookieAuthContext);
+  const { authData } = useCookieAuthContext();
   return (
     <Panel
       content={

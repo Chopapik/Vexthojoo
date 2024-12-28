@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { PanelContext } from "../../context/PanelContext";
-import { CookieAuthContext } from "../../context/CookieAuthContext";
+import { useCookieAuthContext } from "../../context/CookieAuthContext";
 import Panel from "../../shared/Panel";
 import { useState, useEffect } from "react";
 import useAddPost from "../../hooks/posts/useAddPost";
@@ -10,7 +10,7 @@ import imageIcon from "../../assets/icons/image.svg";
 
 const AddPostPanel = () => {
   const { showPanel, closePanel, visiblePanelId } = useContext(PanelContext);
-  const { authData } = useContext(CookieAuthContext);
+  const { authData } = useCookieAuthContext();
 
   const [numberOfLetters, setNumberOfLetters] = useState(0);
   const [blockUpload, setBlockUpload] = useState<boolean>(true);

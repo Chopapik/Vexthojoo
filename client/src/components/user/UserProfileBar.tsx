@@ -52,6 +52,7 @@ const UserProfileBar = ({
               color="bg-red-600"
               shadowColor="red"
               content="Usuń konto"
+              onClick={() => showPanel("AccountDeletionConfirmationPanel")}
             />
           </div>
         </>

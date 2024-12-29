@@ -46,11 +46,15 @@ const useUpdatePost = (postsData: postDataTypes[]) => {
     }
   };
 
-  const handleUpdatePost = async (postIdToUpdate: number, index: number) => {
+  const handleUpdatePost = async (
+    postIdToUpdate: number,
+    index: number,
+    fetchPostsUsername: string
+  ) => {
     //Sending newText,newImage useState data to service
 
     await updatePostService(postIdToUpdate, newPostContentData);
-    await handleFetchingPosts();
+    await handleFetchingPosts(fetchPostsUsername);
     setUpdateModeEnable((prevState) => {
       const newState = [...prevState];
       newState[index] = !newState[index];

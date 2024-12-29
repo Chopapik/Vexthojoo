@@ -14,7 +14,7 @@ export interface postTypes {
   index: number;
   postData: postDataTypes;
   postOpacity: boolean[];
-  //PostOpacity array contains opacity state for each post, which is used to control  the animation effect for displaying
+  //PostOpacity array contains opacity state for each post, which is used to control the animation effect for displaying
   enableOptions?: boolean;
   deleteModeEnable?: boolean;
   updateModeEnable: boolean;
@@ -31,7 +31,11 @@ export interface postTypes {
     newText,
     newImage,
   }: postContentToUpdateTypes) => void;
-  handleUpdatePost: (postIdToUpdate: number, index: number) => void;
+  handleUpdatePost: (
+    postIdToUpdate: number,
+    index: number,
+    fetchPostsUsername: string //Variable is used to fetch only user's posts after post update
+  ) => void;
 }
 
 export interface postContentDataTypes {

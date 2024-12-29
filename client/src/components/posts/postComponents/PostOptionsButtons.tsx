@@ -28,7 +28,11 @@ const PostOptionsButtons = ({
     index: number,
     fetchPostUsername: string
   ) => void;
-  handleUpdatePost: (postIdToUpdate: number, index: number) => void;
+  handleUpdatePost: (
+    postIdToUpdate: number,
+    index: number,
+    fetchPostsUsername: string
+  ) => void;
   toggleUpdateMode: (index: number) => void;
   blockUpdate: boolean;
 }) => {
@@ -64,7 +68,9 @@ const PostOptionsButtons = ({
                 src={yesIcon}
                 alt="yes"
                 onClick={
-                  !blockUpdate ? () => handleUpdatePost(id, index) : undefined
+                  !blockUpdate
+                    ? () => handleUpdatePost(id, index, fetchPostsUsername)
+                    : undefined
                 }
                 className="hover:brightness-50"
               />

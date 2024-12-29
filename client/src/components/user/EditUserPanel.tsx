@@ -5,6 +5,7 @@ import { useCookieAuthContext } from "../../context/CookieAuthContext";
 import Button01 from "../buttons/Button01";
 
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
+import editIcon from "../../assets/icons/edit.svg";
 
 const EditUserPanel = () => {
   const {
@@ -48,7 +49,7 @@ const EditUserPanel = () => {
                     />
                     <div className="absolute -right-2 -bottom-2 w-9 h-9 bg-neutral-700 peer-hover:bg-neutral-500 hover:bg-neutral-500 transition-all duration-50 ease-in">
                       <div className="w-full h-full flex justify-center items-center">
-                        <img src="icons/edit.svg" alt="" className="w-7 h-7" />
+                        <img src={editIcon} alt="" className="w-7 h-7" />
                       </div>
                       <input
                         type="file"

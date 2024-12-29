@@ -34,7 +34,7 @@ const UserProfileBar = ({
       {canEdit && (
         <>
           <div className="flex flex-col w-[160px] space-y-3">
-            <div className="lg:mb-14">
+            <div className="lg:mb-14 flex flex-col">
               <Button01
                 color="bg-gray-600"
                 shadowColor="gray"

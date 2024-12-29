@@ -7,6 +7,7 @@ import RegisterPanel from "../auth/Register/RegisterPanel";
 import AddPostPanel from "../posts/AddPostPanel";
 import EditUserPanel from "../user/EditUserPanel";
 import CookieAcceptBar from "../CookieAcceptBar";
+import AccountDeletionConfirmationPanel from "../messagePanels/AccountDeletionConfirmationPanel";
 
 const PanelsContainer = () => {
   return (
@@ -16,6 +17,7 @@ const PanelsContainer = () => {
       <AddPostPanel />
       <EditUserPanel />
       <CookieAcceptBar />
+      <AccountDeletionConfirmationPanel />
     </>
   );
 };

@@ -21,7 +21,11 @@ const useRemovePost = (postsData: postDataTypes[]) => {
     });
   };
 
-  const handleDeletePost = async (id: number, index: number) => {
+  const handleDeletePost = async (
+    id: number,
+    index: number,
+    fetchPostsUsername: string
+  ) => {
     await removePostService(id);
     console.log();
     //After post remove, post delete mode will be reset to false
@@ -30,7 +34,7 @@ const useRemovePost = (postsData: postDataTypes[]) => {
       newState[index] = !newState[index];
       return newState;
     });
-    handleFetchingPosts();
+    handleFetchingPosts(fetchPostsUsername);
   };
 
   return { deleteModeEnable, handleDeleteModeEnable, handleDeletePost };

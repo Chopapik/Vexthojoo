@@ -61,6 +61,7 @@ const PostLayout = ({
               <PostOptionsButtons
                 id={id}
                 index={index}
+                fetchPostsUsername={postData.username} //Variable is used to fetch only user's posts after post deletion
                 //post delete
                 deleteModeEnable={deleteModeEnable}
                 handleDeleteModeEnable={handleDeleteModeEnable}

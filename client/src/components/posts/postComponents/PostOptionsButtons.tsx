@@ -6,6 +6,7 @@ import noIcon from "../../../assets/icons/no.svg";
 const PostOptionsButtons = ({
   id,
   index,
+  fetchPostsUsername, //Variable is used to fetch only user's posts after post deletion
   updateModeEnable,
   //post delete
   deleteModeEnable,
@@ -18,10 +19,15 @@ const PostOptionsButtons = ({
 }: {
   id: number;
   index: number;
+  fetchPostsUsername: string;
   deleteModeEnable?: boolean;
   updateModeEnable: boolean;
   handleDeleteModeEnable: (index: number) => void;
-  handleDeletePost: (id: number, index: number) => void;
+  handleDeletePost: (
+    id: number,
+    index: number,
+    fetchPostUsername: string
+  ) => void;
   handleUpdatePost: (postIdToUpdate: number, index: number) => void;
   toggleUpdateMode: (index: number) => void;
   blockUpdate: boolean;
@@ -36,7 +42,7 @@ const PostOptionsButtons = ({
               <img
                 src={yesIcon}
                 alt="yes"
-                onClick={() => handleDeletePost(id, index)}
+                onClick={() => handleDeletePost(id, index, fetchPostsUsername)}
                 className="hover:brightness-50"
               />
             </div>

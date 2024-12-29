@@ -8,6 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { usePanelContext } from "../../context/PanelContext";
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
+import { usePostsContext } from "../../context/PostsContext";
 
 const useUpdateUserData = () => {
   const { authData, getUser } = useCookieAuthContext();
@@ -16,6 +17,7 @@ const useUpdateUserData = () => {
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [canSave, setCanSave] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
+  const { handleFetchingPosts } = usePostsContext();
 
   const [cookieUserData, setCookieUserData] = useState<cookieUserDataTypes>({
     username: authData.username,
@@ -80,10 +82,14 @@ const useUpdateUserData = () => {
         ) {
           navigate(`/${newUserData.username}`);
         }
-
         closePanel();
         getUser();
         setNewUserData({ username: null, avatar: null });
+
+        // If no new username is set, posts will be fetched using the current username
+        if (authData.username && newUserData.username === null) {
+          handleFetchingPosts(authData.username);
+        }
       }
     }
   };

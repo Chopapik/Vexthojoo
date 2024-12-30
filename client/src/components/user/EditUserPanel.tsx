@@ -80,7 +80,7 @@ const EditUserPanel = () => {
               <div className="w-full flex justify-center p-10">
                 <Button01
                   disableButton={!canSave}
-                  color="bg-fuchsia-500"
+                  color="fuchsia"
                   shadowColor="fuchsia"
                   content="zapisz"
                   onClick={handleUserDataUpdate}

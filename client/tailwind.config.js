@@ -14,7 +14,11 @@ export default {
         "xs": "400px",
       },
       boxShadow: {
-        "straight": "0px 0px 10px 0.1px"
+        "red": "0px 0px 10px 1px red",
+        "gray": "0px 0px 10px 1px gray",
+        "fuchsia": "0px 0px 10px 1px fuchsia",
+        "cyan": "0px 0px 10px 1px cyan"
+
       },
     },
   },

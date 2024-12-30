@@ -60,7 +60,7 @@ const LoginPanel = () => {
               />
             )}
             <Button01
-              color="bg-fuchsia-500"
+              color="fuchsia"
               shadowColor="fuchsia"
               content="WŁAŹ"
               onClick={handleLogin}

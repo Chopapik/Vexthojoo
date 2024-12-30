@@ -27,7 +27,7 @@ const AccountDeletionConfirmationPanel = () => {
           </div>
           <div className="flex w-full justify-center">
             <Button01
-              color="bg-red-600"
+              color="red"
               shadowColor="red"
               content="Usuń konto"
               onClick={async () => {

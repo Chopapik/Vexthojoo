@@ -36,20 +36,20 @@ const UserProfileBar = ({
           <div className="flex flex-col w-[160px] space-y-3">
             <div className="lg:mb-14 flex flex-col">
               <Button01
-                color="bg-gray-600"
+                color="gray"
                 shadowColor="gray"
                 content="Edycja profilu"
                 onClick={() => showPanel("editUserPanel")}
               />
             </div>
             <Button01
-              color="bg-gray-600"
+              color="gray"
               shadowColor="gray"
               content="Wyloguj się"
               onClick={handleLogout}
             />
             <Button01
-              color="bg-red-600"
+              color="red"
               shadowColor="red"
               content="Usuń konto"
               onClick={() => showPanel("AccountDeletionConfirmationPanel")}

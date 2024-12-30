@@ -29,9 +29,9 @@ const CookieAcceptBar = () => {
         </div>
         <div className="sm:h-full flex flex-col justify-center items-center ">
           <Button01
-            content={"Akceptuję"}
-            color={"bg-fuchsia-500"}
-            border={"fuchsia"}
+            content="Akceptuję"
+            color="fuchsia"
+            shadowColor="fuchsia"
             onClick={handleAcceptCookie}
           />
         </div>

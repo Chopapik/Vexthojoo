@@ -41,7 +41,7 @@ const AddPostPanel = () => {
                   <span>__̴ı̴̴̡̡̡ ̡͌l̡̡̡ ̡͌l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡.___</span>
                 </div>
                 <Button01
-                  color="bg-fuchsia-500"
+                  color="fuchsia"
                   shadowColor="fuchsia"
                   content="LOGOWANIE"
                   onClick={() => {
@@ -124,7 +124,7 @@ const AddPostPanel = () => {
               <div className="w-full flex justify-center mt-10">
                 <Button01
                   disableButton={blockUpload}
-                  color="bg-fuchsia-500"
+                  color="fuchsia"
                   shadowColor="fuchsia"
                   content="dodaj debilu"
                   onClick={handleAddPost}

@@ -59,13 +59,13 @@ const Header = () => {
           ) : (
             <div className="flex flex-col space-y-3 text-white xs:flex-row xs:space-y-0 xs:space-x-4 h-[90px] items-center mr-5">
               <Button01
-                color="bg-fuchsia-500"
+                color="fuchsia"
                 shadowColor="fuchsia"
                 onClick={() => showPanel("loginPanel")}
                 content="LOGOWANIE"
               />
               <Button01
-                color="bg-black"
+                color="black"
                 shadowColor="fuchsia"
                 border="border-2 border-fuchsia-600"
                 onClick={() => showPanel("registerPanel")}

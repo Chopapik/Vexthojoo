@@ -5,7 +5,7 @@ const InputCheckboxComponent = ({
   enableErrorMessage,
 }: {
   handleInputData: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  label: string;
+  label: React.ReactNode;
   error?: string;
   enableErrorMessage: boolean;
 }) => {

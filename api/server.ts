@@ -30,12 +30,14 @@ import posts from "./routers/posts";
 import auth from "./routers/auth";
 import cookieAuth from "./routers/cookieAuth";
 import user from "./routers/user";
+import chatAi from "./routers/chatAi";
 
 //routers:
 app.use("/posts", posts);
 app.use("/auth", auth);
 app.use("/cookieAuth", cookieAuth);
 app.use("/user", user);
+app.use("/chatAi", chatAi);
 
 //static from client:
 app.use(express.static(path.join(__dirname, "../client/dist")));

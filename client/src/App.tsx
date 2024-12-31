@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import UserPage from "./pages/UserPage";
 import Rules from "./pages/Rules";
 import axios from "axios";
+import AboutPage from "./pages/AboutPage";
+import AllUsersList from "./pages/AllUsersList";
 
 import { PanelProvider } from "./context/PanelContext";
 import PanelsContainer from "./components/layout/PanelsContainer";
@@ -30,6 +32,8 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/:username" element={<UserPage />} />
                   <Route path="/regulamin" element={<Rules />} />
+                  <Route path="/oStronie" element={<AboutPage />} />
+                  <Route path="/listaUzytkownikow" element={<AllUsersList />} />
                 </Routes>
                 <Footer />
               </PageContainer>

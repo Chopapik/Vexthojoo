@@ -7,6 +7,22 @@ const register = async (req: Request, res: Response) => {
 
   // "rePassword is variable that checks if user types password correctly"
 
+  const [blockedUsernames] = await db.query(
+    "SELECT usernames FROM blockedUsernames"
+  );
+
+  //Checking if username isn't block
+
+  const isUsernameBlocked = blockedUsernames.some(
+    (blockedUsername: string) => blockedUsername === username
+  );
+
+  if (isUsernameBlocked) {
+    res
+      .status(409)
+      .json({ field: "usernameError", message: "Nazwa jest już zajęta" });
+  }
+
   //Checking if username has been taken:
   const [foundUser] = await db.query(
     "SELECT username FROM users WHERE username=(?)",

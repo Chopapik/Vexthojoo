@@ -3,6 +3,7 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
 import UserPage from "./pages/UserPage";
+import Rules from "./pages/Rules";
 import axios from "axios";
 
 import { PanelProvider } from "./context/PanelContext";
@@ -28,6 +29,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/:username" element={<UserPage />} />
+                  <Route path="/regulamin" element={<Rules />} />
                 </Routes>
                 <Footer />
               </PageContainer>

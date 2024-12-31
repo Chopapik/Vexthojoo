@@ -56,7 +56,14 @@ const RegisterPanel = () => {
             </div>
             <InputCheckboxForm
               handleInputData={handleSetAcceptTerm}
-              label={"Akceptuje regulamin"}
+              label={
+                <>
+                  <span>Akceptuje </span>
+                  <a href="/regulamin" className="text-cyan-400 underline">
+                    regulamin
+                  </a>
+                </>
+              }
               error={acceptTermError}
               enableErrorMessage={true}
             />

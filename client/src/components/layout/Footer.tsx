@@ -10,21 +10,34 @@ const Footer = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const currentDate = new Date();
+
+  const currentYear = currentDate.getFullYear();
+
   return (
     <>
       {showFooter && (
-        <footer className="flex flex-col relative bottom-0 left-0 w-full text-xs bg-black items-center h-[8rem] justify-end">
+        <footer className="flex flex-col relative bottom-0 left-0 w-full text-xs bg-black items-center h-[8rem] justify-end font-poppins">
           <div className="w-3/4 flex flex-col items-center space-y-2">
             <div className="w-full flex">
               <hr className="border-1 border-neutral-700 my-2 flex-1" />
-              <div className="w-4 h-4 bg-cyan-500 flex justify-center items-center">
-                <div className="w-2 h-2 bg-black"></div>
-              </div>
-              <hr className="border-1 border-neutral-700 my-2 flex-1" />
             </div>
-            <span className="text-cyan-500">
-              <strong>Chopapik</strong> &copy; 2024
-            </span>
+            <div className="w-full flex justify-between px-1">
+              <span className="text-cyan-500">
+                <strong>Chopapik</strong> &copy; 2024 - {currentYear}
+              </span>
+              <div className="space-x-4">
+                <a href="/oStronie" className="text-white hover:brightness-50">
+                  o stronie
+                </a>
+                <a
+                  href="/listaUzytkownikow"
+                  className="text-white hover:brightness-50"
+                >
+                  lista użytkowników
+                </a>
+              </div>
+            </div>
           </div>
         </footer>
       )}

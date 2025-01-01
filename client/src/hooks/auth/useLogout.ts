@@ -1,24 +1,27 @@
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
+import logoutService from "../../services/auth/logoutService";
+import useHandleQueryError from "../useHandleQueryError";
 
 const useLogout = () => {
   const navigate = useNavigate();
 
   const { resetAuthData } = useCookieAuthContext();
 
-  const handleLogout = async () => {
-    try {
-      await axios.get("/cookieAuth/removeAuthCookie");
-      resetAuthData();
+  const { handleQueryError, queryError } = useHandleQueryError();
 
+  const handleLogout = async () => {
+    const response = await logoutService();
+
+    if (response?.error) {
+      handleQueryError(response.error);
+    } else {
+      resetAuthData();
       navigate("/");
-    } catch (error) {
-      console.error("Logout error:", error);
     }
   };
 
-  return { handleLogout };
+  return { handleLogout, queryError };
 };
 
 export default useLogout;

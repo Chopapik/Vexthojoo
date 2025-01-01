@@ -14,7 +14,7 @@ const LoginPanel = () => {
 
   const {
     handleLogin,
-    loginError,
+    queryError,
     handleSetUsername,
     handleSetPassword,
     handleSetNoLogout,
@@ -39,14 +39,14 @@ const LoginPanel = () => {
               <InputOneLineForm
                 type={"text"}
                 label={"NAZWA"}
-                error={loginError}
+                error={queryError?.message}
                 handleInputData={handleSetUsername}
                 enableErrorMessage={false}
               />
               <InputOneLineForm
                 type={"password"}
                 label={"HASŁO"}
-                error={loginError}
+                error={queryError?.message}
                 handleInputData={handleSetPassword}
                 enableErrorMessage={true}
               />

@@ -9,8 +9,9 @@ import UserProfileBarSkeleton from "../components/user/UserProfileBarSkeleton";
 
 const UserPage = () => {
   const { username } = useParams();
-  const { userData, loading, canEdit, error, errorContent } =
-    useDisplayUserData(username || "");
+  const { userData, loading, canEdit, queryError } = useDisplayUserData(
+    username || ""
+  );
 
   return (
     <>
@@ -18,7 +19,7 @@ const UserPage = () => {
         <title>Vexthojoo - {username}</title>
       </Helmet>
 
-      {!error ? (
+      {!queryError ? (
         <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0 2xl:w-[1536px] min-h-[85vh]">
           <div className="text-white flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-around sm:space-y-0 lg:flex-col lg:w-1/5 lg:min-h-[700px] lg:justify-normal lg:space-y-14">
             {loading ? (
@@ -38,11 +39,9 @@ const UserPage = () => {
       ) : (
         <div className="text-white w-full h-[50vh] mb-[30vh] flex justify-center items-center">
           <div className="flex flex-col items-center">
-            <p className="text-red-600">Błąd {errorContent.status}</p>
-            <p>Nie znaleziono użytkownika:</p>
-            <p className="text-xl font-bold italic">
-              {errorContent.notFoundUsername}
-            </p>
+            <p className="text-red-600">Błąd {queryError.status}</p>
+            <p>{queryError.message}:</p>
+            <p className="text-xl font-bold italic">{username}</p>
           </div>
         </div>
       )}

@@ -11,14 +11,12 @@ const RegisterPanel = () => {
 
   const {
     handleRegister,
-    registerError,
+    queryError,
     handleSetUsername,
     handleSetPassword,
     handleSetRePassword,
     handleSetAcceptTerm,
   } = useRegister();
-
-  const { usernameError, passwordError, acceptTermError } = registerError;
 
   return (
     <Panel
@@ -35,21 +33,33 @@ const RegisterPanel = () => {
               <InputOneLineForm
                 type={"text"}
                 label={"NAZWA"}
-                error={usernameError}
+                error={
+                  queryError?.field === "usernameError"
+                    ? queryError?.message
+                    : undefined
+                }
                 handleInputData={handleSetUsername}
                 enableErrorMessage={true}
               />
               <InputOneLineForm
                 type={"password"}
                 label={"HASŁO"}
-                error={passwordError}
+                error={
+                  queryError?.field === "passwordError"
+                    ? queryError?.message
+                    : undefined
+                }
                 handleInputData={handleSetPassword}
                 enableErrorMessage={false}
               />
               <InputOneLineForm
                 type={"password"}
                 label={"POWTÓRZ HASŁO"}
-                error={passwordError}
+                error={
+                  queryError?.field === "passwordError"
+                    ? queryError?.message
+                    : undefined
+                }
                 handleInputData={handleSetRePassword}
                 enableErrorMessage={true}
               />
@@ -64,7 +74,11 @@ const RegisterPanel = () => {
                   </a>
                 </>
               }
-              error={acceptTermError}
+              error={
+                queryError?.field === "acceptTermErr"
+                  ? queryError?.message
+                  : undefined
+              }
               enableErrorMessage={true}
             />
             <Button01

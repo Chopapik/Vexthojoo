@@ -15,7 +15,7 @@ const AddPostPanel = () => {
   const [blockUpload, setBlockUpload] = useState<boolean>(true);
 
   const [imagePreview, setImagePreview] = useState<string>("");
-  const { handlePostContentData, addPostError, handleAddPost } = useAddPost();
+  const { handlePostContentData, queryError, handleAddPost } = useAddPost();
   useEffect(() => {
     if (numberOfLetters > 510) {
       setBlockUpload(true);
@@ -118,7 +118,9 @@ const AddPostPanel = () => {
                     <span>{numberOfLetters}</span>
                     <span> / 510</span>
                   </div>
-                  <div className="absolute text-red-600">{addPostError}</div>
+                  <div className="absolute text-red-600">
+                    {queryError?.message}
+                  </div>
                 </div>
               </div>
               <div className="w-full flex justify-center mt-10">

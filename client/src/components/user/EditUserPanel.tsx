@@ -15,7 +15,7 @@ const EditUserPanel = () => {
     handleUsernameChange,
     handleAvatarPreview,
     handleUserDataUpdate,
-    error,
+    queryError,
   } = useUpdateUserData();
 
   const { visiblePanelId, closePanel } = usePanelContext();
@@ -75,7 +75,9 @@ const EditUserPanel = () => {
                 </div>
               </div>
               <div className="absolute w-full flex flex-col items-center left-0">
-                <span className="text-red-600 text-sm">{error}</span>
+                <span className="text-red-600 text-sm">
+                  {queryError?.message}
+                </span>
               </div>
               <div className="w-full flex justify-center p-10">
                 <Button01

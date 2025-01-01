@@ -1,10 +1,8 @@
 import { useState } from "react";
 import registerService from "../../services/auth/registerService";
-import {
-  registerDataTypes,
-  registerErrorTypes,
-} from "../../types/auth/registerTypes";
+import { registerDataTypes } from "../../types/auth/registerTypes";
 import { usePanelContext } from "../../context/PanelContext";
+import useHandleQueryError from "../useHandleQueryError";
 
 const useRegister = () => {
   const { closePanel } = usePanelContext();
@@ -15,6 +13,8 @@ const useRegister = () => {
     rePassword: "",
     acceptTerm: false,
   });
+
+  const { handleQueryError, queryError } = useHandleQueryError();
 
   const handleSetUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRegisterData({ ...registerData, username: e.target.value });
@@ -32,26 +32,12 @@ const useRegister = () => {
     setRegisterData({ ...registerData, acceptTerm: e.target.checked });
   };
 
-  const [registerError, setRegisterError] = useState<registerErrorTypes>({
-    usernameError: undefined,
-    passwordError: undefined,
-    acceptTermError: undefined,
-  });
   const handleRegister = async () => {
     const response = await registerService(registerData);
 
-    const updatedErrors = {
-      usernameError:
-        response?.errorField === "usernameError" ? response.errorMessage : null,
-      passwordError:
-        response?.errorField === "passwordError" ? response.errorMessage : null,
-      acceptTermError:
-        response?.errorField === "acceptTermErr" ? response.errorMessage : null,
-    };
-
-    setRegisterError(updatedErrors);
-
-    if (response?.errorField === undefined) {
+    if (response?.error) {
+      handleQueryError(response.error);
+    } else {
       closePanel();
     }
   };
@@ -60,7 +46,7 @@ const useRegister = () => {
     handleRegister,
     registerData,
     setRegisterData,
-    registerError,
+    queryError,
     handleSetUsername,
     handleSetPassword,
     handleSetRePassword,

@@ -4,7 +4,8 @@ import { usePostsContext } from "../../context/PostsContext";
 const useListPosts = () => {
   const [postOpacity, setPostOpacity] = useState<boolean[]>([]);
 
-  const { handleFetchingPosts, postsData, loading } = usePostsContext();
+  const { handleFetchingPosts, postsData, loading, queryError } =
+    usePostsContext();
 
   useEffect(() => {
     handleFetchingPosts();
@@ -23,7 +24,7 @@ const useListPosts = () => {
     });
   }, [postsData]);
 
-  return { postsData, loading, postOpacity, handleFetchingPosts };
+  return { postsData, loading, postOpacity, handleFetchingPosts, queryError };
 };
 
 export default useListPosts;

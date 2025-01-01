@@ -3,6 +3,7 @@ import fetchUserDataService from "../../services/user/fetchUserDataService";
 import { UserDataTypes } from "../../types/user/userDataTypes";
 import DateTimeFormat from "../../utils/DateTimeFormat";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
+import useHandleQueryError from "../useHandleQueryError";
 
 const useDisplayUserData = (username: string) => {
   const [userData, setUserData] = useState<UserDataTypes>({
@@ -11,16 +12,9 @@ const useDisplayUserData = (username: string) => {
     whenRegist: "",
   });
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
-  const [errorContent, setErrorContent] = useState<{
-    message?: string;
-    notFoundUsername?: string;
-    status?: number;
-  }>({
-    message: undefined,
-    notFoundUsername: undefined,
-    status: undefined,
-  });
+
+  const { handleQueryError, queryError } = useHandleQueryError();
+
   const [canEdit, setCanEdit] = useState<boolean>(false);
 
   const { authData } = useCookieAuthContext();
@@ -29,23 +23,18 @@ const useDisplayUserData = (username: string) => {
     const handleFetchUserData = async (username: string) => {
       const response = await fetchUserDataService(username);
 
-      if (response) {
-        const { fetchUserData, fetchUserError } = response;
+      if (response?.error) {
+        handleQueryError(response.error);
+        console.log(response);
+      } else if (response?.userData) {
+        const { userData } = response;
 
-        if (fetchUserError) {
-          setErrorContent(fetchUserError);
-          setError(true);
-        } else {
-          fetchUserData.whenLastLogged = DateTimeFormat(
-            fetchUserData.whenLastLogged
-          );
-          fetchUserData.whenRegist = DateTimeFormat(fetchUserData.whenRegist);
-
-          setCanEdit(fetchUserData.username === authData.username);
-          setUserData(fetchUserData);
-          setLoading(false);
-          setError(false);
-        }
+        userData.whenLastLogged = DateTimeFormat(userData.whenLastLogged);
+        userData.whenRegist = DateTimeFormat(userData.whenRegist);
+        setCanEdit(userData.username === authData.username);
+        setUserData(userData);
+        console.log(userData);
+        setLoading(false);
       }
     };
     handleFetchUserData(username);
@@ -53,7 +42,7 @@ const useDisplayUserData = (username: string) => {
 
   useEffect(() => {});
 
-  return { userData, loading, canEdit, error, errorContent };
+  return { userData, loading, canEdit, queryError };
 };
 
 export default useDisplayUserData;

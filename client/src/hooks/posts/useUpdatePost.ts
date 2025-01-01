@@ -3,6 +3,7 @@ import { postDataTypes } from "../../types/posts/postTypes";
 import { postContentToUpdateTypes } from "../../types/posts/postTypes";
 import updatePostService from "../../services/posts/updatePostService";
 import { usePostsContext } from "../../context/PostsContext";
+import useHandleQueryError from "../useHandleQueryError";
 
 const useUpdatePost = (postsData: postDataTypes[]) => {
   const { handleFetchingPosts } = usePostsContext();
@@ -13,6 +14,8 @@ const useUpdatePost = (postsData: postDataTypes[]) => {
   const [updateModeEnable, setUpdateModeEnable] = useState<boolean[]>(
     new Array(postsData.length).fill(false)
   );
+
+  const { handleQueryError, queryError } = useHandleQueryError();
 
   const toggleUpdateMode = (index: number) => {
     setUpdateModeEnable((prevState) => {
@@ -53,13 +56,21 @@ const useUpdatePost = (postsData: postDataTypes[]) => {
   ) => {
     //Sending newText,newImage useState data to service
 
-    await updatePostService(postIdToUpdate, newPostContentData);
-    await handleFetchingPosts(fetchPostsUsername);
-    setUpdateModeEnable((prevState) => {
-      const newState = [...prevState];
-      newState[index] = !newState[index];
-      return newState;
-    });
+    const response = await updatePostService(
+      postIdToUpdate,
+      newPostContentData
+    );
+
+    if (response?.error) {
+      handleQueryError(response.error);
+    } else {
+      await handleFetchingPosts(fetchPostsUsername);
+      setUpdateModeEnable((prevState) => {
+        const newState = [...prevState];
+        newState[index] = !newState[index];
+        return newState;
+      });
+    }
   };
 
   return {
@@ -67,6 +78,7 @@ const useUpdatePost = (postsData: postDataTypes[]) => {
     toggleUpdateMode,
     handleSetNewPostContentData,
     handleUpdatePost,
+    queryError,
   };
 };
 

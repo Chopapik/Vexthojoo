@@ -2,6 +2,7 @@ import { useState } from "react";
 import { postDataTypes } from "../../types/posts/postTypes";
 import removePostService from "../../services/posts/removePostService";
 import { usePostsContext } from "../../context/PostsContext";
+import useHandleQueryError from "../useHandleQueryError";
 
 const useRemovePost = (postsData: postDataTypes[]) => {
   //postsData is an array of objects, each object contains data for one post
@@ -12,6 +13,8 @@ const useRemovePost = (postsData: postDataTypes[]) => {
   );
 
   const { handleFetchingPosts } = usePostsContext();
+
+  const { handleQueryError, queryError } = useHandleQueryError();
 
   const handleDeleteModeEnable = (index: number) => {
     setDeleteModeEnable((prevState) => {
@@ -26,8 +29,12 @@ const useRemovePost = (postsData: postDataTypes[]) => {
     index: number,
     fetchPostsUsername: string
   ) => {
-    await removePostService(id);
-    console.log();
+    const response = await removePostService(id);
+
+    if (response?.error) {
+      handleQueryError(response.error);
+    }
+
     //After post remove, post delete mode will be reset to false
     setDeleteModeEnable((prevState) => {
       const newState = [...prevState];
@@ -37,7 +44,12 @@ const useRemovePost = (postsData: postDataTypes[]) => {
     handleFetchingPosts(fetchPostsUsername);
   };
 
-  return { deleteModeEnable, handleDeleteModeEnable, handleDeletePost };
+  return {
+    deleteModeEnable,
+    handleDeleteModeEnable,
+    handleDeletePost,
+    queryError,
+  };
 };
 
 export default useRemovePost;

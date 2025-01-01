@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { usePanelContext } from "../../context/PanelContext";
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
 import { usePostsContext } from "../../context/PostsContext";
+import useHandleQueryError from "../useHandleQueryError";
 
 const useUpdateUserData = () => {
   const { authData, getUser } = useCookieAuthContext();
@@ -16,7 +17,6 @@ const useUpdateUserData = () => {
   const navigate = useNavigate();
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [canSave, setCanSave] = useState<boolean>(false);
-  const [error, setError] = useState<string | undefined>(undefined);
   const { handleFetchingPosts } = usePostsContext();
 
   const [cookieUserData, setCookieUserData] = useState<cookieUserDataTypes>({
@@ -28,6 +28,8 @@ const useUpdateUserData = () => {
     username: null,
     avatar: null,
   });
+
+  const { handleQueryError, queryError } = useHandleQueryError();
 
   const handleAvatarPreview = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -71,9 +73,10 @@ const useUpdateUserData = () => {
     }
 
     const response = await updateUserDataService(newUserDataForm);
-    if (response.errorMessage) {
-      setError(response.errorMessage);
-    } else if (response.username) {
+
+    if (response?.error) {
+      handleQueryError(response.error);
+    } else if (response?.username) {
       {
         if (
           newUserData.username !== undefined &&
@@ -109,7 +112,7 @@ const useUpdateUserData = () => {
     handleUsernameChange,
     handleAvatarPreview,
     handleUserDataUpdate,
-    error,
+    queryError,
   };
 };
 

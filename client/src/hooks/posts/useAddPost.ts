@@ -3,16 +3,17 @@ import addPostService from "../../services/posts/addPostService";
 import { postContentDataTypes } from "../../types/posts/postTypes";
 import { usePanelContext } from "../../context/PanelContext";
 import { usePostsContext } from "../../context/PostsContext";
+import useHandleQueryError from "../useHandleQueryError";
 
 const useAddPost = () => {
   const { closePanel } = usePanelContext();
-
-  const [addPostError, setAddPostError] = useState<string>("");
 
   const [postContentData, setPostContentData] = useState<postContentDataTypes>({
     text: "",
     image: undefined,
   });
+
+  const { handleQueryError, queryError } = useHandleQueryError();
 
   const { handleFetchingPosts } = usePostsContext();
 
@@ -28,10 +29,10 @@ const useAddPost = () => {
   };
 
   const handleAddPost = async () => {
-    const errorMessage = await addPostService(postContentData);
+    const response = await addPostService(postContentData);
 
-    if (errorMessage) {
-      setAddPostError(errorMessage);
+    if (response?.error) {
+      handleQueryError(response.error);
     } else {
       closePanel();
       handleFetchingPosts();
@@ -39,7 +40,7 @@ const useAddPost = () => {
   };
   return {
     handlePostContentData,
-    addPostError,
+    queryError,
     handleAddPost,
   };
 };

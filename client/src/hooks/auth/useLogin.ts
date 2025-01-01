@@ -4,10 +4,13 @@ import loginService from "../../services/auth/loginService";
 import { usePanelContext } from "../../context/PanelContext";
 import { loginDataTypes } from "../../types/auth/loginTypes";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
+import useHandleQueryError from "../useHandleQueryError";
 
 const useLogin = () => {
   const { closePanel } = usePanelContext();
   const { getUser } = useCookieAuthContext();
+
+  const { queryError, handleQueryError } = useHandleQueryError();
 
   const [loginData, setLoginData] = useState<loginDataTypes>({
     username: "",
@@ -27,14 +30,12 @@ const useLogin = () => {
     setLoginData({ ...loginData, noLogout: e.target.checked });
   };
 
-  const [loginError, setLoginError] = useState<string>("");
-
   const handleLogin = async () => {
     const response = await loginService(loginData);
 
-    setLoginError(response?.errorMessage);
-
-    if (response?.errorMessage === undefined) {
+    if (response?.error) {
+      handleQueryError(response.error);
+    } else {
       closePanel();
       getUser();
     }
@@ -43,7 +44,7 @@ const useLogin = () => {
     handleLogin,
     setLoginData,
     loginData,
-    loginError,
+    queryError,
     handleSetUsername,
     handleSetPassword,
     handleSetNoLogout,

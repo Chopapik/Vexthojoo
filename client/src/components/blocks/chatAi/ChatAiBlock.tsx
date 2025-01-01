@@ -40,10 +40,10 @@ const ChatAiBlock = () => {
                       <div className="w-full flex justify-end ">
                         <div
                           className={`bg-zinc-700 py-2 px-4 rounded-3xl ${
-                            chatAiColumn.question === "" ? "hidden" : "visible"
+                            chatAiColumn?.question === "" ? "hidden" : "visible"
                           } `}
                         >
-                          <span>{chatAiColumn.question}</span>
+                          <span>{chatAiColumn?.question}</span>
                         </div>
                       </div>
                       <div className="flex space-x-3 overflow-hidden">
@@ -53,7 +53,7 @@ const ChatAiBlock = () => {
                           </div>
                         </div>
                         <div className="flex-grow">
-                          <span>{chatAiColumn.response}</span>
+                          <span>{chatAiColumn?.response}</span>
                         </div>
                       </div>
                     </div>

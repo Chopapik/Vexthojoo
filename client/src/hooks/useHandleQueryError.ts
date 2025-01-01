@@ -1,23 +1,22 @@
-import { AxiosError } from "axios";
 import { useState } from "react";
+import { ErrorType } from "../types/ErrorType";
 
 const useHandleQueryError = () => {
-  interface ErrorType {
-    status: number;
-    message: string;
-  }
-
   const [queryError, setQueryError] = useState<ErrorType | undefined>(
     undefined
   );
 
-  const handleQueryError = (error: AxiosError) => {
-    if (error.response) {
-      const errorData = error.response.data as { message: string };
-
+  const handleQueryError = (error: ErrorType) => {
+    if (error) {
       setQueryError({
-        status: error.response.status,
-        message: errorData.message,
+        status: error.status,
+        message: error.message,
+        field: error.field,
+      });
+    } else {
+      setQueryError({
+        status: undefined,
+        message: "Brak połączenia z serwerem",
       });
     }
   };

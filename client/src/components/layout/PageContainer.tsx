@@ -6,7 +6,7 @@ const PageContainer = ({ children }: { children: ReactNode }) => {
 
   return (
     <div
-      className={`bg-black min-h-screen w-full 2xl:w-[1536px] ${
+      className={`bg-black min-h-screen w-full 2xl:w-[1536px] flex flex-col ${
         !isCookieAccept && "mb-[300px] sm:mb-[100px]"
       }`}
     >

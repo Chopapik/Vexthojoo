@@ -14,7 +14,7 @@ const PostsList = ({
   displayByUser?: string;
   enableOptions: boolean;
 }) => {
-  const { loading, postsData, postOpacity } = useListPosts();
+  const { loading, postsData, postOpacity, queryError } = useListPosts();
 
   const { deleteModeEnable, handleDeletePost, handleDeleteModeEnable } =
     useRemovePost(postsData);
@@ -36,29 +36,42 @@ const PostsList = ({
     <>
       {loading ? (
         <PostSkeleton />
+      ) : queryError ? (
+        <>
+          <div className="flex flex-col items-center space-y-3">
+            <div className="flex flex-col items-center">
+              <span className="text-red-600">
+                {queryError.status ? `Błąd ${queryError.status}` : "Error"}
+              </span>
+              <span className="text-neutral-500 text-xs">
+                {queryError.message}
+              </span>
+            </div>
+
+            <span className="text-white">Nie udało się załadować postów</span>
+          </div>
+        </>
       ) : (
         <>
-          {postsData.map((postData: postDataTypes, index: number) => {
-            return (
-              <PostLayout
-                id={postData.id}
-                key={index}
-                index={index}
-                postData={postData}
-                postOpacity={postOpacity}
-                enableOptions={enableOptions}
-                //post delete
-                deleteModeEnable={deleteModeEnable[index]} //enabling delete mode for specify post, by index
-                handleDeleteModeEnable={handleDeleteModeEnable}
-                handleDeletePost={handleDeletePost}
-                //post update
-                updateModeEnable={updateModeEnable[index]} //enabling edit mode for specify post, by index
-                toggleUpdateMode={toggleUpdateMode}
-                handleSetNewPostContentData={handleSetNewPostContentData}
-                handleUpdatePost={handleUpdatePost}
-              />
-            );
-          })}
+          {postsData.map((postData: postDataTypes, index: number) => (
+            <PostLayout
+              id={postData.id}
+              key={index}
+              index={index}
+              postData={postData}
+              postOpacity={postOpacity}
+              enableOptions={enableOptions}
+              //post delete
+              deleteModeEnable={deleteModeEnable[index]} //enabling delete mode for specified post, by index
+              handleDeleteModeEnable={handleDeleteModeEnable}
+              handleDeletePost={handleDeletePost}
+              //post update
+              updateModeEnable={updateModeEnable[index]} //enabling edit mode for specified post, by index
+              toggleUpdateMode={toggleUpdateMode}
+              handleSetNewPostContentData={handleSetNewPostContentData}
+              handleUpdatePost={handleUpdatePost}
+            />
+          ))}
         </>
       )}
     </>

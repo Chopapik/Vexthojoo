@@ -42,7 +42,7 @@ const Block = ({
   return (
     <>
       <div
-        className={`w-full py-1 xs:w-3/4 md:w-3/4 lg:w-full xl:w-3/4 ${
+        className={`w-full py-1 lg:w-full xl:w-5/6 ${
           hideBlock ? "h-8" : "h-[550px]"
         } text-sm ${background} rounded-xl overflow-hidden flex flex-col justify-between transition-all ease-in-out duration-200`}
       >

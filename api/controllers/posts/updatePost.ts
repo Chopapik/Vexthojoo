@@ -17,7 +17,7 @@ const updatePost = async (req: Request, res: Response) => {
       res.end();
     }
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Błąd serwera" });
     console.log(error);
   }
 };

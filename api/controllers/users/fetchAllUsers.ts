@@ -11,7 +11,8 @@ const fetchAllUsers = async (req: Request, res: Response) => {
 
     res.status(200).json({ allUsers: allUsers[0] });
   } catch (error) {
-    res.status(500).json({ message: "Błąd wewnętrzny serwera" });
+    res.status(500).json({ message: "Błąd serwera" });
+    console.log(error);
   }
 };
 

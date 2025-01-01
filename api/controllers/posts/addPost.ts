@@ -35,9 +35,9 @@ const addPost = async (req: Request, res: Response) => {
       [text, imagePath, whenUpload, whatDevice, userid]
     );
     res.status(201).json({ message: "Post utworzony" });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: `Coś się zdupcyło: ${err}` });
+  } catch (error) {
+    res.status(500).json({ message: "Błąd serwera" });
+    console.log(error);
   }
 };
 

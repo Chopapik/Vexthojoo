@@ -17,7 +17,8 @@ const chatAiResponse = async (req: Request, res: Response) => {
 
     res.status(200).json(randResponse);
   } catch (error) {
-    res.status(500).json({ message: "Wewnętrzny bład serwera" });
+    res.status(500).json({ message: "Błąd serwera" });
+    console.log(error);
   }
 };
 

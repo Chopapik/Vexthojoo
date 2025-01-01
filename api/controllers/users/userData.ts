@@ -15,7 +15,6 @@ const userData = async (req: Request, res: Response) => {
     } else {
       res.status(404).json({
         message: "Nie znaleziono użytkowinka",
-        notFoundUsername: username,
       });
     }
   } catch (err) {

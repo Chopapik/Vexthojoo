@@ -6,32 +6,37 @@ const cookieLogin = async (req: Request, res: Response) => {
   const token = req.cookies.token;
   const secret = process.env.SECRET;
 
-  if (token) {
-    if (secret) {
-      const cookieLoginUserData = await jwt.verify(token, secret);
-      interface cookieUserData {
-        username: string;
-        userid: number;
-        avatarPath: string;
-        issueat: number;
+  try {
+    if (token) {
+      if (secret) {
+        const cookieLoginUserData = await jwt.verify(token, secret);
+        interface cookieUserData {
+          username: string;
+          userid: number;
+          avatarPath: string;
+          issueat: number;
+        }
+
+        //cookie token user data
+        const { username, userid, avatarPath, issueat } =
+          cookieLoginUserData as cookieUserData;
+
+        res.status(200).json({
+          username: username,
+          userid: userid,
+          avatarPath: avatarPath,
+          issueat: issueat,
+          message: "User authorised.",
+        });
+      } else {
+        res.status(500).json({ message: "Secret is not defined" });
       }
-
-      //cookie token user data
-      const { username, userid, avatarPath, issueat } =
-        cookieLoginUserData as cookieUserData;
-
-      res.status(200).json({
-        username: username,
-        userid: userid,
-        avatarPath: avatarPath,
-        issueat: issueat,
-        message: "User authorised.",
-      });
     } else {
-      res.status(500).json({ message: "Secret is not defined" });
+      res.status(401).json({ message: "Unauthorized: Invalid token." });
     }
-  } else {
-    res.status(401).json({ message: "Unauthorized: Invalid token." });
+  } catch (error) {
+    res.status(500).json({ message: "Błąd serwera" });
+    console.log(error);
   }
 };
 

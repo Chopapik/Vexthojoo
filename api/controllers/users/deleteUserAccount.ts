@@ -16,7 +16,8 @@ const deleteUserAccount = (req: Request, res: Response) => {
 
     res.end();
   } catch (error) {
-    console.log(`User deletion error: ${error} `);
+    res.status(500).json({ message: "Błąd serwera" });
+    console.log(error);
   }
 };
 

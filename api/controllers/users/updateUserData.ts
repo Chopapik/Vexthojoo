@@ -19,68 +19,73 @@ const updateUserData = async (req: Request, res: Response) => {
   const cookie = req.cookies.token;
   const secret = process.env.SECRET;
 
-  //Checking if new user name isn't the same as the old one, with !(foundUser.length > 0)
-  const [foundUser] = await db.query(
-    "SELECT username FROM users WHERE username=?",
-    [username]
-  );
-
-  if (cookie && secret && !(foundUser.length > 0)) {
-    const decodedToken = jwt.verify(cookie, secret) as userDataTypes;
-
-    const UserData: userDataTypes = {
-      userid: decodedToken.userid,
-      username: decodedToken.username,
-      avatarPath: decodedToken.avatarPath,
-    };
-
-    //Updating username:
-    if (username !== undefined) {
-      try {
-        await db.query("UPDATE users SET username = ? WHERE id=?", [
-          username,
-          decodedToken.userid,
-        ]);
-        UserData.username = username;
-      } catch (err) {
-        console.log("Users data update in db err");
-      }
-    }
-    // Updating avatar:
-    if (avatar !== undefined) {
-      //Avatar path with protocol://host/uploads/usersAvatars prefix
-      const avatarPath = `${protocol}://${hostName}/uploads/UsersAvatars/${avatar.filename}`;
-
-      try {
-        await db.query("UPDATE users SET avatarPath = ? WHERE id=?", [
-          avatarPath,
-          decodedToken.userid,
-        ]);
-        UserData.avatarPath = avatarPath;
-      } catch (err) {
-        console.log("Users data update in db err");
-      }
-    }
-
-    res.clearCookie("token");
-
-    //creating cookie with new values, that were set
-    const token = jwt.sign(
-      {
-        username: UserData.username,
-        userid: UserData.userid,
-        avatarPath: UserData.avatarPath,
-      },
-      secret
+  try {
+    //Checking if new user name isn't the same as the old one, with !(foundUser.length > 0)
+    const [foundUser] = await db.query(
+      "SELECT username FROM users WHERE username=?",
+      [username]
     );
 
-    res.cookie("token", token, {
-      httpOnly: true,
-    });
+    if (cookie && secret && !(foundUser.length > 0)) {
+      const decodedToken = jwt.verify(cookie, secret) as userDataTypes;
 
-    res.json({ UserData });
-  } else {
-    res.status(400).json({ message: "Nazwa jest zajęta" });
+      const UserData: userDataTypes = {
+        userid: decodedToken.userid,
+        username: decodedToken.username,
+        avatarPath: decodedToken.avatarPath,
+      };
+
+      //Updating username:
+      if (username !== undefined) {
+        try {
+          await db.query("UPDATE users SET username = ? WHERE id=?", [
+            username,
+            decodedToken.userid,
+          ]);
+          UserData.username = username;
+        } catch (err) {
+          console.log("Users data update in db err");
+        }
+      }
+      // Updating avatar:
+      if (avatar !== undefined) {
+        //Avatar path with protocol://host/uploads/usersAvatars prefix
+        const avatarPath = `${protocol}://${hostName}/uploads/UsersAvatars/${avatar.filename}`;
+
+        try {
+          await db.query("UPDATE users SET avatarPath = ? WHERE id=?", [
+            avatarPath,
+            decodedToken.userid,
+          ]);
+          UserData.avatarPath = avatarPath;
+        } catch (err) {
+          console.log("Users data update in db err");
+        }
+      }
+
+      res.clearCookie("token");
+
+      //creating cookie with new values, that were set
+      const token = jwt.sign(
+        {
+          username: UserData.username,
+          userid: UserData.userid,
+          avatarPath: UserData.avatarPath,
+        },
+        secret
+      );
+
+      res.cookie("token", token, {
+        httpOnly: true,
+      });
+
+      res.json({ UserData });
+    } else {
+      res.status(400).json({ message: "Nazwa jest zajęta" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Błąd serwera" });
+    console.log(error);
   }
 };
 

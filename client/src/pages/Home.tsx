@@ -16,8 +16,8 @@ const Home = () => {
         </Helmet>
       </div>
       {/* home div */}
-      <div className="flex flex-col space-y-5 p-3 md:flex-row md:space-y-0 w-full 2xl:w-[1536px] min-h-[80vh]">
-        <main className="w-full lg:w-1/2 2xl:w-2/3 text-neutral-300 space-y-4 flex flex-col items-center">
+      <div className="flex flex-col space-y-5 space-x-5 p-3 md:flex-row md:space-y-0 w-full min-h-[80vh]">
+        <main className="w-full md:w-2/3 text-neutral-300 space-y-4 flex flex-col items-center">
           <div className="w-3/4 border-b border-cyan-400 mb-10">
             <div
               className=" bg-neutral-900 px-5 border-l-8  border-neutral-800  py-4 font-poppins cursor-pointer hover:border-cyan-300 box-border transition-colors ease-in-out duration-300"
@@ -31,9 +31,11 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <PostsList enableOptions={false} />
+          <div className="lg:px-5 space-y-4 w-full">
+            <PostsList enableOptions={false} />
+          </div>
         </main>
-        <aside className="w-full lg:w-1/2 2xl:1/3 md:p-11 space-y-11 flex flex-col items-center">
+        <aside className="flex-1 space-y-11 flex flex-col items-center ">
           {/* block1 */}
           <a href="/thomas">
             <div className="w-full cursor-pointer flex flex-col space-y-3 items-center">
@@ -53,6 +55,7 @@ const Home = () => {
               </div>
             </div>
           </a>
+          <hr className="w-full border-neutral-700" />
           {/* block2 */}
           <ChatAiBlock />
         </aside>

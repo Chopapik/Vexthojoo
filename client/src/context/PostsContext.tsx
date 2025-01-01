@@ -1,12 +1,13 @@
 import { useContext, createContext } from "react";
 import { postDataTypes } from "../types/posts/postTypes";
-import { useState } from "react";
-import fetchPostsService from "../services/posts/fetchPostsService";
+import useFetchPost from "../hooks/posts/useFetchPost";
+import { ErrorType } from "../types/ErrorType";
 
 interface PostsContextType {
   handleFetchingPosts: (displayByUser?: string) => Promise<void>;
   postsData: postDataTypes[];
   loading: boolean;
+  queryError: ErrorType | undefined;
 }
 
 const PostsContext = createContext<PostsContextType | undefined>(undefined);
@@ -21,26 +22,13 @@ export const usePostsContext = () => {
 };
 
 export const PostsProvider = ({ children }: { children: React.ReactNode }) => {
-  const [loading, setLoading] = useState(true);
-  const [postsData, setPostsData] = useState<postDataTypes[]>([]);
-
-  const handleFetchingPosts = async (displayByUser?: string) => {
-    const posts = await fetchPostsService();
-
-    if (displayByUser) {
-      const postsByUser = posts.filter(
-        (post: postDataTypes) => post.username === displayByUser
-      );
-      setPostsData(postsByUser);
-    } else {
-      setPostsData(posts);
-    }
-
-    setLoading(false);
-  };
+  const { handleFetchingPosts, loading, postsData, queryError } =
+    useFetchPost();
 
   return (
-    <PostsContext.Provider value={{ handleFetchingPosts, postsData, loading }}>
+    <PostsContext.Provider
+      value={{ handleFetchingPosts, loading, postsData, queryError }}
+    >
       {children}
     </PostsContext.Provider>
   );

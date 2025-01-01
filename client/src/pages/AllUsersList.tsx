@@ -18,7 +18,7 @@ const AllUsersList = () => {
   }, []);
 
   return (
-    <div className="min-h-[70vh] py-14 flex flex-col items-center space-y-14">
+    <div className="flex-1 py-14 flex flex-col items-center space-y-14">
       <div>
         <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1">
           LYSTA UŻYTKOWNIKÓW

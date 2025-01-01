@@ -1,6 +1,6 @@
 const Rules = () => {
   return (
-    <div className="min-h-[40vh] md:min-h-[70vw] py-10 w-full flex flex-col items-center">
+    <div className="flex-1 md:min-h-[70vw] py-10 w-full flex flex-col items-center">
       <div className="w-3/4 space-y-6">
         <div>
           <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1">

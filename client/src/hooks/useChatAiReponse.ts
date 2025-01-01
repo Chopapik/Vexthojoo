@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import useTypingAnimation from "./useTypingAnimation";
-import axios, { AxiosError } from "axios";
 import useHandleQueryError from "./useHandleQueryError";
+import chatAiResponseService from "../services/chatAi/chatAiResponseService";
 
 const useChatAiReponse = () => {
   const [chatResponse, setChatResponse] = useState<string>(
@@ -20,18 +20,15 @@ const useChatAiReponse = () => {
   const { handleQueryError, queryError } = useHandleQueryError();
 
   const handleChatResponse = async () => {
-    try {
-      const response = await axios.get("/chatAi/chatGetResponse");
+    const response = await chatAiResponseService();
 
-      setChatResponse(response.data.response);
-      setTrigger((prev) => !prev);
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        handleQueryError(error);
-      }
+    if (response?.error) {
+      handleQueryError(response.error);
+    } else {
+      setChatResponse(response?.chatResponse);
     }
+    setTrigger((prev) => !prev);
   };
-
   const chatAiColumn = {
     question: userQuestionInput,
     response: content,

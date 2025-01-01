@@ -36,17 +36,18 @@ const PostLayout = ({
         >
           <div className="flex flex-row justify-between">
             <div className="flex flex-row space-x-2">
-              <div className="w-14 h-14 border border-neutral-600">
-                <a href={`/${postData.username}`}>
+              <a href={`/${postData.username}`}>
+                <div className="w-14 h-14 border border-neutral-600">
                   <img
                     src={
                       postData.avatarPath ? postData.avatarPath : defaultAvatar
                     }
                     alt="Avatar"
-                    className="object-cover"
+                    className="object-cover w-full h-full"
                   />
-                </a>
-              </div>
+                </div>
+              </a>
+
               <div>
                 <p className="text-sm font-bold">{postData.username}</p>
                 <p className="text-xs text-neutral-500">

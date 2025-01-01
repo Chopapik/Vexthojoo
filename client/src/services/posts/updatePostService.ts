@@ -17,9 +17,13 @@ const updatePostService = async (
     try {
       await axios.put(`posts/updatePost/${postId}`, formData);
     } catch (error) {
-      if (error instanceof AxiosError) {
-        return error.response?.data;
-      }
+      if (error instanceof AxiosError)
+        return {
+          error: {
+            status: error.response?.status,
+            message: error.response?.data.message || "Nieznany błąd serwera",
+          },
+        };
     }
   }
 };

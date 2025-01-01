@@ -5,12 +5,15 @@ import { loginDataTypes } from "../../types/auth/loginTypes";
 const loginService = async (loginData: loginDataTypes) => {
   try {
     await axios.post("/auth/login", loginData);
-  } catch (err) {
-    if (err instanceof AxiosError) {
-      if (err.response) {
-        return { errorMessage: err.response.data.message };
-      }
-    }
+    return { message: "zalogowano" };
+  } catch (error) {
+    if (error instanceof AxiosError)
+      return {
+        error: {
+          status: error.response?.status,
+          message: error.response?.data.message || "Nieznany błąd serwera",
+        },
+      };
   }
 };
 

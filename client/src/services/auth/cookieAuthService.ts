@@ -15,11 +15,13 @@ const cookieAuthService = async () => {
 
     return { userData };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      if (error.response) {
-        console.log(`Cookie login err: ${error.response.data.message}`);
-      }
-    }
+    if (error instanceof AxiosError)
+      return {
+        error: {
+          status: error.response?.status,
+          message: error.response?.data.message || "Nieznany błąd serwera",
+        },
+      };
   }
 };
 

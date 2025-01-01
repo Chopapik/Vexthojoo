@@ -2,21 +2,16 @@ import axios, { AxiosError } from "axios";
 const fetchUserDataService = async (username: string) => {
   try {
     const response = await axios(`/user/${username}`);
-    const userData = response.data.userData[0];
 
-    return { fetchUserData: userData };
+    return { userData: response.data.userData[0] };
   } catch (error) {
-    if (error instanceof AxiosError) {
-      if (error.response) {
-        return {
-          fetchUserError: {
-            message: error.response.data.message,
-            notFoundUsername: error.response.data.notFoundUsername,
-            status: error.response.status,
-          },
-        };
-      }
-    }
+    if (error instanceof AxiosError)
+      return {
+        error: {
+          status: error.response?.status,
+          message: error.response?.data.message || "Nieznany błąd serwera",
+        },
+      };
   }
 };
 

@@ -14,13 +14,14 @@ const addPostSerivce = async (postContentData: postContentDataTypes) => {
     }
 
     await axios.post("/posts/addPost", formData);
-  } catch (err) {
-    if (err instanceof AxiosError) {
-      if (err.response) {
-        const errorMessage = err.response.data.message;
-        return errorMessage;
-      }
-    }
+  } catch (error) {
+    if (error instanceof AxiosError)
+      return {
+        error: {
+          status: error.response?.status,
+          message: error.response?.data.message || "Nieznany błąd serwera",
+        },
+      };
   }
 };
 

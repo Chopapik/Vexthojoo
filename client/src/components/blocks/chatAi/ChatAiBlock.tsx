@@ -75,16 +75,24 @@ const ChatAiBlock = () => {
                       onKeyDown={(e) => {
                         if (e.key === "Enter" && inputValue !== "") {
                           handleChatResponse();
-                          const target = e.target as HTMLInputElement;
-                          setUserQuestionInput(target.value);
+                          setUserQuestionInput(inputValue);
                           setInputValue("");
                         }
                       }}
                     />
                     <div className="w-10 h-10 flex justify-center items-center ">
-                      <div className="w-8 h-8 bg-neutral-800 rounded-full flex justify-center items-center">
+                      <button
+                        className="w-8 h-8 bg-neutral-800 rounded-full flex justify-center items-center "
+                        onClick={() => {
+                          if (inputValue !== "") {
+                            handleChatResponse();
+                            setUserQuestionInput(inputValue);
+                            setInputValue("");
+                          }
+                        }}
+                      >
                         <img src={sendIcon} alt="send" className="w-4" />
-                      </div>
+                      </button>
                     </div>
                   </div>
                 </div>

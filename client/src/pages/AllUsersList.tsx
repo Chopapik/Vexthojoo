@@ -28,13 +28,15 @@ const AllUsersList = () => {
       <div className="w-full flex flex-wrap justify-center space-x-10">
         {usersData.map((userData) => (
           <div className="flex flex-col items-center">
-            <div className="w-[100px] h-[100px] border border-neutral-500">
-              <img
-                src={userData?.avatarPath || defaultAvatar}
-                alt=""
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <a href={`/${userData.username}`}>
+              <div className="w-[100px] h-[100px] border border-neutral-500">
+                <img
+                  src={userData?.avatarPath || defaultAvatar}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </a>
             <span className="text-white">{userData.username}</span>
           </div>
         ))}

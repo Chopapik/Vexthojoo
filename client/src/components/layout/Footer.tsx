@@ -17,13 +17,13 @@ const Footer = () => {
   return (
     <>
       {showFooter && (
-        <footer className="flex flex-col relative bottom-0 left-0 w-full text-xs bg-black items-center h-[8rem] justify-end font-poppins">
+        <footer className="flex flex-col relative bottom-0 left-0 w-full mb-6 text-xs bg-black items-center h-[8rem] justify-end font-poppins">
           <div className="w-3/4 flex flex-col items-center space-y-2">
             <div className="w-full flex">
               <hr className="border-1 border-neutral-700 my-2 flex-1" />
             </div>
             <div className="w-full flex justify-between px-1">
-              <span className="text-cyan-500">
+              <span className="text-customCyan-default">
                 <strong>Chopapik</strong> &copy; 2024 - {currentYear}
               </span>
               <div className="space-x-4">

@@ -1,6 +1,8 @@
+import look2 from "../assets/images/look2.png";
+
 const Rules = () => {
   return (
-    <div className="flex-1 md:min-h-[70vw] py-10 w-full flex flex-col items-center">
+    <div className="flex-1 md:min-h-[70vw] py-10 w-full flex flex-col items-center space-y-10">
       <div className="w-3/4 space-y-6">
         <div>
           <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1">
@@ -30,6 +32,7 @@ const Rules = () => {
       <span className="text-neutral-500 w-3/4 mt-14 text-center">
         Weź nie rób syfu i bedzie git xd.
       </span>
+      <img src={look2} alt="" />
     </div>
   );
 };

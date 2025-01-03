@@ -63,7 +63,7 @@ const PostContent = ({
       {imagePath ? (
         <img
           src={imagePath}
-          className="min-w-[25%] max-w-[55%] border-l border-b border-neutral-700"
+          className="min-w-full md:min-w-0 md:w-[50%] border-l border-b border-neutral-700"
         />
       ) : null}
     </>

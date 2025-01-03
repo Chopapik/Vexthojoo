@@ -18,9 +18,9 @@ const Home = () => {
       {/* home div */}
       <div className="flex flex-col space-y-5 space-x-5 p-3 md:flex-row md:space-y-0 w-full flex-1">
         <main className="w-full md:w-2/3 text-neutral-300 space-y-4 flex flex-col items-center">
-          <div className="w-3/4 border-b border-cyan-400 mb-10">
+          <div className="w-3/4 border-b border-customCyan-default mb-10">
             <div
-              className=" bg-neutral-900 px-5 border-l-8  border-neutral-800  py-4 font-poppins cursor-pointer hover:border-cyan-300 box-border transition-colors ease-in-out duration-300"
+              className=" bg-neutral-900 px-5 border-l-8  border-neutral-800  py-4 font-poppins cursor-pointer hover:border-customCyan-light box-border transition-colors ease-in-out duration-300"
               onClick={() => {
                 showPanel("addPostPanel");
               }}

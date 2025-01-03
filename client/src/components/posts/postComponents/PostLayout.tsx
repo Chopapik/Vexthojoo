@@ -29,7 +29,7 @@ const PostLayout = ({
           key={index}
           className={`w-full bg-neutral-900 p-5 space-y-4 border-l border-b border-neutral-700            
           ${deleteModeEnable && " border-red-700"}   
-          ${updateModeEnable && " border-cyan-500"}    
+          ${updateModeEnable && " border-customCyan-default"}    
           ${
             postOpacity[index] ? "opacity-100" : "opacity-0"
           } transition-all ease-linear duration-200 `}
@@ -53,7 +53,7 @@ const PostLayout = ({
                 <p className="text-xs text-neutral-500">
                   {postData.whenUpload}
                 </p>
-                <p className="text-xs text-cyan-400">
+                <p className="text-xs text-customCyan-default">
                   Uploaded from {postData.whatDevice}
                 </p>
               </div>

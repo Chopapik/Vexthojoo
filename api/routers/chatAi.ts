@@ -1,5 +1,5 @@
 import { Router } from "express";
-import chatAiResponse from "../controllers/chatAi/ChatAiResponse";
+import chatAiResponse from "../controllers/chatAi/chatAiResponse";
 
 const router = Router();
 

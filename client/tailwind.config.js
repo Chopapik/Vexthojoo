@@ -13,6 +13,13 @@ export default {
       screens: {
         "xs": "400px",
       },
+      colors: {
+        customCyan: {
+          light: "#54f9ec",
+          default: "#00d4c3",
+          dark: "#025a53"
+        }
+      },
       boxShadow: {
         "red": "0px 0px 10px 1px red",
         "gray": "0px 0px 10px 1px gray",

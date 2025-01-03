@@ -6,6 +6,10 @@ import jwt from "jsonwebtoken";
 const login = async (req: Request, res: Response) => {
   const { username, password, noLogout } = req.body;
 
+  if (username === null || username === undefined || username === "") {
+    res.status(409).json({ message: "Nie podano nazwy" });
+  }
+
   try {
     const [findUser] = await db.query("SELECT * FROM users WHERE username=?", [
       username,

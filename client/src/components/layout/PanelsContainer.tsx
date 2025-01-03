@@ -3,7 +3,7 @@
 //* or components with fixed display property
 
 import LoginPanel from "../auth/login/LoginPanel";
-import RegisterPanel from "../auth/register/registerPanel";
+import RegisterPanel from "../auth/register/RegisterPanel";
 import AddPostPanel from "../posts/AddPostPanel";
 import EditUserPanel from "../user/EditUserPanel";
 import CookieAcceptBar from "../CookieAcceptBar";

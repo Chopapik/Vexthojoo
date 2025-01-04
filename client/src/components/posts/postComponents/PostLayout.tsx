@@ -75,11 +75,11 @@ const PostLayout = ({
               />
             )}
           </div>
-          {postData.isEdited && (
+          {postData.isEdited ? (
             <div className="my-10 text-neutral-600 font-bold text-xs">
               post edytowany
             </div>
-          )}
+          ) : undefined}
           <PostContent
             id={id}
             text={postData.text}

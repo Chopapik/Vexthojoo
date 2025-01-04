@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
+import { Helmet } from "react-helmet";
 import { useCookieAcceptContext } from "../../context/CookieAcceptContext";
+import ico from "../../assets/images/ico.png";
 
 const PageContainer = ({ children }: { children: ReactNode }) => {
   const { isCookieAccept } = useCookieAcceptContext();
@@ -10,6 +12,9 @@ const PageContainer = ({ children }: { children: ReactNode }) => {
         !isCookieAccept && "mb-[300px] sm:mb-[100px]"
       }`}
     >
+      <Helmet>
+        <link rel="icon" href={ico} />
+      </Helmet>
       {children}
     </div>
   );

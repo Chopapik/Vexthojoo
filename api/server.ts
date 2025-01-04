@@ -9,9 +9,12 @@ import db from "./mysqlConnection";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
+import { queriesLimiter } from "./middleware/queriesLimiter";
 
 dotenv.config();
 const app = express();
+
+app.use(queriesLimiter);
 
 app.use(cookieParser());
 

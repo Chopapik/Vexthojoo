@@ -23,7 +23,7 @@ const ChatAiBlock = () => {
         background={"bg-neutral-800"}
         content={
           <>
-            <div className="min-h-full flex flex-col justify-between ">
+            <div className="min-h-full flex flex-col justify-between">
               <div className="w-full flex-grow ">
                 <div className="w-full flex flex-col ">
                   {queryError ? (
@@ -62,12 +62,12 @@ const ChatAiBlock = () => {
               </div>
               <div className="w-full h-10 mb-5">
                 <div className=" flex justify-center h-10 mb-4">
-                  <div className="bg-neutral-700 w-3/4 flex justify-between rounded-full text-neutral-200">
+                  <div className="bg-neutral-700 sm:w-3/4 flex justify-between rounded-full text-neutral-200">
                     <input
                       disabled={isTyping}
                       type="text"
                       placeholder="Nie no zadoj pytanie"
-                      className="bg-transparent px-4 outline-none flex-grow"
+                      className="bg-transparent px-5 outline-none flex-grow"
                       value={inputValue}
                       onChange={(e) => {
                         setInputValue(e.target.value);
@@ -80,7 +80,7 @@ const ChatAiBlock = () => {
                         }
                       }}
                     />
-                    <div className="w-10 h-10 flex justify-center items-center ">
+                    <div className="w-10 h-10 flex justify-center items-center">
                       <button
                         className="w-8 h-8 bg-neutral-800 rounded-full flex justify-center items-center "
                         onClick={() => {

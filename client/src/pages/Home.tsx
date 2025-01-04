@@ -16,8 +16,10 @@ const Home = () => {
         </Helmet>
       </div>
       {/* home div */}
-      <div className="flex flex-col space-y-5 space-x-5 p-3 md:flex-row md:space-y-0 w-full flex-1">
+      <div className="flex flex-col space-y-5 p-3 md:flex-row md:space-y-0 w-full flex-1 space-x-0 md:space-x-6">
         <main className="w-full md:w-2/3 text-neutral-300 space-y-4 flex flex-col items-center">
+          <hr className="w-full xs:w-3/4 border-neutral-700 md:w-0" />
+
           <div className="w-3/4 border-b border-customCyan-default mb-10">
             <div
               className=" bg-neutral-900 px-5 border-l-8  border-neutral-800  py-4 font-poppins cursor-pointer hover:border-customCyan-light box-border transition-colors ease-in-out duration-300"
@@ -31,11 +33,12 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="lg:px-5 space-y-4 w-full">
+          <div className="space-y-4 w-full">
             <PostsList enableOptions={false} />
           </div>
         </main>
         <aside className="flex-1 space-y-11 flex flex-col items-center ">
+          <hr className="w-full xs:w-3/4 border-neutral-700 md:w-0" />
           {/* block1 */}
           <a href="/thomas">
             <div className="w-full cursor-pointer flex flex-col space-y-3 items-center">
@@ -55,9 +58,11 @@ const Home = () => {
               </div>
             </div>
           </a>
-          <hr className="w-full border-neutral-700" />
+          <hr className="w-full xs:w-3/4 border-neutral-700 md:w-full" />
           {/* block2 */}
-          <ChatAiBlock />
+          <div className="w-full xs:w-3/4 md:w-full xl:w-4/5">
+            <ChatAiBlock />
+          </div>
         </aside>
       </div>
     </>

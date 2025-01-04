@@ -23,10 +23,11 @@ const Footer = () => {
               <hr className="border-1 border-neutral-700 my-2 flex-1" />
             </div>
             <div className="w-full flex justify-between px-1">
-              <span className="text-customCyan-default">
-                <strong>Chopapik</strong> &copy; 2024 - {currentYear}
-              </span>
-              <div className="space-x-4">
+              <div className="text-customCyan-default w-[100px] md:flex-1 ">
+                <strong>Chopapik</strong>
+                <span> &copy; 2024 - {currentYear}</span>
+              </div>
+              <div className="space-x-4 flex flex-col items-end justify-center space-y-2 md:space-y-0 md:flex-row">
                 <a href="/oStronie" className="text-white hover:brightness-50">
                   o stronie
                 </a>

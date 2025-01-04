@@ -58,7 +58,7 @@ const Header = () => {
             </a>
           </div>
         ) : (
-          <div className="flex flex-col space-y-3 text-white xs:flex-row xs:space-y-0 xs:space-x-4 h-[90px] xs:h-0 items-center mr-5">
+          <div className="flex flex-col space-y-3 text-white xs:flex-row xs:space-y-0 space-x-0 xs:space-x-4 h-[90px] xs:h-0 items-center md:mr-5">
             <Button01
               color="fuchsia"
               shadowColor="fuchsia"

@@ -38,7 +38,7 @@ const PostContent = ({
         <>
           <textarea
             defaultValue={text}
-            className="bg-neutral-800 border min-w-[50vw] px-5 py-2 border-neutral-600 outline-none"
+            className="bg-neutral-800 border w-full px-5 py-2 min-h-[200px] border-neutral-600 outline-none"
             onChange={(e) => {
               setNumberOfLetters(e.target.value.length);
               handleSetNewPostContentData({

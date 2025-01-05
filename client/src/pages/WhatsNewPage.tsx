@@ -81,6 +81,9 @@ const WhatsNewPage = () => {
           ))}
         </select>
       </div>
+      <span className="text-neutral-500 italic ">
+        Strona jest w wersji beta. Mogą wystąpić błędy.
+      </span>
     </div>
   );
 };

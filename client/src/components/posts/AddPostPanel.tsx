@@ -61,7 +61,10 @@ const AddPostPanel = () => {
                   <hr className="border-neutral-500 w-3/4" />
                 </div>
 
-                <div className="bg-neutral-700 w-full p-2">
+                <div className="relative bg-neutral-700 w-full p-2">
+                  <span className="absolute text-red-600 bottom-14 text-sm ">
+                    {queryError?.message}
+                  </span>
                   <textarea
                     className="bg-transparent w-full h-[200px] outline-none"
                     placeholder="napisz coś głupcze"
@@ -86,7 +89,6 @@ const AddPostPanel = () => {
                   >
                     <img src={imageIcon} className="w-7" alt="dodaj zdjęcie" />
                   </label>
-
                   <input
                     id="image"
                     type="file"
@@ -118,17 +120,15 @@ const AddPostPanel = () => {
                     <span>{numberOfLetters}</span>
                     <span> / 510</span>
                   </div>
-                  <div className="absolute text-red-600">
-                    {queryError?.message}
-                  </div>
                 </div>
               </div>
-              <div className="w-full flex justify-center mt-10">
+
+              <div className="relative w-full flex justify-center mt-10">
                 <Button01
                   disableButton={blockUpload}
                   color="fuchsia"
                   shadowColor="fuchsia"
-                  content="dodaj debilu"
+                  content="dodaj"
                   onClick={handleAddPost}
                 />
               </div>

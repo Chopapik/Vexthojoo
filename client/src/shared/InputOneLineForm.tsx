@@ -14,7 +14,7 @@ const InputTextComponent = ({
   enableErrorMessage: boolean;
 }) => {
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <input
         type={type}
         className={`input01 border-b-2 ${

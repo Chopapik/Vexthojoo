@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
+// import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
 import UserPage from "./pages/UserPage";
 import Rules from "./pages/Rules";
@@ -14,6 +14,7 @@ import { CookieAuthProvider } from "./context/CookieAuthContext";
 import { CookieAcceptProvider } from "./context/CookieAcceptContext";
 import PageContainer from "./components/layout/PageContainer";
 import { PostsProvider } from "./context/PostsContext";
+import WhatsNewPage from "./pages/WhatsNewPage";
 
 //api url:
 axios.defaults.baseURL =
@@ -35,8 +36,9 @@ function App() {
                   <Route path="/regulamin" element={<Rules />} />
                   <Route path="/oStronie" element={<AboutPage />} />
                   <Route path="/listaUzytkownikow" element={<AllUsersList />} />
+                  <Route path="/coNowego" element={<WhatsNewPage />} />
                 </Routes>
-                <Footer />
+                {/* <Footer /> */}
               </PageContainer>
             </PanelProvider>
           </PostsProvider>

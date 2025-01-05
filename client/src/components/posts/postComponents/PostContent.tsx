@@ -64,6 +64,7 @@ const PostContent = ({
         <img
           src={imagePath}
           className="min-w-full md:min-w-0 md:w-[50%] border-l border-b border-neutral-700"
+          loading="lazy"
         />
       ) : null}
     </>

@@ -44,6 +44,7 @@ const PostLayout = ({
                     }
                     alt="Avatar"
                     className="object-cover w-full h-full"
+                    loading="lazy"
                   />
                 </div>
               </a>

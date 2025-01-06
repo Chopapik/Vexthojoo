@@ -1,6 +1,6 @@
 import { usePanelContext } from "../context/PanelContext";
 import { Helmet } from "react-helmet";
-// import PostsList from "../components/posts/PostsList";
+import PostsList from "../components/posts/PostsList";
 import ChatAiBlock from "../components/blocks/chatAi/ChatAiBlock";
 import Footer from "../components/layout/Footer";
 
@@ -35,7 +35,7 @@ const Home = () => {
             </div>
           </div>
           <div className="space-y-4 w-full">
-            {/* <PostsList enableOptions={false} /> */}
+            <PostsList enableOptions={false} />
           </div>
         </main>
         <aside className="flex-1 space-y-11 flex flex-col items-center sm:sticky sm:top-[7.5rem] max-h-[90dvh]">

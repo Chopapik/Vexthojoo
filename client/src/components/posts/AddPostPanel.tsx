@@ -66,7 +66,7 @@ const AddPostPanel = () => {
                     {queryError?.message}
                   </span>
                   <textarea
-                    className="bg-transparent w-full h-[200px] outline-none"
+                    className="bg-transparent w-full h-[100px] outline-none"
                     placeholder="napisz coś głupcze"
                     name="text"
                     onChange={(e) => {

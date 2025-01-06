@@ -17,7 +17,7 @@ const Footer = () => {
   return (
     <>
       {showFooter && (
-        <footer className="flex flex-col absolute bottom-0 left-0 w-full mb-6 text-xs bg-black items-center font-poppins">
+        <footer className="flex flex-col bottom-0 left-0 w-full mb-6 text-xs sm:absolute bg-black items-center font-poppins">
           <div className="w-3/4 flex flex-col items-center">
             <div className="space-x-4 flex items-end justify-center space-y-2 text-neutral-400">
               <a href="/coNowego" className=" hover:brightness-50">

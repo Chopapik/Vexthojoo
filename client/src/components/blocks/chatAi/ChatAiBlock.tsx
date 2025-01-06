@@ -19,7 +19,7 @@ const ChatAiBlock = () => {
   return (
     <>
       <Block
-        name={"Morcin chat"}
+        name={"Morcin AI"}
         background={"bg-neutral-800"}
         content={
           <>

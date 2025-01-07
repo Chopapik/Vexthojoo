@@ -8,12 +8,25 @@ const register = async (req: Request, res: Response) => {
   // "rePassword is variable that checks if user types password correctly"
 
   try {
+    if (!username) {
+      res
+        .status(409)
+        .json({ field: "usernameError", message: "Nazwa nie moze być pusta" });
+      return; // Add return to stop further execution if username is empty
+    }
+
+    if (!password) {
+      res
+        .status(409)
+        .json({ field: "passwordError", message: "Hasło nie może być puste" });
+      return; // Add return to stop further execution if password is empty
+    }
+
     const [blockedUsernames] = await db.query(
       "SELECT usernames FROM blockedUsernames"
     );
 
     //Checking if username isn't block
-
     const isUsernameBlocked = blockedUsernames.some(
       (blockedUsername: string) => blockedUsername === username
     );
@@ -22,6 +35,7 @@ const register = async (req: Request, res: Response) => {
       res
         .status(409)
         .json({ field: "usernameError", message: "Nazwa jest już zajęta" });
+      return;
     }
 
     //Checking if username has been taken:
@@ -34,26 +48,30 @@ const register = async (req: Request, res: Response) => {
       res
         .status(409)
         .json({ field: "usernameError", message: "Nazwa jest już zajęta" });
+      return;
     } else if (username.length > 20) {
       res
         .status(409)
         .json({ field: "usernameError", message: "Nazwa jest za długa" });
+      return;
     } else if (password !== rePassword) {
       res
         .status(409)
         .json({ field: "passwordError", message: "Hasła się nie zgadzają" });
+      return;
     } else if (acceptTerm === false) {
       res.status(409).json({
         field: "acceptTermErr",
         message: "Musisz zakaceptować regulamin",
       });
+      return;
     } else {
       const hashedPassword = await bcrypt.hash(password, 8);
 
       const whenRegist = new Date();
 
       await db.query(
-        "INSERT INTO users (username, password,whenRegist) VALUES (?, ?, ?)",
+        "INSERT INTO users (username, password, whenRegist) VALUES (?, ?, ?)",
         [username, hashedPassword, whenRegist]
       );
 

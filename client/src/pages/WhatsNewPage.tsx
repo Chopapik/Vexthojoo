@@ -13,16 +13,17 @@ const WhatsNewPage = () => {
 
   const versions: versionType[] = [
     {
-      version: "1.1.0",
+      version: "1.1",
       image: version_1_1_0_image,
       description: [
-        "wprowadzono niewielkie poprawki w interfejsie",
+        "poprawki w interfejsie",
+        "poprawki w wyświetlaniu błedów",
         "zaktualizowano zabezpieczenia",
       ],
-      date: "05.01.2025",
+      date: "07.01.2025",
     },
     {
-      version: "1.0.0",
+      version: "1.0",
       image: version_1_0_0_image,
       description: ["tego typu", "pierwsza iteracja wersji beta aplikacji"],
       date: "31.12.2024",

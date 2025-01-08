@@ -21,44 +21,34 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="sm:sticky sm:top-0 bg-black flex flex-col items-center space-y-8 p-4 lg:flex-row lg:justify-between lg:space-y-0 ">
-      <div className="space-y-1">
-        <a href="/">
-          <img src={logo} alt="VEXTHOJOO" />
-        </a>
-        <hr className="w-3/4 border-fuchsia-500 border sm:w-[125%]" />
-      </div>
+    <div className="sticky top-0 bg-black flex flex-col items-center p-2 space-y-4 md:flex-row md:space-y-0 md:justify-between z-49">
+      <a href="/">
+        <div className="w-fit px-2 space-y-1">
+          <img src={logo} alt="VEXTHOJOO" className="w-[250px]" />
+          <hr className="w-3/4 border-fuchsia-500 border md:w-[125%]" />
+        </div>
+      </a>
       {!loading &&
         (authData.isLoggedIn ? (
-          <div>
-            <a href={`/${authData.username}`}>
-              <div className="flex space-x-3 hover:bg-neutral-900 px-6 py-3 border-black hover:border-neutral-600 border-l border-b transition-all ease-in-out duration-200">
-                <div className="flex flex-col justify-center ">
-                  <span
-                    id="loggedUserUsername"
-                    className="text-neutral-600 text-xs"
-                  >
-                    o siema
-                  </span>
-                  <span className="text-white font-bold">
-                    {authData.username}
-                  </span>
-                </div>
-
-                <div className="w-11 h-11 border border-neutral-600">
-                  <img
-                    src={
-                      authData.avatarPath ? authData.avatarPath : defaultAvatar
-                    }
-                    alt="Avatar"
-                    className="object-cover w-full h-full"
-                  />
-                </div>
+          <a href={`/${authData.username}`}>
+            <div className="w-fit flex space-x-5">
+              <div className="flex flex-col text-xs">
+                <span className="text-neutral-600">o siema</span>
+                <span className="font-bold">{authData.username}</span>
               </div>
-            </a>
-          </div>
+              <div className="w-9 h-9 border border-neutral-600">
+                <img
+                  src={
+                    authData.avatarPath ? authData.avatarPath : defaultAvatar
+                  }
+                  alt="Avatar"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </div>
+          </a>
         ) : (
-          <div className="flex flex-col space-y-3 text-white xs:flex-row xs:space-y-0 space-x-0 xs:space-x-4 h-[90px] xs:h-0 items-center md:mr-5">
+          <div className="flex space-x-4">
             <Button01
               color="fuchsia"
               shadowColor="fuchsia"
@@ -77,5 +67,27 @@ const Header = () => {
     </div>
   );
 };
+
+//  <div className="bg-red-900 w-full flex">
+//           <a href={`/${authData.username}`}>
+//             <div className="flex flex-col">
+//               <span className="text-neutral-600 text-xs">o siema</span>
+//               <span className="text-white font-bold">
+//                 {authData.username}
+//                 authData.username
+//               </span>
+//             </div>
+
+//             <div className="w-11 h-11 border border-neutral-600">
+// <img
+//   src={
+//     authData.avatarPath ? authData.avatarPath : defaultAvatar
+//   }
+//   alt="Avatar"
+//   className="object-cover w-full h-full"
+// />
+//             </div>
+//           </a>
+//         </div>
 
 export default Header;

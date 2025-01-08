@@ -10,7 +10,7 @@ const InputCheckboxComponent = ({
   enableErrorMessage: boolean;
 }) => {
   return (
-    <div className="text-xs flex flex-col items-center space-y-2">
+    <div className="text-xs flex flex-col items-center space-y-2 font-roboto">
       <div className="flex space-x-2">
         <input
           type="checkbox"

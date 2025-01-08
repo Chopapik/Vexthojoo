@@ -12,7 +12,6 @@ import { PanelProvider } from "./context/PanelContext";
 import PanelsContainer from "./components/layout/PanelsContainer";
 import { CookieAuthProvider } from "./context/CookieAuthContext";
 import { CookieAcceptProvider } from "./context/CookieAcceptContext";
-import PageContainer from "./components/layout/PageContainer";
 import { PostsProvider } from "./context/PostsContext";
 import WhatsNewPage from "./pages/WhatsNewPage";
 
@@ -28,18 +27,24 @@ function App() {
           <PostsProvider>
             <PanelProvider>
               <PanelsContainer />
-              <PageContainer>
-                <Header />
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/:username" element={<UserPage />} />
-                  <Route path="/regulamin" element={<Rules />} />
-                  <Route path="/oStronie" element={<AboutPage />} />
-                  <Route path="/listaUzytkownikow" element={<AllUsersList />} />
-                  <Route path="/coNowego" element={<WhatsNewPage />} />
-                </Routes>
-                {/* <Footer /> */}
-              </PageContainer>
+              <div className="w-full flex flex-col items-center">
+                {/* 2xl:w-[1536px] */}
+                <div className="w-full md:w-[768px] lg:w-[1024px] text-white">
+                  <Header />
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/:username" element={<UserPage />} />
+                    <Route path="/regulamin" element={<Rules />} />
+                    <Route path="/oStronie" element={<AboutPage />} />
+                    <Route
+                      path="/listaUzytkownikow"
+                      element={<AllUsersList />}
+                    />
+                    <Route path="/coNowego" element={<WhatsNewPage />} />
+                  </Routes>
+                </div>
+              </div>
+              {/* <Footer /> */}
             </PanelProvider>
           </PostsProvider>
         </CookieAuthProvider>

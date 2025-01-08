@@ -52,7 +52,7 @@ const ChatAiBlock = () => {
                             <img src={chatIcon} alt="ico" />
                           </div>
                         </div>
-                        <div className="flex-grow">
+                        <div className="flex-grow text-sm text-base md:text-xs ">
                           <span>{chatAiColumn?.response}</span>
                         </div>
                       </div>
@@ -62,7 +62,7 @@ const ChatAiBlock = () => {
               </div>
               <div className="w-full h-10 mb-5">
                 <div className=" flex justify-center h-10 mb-4">
-                  <div className="bg-neutral-700 sm:w-3/4 flex justify-between rounded-full text-neutral-200">
+                  <div className="bg-neutral-700 sm:w-4/5 text-base md:text-xs flex justify-between rounded-full text-neutral-200">
                     <input
                       disabled={isTyping}
                       type="text"
@@ -101,7 +101,6 @@ const ChatAiBlock = () => {
           </>
         }
       ></Block>
-      ;
     </>
   );
 };

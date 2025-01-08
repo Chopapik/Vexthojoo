@@ -27,7 +27,7 @@ const InputTextComponent = ({
         {label}
       </label>
       {enableErrorMessage && (
-        <span className="text-xs text-red-600 absolute right-0 top-10">
+        <span className="text-base md:text-[0.7rem] text-red-600 absolute right-0 top-10">
           {error}
         </span>
       )}

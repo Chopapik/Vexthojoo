@@ -36,7 +36,11 @@ const Button01 = ({
 
   return (
     <button
-      className={`${buttonClass} ${border} ${shadowClass} flex justify-center items-center relative z-10 italic min-w-[140px] py-[5px] px-5 text-md font-bold rounded-3xl font-poppins transition-all duration-200 
+      className={`${buttonClass} ${border} ${shadowClass} flex justify-center items-center relative z-10 italic 
+      min-w-[110px] min-h-[30px] 
+                    md:min-h-[25px] 
+                   2xl:min-h-[30px] 
+      text-xs font-bold rounded-3xl font-poppins transition-all duration-200 
         ${
           disableButton
             ? "hover:brightness-100 cursor-not-allowed"

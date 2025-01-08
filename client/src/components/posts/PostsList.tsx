@@ -38,7 +38,7 @@ const PostsList = ({
         <PostSkeleton />
       ) : queryError ? (
         <>
-          <div className="flex flex-col items-center space-y-3">
+          <div className="flex flex-col items-center ">
             <div className="flex flex-col items-center">
               <span className="text-red-600">
                 {queryError.status ? `Błąd ${queryError.status}` : "Error"}
@@ -48,7 +48,7 @@ const PostsList = ({
               </span>
             </div>
 
-            <span className="text-white">Nie udało się załadować postów</span>
+            <span>Nie udało się załadować postów</span>
           </div>
         </>
       ) : (

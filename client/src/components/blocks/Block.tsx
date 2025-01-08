@@ -43,11 +43,11 @@ const Block = ({
     <>
       <div
         className={`w-full py-1 ${
-          hideBlock ? "h-8" : "h-[550px]"
+          hideBlock ? "h-8" : "h-[500px]"
         } text-sm ${background} rounded-xl overflow-hidden flex flex-col justify-between transition-all ease-in-out duration-200`}
       >
         <div>
-          <div className="text-neutral-600 font-bold flex justify-between px-3">
+          <div className="text-neutral-600 text-xs font-bold flex justify-between px-3">
             <span>{name}</span>
             <img
               src={arrowIcon}
@@ -61,7 +61,6 @@ const Block = ({
         </div>
         <div className="h-full ">{content}</div>
       </div>
-      ;
     </>
   );
 };

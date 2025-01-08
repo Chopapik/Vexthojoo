@@ -57,15 +57,17 @@ const PostContent = ({
         </>
       ) : (
         <div className="max-w-[90%] overflow-hidden">
-          <p className="text-md">{text}</p>
+          <p className="text-sm">{text}</p>
         </div>
       )}
       {imagePath ? (
-        <img
-          src={imagePath}
-          className="min-w-full md:min-w-0 md:w-[50%] border-l border-b border-neutral-700"
-          loading="lazy"
-        />
+        <div className="w-full flex justify-center">
+          <img
+            src={imagePath}
+            className="w-[300px] md:w-4/6  border-l-4 border-b-4 border-neutral-700"
+            loading="lazy"
+          />
+        </div>
       ) : null}
     </>
   );

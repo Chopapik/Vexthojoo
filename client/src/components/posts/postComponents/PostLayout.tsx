@@ -27,7 +27,7 @@ const PostLayout = ({
       <>
         <div
           key={index}
-          className={`w-full bg-neutral-900 p-5 space-y-4 border-l border-b border-neutral-700            
+          className={`w-full bg-neutral-900 p-5 space-y-4 border-l-2 border-b-2 border-neutral-700            
           ${deleteModeEnable && " border-red-700"}   
           ${updateModeEnable && " border-customCyan-default"}    
           ${
@@ -37,7 +37,7 @@ const PostLayout = ({
           <div className="flex flex-row justify-between">
             <div className="flex flex-row space-x-2">
               <a href={`/${postData.username}`}>
-                <div className="w-14 h-14 border border-neutral-600">
+                <div className="w-12 h-12 border border-neutral-600">
                   <img
                     src={
                       postData.avatarPath ? postData.avatarPath : defaultAvatar
@@ -50,11 +50,11 @@ const PostLayout = ({
               </a>
 
               <div>
-                <p className="text-sm font-bold">{postData.username}</p>
+                <p className="text-xs font-bold">{postData.username}</p>
                 <p className="text-xs text-neutral-500">
                   {postData.whenUpload}
                 </p>
-                <p className="text-xs text-customCyan-default">
+                <p className="text-[0.6rem] text-customCyan-default">
                   Uploaded from {postData.whatDevice}
                 </p>
               </div>

@@ -14,7 +14,7 @@ const CookieAcceptBar = () => {
           <img
             src={cookieImage}
             alt="cookie"
-            className="w-[80px] sm:w-[150px]"
+            className="w-[80px] sm:w-[100px]"
           />
         </div>
         <div className=" font-poppins text-xs text-center sm:text-left space-y-2">

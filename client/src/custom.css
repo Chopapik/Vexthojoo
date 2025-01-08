@@ -32,7 +32,7 @@
   top: 0;
   font-family: poppins;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.75rem;
   z-index: 998;
   transition: all;
   transition: 0.15s ease-in-out;
@@ -40,11 +40,11 @@
 }
 
 .input01:focus + .label01 {
-  font-size: 0.8rem;
-  top: -25px;
+  font-size: 0.7rem;
+  top: -15px;
 }
 
 .input01:not(:focus):not(:placeholder-shown) + .label01 {
-  font-size: 0.8rem;
-  top: -25px;
+  font-size: 0.65rem;
+  top: -15px;
 }

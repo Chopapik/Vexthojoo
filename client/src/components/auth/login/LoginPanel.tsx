@@ -28,9 +28,9 @@ const LoginPanel = () => {
     <Panel
       content={
         <>
-          <div className="flex flex-col items-center space-y-[60px]">
+          <div className="flex flex-col items-center space-y-[50px]">
             <div className="w-full">
-              <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1">
+              <span className="text-neutral-500 font-bold font-serif italic text-xl ml-1">
                 LOGOWANIE
               </span>
               <hr className="border-neutral-500 w-3/4" />

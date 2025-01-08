@@ -25,20 +25,20 @@ const EditUserPanel = () => {
       content={
         cookieUserData && (
           <>
-            <div className="space-y-10">
+            <div className="space-y-10 font-roboto">
               <div>
-                <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1">
+                <span className="text-neutral-500 font-bold font-serif italic text-xl ml-1">
                   EDYCJA PROFILU
                 </span>
                 <hr className="border-neutral-500 w-3/4" />
               </div>
-              <div className="flex flex-col items-center space-y-11">
+              <div className="flex flex-col items-center space-y-5">
                 {/* newAvatar form */}
                 <div className="flex flex-col items-center space-y-2">
-                  <span className="text-neutral-400">Avatar</span>
+                  <span className="text-neutral-400">Zdjęcie profilu</span>
                   <label
                     htmlFor="newAvatar"
-                    className="relative w-[150px] h-[150px]"
+                    className="relative w-[120px] h-[120px]"
                   >
                     <img
                       src={
@@ -47,9 +47,9 @@ const EditUserPanel = () => {
                       className="w-full h-full border-2 border-neutral-700 hover:border-neutral-500 peer transition-all duration-50 ease-in object-cover"
                       alt="avatar preview"
                     />
-                    <div className="absolute -right-2 -bottom-2 w-9 h-9 bg-neutral-700 peer-hover:bg-neutral-500 hover:bg-neutral-500 transition-all duration-50 ease-in">
+                    <div className="absolute -right-2 -bottom-2 w-7 h-7 bg-neutral-700 peer-hover:bg-neutral-500 hover:bg-neutral-500 transition-all duration-50 ease-in">
                       <div className="w-full h-full flex justify-center items-center">
-                        <img src={editIcon} alt="" className="w-7 h-7" />
+                        <img src={editIcon} alt="" className="w-6 h-6" />
                       </div>
                       <input
                         type="file"
@@ -68,7 +68,7 @@ const EditUserPanel = () => {
                   <input
                     type="text"
                     name="newUsername"
-                    className=" bg-neutral-900 border-2 outline-none w-full text-center text-neutral-100 py-2 order-2 border-neutral-700 hover:border-neutral-500 peer transition-all duration-50 ease-in placeholder-neutral-50"
+                    className=" bg-neutral-900 border-2 outline-none w-full text-center text-neutral-100 py-1 order-2 border-neutral-700 hover:border-neutral-500 peer transition-all duration-50 ease-in placeholder-neutral-50"
                     placeholder={cookieUserData.username || ""}
                     onChange={handleUsernameChange}
                   />
@@ -79,7 +79,7 @@ const EditUserPanel = () => {
                   {queryError?.message}
                 </span>
               </div>
-              <div className="w-full flex justify-center p-10">
+              <div className="w-full flex justify-center">
                 <Button01
                   disableButton={!canSave}
                   color="fuchsia"

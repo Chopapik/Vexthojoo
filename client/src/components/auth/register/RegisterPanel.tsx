@@ -22,14 +22,14 @@ const RegisterPanel = () => {
     <Panel
       content={
         <>
-          <div className="flex flex-col items-center space-y-[60px]">
+          <div className="flex flex-col items-center space-y-[40px]">
             <div className="w-full">
-              <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1">
+              <span className="text-neutral-500 font-bold font-serif italic text-xl ml-1">
                 REJESTRACJA
               </span>
               <hr className="border-neutral-500 w-3/4" />
             </div>
-            <div className="flex flex-col space-y-11 w-3/4">
+            <div className="flex flex-col space-y-9 w-3/4">
               <InputOneLineForm
                 type={"text"}
                 label={"NAZWA"}

@@ -18,7 +18,7 @@ const Home = () => {
         <main className="w-full lg:w-2/3 flex flex-col items-center">
           <div className="md:p-3 py-4 space-y-3 w-full sm:w-[640px] md:max-w-none flex flex-col items-center">
             <div
-              className=" bg-neutral-900 px-5 border-l-8 w-3/4 border-neutral-800 py-2 font-poppins cursor-pointer hover:border-customCyan-light box-border transition-colors ease-in-out duration-300"
+              className=" bg-neutral-900 px-5 border-l-8 w-3/4 border-neutral-800 py-3 font-poppins cursor-pointer hover:border-customCyan-light box-border transition-colors ease-in-out duration-300"
               onClick={() => {
                 showPanel("addPostPanel");
               }}

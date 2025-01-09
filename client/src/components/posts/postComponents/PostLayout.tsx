@@ -49,9 +49,9 @@ const PostLayout = ({
                 </div>
               </a>
 
-              <div className="flex flex-col">
-                <p className="text-xs font-bold">{postData.username}</p>
-                <p className="text-neutral-500 text-[0.6rem] font-bold">
+              <div className="flex flex-col font-bold">
+                <p className="text-xs ">{postData.username}</p>
+                <p className="text-neutral-500 text-[0.6rem]">
                   {postData.whenUpload}
                 </p>
                 <p className="text-neutral-700 text-[0.5rem] leading-none">

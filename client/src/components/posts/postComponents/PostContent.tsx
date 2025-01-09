@@ -38,7 +38,7 @@ const PostContent = ({
         <>
           <textarea
             defaultValue={text}
-            className="bg-neutral-800 border w-full px-5 py-2 min-h-[200px] border-neutral-600 outline-none"
+            className="border-l-2 border-b-2 border-neutral-800  w-full px-5 py-2 min-h-[200px] outline-none"
             onChange={(e) => {
               setNumberOfLetters(e.target.value.length);
               handleSetNewPostContentData({
@@ -64,7 +64,7 @@ const PostContent = ({
         <div className="w-full flex justify-center">
           <img
             src={imagePath}
-            className="w-[300px] md:w-4/6  border-l-4 border-b-4 border-neutral-700"
+            className="w-[300px] md:w-4/6 border-l-2 border-b-2 border-neutral-700"
             loading="lazy"
           />
         </div>

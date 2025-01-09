@@ -27,17 +27,17 @@ const PostLayout = ({
       <>
         <div
           key={index}
-          className={`w-full bg-neutral-900 p-5 space-y-4 border-l-2 border-b-2 border-neutral-800       
+          className={`w-full bg-neutral-900 p-5 space-y-2 border-l-2 border-b-2 border-neutral-800 font-roboto 
           ${deleteModeEnable && " border-red-700"}   
           ${updateModeEnable && " border-customCyan-default"}    
           ${
             postOpacity[index] ? "opacity-100" : "opacity-0"
           } transition-all ease-linear duration-200 `}
         >
-          <div className="flex flex-row justify-between">
-            <div className="flex flex-row space-x-2">
+          <div className="flex flex-row">
+            <div className="flex space-x-2">
               <a href={`/${postData.username}`}>
-                <div className="w-10 h-10 border-l border-b border-neutral-800">
+                <div className="w-10 h-10 border border-neutral-700">
                   <img
                     src={
                       postData.avatarPath ? postData.avatarPath : defaultAvatar
@@ -49,12 +49,12 @@ const PostLayout = ({
                 </div>
               </a>
 
-              <div>
+              <div className="flex flex-col">
                 <p className="text-xs font-bold">{postData.username}</p>
-                <p className="text-xs text-neutral-500">
+                <p className="text-neutral-500 text-[0.6rem] font-bold">
                   {postData.whenUpload}
                 </p>
-                <p className="text-[0.6rem] text-customCyan-default">
+                <p className="text-neutral-700 text-[0.5rem] leading-none">
                   Uploaded from {postData.whatDevice}
                 </p>
               </div>
@@ -76,6 +76,8 @@ const PostLayout = ({
               />
             )}
           </div>
+          <hr className="w-1/2 border-neutral-700" />
+
           {postData.isEdited ? (
             <div className="my-10 text-neutral-600 font-bold text-xs">
               post edytowany

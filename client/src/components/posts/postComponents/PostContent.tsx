@@ -33,7 +33,7 @@ const PostContent = ({
   }, [numberOfLetters]);
 
   return (
-    <>
+    <div className="p-2 space-y-4">
       {updateModeEnable ? (
         <>
           <textarea
@@ -64,12 +64,12 @@ const PostContent = ({
         <div className="w-full flex justify-center">
           <img
             src={imagePath}
-            className="w-[300px] md:w-4/6 border-l-2 border-b-2 border-neutral-700"
+            className="w-[300px] md:w-4/6 border border-neutral-700"
             loading="lazy"
           />
         </div>
       ) : null}
-    </>
+    </div>
   );
 };
 export default PostContent;

@@ -1,19 +1,17 @@
 import axios, { AxiosError } from "axios";
+import handleResponseErrors from "../../utils/handleResponseErrors";
 
 const chatAiResponseService = async () => {
   try {
     const response = await axios.get("/chatAi/chatGetResponse");
 
     return { chatResponse: response.data.response };
-  } catch (error) {
-    if (error instanceof AxiosError)
-      return {
-        error: {
-          status: error.response?.status,
-          message: error.response?.data.message || "Nieznany błąd serwera",
-          field: error.response?.data.field,
-        },
-      };
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      const error = handleResponseErrors(err);
+      console.log(error);
+      return { error: error };
+    }
   }
 };
 

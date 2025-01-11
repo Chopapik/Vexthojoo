@@ -1,17 +1,16 @@
 import axios, { AxiosError } from "axios";
+import handleResponseErrors from "../../utils/handleResponseErrors";
 const fetchUserDataService = async (username: string) => {
   try {
     const response = await axios(`/user/${username}`);
 
     return { userData: response.data.userData[0] };
-  } catch (error) {
-    if (error instanceof AxiosError)
-      return {
-        error: {
-          status: error.response?.status,
-          message: error.response?.data.message || "Nieznany błąd serwera",
-        },
-      };
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      const error = handleResponseErrors(err);
+      console.log(error);
+      return { error: error };
+    }
   }
 };
 

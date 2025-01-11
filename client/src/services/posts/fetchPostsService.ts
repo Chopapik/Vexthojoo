@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import DateTimeFormat from "../../utils/DateTimeFormat";
+import handleResponseErrors from "../../utils/handleResponseErrors";
 
 const fetchPostsService = async () => {
   try {
@@ -12,15 +13,13 @@ const fetchPostsService = async () => {
     });
 
     return { posts: posts };
-  } catch (error) {
-    if (error instanceof AxiosError)
-      return {
-        error: {
-          status: error.response?.status,
-          message:
-            error.response?.data.message || ("Nieznany błąd serwera" as string),
-        },
-      };
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      const error = handleResponseErrors(err);
+      console.log(error);
+      return { error: error };
+    }
   }
 };
+
 export default fetchPostsService;

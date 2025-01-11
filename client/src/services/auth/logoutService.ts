@@ -1,19 +1,17 @@
 import axios from "axios";
 import { AxiosError } from "axios";
+import handleResponseErrors from "../../utils/handleResponseErrors";
 
 const logoutService = async () => {
   try {
     await axios.get("/cookieAuth/removeAuthCookie");
     return { message: "zalogowano" };
-  } catch (error) {
-    if (error instanceof AxiosError)
-      return {
-        error: {
-          status: error.response?.status,
-          message: error.response?.data.message || "Nieznany błąd serwera",
-        },
-      };
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      const error = handleResponseErrors(err);
+      console.log(error);
+      return { error: error };
+    }
   }
 };
-
 export default logoutService;

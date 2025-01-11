@@ -1,4 +1,5 @@
 import { postContentToUpdateTypes } from "../../types/posts/postTypes";
+import handleResponseErrors from "../../utils/handleResponseErrors";
 
 import axios, { AxiosError } from "axios";
 
@@ -16,16 +17,13 @@ const updatePostService = async (
   if (!(!newText && !newImage)) {
     try {
       await axios.put(`posts/updatePost/${postId}`, formData);
-    } catch (error) {
-      if (error instanceof AxiosError)
-        return {
-          error: {
-            status: error.response?.status,
-            message: error.response?.data.message || "Nieznany błąd serwera",
-          },
-        };
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        const error = handleResponseErrors(err);
+        console.log(error);
+        return { error: error };
+      }
     }
   }
 };
-
 export default updatePostService;

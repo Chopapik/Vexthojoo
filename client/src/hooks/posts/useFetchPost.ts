@@ -1,6 +1,6 @@
 import { useState } from "react";
 import fetchPostsService from "../../services/posts/fetchPostsService";
-import useHandleQueryError from "../../hooks/useHandleQueryError";
+import useHandleQueryError from "../useHandleQueryError";
 import { postDataTypes } from "../../types/posts/postTypes";
 
 const useFetchPost = () => {

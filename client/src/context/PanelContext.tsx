@@ -2,11 +2,12 @@ import { useState, createContext, ReactNode, useContext } from "react";
 
 interface PanelContextTypes {
   visiblePanelId: string | null;
-  showPanel: (panelId: string) => void;
+  dynamicPanelContent: ReactNode | undefined;
+  showPanel: (panelId: string, dynamicPanelContent?: ReactNode) => void;
   closePanel: () => void;
 }
 
-interface PanelProvidertypes {
+interface PanelProviderTypes {
   children: ReactNode;
 }
 
@@ -22,11 +23,15 @@ export const usePanelContext = () => {
   return context;
 };
 
-export const PanelProvider = ({ children }: PanelProvidertypes) => {
+export const PanelProvider = ({ children }: PanelProviderTypes) => {
   const [visiblePanelId, setVisiblePanelId] = useState<string | null>(null);
+  const [dynamicPanelContent, setDynamicPanelContent] = useState<
+    ReactNode | undefined
+  >(undefined);
 
-  const showPanel = (panelId: string) => {
+  const showPanel = (panelId: string, dynamicPanelContent?: ReactNode) => {
     setVisiblePanelId(panelId);
+    setDynamicPanelContent(dynamicPanelContent);
   };
 
   const closePanel = () => {
@@ -34,7 +39,9 @@ export const PanelProvider = ({ children }: PanelProvidertypes) => {
   };
 
   return (
-    <PanelContext.Provider value={{ visiblePanelId, showPanel, closePanel }}>
+    <PanelContext.Provider
+      value={{ visiblePanelId, showPanel, closePanel, dynamicPanelContent }}
+    >
       {children}
     </PanelContext.Provider>
   );

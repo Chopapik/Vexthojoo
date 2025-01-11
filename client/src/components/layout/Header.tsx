@@ -3,7 +3,7 @@ import { usePanelContext } from "../../context/PanelContext";
 import Button01 from "../buttons/Button01";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
 
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logo_beta.png";
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
 const Header = () => {
   const [loading, setLoading] = useState(true);

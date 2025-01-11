@@ -17,10 +17,9 @@ const userData = async (req: Request, res: Response) => {
         message: "Nie znaleziono użytkowinka",
       });
     }
-  } catch (err) {
-    res.status(500).json({
-      message: "Błąd połaczenia z serwerem",
-    });
+  } catch (error) {
+    const errorMessage = (error as Error).message;
+    res.status(500).json({ message: errorMessage });
   }
 };
 

@@ -43,8 +43,10 @@ const updateUserData = async (req: Request, res: Response) => {
             decodedToken.userid,
           ]);
           UserData.username = username;
-        } catch (err) {
-          console.log("Users data update in db err");
+        } catch (error) {
+          const errorMessage = (error as Error).message;
+          res.status(500).json({ message: errorMessage, type: "critical" });
+          return;
         }
       }
       // Updating avatar:
@@ -58,8 +60,10 @@ const updateUserData = async (req: Request, res: Response) => {
             decodedToken.userid,
           ]);
           UserData.avatarPath = avatarPath;
-        } catch (err) {
-          console.log("Users data update in db err");
+        } catch (error) {
+          const errorMessage = (error as Error).message;
+          res.status(500).json({ message: errorMessage, type: "critical" });
+          return;
         }
       }
 
@@ -84,8 +88,9 @@ const updateUserData = async (req: Request, res: Response) => {
       res.status(400).json({ message: "Nazwa jest zajęta" });
     }
   } catch (error) {
-    res.status(500).json({ message: "Błąd serwera" });
-    console.log(error);
+    const errorMessage = (error as Error).message;
+    res.status(500).json({ message: errorMessage });
+    return;
   }
 };
 

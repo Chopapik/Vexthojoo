@@ -9,11 +9,9 @@ const fetchPosts = async (req: Request, res: Response) => {
     );
 
     res.status(200).json(posts);
-    res.end();
   } catch (error) {
-    res.status(500).json({ message: "Błąd serwera" });
-    res.end();
-    console.log(error);
+    const errorMessage = (error as Error).message;
+    res.status(500).json({ message: errorMessage });
   }
 };
 

@@ -79,8 +79,8 @@ const register = async (req: Request, res: Response) => {
       console.log(`User created: ${username}`);
     }
   } catch (error) {
-    res.status(500).json({ message: "Błąd serwera" });
-    console.log(error);
+    const errorMessage = (error as Error).message;
+    res.status(500).json({ message: errorMessage });
   }
 };
 

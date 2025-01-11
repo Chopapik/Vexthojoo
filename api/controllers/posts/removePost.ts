@@ -8,8 +8,8 @@ export const removePost = async (req: Request, res: Response) => {
     await db.query("DELETE FROM posts WHERE id=?", [postid]);
     res.json({ message: `Usunięto post od id: ${postid}` });
   } catch (error) {
-    res.status(500).json({ message: "Błąd serwera" });
-    console.log(error);
+    const errorMessage = (error as Error).message;
+    res.status(500).json({ message: errorMessage });
   }
 };
 

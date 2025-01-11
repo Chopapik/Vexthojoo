@@ -8,10 +8,12 @@ import AddPostPanel from "../posts/AddPostPanel";
 import EditUserPanel from "../user/EditUserPanel";
 import CookieAcceptBar from "../CookieAcceptBar";
 import AccountDeletionConfirmationPanel from "../messagePanels/AccountDeletionConfirmationPanel";
+import FatalErrorPanel from "../messagePanels/FatalErrorPanel";
 
 const PanelsContainer = () => {
   return (
     <>
+      <FatalErrorPanel />
       <RegisterPanel />
       <LoginPanel />
       <AddPostPanel />

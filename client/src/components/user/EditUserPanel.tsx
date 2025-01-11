@@ -18,7 +18,7 @@ const EditUserPanel = () => {
     queryError,
   } = useUpdateUserData();
 
-  const { visiblePanelId, closePanel } = usePanelContext();
+  const { visiblePanelId } = usePanelContext();
   const { authData } = useCookieAuthContext();
   return (
     <Panel
@@ -92,7 +92,6 @@ const EditUserPanel = () => {
           </>
         )
       }
-      closePanelFunction={closePanel}
       isVisible={visiblePanelId === "editUserPanel"}
     ></Panel>
   );

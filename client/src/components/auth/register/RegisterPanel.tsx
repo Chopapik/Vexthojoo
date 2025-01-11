@@ -7,7 +7,7 @@ import InputOneLineForm from "../../../shared/InputOneLineForm";
 import InputCheckboxForm from "../../../shared/InputCheckboxForm";
 
 const RegisterPanel = () => {
-  const { visiblePanelId, closePanel } = usePanelContext();
+  const { visiblePanelId } = usePanelContext();
 
   const {
     handleRegister,
@@ -91,7 +91,6 @@ const RegisterPanel = () => {
         </>
       }
       isVisible={visiblePanelId === "registerPanel"}
-      closePanelFunction={closePanel}
     />
   );
 };

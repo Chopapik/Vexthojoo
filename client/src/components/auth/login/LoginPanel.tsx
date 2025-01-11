@@ -8,7 +8,7 @@ import InputCheckboxForm from "../../../shared/InputCheckboxForm";
 import { useCookieAcceptContext } from "../../../context/CookieAcceptContext";
 
 const LoginPanel = () => {
-  const { visiblePanelId, closePanel } = usePanelContext();
+  const { visiblePanelId } = usePanelContext();
 
   const { isCookieAccept } = useCookieAcceptContext();
 
@@ -69,7 +69,6 @@ const LoginPanel = () => {
         </>
       }
       isVisible={visiblePanelId === "loginPanel"}
-      closePanelFunction={closePanel}
     />
   );
 };

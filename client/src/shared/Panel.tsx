@@ -1,14 +1,15 @@
 import closeIcon from "../assets/icons/close.svg";
+import { usePanelContext } from "../context/PanelContext";
 
 const Panel = ({
   content,
   isVisible,
-  closePanelFunction,
 }: {
   content: React.ReactNode;
   isVisible: boolean;
-  closePanelFunction: () => void;
 }) => {
+  const { closePanel } = usePanelContext();
+
   return (
     <>
       {isVisible && (
@@ -19,7 +20,7 @@ const Panel = ({
               <div className="absolute flex justify-end bg-neutral-600 top-1 right-1 transition-all ease-in duration-2">
                 <button
                   className="bg-red-950 w-4 h-4 hover:bg-red-500 transition-all ease-in duration-25"
-                  onClick={closePanelFunction}
+                  onClick={closePanel}
                 >
                   <img src={closeIcon} />
                 </button>

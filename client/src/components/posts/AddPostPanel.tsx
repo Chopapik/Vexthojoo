@@ -28,7 +28,6 @@ const AddPostPanel = () => {
 
   return (
     <Panel
-      closePanelFunction={closePanel}
       isVisible={visiblePanelId === "addPostPanel"}
       content={
         <>

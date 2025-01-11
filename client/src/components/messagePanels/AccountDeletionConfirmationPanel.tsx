@@ -5,7 +5,7 @@ import Button01 from "../buttons/Button01";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
 
 const AccountDeletionConfirmationPanel = () => {
-  const { visiblePanelId, closePanel } = usePanelContext();
+  const { visiblePanelId } = usePanelContext();
   const { deleteUserAccount } = useDeleteUserAccount();
   const { authData } = useCookieAuthContext();
 
@@ -38,7 +38,6 @@ const AccountDeletionConfirmationPanel = () => {
         </>
       }
       isVisible={visiblePanelId === "AccountDeletionConfirmationPanel"}
-      closePanelFunction={closePanel}
     />
   );
 };

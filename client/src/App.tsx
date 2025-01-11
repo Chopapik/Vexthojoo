@@ -14,7 +14,6 @@ import { CookieAuthProvider } from "./context/CookieAuthContext";
 import { CookieAcceptProvider } from "./context/CookieAcceptContext";
 import { PostsProvider } from "./context/PostsContext";
 import WhatsNewPage from "./pages/WhatsNewPage";
-
 //api url:
 axios.defaults.baseURL =
   import.meta.env.VITE_API_URL || "http://localhost:3000";
@@ -22,10 +21,10 @@ axios.defaults.baseURL =
 function App() {
   return (
     <Router>
-      <CookieAcceptProvider>
-        <CookieAuthProvider>
-          <PostsProvider>
-            <PanelProvider>
+      <PanelProvider>
+        <CookieAcceptProvider>
+          <CookieAuthProvider>
+            <PostsProvider>
               <PanelsContainer />
               <div className="w-full flex flex-col items-center">
                 {/* 2xl:w-[1536px] */}
@@ -45,10 +44,10 @@ function App() {
                 </div>
               </div>
               {/* <Footer /> */}
-            </PanelProvider>
-          </PostsProvider>
-        </CookieAuthProvider>
-      </CookieAcceptProvider>
+            </PostsProvider>
+          </CookieAuthProvider>
+        </CookieAcceptProvider>
+      </PanelProvider>
     </Router>
   );
 }

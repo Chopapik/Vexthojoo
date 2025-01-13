@@ -37,22 +37,16 @@ const PostsList = ({
       {loading ? (
         <PostSkeleton />
       ) : queryError ? (
-        <>
-          <div className="flex flex-col items-center ">
-            <div className="flex flex-col items-center">
-              <span className="text-red-600">
-                {queryError.status ? `Błąd ${queryError.status}` : "Error"}
-              </span>
-              <span className="text-neutral-500 text-xs">
-                {queryError.message}
-              </span>
-            </div>
+        <div className="flex flex-col items-center">
+          <span className="text-red-600">
+            {queryError.status ? `Błąd ${queryError.status}` : "Error"}
+          </span>
+          <span className="text-neutral-500 text-xs">{queryError.message}</span>
 
-            <span>Nie udało się załadować postów</span>
-          </div>
-        </>
+          <span>Nie udało się załadować postów</span>
+        </div>
       ) : (
-        <>
+        <div className="w-full space-y-3">
           {postsData.map((postData: postDataTypes, index: number) => (
             <PostLayout
               id={postData.id}
@@ -72,7 +66,7 @@ const PostsList = ({
               handleUpdatePost={handleUpdatePost}
             />
           ))}
-        </>
+        </div>
       )}
     </>
   );

@@ -20,15 +20,15 @@ const UserPage = () => {
       </Helmet>
 
       {!queryError ? (
-        <div className="flex flex-col space-y-5 p-3 lg:flex-row lg:space-y-0 2xl:w-[1536px] flex-1">
-          <div className="xl:sticky xl:top-[7.1rem] max-h-[90dvh] text-white flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-around sm:space-y-0 lg:flex-col lg:w-1/5 lg:min-h-[700px] lg:justify-normal lg:space-y-14">
+        <div className="relative space-x-5 flex flex-col p-3 lg:flex-row lg:space-y-0 2xl:w-[1536px] flex-1">
+          <div className="w-full lg:w-1/6">
             {loading ? (
               <UserProfileBarSkeleton />
             ) : (
               <UserProfileBar userData={userData} canEdit={canEdit} />
             )}
           </div>
-          <div className="w-full 2xl:w-5/6 md:p-11 space-y-5 text-white">
+          <div className="w-full lg:w-5/6 ">
             {loading ? (
               <PostSkeleton />
             ) : (
@@ -50,3 +50,7 @@ const UserPage = () => {
 };
 
 export default UserPage;
+
+// <div className="lg:sticky lg:top-[4rem] lg:max-h-[92dvh]  text-white flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-around sm:space-y-0 lg:flex-col lg:w-1/6  lg:min-h-[700px] lg:justify-normal  border-l-2 border-b-2 border-neutral-800 lg:space-y-14"></div>
+
+// <div className="w-5/6 bg-red-900 md:ml-6 md:mt-0 mt-6 space-y-5 text-white">

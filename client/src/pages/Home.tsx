@@ -14,7 +14,7 @@ const Home = () => {
       <Helmet>
         <title>Vexthojoo - strona główna</title>
       </Helmet>
-      <div className="w-full flex flex-col items-center lg:flex-row lg:items-start">
+      <div className="w-full flex space-x-5 flex-col items-center lg:flex-row lg:items-start">
         <main className="w-full lg:w-2/3 flex flex-col items-center">
           <div className="md:p-3 py-4 space-y-3 w-full sm:w-[640px] md:max-w-none flex flex-col items-center">
             <div

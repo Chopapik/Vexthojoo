@@ -20,7 +20,7 @@ const UserPage = () => {
       </Helmet>
 
       {!queryError ? (
-        <div className="relative space-x-5 flex flex-col px-3 lg:flex-row lg:space-y-0 2xl:w-[1536px] flex-1">
+        <div className="relative space-x-0 lg:space-x-5 space-y-5 flex flex-col lg:px-3 lg:flex-row lg:space-y-0 2xl:w-[1536px] flex-1">
           <div className="w-full lg:w-1/6">
             {loading ? (
               <UserProfileBarSkeleton />

@@ -16,7 +16,7 @@ const UserProfileBar = ({
   const { handleLogout } = useLogout();
 
   return (
-    <div className="bg-neutral-900 border-l-2 border-b-2 border-neutral-800 h-[93vh] flex flex-col py-3">
+    <div className="bg-neutral-900 customBorderNeutral h-[93vh] flex flex-col py-3">
       <div className="flex flex-col items-center space-y-7">
         <span
           id="username"

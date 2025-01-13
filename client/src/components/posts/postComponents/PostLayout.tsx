@@ -27,7 +27,7 @@ const PostLayout = ({
       <>
         <div
           key={index}
-          className={`w-full bg-neutral-900 p-5 space-y-2 border-l-2 border-b-2 border-neutral-800 font-roboto 
+          className={`w-full bg-neutral-900 p-5 space-y-2 font-roboto customBorderNeutral
           ${deleteModeEnable && " border-red-700"}   
           ${updateModeEnable && " border-customCyan-default"}    
           ${

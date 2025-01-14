@@ -6,13 +6,19 @@ import addPost from "../controllers/posts/addPost";
 import removePost from "../controllers/posts/removePost";
 import updatePost from "../controllers/posts/updatePost";
 import { addPostsLimiter } from "../middleware/queriesLimiter";
-
-const upload = multer({
-  dest: "./uploads/postsImages",
-});
+import handleImageUpload from "../middleware/handleImageUpload";
 
 router.get("/printAllPosts", fetchPosts);
-router.post("/addPost", addPostsLimiter, upload.single("image"), addPost);
+router.post(
+  "/addPost",
+  addPostsLimiter,
+  handleImageUpload({ fileBodyName: "image", dest: "./uploads/postsImages" }),
+  addPost
+);
 router.delete("/removePost/:postid", removePost);
-router.put("/updatePost/:postId", upload.single("image"), updatePost);
+router.put(
+  "/updatePost/:postId",
+  handleImageUpload({ fileBodyName: "image", dest: "./uploads/postsImages" }),
+  updatePost
+);
 export default router;

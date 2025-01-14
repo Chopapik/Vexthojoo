@@ -73,11 +73,11 @@ const EditUserPanel = () => {
                     onChange={handleUsernameChange}
                   />
                 </div>
-              </div>
-              <div className="absolute w-full flex flex-col items-center left-0">
-                <span className="text-red-600 text-sm">
-                  {queryError?.message}
-                </span>
+                <div className="absolute w-full flex flex-col items-center bottom-20 ">
+                  <span className="text-red-600 text-xs">
+                    {queryError?.message}
+                  </span>
+                </div>
               </div>
               <div className="w-full flex justify-center">
                 <Button01

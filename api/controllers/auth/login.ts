@@ -9,7 +9,7 @@ const login = async (req: Request, res: Response) => {
   console.log(username);
 
   try {
-    if (!username) {
+    if (!username || username.trim().length === 0) {
       res.status(409).json({ message: "Nie podano nazwy" });
     } else {
       const [findUser] = await db.query(

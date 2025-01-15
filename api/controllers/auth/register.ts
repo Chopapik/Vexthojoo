@@ -8,7 +8,7 @@ const register = async (req: Request, res: Response) => {
   // "rePassword is variable that checks if user types password correctly"
 
   try {
-    if (!username) {
+    if (!username || username.trim().length === 0) {
       res
         .status(409)
         .json({ field: "usernameError", message: "Nazwa nie moze być pusta" });

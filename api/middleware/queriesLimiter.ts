@@ -1,8 +1,13 @@
 import rateLimit from "express-rate-limit";
 import { Request, Response, NextFunction } from "express";
 
+const timeForQueriesBlock = parseInt(
+  process.env.TIME_FOR_QUERIES_BLOCK || "15000",
+  10
+);
+
 export const queriesLimiter = rateLimit({
-  windowMs: 60 * 2000, //block user's queries for minute
+  windowMs: timeForQueriesBlock,
   max: 30, //max 30 POST queries per minute
   keyGenerator: (req: Request) => {
     const ipv4 = req?.ip?.split(":").pop();
@@ -20,7 +25,7 @@ export const queriesLimiter = rateLimit({
 });
 
 export const addPostsLimiter = rateLimit({
-  windowMs: 60 * 5000, //block user's queries for minute
+  windowMs: timeForQueriesBlock,
   max: 2, //max 30 POST queries per minute
   keyGenerator: (req: Request) => {
     const ipv4 = req?.ip?.split(":").pop();

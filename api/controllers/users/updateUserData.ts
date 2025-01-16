@@ -19,6 +19,18 @@ const updateUserData = async (req: Request, res: Response) => {
   const cookie = req.cookies.token;
   const secret = process.env.SECRET;
 
+  if (username.includes(" ")) {
+    res.status(409).json({
+      message: "Nazwa nie moze zawierać spacji",
+    });
+    return;
+  }
+
+  if (!username || username.trim().length === 0) {
+    res.status(409).json({ message: "Nazwa nie moze być pusta" });
+    return;
+  }
+
   try {
     //Checking if new user name isn't the same as the old one, with !(foundUser.length > 0)
     const [foundUser] = await db.query(

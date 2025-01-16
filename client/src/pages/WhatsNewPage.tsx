@@ -30,7 +30,7 @@ const WhatsNewPage = () => {
     },
   ];
 
-  const [version, setVersion] = useState<string>("1.1.0");
+  const [version, setVersion] = useState<string>("1.1");
 
   // selectedVersion returns the index of the selected version
   const selectedVersion = () => {

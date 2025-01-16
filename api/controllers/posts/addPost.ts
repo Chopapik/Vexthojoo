@@ -4,23 +4,28 @@ import { Request, Response } from "express";
 import UAParser from "ua-parser-js";
 import jwt from "jsonwebtoken";
 
+interface decodedUserDataTokenTypes {
+  userid: number;
+}
+
 const addPost = async (req: Request, res: Response) => {
+  const { text } = req.body;
+  const image = req.file;
+
+  const whenUpload = new Date();
+
+  const parser = new UAParser();
+  const ua = parser.setUA(req.headers["user-agent"] || "").getResult();
+  const whatDevice = ua.os.name;
+
+  const decodedUserDataToken = jwt.decode(req.cookies.token);
+
+  if (!text || text.trim().length === 0) {
+    res.status(409).json({ message: "Nie podano treści" });
+    return;
+  }
+
   try {
-    const { text } = req.body;
-    const image = req.file;
-
-    const whenUpload = new Date();
-
-    const parser = new UAParser();
-    const ua = parser.setUA(req.headers["user-agent"] || "").getResult();
-    const whatDevice = ua.os.name;
-
-    const decodedUserDataToken = jwt.decode(req.cookies.token);
-
-    interface decodedUserDataTokenTypes {
-      userid: number;
-    }
-
     const { userid } = <decodedUserDataTokenTypes>decodedUserDataToken;
 
     const protocol = req.protocol;

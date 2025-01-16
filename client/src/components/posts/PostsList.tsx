@@ -46,7 +46,7 @@ const PostsList = ({
           <span>Nie udało się załadować postów</span>
         </div>
       ) : (
-        <div className="w-full space-y-3">
+        <div className="w-full space-y-3 z-[995]">
           {postsData.map((postData: postDataTypes, index: number) => (
             <PostLayout
               id={postData.id}

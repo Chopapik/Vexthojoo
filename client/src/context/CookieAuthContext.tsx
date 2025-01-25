@@ -25,7 +25,7 @@ export const CookieAuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <CookieAuthContext.Provider value={{ authData, getUser, resetAuthData }}>
-      {children};
+      {children}
     </CookieAuthContext.Provider>
   );
 };

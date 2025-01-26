@@ -27,36 +27,37 @@ const PostLayout = ({
       <>
         <div
           key={index}
-          className={`w-full bg-neutral-900 p-5 space-y-2 font-roboto customBorderNeutral
+          className={`w-full max-w-[920px] bg-neutral-900 rounded-xl p-5 border-t border-neutral-700 space-y-2 font-roboto
           ${deleteModeEnable && " border-red-700"}   
           ${updateModeEnable && " border-customCyan-default"}    
           ${
             postOpacity[index] ? "opacity-100" : "opacity-0"
           } transition-all ease-linear duration-200 `}
         >
-          <div className="flex flex-row">
-            <div className="flex space-x-2">
-              <a href={`/${postData.username}`}>
-                <div className="w-10 h-10 border border-neutral-700">
-                  <img
-                    src={
-                      postData.avatarPath ? postData.avatarPath : defaultAvatar
-                    }
-                    alt="Avatar"
-                    className="object-cover w-full h-full"
-                    loading="lazy"
-                  />
-                </div>
+          <div className="flex flex-row ">
+            <div className="flex space-x-2.5 ">
+              <a href={`/${postData.username}`} className="relative">
+                <div className="w-full h-full bg-white hover:opacity-5 opacity-0 absolute rounded-xl" />
+                <img
+                  src={
+                    postData.avatarPath ? postData.avatarPath : defaultAvatar
+                  }
+                  alt="Avatar"
+                  className="w-[50px] h-[50px] border-t border-neutral-700 rounded-xl"
+                  loading="lazy"
+                />
               </a>
 
-              <div className="flex flex-col font-bold">
-                <p className="text-xs ">{postData.username}</p>
-                <p className="text-neutral-500 text-[0.6rem]">
+              <div className="flex flex-col space-y-1 leading-none ">
+                <span className="text-base leading-none font-bold">
+                  {postData.username}
+                </span>
+                <span className="text-neutral-500 text-[11px]">
                   {postData.whenUpload}
-                </p>
-                <p className="text-neutral-700 text-[0.5rem] leading-none">
+                </span>
+                <span className="text-neutral-500 text-[11px]">
                   Uploaded from {postData.whatDevice}
-                </p>
+                </span>
               </div>
             </div>
             {enableOptions && (
@@ -76,10 +77,10 @@ const PostLayout = ({
               />
             )}
           </div>
-          <hr className="w-1/2 border-neutral-700" />
+          <hr className="w-4/5 xs:w-1/2 border-neutral-700" />
 
           {postData.isEdited ? (
-            <div className="my-10 text-neutral-600 font-bold text-xs">
+            <div className="my-10 text-neutral-700 font-bold text-xs bg-neutral-950 w-fit px-3 py-1 rounded-xl">
               post edytowany
             </div>
           ) : undefined}

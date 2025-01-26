@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 const Footer = () => {
   const [showFooter, setShowFooter] = useState(false);
 
@@ -16,7 +15,7 @@ const Footer = () => {
 
   return (
     <>
-      {showFooter && (
+      {/* {showFooter && (
         <footer className="flex flex-col bg-black items-center font-poppins text-center">
           <div className="w-full flex flex-col items-center">
             <div className="space-x-4 flex items-end justify-center space-y-2 text-neutral-400 text-[0.7rem]">
@@ -44,7 +43,7 @@ const Footer = () => {
             </div>
           </div>
         </footer>
-      )}
+      )} */}
     </>
   );
 };

@@ -33,12 +33,12 @@ const PostContent = ({
   }, [numberOfLetters]);
 
   return (
-    <div className="p-2 space-y-4">
+    <div className="p-2 space-y-4 ">
       {updateModeEnable ? (
         <>
           <textarea
             defaultValue={text}
-            className="border-l-2 border-b-2 border-neutral-800  w-full px-5 py-2 min-h-[200px] outline-none"
+            className="border-l-2 border-b-2 border-neutral-800 w-full px-5 py-2 min-h-[200px] outline-none"
             onChange={(e) => {
               setNumberOfLetters(e.target.value.length);
               handleSetNewPostContentData({
@@ -56,15 +56,15 @@ const PostContent = ({
           </div>
         </>
       ) : (
-        <div className="max-w-[90%] overflow-hidden">
-          <p className="text-sm">{text}</p>
+        <div className="max-w-[90%] overflow-hidden font-roboto ">
+          <p className="text-base">{text}</p>
         </div>
       )}
       {imagePath ? (
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-self-center justify-center min-h-[200px] min-w-[200px] max-h-[500px] max-w-[500px] rounded-xl">
           <img
             src={imagePath}
-            className="w-[300px] md:w-4/6 border border-neutral-700"
+            className="w-[300px] md:w-4/6 rounded-xl fill-current object-contain"
             loading="lazy"
           />
         </div>

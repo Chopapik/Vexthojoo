@@ -2,8 +2,8 @@ import Panel from "../../shared/Panel";
 import { usePanelContext } from "../../context/PanelContext";
 import useUpdateUserData from "../../hooks/user/useUpdateUserData";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
-import Button01 from "../buttons/Button01";
-
+import { ButtonFuchsiaSm } from "../buttons/Button01";
+import PanelTitle from "../../shared/PanelTitle";
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
 import editIcon from "../../assets/icons/edit.svg";
 
@@ -26,12 +26,7 @@ const EditUserPanel = () => {
         cookieUserData && (
           <>
             <div className="space-y-10 font-roboto">
-              <div>
-                <span className="text-neutral-500 font-bold font-serif italic text-xl ml-1">
-                  EDYCJA PROFILU
-                </span>
-                <hr className="border-neutral-500 w-3/4" />
-              </div>
+              <PanelTitle title="edycja profilu" />
               <div className="flex flex-col items-center space-y-5">
                 {/* newAvatar form */}
                 <div className="flex flex-col items-center space-y-2">
@@ -80,10 +75,8 @@ const EditUserPanel = () => {
                 </div>
               </div>
               <div className="w-full flex justify-center">
-                <Button01
+                <ButtonFuchsiaSm
                   disableButton={!canSave}
-                  color="fuchsia"
-                  shadowColor="fuchsia"
                   content="zapisz"
                   onClick={handleUserDataUpdate}
                 />

@@ -1,7 +1,7 @@
 import Panel from "../../shared/Panel";
 import { usePanelContext } from "../../context/PanelContext";
 import useDeleteUserAccount from "../../hooks/user/useDeleteUserAccount";
-import Button01 from "../buttons/Button01";
+import { ButtonFuchsiaSm } from "../buttons/Button01";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
 
 const AccountDeletionConfirmationPanel = () => {
@@ -26,9 +26,7 @@ const AccountDeletionConfirmationPanel = () => {
             <span className="text-sm">Tej operacji nie można cofnąć</span>
           </div>
           <div className="flex w-full justify-center">
-            <Button01
-              color="red"
-              shadowColor="red"
+            <ButtonFuchsiaSm
               content="Usuń konto"
               onClick={async () => {
                 await deleteUserAccount(userid);

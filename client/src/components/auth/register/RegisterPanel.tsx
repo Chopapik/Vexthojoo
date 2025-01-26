@@ -1,8 +1,8 @@
 import Panel from "../../../shared/Panel";
 import { usePanelContext } from "../../../context/PanelContext";
 import useRegister from "../../../hooks/auth/useRegister";
-import Button01 from "../../buttons/Button01";
-
+import { ButtonFuchsiaSm } from "../../buttons/Button01";
+import PanelTitle from "../../../shared/PanelTitle";
 import InputOneLineForm from "../../../shared/InputOneLineForm";
 import InputCheckboxForm from "../../../shared/InputCheckboxForm";
 
@@ -23,12 +23,7 @@ const RegisterPanel = () => {
       content={
         <>
           <div className="flex flex-col items-center space-y-[40px]">
-            <div className="w-full">
-              <span className="text-neutral-500 font-bold font-serif italic text-xl ml-1">
-                REJESTRACJA
-              </span>
-              <hr className="border-neutral-500 w-3/4" />
-            </div>
+            <PanelTitle title="rejestracja" />
             <div className="flex flex-col space-y-9 w-3/4">
               <InputOneLineForm
                 type={"text"}
@@ -81,12 +76,7 @@ const RegisterPanel = () => {
               }
               enableErrorMessage={true}
             />
-            <Button01
-              color="fuchsia"
-              shadowColor="fuchsia"
-              content="WŁAŹ"
-              onClick={handleRegister}
-            />
+            <ButtonFuchsiaSm content="WŁAŹ" onClick={handleRegister} />
           </div>
         </>
       }

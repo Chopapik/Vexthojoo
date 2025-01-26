@@ -1,5 +1,7 @@
 import { ChangeEvent } from "react";
 
+import inputStyle from "./InputOneLineForm.module.css";
+
 const InputTextComponent = ({
   type,
   label,
@@ -17,17 +19,17 @@ const InputTextComponent = ({
     <div className="relative w-full">
       <input
         type={type}
-        className={`input01 border-b-2 ${
-          error ? "border-red-600" : "border-white"
+        className={`${inputStyle.input01} border-b-2 ${
+          error ? "border-red-600 " : "border-white"
         }`}
         placeholder=""
         onChange={handleInputData}
       />
-      <label htmlFor="username" className="label01">
+      <label htmlFor="username" className={inputStyle.label01}>
         {label}
       </label>
       {enableErrorMessage && (
-        <span className="text-base md:text-[0.7rem] text-red-600 absolute right-0 top-10">
+        <span className="text-xs text-red-600 absolute right-0 top-10">
           {error}
         </span>
       )}

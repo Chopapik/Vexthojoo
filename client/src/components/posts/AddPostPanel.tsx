@@ -3,7 +3,7 @@ import { useCookieAuthContext } from "../../context/CookieAuthContext";
 import Panel from "../../shared/Panel";
 import { useState, useEffect } from "react";
 import useAddPost from "../../hooks/posts/useAddPost";
-import Button01 from "../buttons/Button01";
+import { ButtonFuchsiaSm } from "../buttons/Button01";
 
 import imageIcon from "../../assets/icons/image.svg";
 
@@ -39,9 +39,7 @@ const AddPostPanel = () => {
 
                   <span>__̴ı̴̴̡̡̡ ̡͌l̡̡̡ ̡͌l̡*̡̡ ̴̡ı̴̴̡ ̡̡͡|̲̲̲͡͡͡ ̲▫̲͡ ̲̲̲͡͡π̲̲͡͡ ̲̲͡▫̲̲͡͡ ̲|̡̡̡ ̡ ̴̡ı̴̡̡ ̡͌l̡̡̡̡.___</span>
                 </div>
-                <Button01
-                  color="fuchsia"
-                  shadowColor="fuchsia"
+                <ButtonFuchsiaSm
                   content="LOGOWANIE"
                   onClick={() => {
                     closePanel();
@@ -123,13 +121,7 @@ const AddPostPanel = () => {
               </div>
 
               <div className="relative w-full flex justify-center mt-10">
-                <Button01
-                  disableButton={blockUpload}
-                  color="fuchsia"
-                  shadowColor="fuchsia"
-                  content="dodaj"
-                  onClick={handleAddPost}
-                />
+                <ButtonFuchsiaSm content="dodaj" onClick={handleAddPost} />
               </div>
             </>
           )}

@@ -1,6 +1,6 @@
 import { usePanelContext } from "../../context/PanelContext";
 import { UserDataTypes } from "../../types/user/userDataTypes";
-import Button01 from "../buttons/Button01";
+import { ButtonFuchsiaSm } from "../buttons/Button01";
 import useLogout from "../../hooks/auth/useLogout";
 
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
@@ -16,7 +16,7 @@ const UserProfileBar = ({
   const { handleLogout } = useLogout();
   //zmien to na grid
   return (
-    <div className="lg:sticky top-[60px] bg-neutral-900 h-[450px] customBorderNeutral lg:h-[93vh] flex flex-col py-3">
+    <div className="lg:sticky overflow-auto top-[70px] bg-neutral-900 h-[450px] border-t border-neutral-700 rounded-xl md:h-[calc(100vh-85px)]  flex flex-col md:flex-row lg:flex-col py-3">
       <div className="flex flex-col items-center space-y-7">
         <span
           id="username"
@@ -28,36 +28,27 @@ const UserProfileBar = ({
         <img
           src={userData.avatarPath || defaultAvatar}
           alt="avatar"
-          className="w-24 h-24 object-cover border border-neutral-700"
+          className="w-24 h-24 shadow-2xl"
         />
       </div>
       {canEdit && (
         <div className="w-full flex flex-col mt-8 items-center">
           <div className="flex flex-col w-[120px] space-y-3">
             <div className="lg:mb-14 flex  flex-col">
-              <Button01
-                color="gray"
-                shadowColor="gray"
+              <ButtonFuchsiaSm
                 content="Edycja profilu"
                 onClick={() => showPanel("editUserPanel")}
               />
             </div>
-            <Button01
-              color="gray"
-              shadowColor="gray"
-              content="Wyloguj się"
-              onClick={handleLogout}
-            />
-            <Button01
-              color="red"
-              shadowColor="red"
+            <ButtonFuchsiaSm content="Wyloguj się" onClick={handleLogout} />
+            <ButtonFuchsiaSm
               content="Usuń konto"
               onClick={() => showPanel("AccountDeletionConfirmationPanel")}
             />
           </div>
         </div>
       )}
-      <div className="text-neutral-700 w-full text-xs flex flex-col items-center flex-grow justify-end">
+      <div className="text-neutral-700 w-full text-xs flex flex-col items-center flex-grow my-5 justify-end">
         <p>Ostatnio online:</p>
         <p className="font-bold"> {userData.whenLastLogged} </p>
         <p className="mt-2">Data rejestracji:</p>

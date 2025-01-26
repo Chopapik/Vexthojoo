@@ -43,8 +43,8 @@ const Block = ({
     <>
       <div
         className={`w-full py-1 ${
-          hideBlock ? "h-8" : "h-[500px]"
-        } text-sm ${background} rounded-xl overflow-hidden flex flex-col justify-between transition-all ease-in-out duration-200`}
+          hideBlock ? "h-8" : "h-[400px]"
+        } text-sm ${background} rounded-xl  max-w-[350px] overflow-hidden flex flex-col justify-between transition-all ease-in-out duration-200`}
       >
         <div>
           <div className="text-neutral-600 text-xs font-bold flex justify-between px-3">

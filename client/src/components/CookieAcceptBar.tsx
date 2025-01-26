@@ -1,4 +1,4 @@
-import Button01 from "./buttons/Button01";
+import { ButtonFuchsiaSm } from "./buttons/Button01";
 import { useCookieAcceptContext } from "../context/CookieAcceptContext";
 import cookieImage from "../assets/images/cookie.png";
 
@@ -28,12 +28,7 @@ const CookieAcceptBar = () => {
           </p>
         </div>
         <div className="sm:h-full flex flex-col justify-center items-center ">
-          <Button01
-            content="Akceptuję"
-            color="fuchsia"
-            shadowColor="fuchsia"
-            onClick={handleAcceptCookie}
-          />
+          <ButtonFuchsiaSm content="Akceptuję" onClick={handleAcceptCookie} />
         </div>
       </div>
     </div>

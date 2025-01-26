@@ -1,0 +1,32 @@
+.input01 {
+    width: 100%;
+    position: relative;
+    background: transparent;
+    font-size: 1.25rem;
+    outline: none;
+    padding: 6px 5px 6px;
+    z-index: 999;
+}
+
+.label01 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: poppins;
+    font-weight: bold;
+    font-size: 1rem;
+    z-index: 998;
+    transition: all;
+    transition: 0.15s ease-in-out;
+    margin: 0px 5px;
+}
+
+.input01:focus+.label01 {
+    font-size: 1em;
+    top: -15px;
+}
+
+.input01:not(:focus):not(:placeholder-shown)+.label01 {
+    font-size: 0.75rem;
+    top: -15px;
+}

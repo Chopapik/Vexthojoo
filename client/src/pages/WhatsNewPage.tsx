@@ -1,5 +1,6 @@
 import version_1_0_0_image from "../assets/versionImages/1.0.0.png";
 import version_1_1_0_image from "../assets/versionImages/1.1.0.png";
+import version_1_2_image from "../assets/versionImages/1.2.png";
 
 import { useState } from "react";
 
@@ -12,6 +13,12 @@ const WhatsNewPage = () => {
   }
 
   const versions: versionType[] = [
+    {
+      version: "1.2",
+      image: version_1_2_image,
+      description: ["przebudowano layout strony"],
+      date: "26.01.2025",
+    },
     {
       version: "1.1",
       image: version_1_1_0_image,
@@ -30,7 +37,7 @@ const WhatsNewPage = () => {
     },
   ];
 
-  const [version, setVersion] = useState<string>("1.1");
+  const [version, setVersion] = useState<string>("1.2");
 
   // selectedVersion returns the index of the selected version
   const selectedVersion = () => {

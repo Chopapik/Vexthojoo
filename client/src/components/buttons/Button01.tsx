@@ -34,7 +34,7 @@ export const ButtonFuchsiaSmEmpty = ({
       className={`${buttonStyle.buttonSm} bg-fuchsia-500`}
       onClick={onClick}
     >
-      <div className="bg-black w-[126px] h-[26px] rounded-full flex justify-center items-center mb-[1px]">
+      <div className="bg-black w-[126px] h-[26px] rounded-full flex justify-center items-center pt-[1px] mb-[1px]">
         {content}
       </div>
     </button>

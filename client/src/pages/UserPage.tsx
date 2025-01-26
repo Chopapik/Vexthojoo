@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import useDisplayUserData from "../hooks/user/useDisplayUserData";
+import useHandleUserData from "../hooks/user/useHandleUserData";
 import { Helmet } from "react-helmet";
 
 import PostsList from "../components/posts/PostsList";
@@ -9,7 +9,7 @@ import UserProfileBarSkeleton from "../components/user/UserProfileBarSkeleton";
 
 const UserPage = () => {
   const { username } = useParams();
-  const { userData, loading, canEdit, queryError } = useDisplayUserData(
+  const { userData, loading, canEdit, queryError } = useHandleUserData(
     username || ""
   );
 
@@ -50,7 +50,3 @@ const UserPage = () => {
 };
 
 export default UserPage;
-
-// <div className="lg:sticky lg:top-[4rem] lg:max-h-[92dvh]  text-white flex flex-col items-center bg-neutral-900 p-5 space-y-5 sm:flex-row sm:justify-around sm:space-y-0 lg:flex-col lg:w-1/6  lg:min-h-[700px] lg:justify-normal  border-l-2 border-b-2 border-neutral-800 lg:space-y-14"></div>
-
-// <div className="w-5/6 bg-red-900 md:ml-6 md:mt-0 mt-6 space-y-5 text-white">

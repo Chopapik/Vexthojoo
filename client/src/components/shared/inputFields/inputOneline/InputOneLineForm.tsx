@@ -2,7 +2,7 @@ import { ChangeEvent } from "react";
 
 import inputStyle from "./InputOneLineForm.module.css";
 
-const InputTextComponent = ({
+const InputOneLineForm = ({
   type,
   label,
   error,
@@ -37,4 +37,4 @@ const InputTextComponent = ({
   );
 };
 
-export default InputTextComponent;
+export default InputOneLineForm;

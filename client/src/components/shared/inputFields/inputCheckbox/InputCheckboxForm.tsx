@@ -1,4 +1,4 @@
-const InputCheckboxComponent = ({
+const InputCheckboxForm = ({
   handleInputData,
   label,
   error,
@@ -32,4 +32,4 @@ const InputCheckboxComponent = ({
   );
 };
 
-export default InputCheckboxComponent;
+export default InputCheckboxForm;

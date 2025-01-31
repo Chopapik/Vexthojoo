@@ -19,7 +19,7 @@ const Home = () => {
       </Helmet>
 
       <div className="w-full flex flex-col items-center max-w-[650px] lg:max-w-[1440px] lg:flex-row lg:items-start">
-        <main className="w-full lg:w-2/3 space-y-4">
+        <main className="w-full lg:w-2/3 space-y-4 px-4">
           <div className="w-auto p-1 space-y-3 flex flex-col items-center">
             <div
               id="test"

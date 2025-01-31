@@ -33,7 +33,7 @@ const PostsList = ({
   }, [displayByUser]);
 
   return (
-    <div className="w-full space-y-3 px-5">
+    <div className="w-full space-y-3 max-w-[920px]">
       {loading ? (
         <PostSkeleton />
       ) : queryError ? (

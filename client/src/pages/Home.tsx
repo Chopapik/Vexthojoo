@@ -1,7 +1,7 @@
 import { usePanelContext } from "../context/PanelContext";
 import { Helmet } from "react-helmet";
 import PostsList from "../components/posts/PostsList";
-import ChatAiBlock from "../components/blocks/chatAi/ChatAiBlock";
+import ChatAiBlock from "../components/shared/blocks/chatAi/ChatAiBlock";
 import avatarNull from "../assets/images/avatar_null.png";
 import { useCookieAuthContext } from "../context/CookieAuthContext";
 import defaultAvatar from "../assets/images/defaultAvatar.png";

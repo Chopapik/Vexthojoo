@@ -1,11 +1,10 @@
-import Panel from "../../../shared/Panel";
+import Panel from "../../shared/panel/Panel";
 import { usePanelContext } from "../../../context/PanelContext";
 import useRegister from "../../../hooks/auth/useRegister";
-import { ButtonFuchsiaSm } from "../../buttons/Button01";
-import PanelTitle from "../../../shared/PanelTitle";
-import InputOneLineForm from "../../../shared/InputOneLineForm";
-import InputCheckboxForm from "../../../shared/InputCheckboxForm";
-
+import { ButtonFuchsiaSm } from "../../shared/buttons/ButtonSM/ButtonSM";
+import PanelTitle from "../../shared/panel/PanelTitle";
+import InputOneLineForm from "../../shared/inputFields/inputOneline/InputOneLineForm";
+import InputCheckboxForm from "../../shared/inputFields/inputCheckbox/InputCheckboxForm";
 const RegisterPanel = () => {
   const { visiblePanelId } = usePanelContext();
 

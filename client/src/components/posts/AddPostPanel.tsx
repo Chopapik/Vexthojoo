@@ -1,9 +1,9 @@
 import { usePanelContext } from "../../context/PanelContext";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
-import Panel from "../../shared/Panel";
+import Panel from "../shared/panel/Panel";
 import { useState, useEffect } from "react";
 import useAddPost from "../../hooks/posts/useAddPost";
-import { ButtonFuchsiaSm } from "../buttons/Button01";
+import { ButtonFuchsiaSm } from "../shared/buttons/ButtonSM/ButtonSM";
 
 import imageIcon from "../../assets/icons/image.svg";
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import arrowIcon from "../../assets/icons/upArrrow.svg";
+import arrowIcon from "../../../assets/icons/upArrrow.svg";
 import cookie from "js-cookie";
-import { useCookieAcceptContext } from "../../context/CookieAcceptContext";
+import { useCookieAcceptContext } from "../../../context/CookieAcceptContext";
 
 const Block = ({
   content,

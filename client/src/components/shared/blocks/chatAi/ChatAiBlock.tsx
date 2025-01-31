@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Block from "../Block";
-import useChatAiReponse from "../../../hooks/useChatAiReponse";
+import useChatAiReponse from "../../../../hooks/useChatAiReponse";
 
-import chatIcon from "../../../assets/images/ico.png";
-import sendIcon from "../../../assets/icons/upArrow2.svg";
+import chatIcon from "../../../../assets/images/ico.png";
+import sendIcon from "../../../../assets/icons/upArrow2.svg";
 
 const ChatAiBlock = () => {
   const [inputValue, setInputValue] = useState<string>("");

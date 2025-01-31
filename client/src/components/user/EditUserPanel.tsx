@@ -1,9 +1,9 @@
-import Panel from "../../shared/Panel";
+import Panel from "../shared/panel/Panel";
 import { usePanelContext } from "../../context/PanelContext";
 import useUpdateUserData from "../../hooks/user/useUpdateUserData";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
-import { ButtonFuchsiaSm } from "../buttons/Button01";
-import PanelTitle from "../../shared/PanelTitle";
+import { ButtonFuchsiaSm } from "../shared/buttons/ButtonSM/ButtonSM";
+import PanelTitle from "../shared/panel/PanelTitle";
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
 import editIcon from "../../assets/icons/edit.svg";
 

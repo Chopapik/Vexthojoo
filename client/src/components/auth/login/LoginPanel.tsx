@@ -1,13 +1,12 @@
 import { useEffect } from "react";
-import Panel from "../../../shared/Panel";
+import Panel from "../../shared/panel/Panel";
 import { usePanelContext } from "../../../context/PanelContext";
 import useLogin from "../../../hooks/auth/useLogin";
-import { ButtonFuchsiaSm } from "../../buttons/Button01";
-import InputOneLineForm from "../../../shared/InputOneLineForm";
-import InputCheckboxForm from "../../../shared/InputCheckboxForm";
+import { ButtonFuchsiaSm } from "../../shared/buttons/ButtonSM/ButtonSM";
+import InputOneLineForm from "../../shared/inputFields/inputOneline/InputOneLineForm";
+import InputCheckboxComponent from "../../shared/inputFields/inputCheckbox/InputCheckboxForm";
 import { useCookieAcceptContext } from "../../../context/CookieAcceptContext";
-import PanelTitle from "../../../shared/PanelTitle";
-
+import PanelTitle from "../../shared/panel/PanelTitle";
 const LoginPanel = () => {
   const { visiblePanelId } = usePanelContext();
 
@@ -48,7 +47,7 @@ const LoginPanel = () => {
               />
             </div>
             {isCookieAccept && (
-              <InputCheckboxForm
+              <InputCheckboxComponent
                 handleInputData={handleSetNoLogout}
                 label={"Nie wylogowywuj mnie"}
                 error={undefined}

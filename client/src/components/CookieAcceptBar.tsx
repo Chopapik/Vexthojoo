@@ -1,4 +1,4 @@
-import { ButtonFuchsiaSm } from "./buttons/Button01";
+import { ButtonFuchsiaSm } from "./shared/buttons/ButtonSM/ButtonSM";
 import { useCookieAcceptContext } from "../context/CookieAcceptContext";
 import cookieImage from "../assets/images/cookie.png";
 

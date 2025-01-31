@@ -1,5 +1,5 @@
-import { buttonTypes } from "../../../types/layout/buttonTypes";
-import buttonStyle from "./Button01.module.css";
+import { buttonTypes } from "../../../../types/layout/buttonTypes";
+import buttonStyle from "./ButtonSM.module.css";
 
 export const ButtonFuchsiaSm = ({
   disableButton,

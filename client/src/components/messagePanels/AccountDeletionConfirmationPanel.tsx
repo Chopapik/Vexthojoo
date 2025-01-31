@@ -1,7 +1,7 @@
-import Panel from "../../shared/Panel";
+import Panel from "../shared/panel/Panel";
 import { usePanelContext } from "../../context/PanelContext";
 import useDeleteUserAccount from "../../hooks/user/useDeleteUserAccount";
-import { ButtonFuchsiaSm } from "../buttons/Button01";
+import { ButtonFuchsiaSm } from "../shared/buttons/ButtonSM/ButtonSM";
 import { useCookieAuthContext } from "../../context/CookieAuthContext";
 
 const AccountDeletionConfirmationPanel = () => {

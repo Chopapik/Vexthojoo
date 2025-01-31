@@ -1,5 +1,5 @@
-import PostSkeleton from "./postComponents/PostSkeleton";
-import PostLayout from "./postComponents/PostLayout";
+import PostSkeleton from "../shared/post/PostSkeleton";
+import PostLayout from "../shared/post/PostLayout";
 import useListPosts from "../../hooks/posts/useListPosts";
 import useRemovePost from "../../hooks/posts/useRemovePost";
 import { postDataTypes } from "../../types/posts/postTypes";

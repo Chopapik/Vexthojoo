@@ -1,5 +1,5 @@
-import closeIcon from "../assets/icons/close.svg";
-import { usePanelContext } from "../context/PanelContext";
+import closeIcon from "../../../assets/icons/close.svg";
+import { usePanelContext } from "../../../context/PanelContext";
 
 const Panel = ({
   content,

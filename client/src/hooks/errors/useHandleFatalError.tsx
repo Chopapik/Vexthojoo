@@ -16,7 +16,7 @@ const useHandleFatalError = () => {
 
       showPanel(
         "FatalErrorPanel",
-        <div className="w-[240px] xs:w-[350px] md:w-[400px]  flex flex-col font-roboto justify-between space-y-[70px] overflow-hidden">
+        <div className="w-full flex flex-col font-roboto justify-between space-y-[70px]  overflow-hidden">
           <div className="w-full flex flex-col items-center space-y-3 text-xl md:text-sm overflow-hidden">
             <img src={errIco} alt="error" />
             <span className="font-bold text-red-600">

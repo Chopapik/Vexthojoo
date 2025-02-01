@@ -1,7 +1,7 @@
 import { usePanelContext } from "../../context/PanelContext";
 import { UserDataTypes } from "../../types/user/userDataTypes";
-import { ButtonFuchsiaSm } from "../buttons/Button01";
-import useLogout from "../../hooks/auth/useLogout";
+import { ButtonNeutralXs } from "../shared/buttons/ButtonXS/ButtonXS";
+import gearIcon from "../../assets/icons/mdi_gear.svg";
 
 import defaultAvatar from "../../assets/images/defaultAvatar.png";
 const UserProfileBar = ({
@@ -13,41 +13,30 @@ const UserProfileBar = ({
 }) => {
   const { showPanel } = usePanelContext();
 
-  const { handleLogout } = useLogout();
-  //zmien to na grid
   return (
-    <div className="lg:sticky overflow-auto top-[70px] bg-neutral-900 h-[450px] border-t border-neutral-700 rounded-xl md:h-[calc(100vh-85px)]  flex flex-col md:flex-row lg:flex-col py-3">
-      <div className="flex flex-col items-center space-y-7">
-        <span
-          id="username"
-          className="text-white font-arial text-center font-bold text-xl italic "
-        >
-          {userData.username}
-        </span>
-
+    <div className="lg:sticky lg:h-[calc(100vh-80px)] top-[70px] w-full lg:-[1/5] xl:w-[300px] bg-neutral-900 border-t border-neutral-700 rounded-xl min-h-[365px] max-w-[500px] space-y-4 py-8 flex flex-col items-center justify-between">
+      <div className="w-[200px] flex flex-col items-center space-y-4 relative">
         <img
           src={userData.avatarPath || defaultAvatar}
-          alt="avatar"
-          className="w-24 h-24 shadow-2xl"
+          alt={`${userData.username}'s avatar`}
+          className="w-[125px] h-[125px] rounded-xl "
         />
-      </div>
-      {canEdit && (
-        <div className="w-full flex flex-col mt-8 items-center">
-          <div className="flex flex-col w-[120px] space-y-3">
-            <div className="lg:mb-14 flex  flex-col">
-              <ButtonFuchsiaSm
-                content="Edycja profilu"
-                onClick={() => showPanel("editUserPanel")}
-              />
-            </div>
-            <ButtonFuchsiaSm content="Wyloguj się" onClick={handleLogout} />
-            <ButtonFuchsiaSm
-              content="Usuń konto"
-              onClick={() => showPanel("AccountDeletionConfirmationPanel")}
+        {canEdit && (
+          <div className="absolute bottom-11 right-8">
+            <ButtonNeutralXs
+              img={
+                <>
+                  <img src={gearIcon} alt="USTAWIENIA" />
+                </>
+              }
+              onClick={() => showPanel("editUserPanel")}
             />
           </div>
-        </div>
-      )}
+        )}
+        <span className="w-[200px] text-center font-roboto font-bold text-2xl">
+          {userData.username}
+        </span>
+      </div>
       <div className="text-neutral-700 w-full text-xs flex flex-col items-center flex-grow my-5 justify-end">
         <p>Ostatnio online:</p>
         <p className="font-bold"> {userData.whenLastLogged} </p>

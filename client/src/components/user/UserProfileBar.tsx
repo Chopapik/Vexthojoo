@@ -24,11 +24,8 @@ const UserProfileBar = ({
         {canEdit && (
           <div className="absolute bottom-11 right-8">
             <ButtonNeutralXs
-              img={
-                <>
-                  <img src={gearIcon} alt="USTAWIENIA" />
-                </>
-              }
+              imgPath={gearIcon}
+              imgAlt="ustawienia użytkownika"
               onClick={() => showPanel("editUserPanel")}
             />
           </div>

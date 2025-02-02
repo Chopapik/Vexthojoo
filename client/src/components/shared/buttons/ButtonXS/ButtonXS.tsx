@@ -1,17 +1,11 @@
 import { buttonTypes } from "../../../../types/layout/buttonTypes";
 import buttonStyle from "./ButtonXs.module.css";
 
-const DisableButtonXS = ({
-  content,
-  img,
-}: {
-  content?: string;
-  img?: React.ReactNode;
-}) => {
+const DisableButtonXS = ({ content, imgAlt, imgPath }: buttonTypes) => {
   return (
-    <div className={`${buttonStyle.buttonXs} ${buttonStyle.ButtonSmBlocked}`}>
+    <div className={`${buttonStyle.buttonXs} ${buttonStyle.ButtonXsBlocked}`}>
       {content || null}
-      {img || null}
+      <img src={imgPath} alt={imgAlt} />{" "}
     </div>
   );
 };
@@ -20,17 +14,18 @@ export const ButtonNeutralXs = ({
   disableButton,
   content,
   onClick,
-  img,
+  imgAlt,
+  imgPath,
 }: buttonTypes) => {
   return disableButton ? (
-    <DisableButtonXS content={content} img={img} />
+    <DisableButtonXS content={content} imgPath={imgPath} imgAlt={imgAlt} />
   ) : (
     <button
       className={`${buttonStyle.buttonXsNeutral} ${buttonStyle.buttonXs}`}
       onClick={onClick}
     >
       {content || null}
-      {img || null}
+      <img src={imgPath} alt={imgAlt} />{" "}
     </button>
   );
 };
@@ -39,17 +34,18 @@ export const ButtonRedXs = ({
   disableButton,
   content,
   onClick,
-  img,
+  imgAlt,
+  imgPath,
 }: buttonTypes) => {
   return disableButton ? (
-    <DisableButtonXS content={content} img={img} />
+    <DisableButtonXS content={content} imgPath={imgPath} imgAlt={imgAlt} />
   ) : (
     <button
       className={`${buttonStyle.buttonXsRed} ${buttonStyle.buttonXs}`}
       onClick={onClick}
     >
       {content || null}
-      {img || null}
+      <img src={imgPath} alt={imgAlt} />{" "}
     </button>
   );
 };
@@ -58,17 +54,18 @@ export const ButtonFuchsiaXs = ({
   disableButton,
   content,
   onClick,
-  img,
+  imgAlt,
+  imgPath,
 }: buttonTypes) => {
   return disableButton ? (
-    <DisableButtonXS content={content} img={img} />
+    <DisableButtonXS content={content} imgPath={imgPath} imgAlt={imgAlt} />
   ) : (
     <button
       className={`${buttonStyle.buttonXsFuchsia} ${buttonStyle.buttonXs}`}
       onClick={onClick}
     >
       {content || null}
-      {img || null}
+      <img src={imgPath} alt={imgAlt} />{" "}
     </button>
   );
 };

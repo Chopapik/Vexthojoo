@@ -5,6 +5,10 @@
 /api/uploads/usersAvatars/*
 /api/uploads/postsImages/*
 
+# docs
+/client/docs
+/api/docs
+
 
 /client/src/private/*
 

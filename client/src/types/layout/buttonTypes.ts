@@ -1,6 +1,8 @@
 export interface buttonTypes {
   content?: string;
-  img?: React.ReactNode;
+  imgPath?: string;
+  imgAlt?: string;
+  svgPath?: React.ReactNode;
   onClick?: () => void;
   disableButton?: boolean;
 }

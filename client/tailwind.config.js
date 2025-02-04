@@ -9,6 +9,8 @@ export default {
       fontFamily: {
         "roboto": ["roboto", "sans-serif"],
         "poppins": ["poppins", "sans-serif"],
+        "times": ['Times New Roman', 'Times', 'serif'],
+
       },
       screens: {
         "xs": "400px",

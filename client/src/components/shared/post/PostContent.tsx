@@ -56,7 +56,7 @@ const PostContent = ({
           </div>
         </>
       ) : (
-        <div className="max-w-[90%] overflow-hidden font-roboto ">
+        <div className=" overflow-hidden">
           <p className="text-base">{text}</p>
         </div>
       )}

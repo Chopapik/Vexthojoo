@@ -1,9 +1,8 @@
 import { usePanelContext } from "../../context/PanelContext";
 import { UserDataTypes } from "../../types/user/userDataTypes";
-import { ButtonNeutralXs } from "../shared/buttons/ButtonXS/ButtonXS";
 import gearIcon from "../../assets/icons/mdi_gear.svg";
+import UserAvatarWithButton from "./UserAvatarWithButton";
 
-import defaultAvatar from "../../assets/images/defaultAvatar.png";
 const UserProfileBar = ({
   userData,
   canEdit,
@@ -16,20 +15,14 @@ const UserProfileBar = ({
   return (
     <div className="lg:sticky lg:h-[calc(100vh-80px)] top-[70px] w-full lg:-[1/5] xl:w-[300px] bg-neutral-900 border-t border-neutral-700 rounded-xl min-h-[365px] max-w-[500px] space-y-4 py-8 flex flex-col items-center justify-between">
       <div className="w-[200px] flex flex-col items-center space-y-4 relative">
-        <img
-          src={userData.avatarPath || defaultAvatar}
-          alt={`${userData.username}'s avatar`}
-          className="w-[125px] h-[125px] rounded-xl "
+        <UserAvatarWithButton
+          avatarPath={userData.avatarPath}
+          username={userData.username}
+          buttonIcon={gearIcon}
+          buttonAltName="ustawienia użytkownika"
+          buttonFunction={() => showPanel("editUserPanel")}
+          enableButton={canEdit}
         />
-        {canEdit && (
-          <div className="absolute bottom-11 right-8">
-            <ButtonNeutralXs
-              imgPath={gearIcon}
-              imgAlt="ustawienia użytkownika"
-              onClick={() => showPanel("editUserPanel")}
-            />
-          </div>
-        )}
         <span className="w-[200px] text-center font-roboto font-bold text-2xl">
           {userData.username}
         </span>

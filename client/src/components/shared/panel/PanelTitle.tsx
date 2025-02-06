@@ -1,10 +1,10 @@
 const PanelTitle = ({ title }: { title: string }) => {
   return (
-    <div className="w-full">
-      <span className="text-neutral-500 font-bold font-serif italic text-2xl ml-1 uppercase">
+    <div className="w-full h-fit space-y-[1px] ">
+      <span className="text-neutral-700 font-bold font-times italic text-2xl uppercase leading-none">
         {title}
       </span>
-      <hr className="border-neutral-500 w-3/4 border-t-neutral-400" />
+      <hr className="border-neutral-700 w-full sm:max-w-[270px] border-t-neutral-700" />
     </div>
   );
 };

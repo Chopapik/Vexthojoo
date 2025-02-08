@@ -19,7 +19,7 @@ const updateUserData = async (req: Request, res: Response) => {
   const cookie = req.cookies.token;
   const secret = process.env.SECRET;
 
-  if (username.includes(" ")) {
+  if (username && username.includes(" ")) {
     res.status(409).json({
       message: "Nazwa nie moze zawierać spacji",
     });

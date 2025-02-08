@@ -20,7 +20,7 @@ const UserProfileBar = ({
           username={userData.username}
           buttonIcon={gearIcon}
           buttonAltName="ustawienia użytkownika"
-          buttonFunction={() => showPanel("editUserPanel")}
+          buttonFunction={() => showPanel("userSettingsPanel")}
           enableButton={canEdit}
         />
         <span className="w-[200px] text-center font-roboto font-bold text-2xl">

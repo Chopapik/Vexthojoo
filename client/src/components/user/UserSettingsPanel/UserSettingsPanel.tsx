@@ -2,6 +2,7 @@ import Panel from "../../shared/panel/Panel";
 import { usePanelContext } from "../../../context/PanelContext";
 import { useState } from "react";
 import SectionsButtonsList from "./section/SectionsButtonsList";
+import ChangePasswordSection from "./section/sections/ChangePasswordSection";
 
 //sections
 import UserProfileSection from "./section/sections/UserProfileSection";
@@ -26,6 +27,9 @@ const UserSettingsPanel = () => {
           />
           {currentVisibleSection === "userProfile" && <UserProfileSection />}
           {currentVisibleSection === "logout" && <LogOutSection />}
+          {currentVisibleSection === "changePassword" && (
+            <ChangePasswordSection />
+          )}
         </div>
       }
     />

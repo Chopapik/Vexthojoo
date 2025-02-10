@@ -14,7 +14,7 @@ const Input = ({
     <div className="relative ">
       <input
         placeholder={placeholder}
-        className="bg-neutral-800 text-center w-[260px] xs:w-[300px] border-neutral-600 border-t text-sm py-3 rounded-xl flex items-center font-poppins h-[45px] outline-none hover:bg-neutral-700"
+        className="bg-neutral-800 text-center w-[260px] xs:w-[300px] border-neutral-600 border-t text-sm py-3 rounded-xl flex items-center font-poppins h-[45px] outline-none hover:bg-neutral-700 transition-all duration-150 ease-in"
         onFocus={() => setShowEditIcon(false)}
         onBlur={() => setShowEditIcon(true)}
         onChange={(e) => onChange(e)}

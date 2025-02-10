@@ -19,6 +19,11 @@ const SectionsButtonsList = ({
         isActive={currentVisibleSection === "logout"}
         onClick={() => setCurrentVisibleSection("logout")}
       />
+      <SectionListButton
+        content="zmień hasło"
+        isActive={currentVisibleSection === "changePassword"}
+        onClick={() => setCurrentVisibleSection("changePassword")}
+      />
     </div>
   );
 };

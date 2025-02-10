@@ -13,7 +13,8 @@ const BlinkingButton = ({
   return disableButton ? null : (
     <button
       className={`${currentColor} ${BlinkingButtonStyle.BlinkingButton} flex items-center justify-center space-x-1`}
-      onClick={() => {
+      onClick={(e: React.MouseEvent) => {
+        e.stopPropagation();
         if (!blockButtonOnClick) {
           blinkingAnimation();
           onClick?.();

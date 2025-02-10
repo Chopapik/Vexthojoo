@@ -1,6 +1,6 @@
 import BlinkingButton from "../BlinkingButton/BlinkingButton";
 import downIcon from "../../../../assets/icons/mingcute_down-fill.svg";
-import useDroppingDownButtonAnimation from "../../../../hooks/buttons/useDroppingDownButtonAnimation";
+import useDroppingDownButtonsMenuAnimation from "../../../../hooks/buttons/useDroppingDownButtonsMenuAnimation";
 
 interface option {
   optionName: string;
@@ -10,7 +10,7 @@ interface option {
 
 const BlinkingButtonsMenu = ({ options }: { options: option[] }) => {
   const { changeButtonHeight, buttonHeight, optionsListOpacity } =
-    useDroppingDownButtonAnimation();
+    useDroppingDownButtonsMenuAnimation();
 
   return (
     <div

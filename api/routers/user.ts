@@ -6,6 +6,7 @@ import updateUserData from "../controllers/users/updateUserData";
 import deleteUserAccount from "../controllers/users/deleteUserAccount";
 import fetchAllUsers from "../controllers/users/fetchAllUsers";
 import handleImageUpload from "../middleware/handleImageUpload";
+import updateUserPassword from "../controllers/users/updateUserPassword";
 
 const router = express.Router();
 
@@ -21,5 +22,6 @@ router.post(
   updateUserData
 );
 router.delete("/removeUser/:userIdToRemove", deleteUserAccount);
+router.post("/updateUserPassword", updateUserPassword);
 
 export default router;

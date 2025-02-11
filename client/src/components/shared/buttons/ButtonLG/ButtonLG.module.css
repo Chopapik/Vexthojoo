@@ -47,12 +47,12 @@
 
 /* Red */
 .buttonLgRed {
-    background-color: #ce2f2f;
+    background-color: #E50404;
     border-top: #ffa6a2 1px solid;
 }
 
 .buttonLgRed:hover {
-    background-color: #ff0000;
+    background-color: #ff3030;
     border-top: #ffaaaa 1px solid;
     box-shadow: 0px 0px 15px 2px #ce2f2f;
 }

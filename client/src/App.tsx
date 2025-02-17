@@ -26,8 +26,8 @@ function App() {
           <CookieAuthProvider>
             <PostsProvider>
               <PanelsContainer />
-              <div className="flex justify-center ">
-                <div className="w-full max-w-[1440px] flex flex-col relative justify-center items-center text-white ">
+              <div className="flex justify-center bg-black p-3">
+                <div className="w-full max-w-[1440px] flex flex-col relative justify-center items-center text-white space-y-3 ">
                   <Header />
                   <Routes>
                     <Route path="/" element={<Home />} />

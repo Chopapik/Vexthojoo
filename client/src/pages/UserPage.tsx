@@ -24,22 +24,22 @@ const UserPage = () => {
       </Helmet>
 
       {!queryError ? (
-        <div className="space-y-4 lg:space-y-0 flex flex-col items-center lg:flex-row w-full max-w-[1440px] lg:items-start lg:space-x-5 px-5">
-          <div className="w-full flex justify-center lg:w-fit lg:sticky top-[70px]">
+        <div className="space-y-4 lg:space-y-0 flex flex-col items-center lg:flex-row w-full max-w-[1440px] lg:items-start lg:space-x-3">
+          <div className="w-full lg:w-[275px] xl:w-[342px] flex justify-center lg:sticky lg:top-[calc(70px+12px+12px)] lg:h-[calc(100vh-12px-12px-12px-70px)]">
             {loading ? (
               <UserProfileBarSkeleton />
             ) : (
               <UserProfileBar userData={userData} canEdit={canEdit} />
             )}
           </div>
-          <div className="lg:flex-grow flex flex-col items-center ">
+          <div className="w-full max-w-[650px] lg:flex-1 flex flex-col items-center">
             {loading ? (
               <PostSkeleton />
             ) : (
               <PostsList displayByUser={username} enableOptions={canEdit} />
             )}
           </div>
-          <div className="w-[150px] lg:sticky top-[70px]">
+          <div className="w-[150px] lg:sticky lg:top-[calc(70px+12px+12px)]">
             {postsData.length !== 0 && (
               <BlinkingButtonsMenu
                 options={[

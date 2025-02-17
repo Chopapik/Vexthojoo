@@ -1,7 +1,6 @@
 import { usePanelContext } from "../context/PanelContext";
 import { Helmet } from "react-helmet";
 import PostsList from "../components/posts/PostsList";
-import ChatAiBlock from "../components/blocks/chatAi/ChatAiBlock";
 import avatarNull from "../assets/images/avatar_null.png";
 import { useCookieAuthContext } from "../context/CookieAuthContext";
 import defaultAvatar from "../assets/images/defaultAvatar.png";
@@ -18,8 +17,12 @@ const Home = () => {
         <title>Vexthojoo - strona główna</title>
       </Helmet>
 
-      <div className="w-full flex flex-col items-center max-w-[650px] lg:max-w-[1440px] lg:flex-row lg:items-start">
-        <main className="w-full lg:w-2/3 space-y-4 px-4">
+      <div
+        id="content"
+        className="w-full flex flex-col items-center max-w-[650px] lg:max-w-[1440px] lg:flex-row lg:items-start space-x-3"
+      >
+        <main className="w-full lg:flex-1 flex flex-col items-center space-y-4">
+          {/* add post input */}
           <div className="w-auto p-1 space-y-3 flex flex-col items-center">
             <div
               id="test"
@@ -44,15 +47,12 @@ const Home = () => {
                 </div>
               </div>
             </div>
-
-            <hr className="w-[90%] border-neutral-700" />
           </div>
+          <hr className="w-full max-w-[910px] border-neutral-700" />
+
           <PostsList enableOptions={false} />
         </main>
-
-        <aside className="w-full md:w-1/3 h-[calc(100vh-70px)] pt-3 lg:sticky lg:top-[70px] flex flex-col items-center px-5 ">
-          <hr className="w-full lg:w-0 border-neutral-700" />
-          <ChatAiBlock />
+        <aside className="w-full lg:w-[300px] xl:w-[400px] lg:sticky lg:top-[calc(70px+12px+12px)] lg:h-[calc(100vh-12px-12px-12px-70px)] flex flex-col items-end bg-[#080808] border-t border-[#171717] rounded-xl">
           <footer className="mt-auto h-fit flex text-xs flex-col px-5 py-3 items-center space-y-2 w-full font-roboto font-bold">
             <div className="text-neutral-300 space-x-2 flex justify-center items-center">
               <a href="/listaUzytkownikow" className="hover:underline">

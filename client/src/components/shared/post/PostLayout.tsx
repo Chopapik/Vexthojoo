@@ -27,7 +27,7 @@ const PostLayout = ({
       <>
         <div
           key={index}
-          className={`w-full max-w-[calc(100vw-40px)] lg:max-w-[calc(100vw-200px-150px-80px)] xl:max-w-[910px] bg-neutral-900 rounded-xl p-5 border-t border-neutral-700 space-y-2 font-roboto
+          className={`w-full max-w-[910px] bg-neutral-900 rounded-xl p-5 border-t border-neutral-700 space-y-2 font-roboto
           ${deleteModeEnable && " border-red-700"}   
           ${updateModeEnable && " border-customCyan-default"}    
           ${

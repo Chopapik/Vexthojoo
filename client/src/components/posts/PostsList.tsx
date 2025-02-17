@@ -33,11 +33,11 @@ const PostsList = ({
   }, [displayByUser]);
 
   return (
-    <div className="w-full space-y-3">
+    <div className="w-full flex flex-col items-center space-y-3 ">
       {loading ? (
         <PostSkeleton />
       ) : queryError ? (
-        <div className="flex flex-col items-center ">
+        <div className="flex flex-col items-center">
           <span className="text-red-600">
             {queryError.status ? `Błąd ${queryError.status}` : "Error"}
           </span>

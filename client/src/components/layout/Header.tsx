@@ -6,7 +6,7 @@ import defaultAvatar from "../../assets/images/defaultAvatar.png";
 import {
   ButtonFuchsiaSm,
   ButtonFuchsiaSmEmpty,
-} from "../shared/buttons/ButtonSM/ButtonSM";
+} from "../buttons/ButtonSM/ButtonSM";
 
 const Header = () => {
   const [loading, setLoading] = useState(true);

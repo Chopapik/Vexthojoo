@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext } from "react";
-import { CookieAuthTypes } from "../types/auth/cookieAuthTypes";
-import useCookieAuth from "../hooks/cookies/useCookieAuth";
+
+import { CookieAuthTypes } from "../features/auth/types/cookieAuthTypes";
+import useCookieAuth from "../features/cookies/hooks/useCookieAuth";
 
 interface CookieAuthContext {
   authData: CookieAuthTypes;

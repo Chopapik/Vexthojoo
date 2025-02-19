@@ -2,13 +2,13 @@
 
 //* or components with fixed display property
 
-import LoginPanel from "../auth/login/LoginPanel";
-import RegisterPanel from "../auth/register/RegisterPanel";
-import AddPostPanel from "../posts/AddPostPanel";
-import CookieAcceptBar from "../CookieAcceptBar";
-import AccountDeletionConfirmationPanel from "../messagePanels/AccountDeletionConfirmationPanel";
-import FatalErrorPanel from "../messagePanels/FatalErrorPanel";
-import UserSettingsPanel from "../user/UserSettingsPanel/UserSettingsPanel";
+import LoginPanel from "../../features/auth/components/LoginPanel";
+import RegisterPanel from "../../features/auth/components/RegisterPanel";
+import AddPostPanel from "../../features/posts/components/AddPostPanel";
+import CookieAcceptBar from "../../features/cookies/components/CookieAcceptBar";
+import AccountDeletionConfirmationPanel from "../../features/user/components/AccountDeletionConfirmationPanel";
+import FatalErrorPanel from "../FatalErrorPanel";
+import UserSettingsPanel from "../../features/user/components/UserSettingsPanel/UserSettingsPanel";
 
 const PanelsContainer = () => {
   return (

@@ -1,6 +1,5 @@
 import { AxiosError } from "axios";
-import { ErrorType } from "../types/ErrorType";
-
+import { errorType } from "../types/errorType";
 interface ResponseErrorData {
   message?: string;
   field?: string;
@@ -8,7 +7,7 @@ interface ResponseErrorData {
 
 const handleResponseErrors = (
   responseError: AxiosError<ResponseErrorData>
-): ErrorType => {
+): errorType => {
   if (responseError.response) {
     const { message, field } = responseError.response.data || {};
     return {

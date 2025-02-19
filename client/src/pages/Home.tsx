@@ -1,8 +1,9 @@
 import { usePanelContext } from "../context/PanelContext";
 import { Helmet } from "react-helmet";
-import PostsList from "../components/posts/PostsList";
-import avatarNull from "../assets/images/avatar_null.png";
+import PostsList from "../features/posts/components/PostsList";
 import { useCookieAuthContext } from "../context/CookieAuthContext";
+
+import avatarNull from "../assets/images/avatarNull.png";
 import defaultAvatar from "../assets/images/defaultAvatar.png";
 import forwardIcon from "../assets/icons/forwardIcon.svg";
 

@@ -1,6 +1,5 @@
 import defaultAvatar from "../assets/images/defaultAvatar.png";
-import useHandleAllUsersList from "../hooks/user/usehandleAllUsersList";
-
+import useHandleAllUsersList from "../features/user/hooks/usehandleAllUsersList";
 interface userData {
   username: string;
   avatarPath: string;

@@ -1,16 +1,16 @@
-import { ErrorType } from "../../types/ErrorType";
-import { usePanelContext } from "../../context/PanelContext";
+import { errorType } from "../../types/errorType";
 import { useState } from "react";
 import errIco from "../../assets/images/err_ico.png";
+import { usePanelContext } from "../../context/PanelContext";
 
 const useHandleFatalError = () => {
   const { showPanel } = usePanelContext();
 
-  const [fatalError, setFatalError] = useState<ErrorType | undefined>(
+  const [fatalError, setFatalError] = useState<errorType | undefined>(
     undefined
   );
 
-  const handleFatalErrorData = (fatalError: ErrorType | undefined) => {
+  const handleFatalErrorData = (fatalError: errorType | undefined) => {
     if (fatalError) {
       setFatalError(fatalError);
 

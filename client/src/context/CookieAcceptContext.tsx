@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext } from "react";
-import useAcceptCookie from "../hooks/cookies/useAcceptCookie";
+import useAcceptCookie from "../features/cookies/hooks/useAcceptCookie";
 
 interface CookieAcceptContextTypes {
   handleAcceptCookie: () => void;

@@ -1,17 +1,17 @@
-import { useParams } from "react-router-dom";
-import useHandleUserData from "../hooks/user/useHandleUserData";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
 
-import PostsList from "../components/posts/PostsList";
-import PostSkeleton from "../components/shared/post/PostSkeleton";
-import UserProfileBar from "../components/user/UserProfileBar";
-import UserProfileBarSkeleton from "../components/user/UserProfileBarSkeleton";
+import useDisplayUserData from "../features/user/hooks/useHandleUserData";
+import PostsList from "../features/posts/components/PostsList";
+import BlinkingButtonsMenu from "../components/buttons/DropDownButton/BlinkingButtonsMenu";
+import PostSkeleton from "../features/posts/components/post/PostSkeleton";
+import UserProfileBar from "../features/user/components/UserProfileBar";
+import UserProfileBarSkeleton from "../features/user/components/UserProfileBarSkeleton";
 import { usePostsContext } from "../context/PostsContext";
-import BlinkingButtonsMenu from "../components/shared/buttons/DropDownButton/BlinkingButtonsMenu";
 
 const UserPage = () => {
   const { username } = useParams();
-  const { userData, loading, canEdit, queryError } = useHandleUserData(
+  const { userData, loading, canEdit, queryError } = useDisplayUserData(
     username || ""
   );
 

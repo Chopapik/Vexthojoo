@@ -1,13 +1,13 @@
 import { useContext, createContext } from "react";
-import { postDataTypes } from "../types/posts/postTypes";
-import useFetchPost from "../hooks/posts/useFetchPost";
-import { ErrorType } from "../types/ErrorType";
+import { postDataTypes } from "../features/posts/types/postTypes";
+import useFetchPost from "../features/posts/hooks/useFetchPost";
+import { errorType } from "../types/errorType";
 
 interface PostsContextType {
   handleFetchingPosts: (displayByUser?: string) => Promise<void>;
   postsData: postDataTypes[];
   loading: boolean;
-  queryError: ErrorType | undefined;
+  queryError: errorType | undefined;
 }
 
 const PostsContext = createContext<PostsContextType | undefined>(undefined);

@@ -1,59 +1,32 @@
-import { postContentToUpdateTypes } from "../../types/postTypes";
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { postContentToUpdateTypes } from "../../../types/postTypes";
 
 const PostContent = ({
   text,
   imagePath,
-  updateModeEnable,
+  isEditModeActive,
   handleSetNewPostContentData,
-  setBlockUpdate,
-  blockUpdate,
 }: {
-  id: number;
   text: string;
   imagePath?: string;
-  updateModeEnable: boolean;
+  isEditModeActive: boolean;
   handleSetNewPostContentData: ({
     newText,
     newImage,
   }: postContentToUpdateTypes) => void;
-  setBlockUpdate: Dispatch<SetStateAction<boolean>>;
-  blockUpdate: boolean;
 }) => {
-  const [numberOfLetters, setNumberOfLetters] = useState(
-    text ? text.length : 0
-  );
-
-  useEffect(() => {
-    if (numberOfLetters > 510) {
-      setBlockUpdate(true);
-    } else {
-      setBlockUpdate(false);
-    }
-  }, [numberOfLetters]);
-
   return (
     <div className="p-2 space-y-4 ">
-      {updateModeEnable ? (
+      {isEditModeActive ? (
         <>
           <textarea
             defaultValue={text}
-            className="border-l-2 border-b-2 border-neutral-800 w-full px-5 py-2 min-h-[200px] outline-none"
+            className="border-l-2 border-b-2 bg-neutral-600 border-neutral-800 w-full px-5 py-2 min-h-[200px] outline-none"
             onChange={(e) => {
-              setNumberOfLetters(e.target.value.length);
               handleSetNewPostContentData({
                 newText: e.target.value,
               });
             }}
           />
-          <div
-            className={`${
-              blockUpdate ? "text-red-600" : "text-neutral-100"
-            } text-sm font-bold float-right inline-block`}
-          >
-            <span>{numberOfLetters}</span>
-            <span> / 510</span>
-          </div>
         </>
       ) : (
         <div className=" overflow-hidden">
@@ -72,4 +45,5 @@ const PostContent = ({
     </div>
   );
 };
+
 export default PostContent;

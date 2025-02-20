@@ -1,6 +1,7 @@
 import { usePanelContext } from "../../../context/PanelContext";
 import { UserDataTypes } from "../types/userDataTypes";
-import gearIcon from "../../../assets/icons/mdi_gear.svg";
+
+import gearIcon from "../../../assets/icons/gearIcon.svg";
 import UserAvatarWithButton from "./UserAvatarWithButton";
 
 const UserProfileBar = ({

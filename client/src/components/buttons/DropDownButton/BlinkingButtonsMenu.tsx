@@ -1,6 +1,7 @@
 import BlinkingButton from "../BlinkingButton/BlinkingButton";
-import downIcon from "../../../assets/icons/mingcute_down-fill.svg";
 import useDroppingDownButtonsMenuAnimation from "../../../hooks/buttons/useDroppingDownButtonsMenuAnimation";
+
+import downIcon from "../../../assets/icons/downIcon.svg";
 
 interface option {
   optionName: string;

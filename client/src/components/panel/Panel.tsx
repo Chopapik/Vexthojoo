@@ -1,4 +1,4 @@
-import closeIcon from "../../assets/icons/material-symbols_close.svg";
+import closeIcon from "../../assets/icons/closeIcon.svg";
 import PanelTitle from "./PanelTitle";
 import { usePanelContext } from "../../context/PanelContext";
 const Panel = ({

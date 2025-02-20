@@ -1,5 +1,5 @@
 import { useState } from "react";
-import editIcon from "../../../../../assets/icons/mdi_pencil.svg";
+import editIcon from "../../../../../assets/icons/editIcon.svg";
 
 const Input = ({
   placeholder,

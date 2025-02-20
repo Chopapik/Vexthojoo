@@ -5,7 +5,7 @@ import Section from "../Section";
 import Input from "../Input";
 import { ButtonFuchsiaSm } from "../../../../../../components/buttons/ButtonSM/ButtonSM";
 
-import cameraIcon from "../../../../../../assets/icons/mdi_camera.svg";
+import cameraIcon from "../../../../../../assets/icons/cameraIcon.svg";
 
 const UserProfileSection = () => {
   const {

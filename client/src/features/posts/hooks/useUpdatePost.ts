@@ -6,25 +6,9 @@ import updatePostService from "../services/updatePostService";
 import { usePostsContext } from "../../../context/PostsContext";
 import useHandleQueryError from "../../../hooks/errors/useHandleQueryError";
 
-const useUpdatePost = (postsData: postDataTypes[]) => {
+const useUpdatePost = (postData: postDataTypes) => {
   const { handleFetchingPosts } = usePostsContext();
-
-  //postsData is an array of objects, each object contains data for one post
-  //length of postsData array is equal to the number of posts in the list
-  //setUpdateModeEnable is an array of boolean values, each value is used to control update mode for one post
-  const [updateModeEnable, setUpdateModeEnable] = useState<boolean[]>(
-    new Array(postsData.length).fill(false)
-  );
-
   const { handleQueryError, queryError } = useHandleQueryError();
-
-  const toggleUpdateMode = (index: number) => {
-    setUpdateModeEnable((prevState) => {
-      const newState = [...prevState];
-      newState[index] = !newState[index];
-      return newState;
-    });
-  };
 
   const [newPostContentData, setNewPostContentData] =
     useState<postContentToUpdateTypes>({
@@ -50,37 +34,18 @@ const useUpdatePost = (postsData: postDataTypes[]) => {
     }
   };
 
-  const handleUpdatePost = async (
-    postIdToUpdate: number,
-    index: number,
-    fetchPostsUsername: string
-  ) => {
+  const updatePost = async () => {
     //Sending newText,newImage useState data to service
-
-    const response = await updatePostService(
-      postIdToUpdate,
-      newPostContentData
-    );
+    const response = await updatePostService(postData.id, newPostContentData);
 
     if (response?.error) {
       handleQueryError(response.error);
     } else {
-      await handleFetchingPosts(fetchPostsUsername);
-      setUpdateModeEnable((prevState) => {
-        const newState = [...prevState];
-        newState[index] = !newState[index];
-        return newState;
-      });
+      handleFetchingPosts(postData.username);
     }
   };
 
-  return {
-    updateModeEnable,
-    toggleUpdateMode,
-    handleSetNewPostContentData,
-    handleUpdatePost,
-    queryError,
-  };
+  return { updatePost, queryError, handleSetNewPostContentData };
 };
 
 export default useUpdatePost;

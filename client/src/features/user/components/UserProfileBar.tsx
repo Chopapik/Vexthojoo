@@ -14,7 +14,7 @@ const UserProfileBar = ({
   const { showPanel } = usePanelContext();
 
   return (
-    <div className="h-full w-full lg:w-[275px] xl:w-[342px] bg-neutral-900 border-t border-neutral-700 rounded-xl max-w-[500px] space-y-4 py-8 flex flex-col items-center justify-between">
+    <div className="h-full w-full bg-neutral-900 border-t border-neutral-700 rounded-xl max-w-[500px] space-y-4 py-8 flex flex-col items-center justify-between">
       <div className="w-[200px] flex flex-col items-center space-y-4 relative">
         <UserAvatarWithButton
           avatarPath={userData.avatarPath}

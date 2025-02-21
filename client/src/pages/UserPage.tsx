@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import useDisplayUserData from "../features/user/hooks/useHandleUserData";
 import PostsList from "../features/posts/components/PostsList";
 import BlinkingButtonsMenu from "../components/buttons/DropDownButton/BlinkingButtonsMenu";
-import PostSkeleton from "../features/posts/components/post/PostSkeleton";
+import PostSkeleton from "../features/posts/components/post/postLayout/PostSkeleton";
 import UserProfileBar from "../features/user/components/UserProfileBar";
 import UserProfileBarSkeleton from "../features/user/components/UserProfileBarSkeleton";
 import { usePostsContext } from "../context/PostsContext";
@@ -24,7 +24,7 @@ const UserPage = () => {
       </Helmet>
 
       {!queryError ? (
-        <div className="space-y-4 lg:space-y-0 flex flex-col items-center lg:flex-row w-full max-w-[1440px] lg:items-start lg:space-x-3">
+        <div className="space-y-4 lg:space-y-0 flex flex-col items-center lg:flex-row w-full max-w-[1440px] lg:items-start lg:space-x-3 ">
           <div className="w-full lg:w-[275px] xl:w-[342px] flex justify-center lg:sticky lg:top-[calc(70px+12px+12px)] lg:h-[calc(100vh-12px-12px-12px-70px)]">
             {loading ? (
               <UserProfileBarSkeleton />
@@ -32,14 +32,14 @@ const UserPage = () => {
               <UserProfileBar userData={userData} canEdit={canEdit} />
             )}
           </div>
-          <div className="w-full max-w-[650px] lg:flex-1 flex flex-col items-center">
+          <div className="w-full max-w-[650px] lg:max-w-none lg:flex-1 flex flex-col items-center">
             {loading ? (
               <PostSkeleton />
             ) : (
               <PostsList displayByUser={username} enableOptions={canEdit} />
             )}
           </div>
-          <div className="w-[150px] lg:sticky lg:top-[calc(70px+12px+12px)]">
+          <div className="w-[150px] lg:sticky lg:top-[calc(70px+12px+12px)] ">
             {postsData.length !== 0 && (
               <BlinkingButtonsMenu
                 options={[

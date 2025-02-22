@@ -23,7 +23,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="w-full h-fit flex flex-col items-center space-y-4 py-3 sm:sticky sm:top-3 sm:space-y-0 sm:flex-row sm:justify-between sm:px-4 z-[41] lg:h-[70px] bg-[#080808] border-t border-[#171717] rounded-xl">
+    <div className="w-full h-fit flex flex-col items-center space-y-4 py-3 lg:sticky sm:top-3 sm:space-y-0 sm:flex-row sm:justify-between sm:px-4 z-[41] lg:h-[70px] bg-[#080808] border-t border-[#171717] rounded-xl">
       <a href="/" className="h-fit w-[310px] space-y-1 ">
         <img src={logo} alt="VEXTHOJOO" className="h-auto w-[310px]" />
         <div className="h-0.5 w-full bg-fuchsia-500 border-t border-fuchsia-300"></div>

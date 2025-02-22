@@ -25,6 +25,16 @@ const addPost = async (req: Request, res: Response) => {
     return;
   }
 
+  const splitString = text.split(" ");
+  const isStringToLong = splitString.some((word: string) => word.length > 49);
+
+  if (isStringToLong) {
+    res.status(409).json({
+      message: "Jedno ze słów jest za długie. Limit znaków bez spacji to 49.",
+    });
+    return;
+  }
+
   try {
     const { userid } = <decodedUserDataTokenTypes>decodedUserDataToken;
 

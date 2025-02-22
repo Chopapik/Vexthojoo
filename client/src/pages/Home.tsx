@@ -27,7 +27,7 @@ const Home = () => {
         id="content"
         className="w-full flex flex-col items-center max-w-[650px] lg:max-w-[1440px] lg:flex-row lg:items-start lg:space-x-3"
       >
-        <main className="w-full lg:flex-1 flex flex-col items-center space-y-4">
+        <main className="w-full lg:flex-1 flex flex-col items-center space-y-4 z-[995]">
           {/* add post input */}
           <div className="w-auto p-1 space-y-3 flex flex-col items-center">
             <div
@@ -65,7 +65,7 @@ const Home = () => {
 
         <aside
           className={`
-              rounded-xl z-50 bg-[#0B0B0B] fixed max-w-[400px] lg:sticky flex justify-between
+              rounded-xl z-[997] bg-[#0B0B0B] fixed max-w-[400px] lg:sticky flex justify-between
               w-[calc(100vw-12px-12px)] 
               h-[calc(100vh-12px-12px-12px-37px)]
               top-3

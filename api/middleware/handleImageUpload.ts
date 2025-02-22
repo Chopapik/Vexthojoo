@@ -8,7 +8,21 @@ const handleImageUpload = ({
   fileBodyName: string;
   dest: string;
 }) => {
-  const upload = multer({ dest: dest, limits: { fileSize: 1024 * 1024 } });
+  const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, dest);
+    },
+    filename: (req, file, cb) => {
+      const fileExtension = file.originalname.split(".").pop();
+      const newFileName = `${Date.now()}.${fileExtension}`;
+      cb(null, newFileName);
+    },
+  });
+
+  const upload = multer({
+    storage: storage,
+    limits: { fileSize: 1024 * 1024 },
+  });
 
   return (req: Request, res: Response, next: NextFunction) => {
     const uploadSingle = upload.single(fileBodyName);

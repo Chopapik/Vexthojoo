@@ -8,6 +8,8 @@ import updatePost from "../controllers/posts/updatePost";
 import { addPostsLimiter } from "../middleware/queriesLimiter";
 import handleImageUpload from "../middleware/handleImageUpload";
 
+import deletePostImage from "../middleware/posts/deletePostImage";
+
 router.get("/printAllPosts", fetchPosts);
 router.post(
   "/addPost",
@@ -15,7 +17,8 @@ router.post(
   handleImageUpload({ fileBodyName: "image", dest: "./uploads/postsImages" }),
   addPost
 );
-router.delete("/removePost/:postid", removePost);
+router.delete("/removePost/:postid", deletePostImage, removePost);
+
 router.put(
   "/updatePost/:postId",
   handleImageUpload({ fileBodyName: "image", dest: "./uploads/postsImages" }),

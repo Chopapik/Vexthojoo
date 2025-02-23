@@ -8,13 +8,16 @@ import fetchAllUsers from "../controllers/users/fetchAllUsers";
 import handleImageUpload from "../middleware/handleImageUpload";
 import updateUserPassword from "../controllers/users/updateUserPassword";
 
+import deleteAvatarImage from "../middleware/users/deleteAvatarImage";
+
 const router = express.Router();
 
 router.get("/allUsers", fetchAllUsers);
 router.get("/:username", userData);
 
 router.post(
-  "/updateData",
+  "/updateData/:userid",
+  deleteAvatarImage,
   handleImageUpload({
     fileBodyName: "avatar",
     dest: "./uploads/UsersAvatars",

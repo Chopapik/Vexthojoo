@@ -29,7 +29,7 @@ router.post(
 );
 
 router.delete(
-  "/removeUser/:userIdToRemove",
+  "/removeUser/:userid",
   checkUserAuthorization(getUseridByParams),
   deleteUserAccount
 );

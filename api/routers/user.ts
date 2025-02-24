@@ -28,7 +28,10 @@ router.post(
   updateUserData
 );
 
-router.delete("/removeUser/:userIdToRemove", deleteUserAccount);
-router.post("/updateUserPassword", updateUserPassword);
+router.delete(
+  "/removeUser/:userIdToRemove",
+  checkUserAuthorization(getUseridByParams),
+  deleteUserAccount
+);
 
 export default router;

@@ -70,7 +70,10 @@ const useUpdateUserData = () => {
       newUserDataForm.append("avatar", newUserData.avatar);
     }
 
-    const response = await updateUserDataService(newUserDataForm);
+    const response = await updateUserDataService(
+      newUserDataForm,
+      authData.userid!
+    );
 
     if (response?.error) {
       handleQueryError(response.error);

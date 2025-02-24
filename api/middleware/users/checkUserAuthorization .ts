@@ -1,8 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { decode } from "jsonwebtoken";
 
-const checkUserAuthorization = (userid: (req: Request) => number) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+const checkUserAuthorization = (
+  getUserId: (req: Request, res: Response) => number | Promise<number>
+) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     const token = req.cookies.token;
     const secret = process.env.secret;
 
@@ -12,14 +14,22 @@ const checkUserAuthorization = (userid: (req: Request) => number) => {
       res.status(401).json({ message: "No secret provided" });
     } else {
       try {
+        const foundUserId =
+          getUserId(req, res) instanceof Promise
+            ? await getUserId(req, res)
+            : getUserId(req, res);
+
         const decodedToken = jwt.verify(token, secret);
         const decodedUserid = (decodedToken as jwt.JwtPayload).userid;
 
-        if (decodedUserid === userid(req)) {
+        console.log("token id: ", decodedUserid);
+        console.log("userid", foundUserId);
+
+        if (decodedUserid === foundUserId) {
           next();
         } else {
           res
-            .status(403)
+            .status(500)
             .json({ message: "User is not authorized to perform this action" });
         }
       } catch (error) {

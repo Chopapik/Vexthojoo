@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 const router = express.Router();
 import multer from "multer";
 import fetchPosts from "../controllers/posts/fetchPosts";
@@ -10,6 +10,9 @@ import handleImageUpload from "../middleware/handleImageUpload";
 
 import deletePostImage from "../middleware/posts/deletePostImage";
 
+import getPostAuthorId from "../utils/getPostAuthorId";
+import checkUserAuthorization from "../middleware/users/checkUserAuthorization ";
+
 router.get("/printAllPosts", fetchPosts);
 router.post(
   "/addPost",
@@ -17,7 +20,12 @@ router.post(
   handleImageUpload({ fileBodyName: "image", dest: "./uploads/postsImages" }),
   addPost
 );
-router.delete("/removePost/:postid", deletePostImage, removePost);
+router.delete(
+  "/removePost/:postid",
+  checkUserAuthorization(getPostAuthorId),
+  deletePostImage,
+  removePost
+);
 
 router.put(
   "/updatePost/:postId",

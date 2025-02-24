@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import multer from "multer";
 
 import userData from "../controllers/users/userData";
@@ -9,14 +9,17 @@ import handleImageUpload from "../middleware/handleImageUpload";
 import updateUserPassword from "../controllers/users/updateUserPassword";
 
 import deleteAvatarImage from "../middleware/users/deleteAvatarImage";
-
+import checkUserAuthorization from "../middleware/users/checkUserAuthorization ";
 const router = express.Router();
+
+import getUseridByParams from "../utils/getUseridByParam";
 
 router.get("/allUsers", fetchAllUsers);
 router.get("/:username", userData);
 
 router.post(
   "/updateData/:userid",
+  checkUserAuthorization(getUseridByParams),
   deleteAvatarImage,
   handleImageUpload({
     fileBodyName: "avatar",
@@ -24,6 +27,7 @@ router.post(
   }),
   updateUserData
 );
+
 router.delete("/removeUser/:userIdToRemove", deleteUserAccount);
 router.post("/updateUserPassword", updateUserPassword);
 

@@ -47,6 +47,7 @@ router.delete(
 
 router.put(
   "/updatePost/:postId",
+  uploadImageToRam(),
   checkTextWordsLength,
   checkStringLength,
   checkLink,

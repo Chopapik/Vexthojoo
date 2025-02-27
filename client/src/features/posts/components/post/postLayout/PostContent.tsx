@@ -1,19 +1,19 @@
-import { postContentToUpdateTypes } from "../../../types/postTypes";
+import { postContentDataTypes } from "../../../types/postTypes";
 
 const PostContent = ({
-  text,
-  imagePath,
+  postData,
   isEditModeActive,
-  handleSetNewPostContentData,
+  setNewPostData,
 }: {
-  text: string;
-  imagePath?: string;
+  postData: postContentDataTypes;
   isEditModeActive: boolean;
-  handleSetNewPostContentData: ({
-    newText,
-    newImage,
-  }: postContentToUpdateTypes) => void;
+  setNewPostData: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    name: "text" | "ascii" | "ytVideoLink"
+  ) => void;
 }) => {
+  const { text, imagePath } = postData;
+
   return (
     <div className="p-2 space-y-4 ">
       {isEditModeActive ? (
@@ -22,9 +22,7 @@ const PostContent = ({
             defaultValue={text}
             className="border-l-2 border-b-2 bg-neutral-600 border-neutral-800 w-full px-5 py-2 min-h-[200px] outline-none"
             onChange={(e) => {
-              handleSetNewPostContentData({
-                newText: e.target.value,
-              });
+              setNewPostData(e, "text");
             }}
           />
         </>

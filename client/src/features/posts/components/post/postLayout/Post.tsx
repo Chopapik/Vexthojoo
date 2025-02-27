@@ -27,7 +27,7 @@ const Post = ({
     disableDeleteMode,
   } = usePostDeleteMode();
   const { deletePost } = useDeletePost(postData);
-  const { updatePost, handleSetNewPostContentData } = useUpdatePost(postData);
+  const { updatePost, setNewPostData } = useUpdatePost(postData);
 
   return (
     <>
@@ -54,10 +54,9 @@ const Post = ({
           </div>
         ) : undefined}
         <PostContent
-          text={postData.text}
-          imagePath={postData.imagePath}
+          postData={postData}
           isEditModeActive={isEditModeActive}
-          handleSetNewPostContentData={handleSetNewPostContentData}
+          setNewPostData={setNewPostData}
         />
       </div>
     </>

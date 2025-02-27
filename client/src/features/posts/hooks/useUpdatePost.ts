@@ -1,42 +1,41 @@
 import { useState } from "react";
 
 import { postDataTypes } from "../types/postTypes";
-import { postContentToUpdateTypes } from "../types/postTypes";
 import updatePostService from "../services/updatePostService";
 import { usePostsContext } from "../../../context/PostsContext";
 import useHandleQueryError from "../../../hooks/errors/useHandleQueryError";
+import { postContentDataTypes } from "../types/postTypes";
 
 const useUpdatePost = (postData: postDataTypes) => {
   const { handleFetchingPosts } = usePostsContext();
   const { handleQueryError, queryError } = useHandleQueryError();
 
   const [newPostContentData, setNewPostContentData] =
-    useState<postContentToUpdateTypes>({
-      newText: undefined,
-      newImage: undefined,
+    useState<postContentDataTypes>({
+      text: "",
+      ascii: "",
+      ytVideoLink: "",
     });
 
-  const handleSetNewPostContentData = async ({
-    newText,
-    newImage,
-  }: postContentToUpdateTypes) => {
-    if (newText) {
-      await setNewPostContentData((prevState) => ({
-        ...prevState,
-        newText: newText,
-      }));
-    }
-    if (newImage) {
-      await setNewPostContentData((prevState) => ({
-        ...prevState,
-        newImage: newImage,
-      }));
-    }
+  const setNewPostData = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    name: "text" | "ascii" | "ytVideoLink"
+  ) => {
+    setNewPostContentData({ ...setNewPostContentData, [name]: e.target.value });
   };
 
   const updatePost = async () => {
-    //Sending newText,newImage useState data to service
-    const response = await updatePostService(postData.id, newPostContentData);
+    const formData = new FormData();
+
+    const { text, ascii, ytVideoLink } = newPostContentData;
+    console.log(newPostContentData);
+
+    if (text) formData.append("text", text);
+    if (ascii) formData.append("ascii", ascii);
+    if (ytVideoLink) formData.append("ytVideoLink", ytVideoLink);
+    // if (imageFile) formData.append("image", imageFile);
+
+    const response = await updatePostService(postData.id, formData);
 
     if (response?.error) {
       handleQueryError(response.error);
@@ -45,7 +44,7 @@ const useUpdatePost = (postData: postDataTypes) => {
     }
   };
 
-  return { updatePost, queryError, handleSetNewPostContentData };
+  return { updatePost, queryError, setNewPostData };
 };
 
 export default useUpdatePost;

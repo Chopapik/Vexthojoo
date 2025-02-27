@@ -10,11 +10,8 @@ export interface postDataTypes {
 }
 
 export interface postContentDataTypes {
-  text: string;
-  image?: File;
-}
-
-export interface postContentToUpdateTypes {
-  newText?: string;
-  newImage?: File;
+  text?: string;
+  ascii?: string;
+  ytVideoLink?: string;
+  imagePath?: string;
 }

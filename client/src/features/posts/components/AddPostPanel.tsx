@@ -1,7 +1,7 @@
 import { usePanelContext } from "../../../context/PanelContext";
 import { useCookieAuthContext } from "../../../context/CookieAuthContext";
 import Panel from "../../../components/panel/Panel";
-import { useState, useEffect } from "react";
+// import { useState } from "react";
 import useAddPost from "../hooks/useAddPost";
 import { ButtonFuchsiaSm } from "../../../components/buttons/ButtonSM/ButtonSM";
 
@@ -11,20 +11,8 @@ const AddPostPanel = () => {
   const { showPanel, closePanel, visiblePanelId } = usePanelContext();
   const { authData } = useCookieAuthContext();
 
-  const [numberOfLetters, setNumberOfLetters] = useState(0);
-  const [blockUpload, setBlockUpload] = useState<boolean>(true);
-
-  const [imagePreview, setImagePreview] = useState<string>("");
-  const { handlePostContentData, queryError, handleAddPost } = useAddPost();
-  useEffect(() => {
-    if (numberOfLetters > 510) {
-      setBlockUpload(true);
-    } else if (numberOfLetters === 0) {
-      setBlockUpload(true);
-    } else {
-      setBlockUpload(false);
-    }
-  }, [numberOfLetters]);
+  const { setImage, imagePreview, setPostData, queryError, addPost } =
+    useAddPost();
 
   return (
     <Panel
@@ -67,15 +55,14 @@ const AddPostPanel = () => {
                     placeholder="napisz coś głupcze"
                     name="text"
                     onChange={(e) => {
-                      setNumberOfLetters(e.target.value.length);
-                      handlePostContentData(e);
+                      setPostData(e, "text");
                     }}
                   ></textarea>
                   <div className="p-10 w-full flex justify-center">
                     {imagePreview && (
                       <img
                         src={imagePreview}
-                        alt=""
+                        alt="image preview"
                         className="object-scale-down border-2 border-neutral-600 "
                       />
                     )}
@@ -92,36 +79,14 @@ const AddPostPanel = () => {
                     className="hidden"
                     name="image"
                     onChange={(e) => {
-                      if (e.target.files) {
-                        const file = e.target.files[0];
-
-                        if (file.type.substring(0, 5) === "image") {
-                          const reader = new FileReader();
-
-                          reader.readAsDataURL(file);
-
-                          reader.onload = () => {
-                            setImagePreview(reader.result as string);
-                            handlePostContentData(e);
-                            setBlockUpload(false);
-                          };
-                        }
-                      }
+                      setImage(e);
                     }}
                   />
-                  <div
-                    className={`${
-                      blockUpload ? "text-red-600" : "text-neutral-100"
-                    } text-sm font-bold float-right inline-block`}
-                  >
-                    <span>{numberOfLetters}</span>
-                    <span> / 510</span>
-                  </div>
                 </div>
               </div>
 
               <div className="relative w-full flex justify-center mt-10">
-                <ButtonFuchsiaSm content="dodaj" onClick={handleAddPost} />
+                <ButtonFuchsiaSm content="dodaj" onClick={addPost} />
               </div>
             </>
           )}

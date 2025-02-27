@@ -4,13 +4,8 @@ import { Request, Response } from "express";
 import UAParser from "ua-parser-js";
 import jwt from "jsonwebtoken";
 
-interface decodedUserDataTokenTypes {
-  userid: number;
-}
-
 const addPost = async (req: Request, res: Response) => {
-  const { text } = req.body;
-  const image = req.file;
+  const { text, fileName, decodedToken } = req.body;
 
   const whenUpload = new Date();
 
@@ -18,31 +13,16 @@ const addPost = async (req: Request, res: Response) => {
   const ua = parser.setUA(req.headers["user-agent"] || "").getResult();
   const whatDevice = ua.os.name;
 
-  const decodedUserDataToken = jwt.decode(req.cookies.token);
-
-  if (!text || text.trim().length === 0) {
-    res.status(409).json({ message: "Nie podano treści" });
-    return;
-  }
-
-  const splitString = text.split(" ");
-  const isStringToLong = splitString.some((word: string) => word.length > 49);
-
-  if (isStringToLong) {
-    res.status(409).json({
-      message: "Jedno ze słów jest za długie. Limit znaków bez spacji to 49.",
-    });
-    return;
-  }
+  const imageFile = req.file;
 
   try {
-    const { userid } = <decodedUserDataTokenTypes>decodedUserDataToken;
+    const { userid } = decodedToken;
 
     const protocol = req.protocol;
     const host = req.get("host");
 
-    const imagePath = image
-      ? `${protocol}://${host}/uploads/postsImages/${image?.filename}`
+    const imagePath = imageFile
+      ? `${protocol}://${host}/uploads/postsImages/${fileName}`
       : null;
 
     await db.query(

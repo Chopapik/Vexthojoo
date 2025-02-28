@@ -7,23 +7,27 @@ const checkUserAuthorization = (
   return async (req: Request, res: Response, next: NextFunction) => {
     const decodedToken = req.body.decodedToken;
 
-    const { userid } = decodedToken;
+    if (decodedToken) {
+      const { userid } = decodedToken;
 
-    try {
-      const foundUserId =
-        getUserId(req, res) instanceof Promise
-          ? await getUserId(req, res)
-          : getUserId(req, res);
+      try {
+        const foundUserId =
+          getUserId(req, res) instanceof Promise
+            ? await getUserId(req, res)
+            : getUserId(req, res);
 
-      if (userid === foundUserId) {
-        next();
-      } else {
-        res
-          .status(500)
-          .json({ message: "User is not authorized to perform this action" });
+        if (userid === foundUserId) {
+          next();
+        } else {
+          res
+            .status(500)
+            .json({ message: "User is not authorized to perform this action" });
+        }
+      } catch (error) {
+        res.status(401).json({ message: "Invalid token" });
       }
-    } catch (error) {
-      res.status(401).json({ message: "Invalid token" });
+    } else {
+      res.status(500).json({ message: "Invalid token" });
     }
   };
 };

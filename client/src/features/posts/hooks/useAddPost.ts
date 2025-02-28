@@ -60,6 +60,7 @@ const useAddPost = () => {
     } else {
       closePanel();
       handleFetchingPosts();
+      setPostContentData({ text: "", ascii: "", ytVideoLink: "" });
     }
   };
 

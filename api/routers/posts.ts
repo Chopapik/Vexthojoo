@@ -8,7 +8,7 @@ import { addPostsLimiter } from "../middleware/queriesLimiter";
 import handleImageUpload from "../middleware/handleImageUpload";
 
 import deletePostImage from "../middleware/posts/deletePostImage";
-import verifyToken from "../middleware/verifyToken";
+import verifyToken from "../middleware/decodeToken";
 import getPostAuthorId from "../utils/getPostAuthorId";
 import checkUserAuthorization from "../middleware/users/checkUserAuthorization ";
 import uploadPostImageFile from "../middleware/uploadPostImageFile";
@@ -48,9 +48,12 @@ router.delete(
 router.put(
   "/updatePost/:postId",
   uploadImageToRam(),
+  verifyToken,
+  checkIsPostEmpty,
   checkTextWordsLength,
   checkStringLength,
   checkLink,
+  checkUserAuthorization(getPostAuthorId),
   updatePost
 );
 

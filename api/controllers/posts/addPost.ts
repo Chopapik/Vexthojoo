@@ -3,9 +3,11 @@ import db from "../../mysqlConnection";
 import { Request, Response } from "express";
 import UAParser from "ua-parser-js";
 import jwt from "jsonwebtoken";
+import { isAscii } from "buffer";
 
 const addPost = async (req: Request, res: Response) => {
-  const { text, fileName, decodedToken } = req.body;
+  let { text, fileName, ascii, decodedToken } = req.body;
+  console.log(ascii);
 
   const whenUpload = new Date();
 
@@ -25,9 +27,18 @@ const addPost = async (req: Request, res: Response) => {
       ? `${protocol}://${host}/uploads/postsImages/${fileName}`
       : null;
 
+    let isAscii = 0;
+
+    if (ascii) {
+      text = ascii;
+      isAscii = 1;
+    }
+
+    console.log("Text: ", text);
+
     await db.query(
-      "INSERT INTO posts (TEXT,imagePath,whenUpload,whatDevice,user_id) VALUES (?,?,?,?,?)",
-      [text, imagePath, whenUpload, whatDevice, userid]
+      "INSERT INTO posts (TEXT,imagePath,whenUpload,whatDevice,user_id,isAscii) VALUES (?,?,?,?,?,?)",
+      [text, imagePath, whenUpload, whatDevice, userid, isAscii]
     );
     res.status(201).json({ message: "Post utworzony" });
   } catch (error) {

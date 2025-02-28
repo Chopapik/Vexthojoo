@@ -12,7 +12,7 @@ const PostContent = ({
     name: "text" | "ascii" | "ytVideoLink"
   ) => void;
 }) => {
-  const { text, imagePath } = postData;
+  const { text, imagePath, ascii, isAscii } = postData;
 
   return (
     <div className="p-2 space-y-4 ">
@@ -28,10 +28,14 @@ const PostContent = ({
         </>
       ) : (
         <div className=" overflow-hidden">
-          <p className="text-base">{text}</p>
+          {isAscii ? (
+            <pre className="text-base">{text}</pre>
+          ) : (
+            <p className="text-base">{text}</p>
+          )}
         </div>
       )}
-      {imagePath ? (
+      {imagePath && (
         <div className="w-full flex justify-self-center justify-center min-h-[200px] min-w-[200px] max-h-[500px] max-w-[500px] rounded-xl">
           <img
             src={imagePath}
@@ -39,7 +43,13 @@ const PostContent = ({
             loading="lazy"
           />
         </div>
-      ) : null}
+      )}
+
+      {ascii && (
+        <div className="w-full flex justify-self-center justify-center min-h-[200px] min-w-[200px] max-h-[500px] max-w-[500px] rounded-xl">
+          <pre>{ascii}</pre>
+        </div>
+      )}
     </div>
   );
 };

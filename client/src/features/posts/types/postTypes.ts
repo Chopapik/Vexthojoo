@@ -14,4 +14,5 @@ export interface postContentDataTypes {
   ascii?: string;
   ytVideoLink?: string;
   imagePath?: string;
+  isAscii?: number;
 }

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-const verifyToken = (req: Request, res: Response, next: NextFunction) => {
+const decodeToken = (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies.token;
   const secret = process.env.SECRET;
 
@@ -26,4 +26,4 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   });
 };
 
-export default verifyToken;
+export default decodeToken;

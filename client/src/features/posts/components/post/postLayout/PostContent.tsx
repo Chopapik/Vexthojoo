@@ -29,7 +29,7 @@ const PostContent = ({
       ) : (
         <div className=" overflow-hidden">
           {isAscii ? (
-            <pre className="text-base">{text}</pre>
+            <pre className="text-base leading-snug max-w-[60vw] ">{text}</pre>
           ) : (
             <p className="text-base">{text}</p>
           )}

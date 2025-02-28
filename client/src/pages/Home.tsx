@@ -65,7 +65,7 @@ const Home = () => {
 
         <aside
           className={`
-              rounded-xl z-[997] bg-[#0B0B0B] fixed max-w-[400px] lg:sticky flex justify-between
+              rounded-xl z-[997] bg-[#0B0B0B] fixed max-w-[300px] xl:max-w-[400px]  lg:sticky flex justify-between
               w-[calc(100vw-12px-12px)] 
               h-[calc(100vh-12px-12px-12px-37px)]
               top-3
@@ -78,7 +78,6 @@ const Home = () => {
             
             `}
         >
-          test
           <footer className="mt-auto h-fit flex flex-col items-center space-y-2 w-full px-5 py-3 text-xs font-roboto font-bold">
             <div className="flex items-center justify-center space-x-2 text-neutral-300">
               <a href="/listaUzytkownikow" className="hover:underline">

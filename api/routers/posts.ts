@@ -19,14 +19,17 @@ import {
   checkStringLength,
   checkLink,
   checkTextWordsLength,
+  checkUploadConfig,
 } from "../middleware/posts/postContentValidations";
 
 router.get("/printAllPosts", fetchPosts);
 
 router.post(
   "/addPost",
+
   addPostsLimiter,
   uploadImageToRam(),
+  checkUploadConfig,
   verifyToken,
   checkIsPostEmpty,
   checkTextWordsLength,

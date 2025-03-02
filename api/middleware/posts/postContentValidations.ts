@@ -69,3 +69,21 @@ export const checkTextWordsLength = (
 
   next();
 };
+
+export const checkUploadConfig = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const file = req.file;
+  const { text, ascii, ytVideoLink } = req.body;
+
+  if ((text || file || ytVideoLink) && ascii) {
+    res.status(400).json({
+      message:
+        "Nie można dodać ascii do posta zawierającego obrazek, tekst lub link",
+    });
+    return;
+  }
+  next();
+};

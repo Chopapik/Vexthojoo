@@ -26,7 +26,7 @@ export const queriesLimiter = rateLimit({
 
 export const addPostsLimiter = rateLimit({
   windowMs: timeForQueriesBlock,
-  max: 2, //max 30 POST queries per minute
+  max: 3, //max 30 POST queries per minute
   keyGenerator: (req: Request) => {
     const ipv4 = req?.ip?.split(":").pop();
     const key = ipv4?.replace(/\./g, "");

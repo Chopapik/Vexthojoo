@@ -37,6 +37,11 @@ const useAddPost = () => {
     }
   };
 
+  const removeImagePreview = () => {
+    setImagePreview("");
+    setImageFile(undefined);
+  };
+
   const setPostData = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     name: "text" | "ascii" | "ytVideoLink"
@@ -64,7 +69,16 @@ const useAddPost = () => {
     }
   };
 
-  return { setImage, imagePreview, setPostData, queryError, addPost };
+  return {
+    setImage,
+    imagePreview,
+    setPostData,
+    queryError,
+    addPost,
+    postContentData,
+    imageFile,
+    removeImagePreview,
+  };
 };
 
 export default useAddPost;

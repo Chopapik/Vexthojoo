@@ -31,7 +31,7 @@ const postHeader = ({
   enableOptions?: boolean;
 }) => {
   return (
-    <div className="flex flex-row justify-between">
+    <div className="flex flex-row justify-between ">
       <div className="flex space-x-2.5 ">
         <a href={`/${postData.username}`} className="relative">
           <div className="w-full h-full bg-white hover:opacity-5 opacity-0 absolute rounded-xl" />
@@ -42,16 +42,19 @@ const postHeader = ({
             loading="lazy"
           />
         </a>
-        <div className="flex flex-col space-y-1 leading-none ">
+        <div className="flex flex-col space-y-1 leading-none justify-center">
           <span className="text-base leading-none font-bold">
             {postData.username}
           </span>
-          <span className="text-neutral-500 text-[11px]">
-            {postData.whenUpload}
-          </span>
-          <span className="text-neutral-500 text-[11px]">
-            Uploaded from {postData.whatDevice}
-          </span>
+          <div className="flex flex-col xs:flex-row xs:space-x-1 xs:items-center">
+            <span className="text-neutral-500 text-[11px]">
+              {postData.whenUpload}
+            </span>
+            <div className="bg-neutral-500 w-1 h-1 rounded-full hidden xs:block"></div>
+            <span className="text-neutral-500 text-[11px]">
+              Uploaded from {postData.whatDevice}
+            </span>
+          </div>
         </div>
       </div>
       {enableOptions && (

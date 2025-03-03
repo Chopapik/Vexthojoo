@@ -36,11 +36,13 @@ const ChangePasswordSection = () => {
               <>
                 <span>wpisz nowe hasło</span>
                 <Input
+                  type="password"
                   placeholder="nowe hasło"
                   onChange={handleNewPasswordChange}
                 />
                 <span>powtórz nowe hasło</span>
                 <Input
+                  type="password"
                   placeholder="powtórz nowe hasło"
                   onChange={handleNewPasswordRepeatedChange}
                 />
@@ -52,6 +54,7 @@ const ChangePasswordSection = () => {
               <>
                 <span>wpisz stare hasło</span>
                 <Input
+                  type="password"
                   placeholder="stare hasło"
                   onChange={handleOldPasswordChange}
                 />

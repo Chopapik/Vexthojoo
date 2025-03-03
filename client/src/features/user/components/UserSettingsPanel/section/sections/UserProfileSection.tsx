@@ -34,6 +34,7 @@ const UserProfileSection = () => {
           />
           <SectionTitle title="twoja nazwa" />
           <Input
+            type="text"
             placeholder={cookieUserData.username!}
             onChange={(e) => handleUsernameChange(e)}
           />

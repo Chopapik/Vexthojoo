@@ -2,11 +2,11 @@ import db from "../mysqlConnection";
 import { Request, Response } from "express";
 
 const getPostAuthorId = async (req: Request, res: Response) => {
-  const postId = Number(req.params.postId);
+  const postid = Number(req.params.postid);
 
   try {
     const [rows] = await db.query("SELECT user_id FROM posts WHERE id=?", [
-      postId,
+      postid,
     ]);
     const { user_id } = rows[0];
     return user_id;

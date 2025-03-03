@@ -4,6 +4,8 @@ import { Request, Response } from "express";
 
 export const removePost = async (req: Request, res: Response) => {
   const postid = req.params.postid;
+
+  console.log(postid);
   try {
     await db.query("DELETE FROM posts WHERE id=?", [postid]);
     res.json({ message: `Usunięto post od id: ${postid}` });

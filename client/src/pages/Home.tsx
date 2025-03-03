@@ -48,7 +48,7 @@ const Home = () => {
               </div>
               <div className="w-[250px] lg:w-[500px] h-[50px] rounded-full bg-neutral-900 border-t border-neutral-700 flex items-center px-6 group-hover:bg-neutral-800 transition-all duration-150 ease-out">
                 <div className="flex w-full justify-between items-center font-poppins text-sm">
-                  <span>Dodaj post głubcze</span>
+                  <span>Dodaj post</span>
                   <img src={forwardIcon} alt="forward arrow" />
                 </div>
               </div>

@@ -129,7 +129,11 @@ const AddPostPanel = () => {
                     {inputLength}/1024
                   </div>
                 </div>
-                <ButtonFuchsiaSm content="dodaj post" onClick={addPost} />
+                <ButtonFuchsiaSm
+                  content="dodaj post"
+                  onClick={addPost}
+                  disableButton={isTooManyCharacters}
+                />
                 {queryError && (
                   <span className="absolute text-xs right-0 top-0 text-red-600 ">
                     {queryError.message}

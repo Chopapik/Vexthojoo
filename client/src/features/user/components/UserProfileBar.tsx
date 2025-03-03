@@ -1,7 +1,7 @@
 import { usePanelContext } from "../../../context/PanelContext";
 import { UserDataTypes } from "../types/userDataTypes";
 
-import gearIcon from "../../../assets/icons/gearIcon.svg";
+import GearIcon from "../../../assets/icons/gearIcon.svg?react";
 import UserAvatarWithButton from "./UserAvatarWithButton";
 
 const UserProfileBar = ({
@@ -19,10 +19,9 @@ const UserProfileBar = ({
         <UserAvatarWithButton
           avatarPath={userData.avatarPath}
           username={userData.username}
-          buttonIcon={gearIcon}
-          buttonAltName="ustawienia użytkownika"
           buttonFunction={() => showPanel("userSettingsPanel")}
           enableButton={canEdit}
+          icon={<GearIcon />}
         />
         <span className="w-[200px] text-center font-roboto font-bold text-2xl">
           {userData.username}

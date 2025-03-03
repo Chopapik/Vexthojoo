@@ -5,7 +5,7 @@ import Section from "../Section";
 import Input from "../Input";
 import { ButtonFuchsiaSm } from "../../../../../../components/buttons/ButtonSM/ButtonSM";
 
-import cameraIcon from "../../../../../../assets/icons/cameraIcon.svg";
+import CameraIcon from "../../../../../../assets/icons/cameraIcon.svg?react";
 
 const UserProfileSection = () => {
   const {
@@ -27,9 +27,7 @@ const UserProfileSection = () => {
           <UserAvatarWithButton
             avatarPath={avatarPreview || cookieUserData.avatarPath}
             username={cookieUserData.username!}
-            buttonIcon={cameraIcon}
-            buttonAltName="edytuj awatar"
-            // buttonFunction={() => handleAvatarPreview}
+            icon={<CameraIcon />}
             enableButton={true}
             enableFileInput={true}
             inputOnChangeFunction={(e) => handleAvatarPreview(e)}

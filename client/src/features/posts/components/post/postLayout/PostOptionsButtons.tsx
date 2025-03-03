@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import moreIcon from "../../../../../assets/icons/moreIcon.svg";
-import editIcon from "../../../../../assets/icons/editIcon.svg";
-import deleteIcon from "../../../../../assets/icons/deleteIcon.svg";
+import MoreIcon from "../../../../../assets/icons/moreIcon.svg?react";
+import EditIcon from "../../../../../assets/icons/editIcon.svg?react";
+import DeleteIcon from "../../../../../assets/icons/deleteIcon.svg?react";
 
 import { ButtonRedXs } from "../../../../../components/buttons/ButtonXS/ButtonXS";
 import { ButtonNeutralXs } from "../../../../../components/buttons/ButtonXS/ButtonXS";
@@ -59,28 +59,28 @@ const PostOptionsButtons = ({
           )}
 
           <ButtonRedXs
-            imgPath={deleteIcon}
+            icon={<DeleteIcon />}
             onClick={() => {
               toggleDeleteMode();
               disableEditMode();
             }}
           />
           <ButtonNeutralXs
-            imgPath={editIcon}
+            icon={<EditIcon />}
             onClick={() => {
               toggleEditMode();
               disableDeleteMode();
             }}
           />
           <ButtonNeutralXs
-            imgPath={moreIcon}
+            icon={<MoreIcon />}
             onClick={() => setShowOptions((prev) => !prev)}
           />
         </div>
       ) : (
         <div className="flex p-1 space-x-1 rounded-xl absolute right-2 top-2">
           <ButtonNeutralXs
-            imgPath={moreIcon}
+            icon={<MoreIcon />}
             onClick={() => setShowOptions((prev) => !prev)}
           />
         </div>

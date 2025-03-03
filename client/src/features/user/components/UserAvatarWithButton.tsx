@@ -5,8 +5,7 @@ import { useRef } from "react";
 const UserAvatarWithButton = ({
   avatarPath,
   username,
-  buttonIcon,
-  buttonAltName,
+  icon,
   buttonFunction,
   enableButton,
   enableFileInput,
@@ -14,8 +13,7 @@ const UserAvatarWithButton = ({
 }: {
   avatarPath: string | null | undefined;
   username: string;
-  buttonIcon: string;
-  buttonAltName: string;
+  icon: React.ReactNode;
   buttonFunction?: () => void;
   enableButton?: boolean;
   enableFileInput?: boolean;
@@ -26,7 +24,6 @@ const UserAvatarWithButton = ({
   const handleInputImage = () => {
     fileInputRef?.current?.click();
   };
-  console.log(fileInputRef);
 
   return (
     <div className="w-fit flex flex-col items-center space-y-4 relative">
@@ -51,8 +48,7 @@ const UserAvatarWithButton = ({
               />
             )}
             <ButtonNeutralXs
-              imgPath={buttonIcon}
-              imgAlt={buttonAltName}
+              icon={icon}
               onClick={enableFileInput ? handleInputImage : buttonFunction}
             />
           </>

@@ -1,6 +1,7 @@
 import version_1_0_0_image from "../assets/versionImages/1.0.0.png";
 import version_1_1_0_image from "../assets/versionImages/1.1.0.png";
 import version_1_2_image from "../assets/versionImages/1.2.png";
+import version_1_3_image from "../assets/versionImages/1.3.png";
 
 import { useState } from "react";
 
@@ -14,30 +15,42 @@ const WhatsNewPage = () => {
 
   const versions: versionType[] = [
     {
+      version: "1.3",
+      image: version_1_3_image,
+      description: [
+        "Przeprojektowany panel dodawania postów",
+        "Dodano obsługę ASCII w postach",
+        "Poprawki interfejsu użytkownika",
+        "Poprawki bezpieczeństwa",
+        "Naprawiono problemy z rozszerzeniami plików obrazów w postach",
+      ],
+      date: "2025-03-03",
+    },
+    {
       version: "1.2",
       image: version_1_2_image,
-      description: ["przebudowano layout strony"],
-      date: "26.01.2025",
+      description: ["Przeprojektowany układ strony"],
+      date: "2025-01-26",
     },
     {
       version: "1.1",
       image: version_1_1_0_image,
       description: [
-        "poprawki w interfejsie",
-        "poprawki w wyświetlaniu błedów",
-        "zaktualizowano zabezpieczenia",
+        "Ulepszenia interfejsu",
+        "Poprawki wyświetlania błędów",
+        "Poprawki bezpieczeństwa",
       ],
-      date: "07.01.2025",
+      date: "2025-01-07",
     },
     {
       version: "1.0",
       image: version_1_0_0_image,
-      description: ["tego typu", "pierwsza iteracja wersji beta aplikacji"],
-      date: "31.12.2024",
+      description: ["tego typu", "Pierwsza iteracja wersji beta aplikacji"],
+      date: "2024-12-31",
     },
   ];
 
-  const [version, setVersion] = useState<string>("1.2");
+  const [version, setVersion] = useState<string>("1.3");
 
   // selectedVersion returns the index of the selected version
   const selectedVersion = () => {

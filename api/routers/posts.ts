@@ -47,7 +47,7 @@ router.delete(
 );
 
 router.put(
-  "/updatePost/:postId",
+  "/updatePost/:postid",
   uploadImageToRam(),
   verifyToken,
   checkIsPostEmpty,

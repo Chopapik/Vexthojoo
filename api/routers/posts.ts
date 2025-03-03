@@ -10,7 +10,7 @@ import handleImageUpload from "../middleware/handleImageUpload";
 import deletePostImage from "../middleware/posts/deletePostImage";
 import verifyToken from "../middleware/decodeToken";
 import getPostAuthorId from "../utils/getPostAuthorId";
-import checkUserAuthorization from "../middleware/users/checkUserAuthorization ";
+import checkUserAuthorization from "../middleware/checkUserAuthorization";
 import uploadPostImageFile from "../middleware/uploadPostImageFile";
 import uploadImageToRam from "../middleware/uploadImageToRam";
 
@@ -26,7 +26,6 @@ router.get("/printAllPosts", fetchPosts);
 
 router.post(
   "/addPost",
-
   addPostsLimiter,
   uploadImageToRam(),
   checkUploadConfig,
@@ -35,14 +34,13 @@ router.post(
   checkTextWordsLength,
   checkStringLength,
   checkLink,
-
   uploadPostImageFile,
-
   addPost
 );
 
 router.delete(
   "/removePost/:postid",
+  verifyToken,
   checkUserAuthorization(getPostAuthorId),
   deletePostImage,
   removePost

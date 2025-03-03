@@ -9,7 +9,7 @@ import handleImageUpload from "../middleware/handleImageUpload";
 import updateUserPassword from "../controllers/users/updateUserPassword";
 
 import deleteAvatarImage from "../middleware/users/deleteAvatarImage";
-import checkUserAuthorization from "../middleware/users/checkUserAuthorization ";
+import checkUserAuthorization from "../middleware/checkUserAuthorization";
 const router = express.Router();
 
 import getUseridByParams from "../utils/getUseridByParam";

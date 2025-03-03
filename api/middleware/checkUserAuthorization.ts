@@ -24,10 +24,10 @@ const checkUserAuthorization = (
             .json({ message: "User is not authorized to perform this action" });
         }
       } catch (error) {
-        res.status(401).json({ message: "Invalid token" });
+        res.status(401).json({ message: "d token" });
       }
     } else {
-      res.status(500).json({ message: "Invalid token" });
+      res.status(500).json({ message: "czx token" });
     }
   };
 };

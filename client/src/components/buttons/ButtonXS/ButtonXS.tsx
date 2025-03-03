@@ -1,4 +1,4 @@
-import buttonStyle from "./ButtonXs.module.css";
+import buttonStyle from "./ButtonXS.module.css";
 import { buttonTypes } from "../../../types/buttonTypes";
 
 const DisableButtonXS = ({ content, icon }: buttonTypes) => {

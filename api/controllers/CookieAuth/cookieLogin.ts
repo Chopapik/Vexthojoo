@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
+import db from "./../../mysqlConnection";
 
 const cookieLogin = async (req: Request, res: Response) => {
   const token = req.cookies.token;
@@ -20,6 +21,19 @@ const cookieLogin = async (req: Request, res: Response) => {
         //cookie token user data
         const { username, userid, avatarPath, issueat } =
           cookieLoginUserData as cookieUserData;
+
+        const DateTimeNow = new Date();
+
+        try {
+          await db.query("UPDATE users SET whenLastLogged = ? WHERE id = ?", [
+            DateTimeNow,
+            userid,
+          ]);
+        } catch (error) {
+          if (error instanceof Error) {
+            res.status(500).json({ message: error.message });
+          }
+        }
 
         res.status(200).json({
           username: username,

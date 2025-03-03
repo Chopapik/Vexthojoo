@@ -4,7 +4,7 @@
 
 import LoginPanel from "../../features/auth/components/LoginPanel";
 import RegisterPanel from "../../features/auth/components/RegisterPanel";
-import AddPostPanel from "../../features/posts/components/AddPostPanel";
+import AddPostPanel from "../../features/posts/components/post/addPostPanel/AddPostPanel";
 import CookieAcceptBar from "../../features/cookies/components/CookieAcceptBar";
 import AccountDeletionConfirmationPanel from "../../features/user/components/AccountDeletionConfirmationPanel";
 import FatalErrorPanel from "../FatalErrorPanel";

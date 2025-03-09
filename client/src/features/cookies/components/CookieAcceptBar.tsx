@@ -9,7 +9,7 @@ const CookieAcceptBar = () => {
   if (!showAcceptCookieBar) return null;
 
   return (
-    <div className="fixed z-50 bottom-0 w-screen bg-neutral-900 p-5 md:p-1 border-y border-neutral-600 flex sm:space-y-0 justify-center">
+    <div className="fixed z-[999] bottom-0 w-screen bg-neutral-900 p-5 md:p-1 border-y border-neutral-600 flex sm:space-y-0 justify-center">
       <div className="flex flex-col space-y-5 p-5 items-center sm:items-start sm:flex-row sm:space-x-8 sm:space-y-0 sm:max-w-[700px] xl:max-w-[700px] text-white">
         <div className="flex flex-col sm:h-full justify-center items-center">
           <img

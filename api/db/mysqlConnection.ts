@@ -11,8 +11,8 @@ try {
     port: Number(process.env.DBPORT),
   });
   console.log("Database connected");
-} catch (err) {
-  console.error("Error connecting to the database:", err);
+} catch (error) {
+  console.error("Error connecting to the database:", error);
 }
 
 export default db;
